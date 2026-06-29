@@ -1,0 +1,10 @@
+{
+  "name": "ayaya-jp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local Japanese flashcard app.",
+  "scripts": {
+    "validate": "node scripts/validate.js",
+    "validate:bundle": "node validate-bundle.js"
+  }
+}

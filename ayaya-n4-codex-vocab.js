@@ -1,0 +1,27792 @@
+// Ayaya JP - Codex-readable curated JLPT N4 vocabulary data.
+// Generated to match the uploaded AYAYA N5 schema and app compatibility shape.
+// Codex extraction target: window.AYAYA_N4_CODEX_VOCAB.entries
+// App compatibility: this file also defines window.AYAYA_N4_WORDS and window.AYAYA_N4_TATOEBA_EXAMPLES.
+
+window.AYAYA_N4_CODEX_VOCAB = {
+  "schema": {
+    "schema_version": "1.0.0",
+    "generated_on": "2026-06-28",
+    "purpose": "Codex-readable, app-compatible JLPT N4 learning data with corrected Simplified Chinese meanings and natural short Japanese examples. Public N4 lists vary, so this file is an expanded, de-duplicated N4-specific list aligned to the uploaded AYAYA N5 schema.",
+    "fields": {
+      "headword": "学习用规范词形。旧写法或不常用写法会保留在 source_form。",
+      "source_form": "来源词形；多个常见写法用分号保留。",
+      "variants": "可接受写法或变体。",
+      "reading": "主读音，通常为平假名；外来语保留片假名。",
+      "reading_variants": "原始读音字段中的所有读音。",
+      "romaji": "用于搜索/调试的简易罗马字。",
+      "part_of_speech": "粗粒度词性，供 Codex 和应用生成卡片使用。",
+      "meaning_zh": "学习用简体中文释义。",
+      "kanji_readings": "含汉字词形的整词读音，用于生成 ruby/furigana。",
+      "examples": "三个自然、短句优先的日语例句；zh 为简体中文翻译。",
+      "note_zh": "必要时说明写法、用法或兼容注意。"
+    },
+    "compatibility": {
+      "AYAYA_N4_WORDS": "[headword, reading, meaning_zh, first_example_ja, first_example_zh]",
+      "AYAYA_N4_TATOEBA_EXAMPLES": "同名变量被设置为本文件的精选例句对象，便于现有 app.js 的 buildExamples 优先读取。"
+    },
+    "source_notes": [
+      "Vocabulary merged and normalized from public JLPT N4 lists; no official JEES/JF fixed vocabulary list exists for current JLPT.",
+      "The uploaded N5 files were used as the compatibility/schema target.",
+      "Examples are newly written short study sentences rather than copied corpus sentences."
+    ],
+    "entry_count": 767
+  },
+  "entries": [
+    {
+      "id": "n4-001",
+      "jlpt": "N4",
+      "headword": "あ",
+      "source_form": "あ",
+      "variants": [
+        "あ"
+      ],
+      "reading": "あ",
+      "reading_variants": [
+        "あ"
+      ],
+      "romaji": "a",
+      "part_of_speech": "expression",
+      "meaning_zh": "啊；呀",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "あ、財布を忘れました。",
+          "zh": "啊，忘带钱包了。"
+        },
+        {
+          "ja": "あ、ここで降ります。",
+          "zh": "啊，我在这里下车。"
+        },
+        {
+          "ja": "あ、そういう意味ですか。",
+          "zh": "啊，是这个意思吗？"
+        }
+      ],
+      "note_zh": "感叹词。"
+    },
+    {
+      "id": "n4-002",
+      "jlpt": "N4",
+      "headword": "ああ",
+      "source_form": "嗚呼; ああ",
+      "variants": [
+        "嗚呼",
+        "ああ"
+      ],
+      "reading": "ああ",
+      "reading_variants": [
+        "ああ"
+      ],
+      "romaji": "aa",
+      "part_of_speech": "expression",
+      "meaning_zh": "啊；那样；哎呀",
+      "kanji_readings": [
+        {
+          "form": "嗚呼",
+          "reading": "ああ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "ああ、そうですか。",
+          "zh": "啊，是这样啊。"
+        },
+        {
+          "ja": "ああ、やっと分かりました。",
+          "zh": "啊，终于明白了。"
+        },
+        {
+          "ja": "ああ、きれいな景色ですね。",
+          "zh": "啊，景色真美。"
+        }
+      ],
+      "note_zh": "常写假名「ああ」。"
+    },
+    {
+      "id": "n4-003",
+      "jlpt": "N4",
+      "headword": "あいさつ",
+      "source_form": "あいさつ",
+      "variants": [
+        "あいさつ"
+      ],
+      "reading": "あいさつ",
+      "reading_variants": [
+        "あいさつ"
+      ],
+      "romaji": "aisatsu",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "寒暄；问候；致辞",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "朝、先生にあいさつしました。",
+          "zh": "早上向老师问好了。"
+        },
+        {
+          "ja": "日本ではあいさつが大切です。",
+          "zh": "在日本寒暄很重要。"
+        },
+        {
+          "ja": "会議の前に短くあいさつします。",
+          "zh": "会议前简单致辞。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-004",
+      "jlpt": "N4",
+      "headword": "間",
+      "source_form": "間",
+      "variants": [
+        "間"
+      ],
+      "reading": "あいだ",
+      "reading_variants": [
+        "あいだ"
+      ],
+      "romaji": "aida",
+      "part_of_speech": "noun",
+      "meaning_zh": "之间；间隔；期间",
+      "kanji_readings": [
+        {
+          "form": "間",
+          "reading": "あいだ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "間について調べました。",
+          "zh": "查了关于之间的资料。"
+        },
+        {
+          "ja": "間に関する文章を読みました。",
+          "zh": "读了关于之间的文章。"
+        },
+        {
+          "ja": "間について友達と話しました。",
+          "zh": "和朋友谈了关于之间的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-005",
+      "jlpt": "N4",
+      "headword": "合う",
+      "source_form": "合う",
+      "variants": [
+        "合う"
+      ],
+      "reading": "あう",
+      "reading_variants": [
+        "あう"
+      ],
+      "romaji": "au",
+      "part_of_speech": "verb",
+      "meaning_zh": "合适；相配；一致",
+      "kanji_readings": [
+        {
+          "form": "合う",
+          "reading": "あう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この靴は足に合います。",
+          "zh": "这双鞋合脚。"
+        },
+        {
+          "ja": "この色はあなたに合っています。",
+          "zh": "这个颜色适合你。"
+        },
+        {
+          "ja": "二人の予定がなかなか合いません。",
+          "zh": "两个人的日程总是对不上。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-006",
+      "jlpt": "N4",
+      "headword": "赤ちゃん",
+      "source_form": "赤ちゃん",
+      "variants": [
+        "赤ちゃん"
+      ],
+      "reading": "あかちゃん",
+      "reading_variants": [
+        "あかちゃん"
+      ],
+      "romaji": "akachan",
+      "part_of_speech": "noun",
+      "meaning_zh": "婴儿；宝宝",
+      "kanji_readings": [
+        {
+          "form": "赤ちゃん",
+          "reading": "あかちゃん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "赤ちゃんがよく寝ています。",
+          "zh": "宝宝睡得很好。"
+        },
+        {
+          "ja": "電車に赤ちゃんが乗っています。",
+          "zh": "电车上有宝宝。"
+        },
+        {
+          "ja": "赤ちゃんの声が聞こえます。",
+          "zh": "听得到宝宝的声音。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-007",
+      "jlpt": "N4",
+      "headword": "赤ん坊",
+      "source_form": "赤ん坊",
+      "variants": [
+        "赤ん坊"
+      ],
+      "reading": "あかんぼう",
+      "reading_variants": [
+        "あかんぼう"
+      ],
+      "romaji": "akanbou",
+      "part_of_speech": "noun",
+      "meaning_zh": "婴儿；小宝宝",
+      "kanji_readings": [
+        {
+          "form": "赤ん坊",
+          "reading": "あかんぼう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "赤ん坊がすやすや眠っています。",
+          "zh": "小宝宝睡得很香。"
+        },
+        {
+          "ja": "赤ん坊を抱いている人がいます。",
+          "zh": "有人抱着小宝宝。"
+        },
+        {
+          "ja": "赤ん坊の泣き声が聞こえます。",
+          "zh": "听得到小宝宝的哭声。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-008",
+      "jlpt": "N4",
+      "headword": "浅い",
+      "source_form": "浅い",
+      "variants": [
+        "浅い"
+      ],
+      "reading": "あさい",
+      "reading_variants": [
+        "あさい"
+      ],
+      "romaji": "asai",
+      "part_of_speech": "i-adjective",
+      "meaning_zh": "浅的；肤浅的",
+      "kanji_readings": [
+        {
+          "form": "浅い",
+          "reading": "あさい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この川は浅いです。",
+          "zh": "这条河很浅。"
+        },
+        {
+          "ja": "浅い皿にサラダを入れました。",
+          "zh": "把沙拉放进浅盘子里。"
+        },
+        {
+          "ja": "まだ浅い知識しかありません。",
+          "zh": "还只有浅层的知识。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-009",
+      "jlpt": "N4",
+      "headword": "味",
+      "source_form": "味",
+      "variants": [
+        "味"
+      ],
+      "reading": "あじ",
+      "reading_variants": [
+        "あじ"
+      ],
+      "romaji": "aji",
+      "part_of_speech": "noun",
+      "meaning_zh": "味道；滋味",
+      "kanji_readings": [
+        {
+          "form": "味",
+          "reading": "あじ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "このスープは味が薄いです。",
+          "zh": "这个汤味道淡。"
+        },
+        {
+          "ja": "味を見てから塩を足します。",
+          "zh": "尝味道后再加盐。"
+        },
+        {
+          "ja": "家庭の味が恋しいです。",
+          "zh": "怀念家的味道。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-010",
+      "jlpt": "N4",
+      "headword": "味な",
+      "source_form": "味な",
+      "variants": [
+        "味な"
+      ],
+      "reading": "あじな",
+      "reading_variants": [
+        "あじな"
+      ],
+      "romaji": "ajina",
+      "part_of_speech": "na-adjective",
+      "meaning_zh": "巧妙的；有风趣的",
+      "kanji_readings": [
+        {
+          "form": "味な",
+          "reading": "あじな"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "彼は味なことを言います。",
+          "zh": "他说的话很有味道。"
+        },
+        {
+          "ja": "この店は小さいけれど味な店です。",
+          "zh": "这家店虽小但很有风味。"
+        },
+        {
+          "ja": "味な話を聞きました。",
+          "zh": "听到了一个耐人寻味的故事。"
+        }
+      ],
+      "note_zh": "较少见，但部分 N4/JMDict 词表收录。"
+    },
+    {
+      "id": "n4-011",
+      "jlpt": "N4",
+      "headword": "明日",
+      "source_form": "明日",
+      "variants": [
+        "明日"
+      ],
+      "reading": "あす",
+      "reading_variants": [
+        "あす"
+      ],
+      "romaji": "asu",
+      "part_of_speech": "noun",
+      "meaning_zh": "明天",
+      "kanji_readings": [
+        {
+          "form": "明日",
+          "reading": "あす"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "明日に友達と会います。",
+          "zh": "明天和朋友见面。"
+        },
+        {
+          "ja": "明日は少し忙しいです。",
+          "zh": "明天有点忙。"
+        },
+        {
+          "ja": "明日の予定を確認しました。",
+          "zh": "确认了明天的计划。"
+        }
+      ],
+      "note_zh": "比「あした」略书面。"
+    },
+    {
+      "id": "n4-012",
+      "jlpt": "N4",
+      "headword": "遊び",
+      "source_form": "遊び",
+      "variants": [
+        "遊び"
+      ],
+      "reading": "あそび",
+      "reading_variants": [
+        "あそび"
+      ],
+      "romaji": "asobi",
+      "part_of_speech": "noun",
+      "meaning_zh": "玩耍；游戏",
+      "kanji_readings": [
+        {
+          "form": "遊び",
+          "reading": "あそび"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "子供の遊びは大切です。",
+          "zh": "孩子的玩耍很重要。"
+        },
+        {
+          "ja": "この遊びはルールが簡単です。",
+          "zh": "这个游戏规则很简单。"
+        },
+        {
+          "ja": "友達と外で遊びました。",
+          "zh": "和朋友在外面玩了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-013",
+      "jlpt": "N4",
+      "headword": "集まる",
+      "source_form": "集まる",
+      "variants": [
+        "集まる"
+      ],
+      "reading": "あつまる",
+      "reading_variants": [
+        "あつまる"
+      ],
+      "romaji": "atsumaru",
+      "part_of_speech": "verb",
+      "meaning_zh": "集合；聚集",
+      "kanji_readings": [
+        {
+          "form": "集まる",
+          "reading": "あつまる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "駅前に人が集まっています。",
+          "zh": "车站前聚集了人。"
+        },
+        {
+          "ja": "七時に会議室に集まってください。",
+          "zh": "请七点在会议室集合。"
+        },
+        {
+          "ja": "週末、友達が家に集まります。",
+          "zh": "周末朋友们聚到家里。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-014",
+      "jlpt": "N4",
+      "headword": "集める",
+      "source_form": "集める",
+      "variants": [
+        "集める"
+      ],
+      "reading": "あつめる",
+      "reading_variants": [
+        "あつめる"
+      ],
+      "romaji": "atsumeru",
+      "part_of_speech": "verb",
+      "meaning_zh": "收集；召集",
+      "kanji_readings": [
+        {
+          "form": "集める",
+          "reading": "あつめる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "切手を集めています。",
+          "zh": "正在收集邮票。"
+        },
+        {
+          "ja": "会議の資料を集めました。",
+          "zh": "收集了会议资料。"
+        },
+        {
+          "ja": "みんなから意見を集めます。",
+          "zh": "向大家收集意见。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-015",
+      "jlpt": "N4",
+      "headword": "謝る",
+      "source_form": "謝る",
+      "variants": [
+        "謝る"
+      ],
+      "reading": "あやまる",
+      "reading_variants": [
+        "あやまる"
+      ],
+      "romaji": "ayamaru",
+      "part_of_speech": "verb",
+      "meaning_zh": "道歉",
+      "kanji_readings": [
+        {
+          "form": "謝る",
+          "reading": "あやまる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "遅れたことを友達に謝りました。",
+          "zh": "向朋友为迟到道歉了。"
+        },
+        {
+          "ja": "悪いと思ったらすぐ謝ります。",
+          "zh": "觉得不好就马上道歉。"
+        },
+        {
+          "ja": "店員が丁寧に謝ってくれました。",
+          "zh": "店员很礼貌地道歉了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-016",
+      "jlpt": "N4",
+      "headword": "安心",
+      "source_form": "安心",
+      "variants": [
+        "安心"
+      ],
+      "reading": "あんしん",
+      "reading_variants": [
+        "あんしん"
+      ],
+      "romaji": "anshin",
+      "part_of_speech": "suru-verb/noun/na-adjective",
+      "meaning_zh": "安心；放心",
+      "kanji_readings": [
+        {
+          "form": "安心",
+          "reading": "あんしん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "連絡が来て安心しました。",
+          "zh": "收到联系后放心了。"
+        },
+        {
+          "ja": "この道は明るくて安心です。",
+          "zh": "这条路很亮，让人安心。"
+        },
+        {
+          "ja": "母を安心させたいです。",
+          "zh": "想让母亲安心。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-017",
+      "jlpt": "N4",
+      "headword": "安全",
+      "source_form": "安全",
+      "variants": [
+        "安全"
+      ],
+      "reading": "あんぜん",
+      "reading_variants": [
+        "あんぜん"
+      ],
+      "romaji": "anzen",
+      "part_of_speech": "na-adjective/noun",
+      "meaning_zh": "安全",
+      "kanji_readings": [
+        {
+          "form": "安全",
+          "reading": "あんぜん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "安全な場所で待ってください。",
+          "zh": "请在安全的地方等。"
+        },
+        {
+          "ja": "夜は安全に気をつけます。",
+          "zh": "晚上注意安全。"
+        },
+        {
+          "ja": "この道は車が少なくて安全です。",
+          "zh": "这条路车少，很安全。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-018",
+      "jlpt": "N4",
+      "headword": "あんな",
+      "source_form": "あんな",
+      "variants": [
+        "あんな"
+      ],
+      "reading": "あんな",
+      "reading_variants": [
+        "あんな"
+      ],
+      "romaji": "anna",
+      "part_of_speech": "pre-noun/adverb",
+      "meaning_zh": "那样的",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "あんな言い方はしないでください。",
+          "zh": "请不要用那种说法。"
+        },
+        {
+          "ja": "あんな大きな建物は初めて見ました。",
+          "zh": "第一次见那么大的建筑。"
+        },
+        {
+          "ja": "あんなに急がなくても大丈夫です。",
+          "zh": "不用那么着急也没关系。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-019",
+      "jlpt": "N4",
+      "headword": "案内",
+      "source_form": "案内",
+      "variants": [
+        "案内"
+      ],
+      "reading": "あんない",
+      "reading_variants": [
+        "あんない"
+      ],
+      "romaji": "annai",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "引导；介绍；通知",
+      "kanji_readings": [
+        {
+          "form": "案内",
+          "reading": "あんない"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "駅まで案内します。",
+          "zh": "我带你去车站。"
+        },
+        {
+          "ja": "店員が席へ案内してくれました。",
+          "zh": "店员把我带到了座位。"
+        },
+        {
+          "ja": "観光案内を読みました。",
+          "zh": "读了旅游指南。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-020",
+      "jlpt": "N4",
+      "headword": "以下",
+      "source_form": "以下",
+      "variants": [
+        "以下"
+      ],
+      "reading": "いか",
+      "reading_variants": [
+        "いか"
+      ],
+      "romaji": "ika",
+      "part_of_speech": "noun/expression",
+      "meaning_zh": "以下；不超过",
+      "kanji_readings": [
+        {
+          "form": "以下",
+          "reading": "いか"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "高校生以下は料金が安いです。",
+          "zh": "高中生以下费用便宜。"
+        },
+        {
+          "ja": "三千円以下の物を探しています。",
+          "zh": "正在找三千日元以下的东西。"
+        },
+        {
+          "ja": "詳しい説明は以下の通りです。",
+          "zh": "详细说明如下。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-021",
+      "jlpt": "N4",
+      "headword": "以外",
+      "source_form": "以外",
+      "variants": [
+        "以外"
+      ],
+      "reading": "いがい",
+      "reading_variants": [
+        "いがい"
+      ],
+      "romaji": "igai",
+      "part_of_speech": "noun/expression",
+      "meaning_zh": "以外；除……之外",
+      "kanji_readings": [
+        {
+          "form": "以外",
+          "reading": "いがい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "日曜日以外は毎日開いています。",
+          "zh": "除了周日每天都营业。"
+        },
+        {
+          "ja": "私以外はみんな知っていました。",
+          "zh": "除了我以外大家都知道。"
+        },
+        {
+          "ja": "これ以外に方法はありません。",
+          "zh": "除此之外没有办法。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-022",
+      "jlpt": "N4",
+      "headword": "医学",
+      "source_form": "医学",
+      "variants": [
+        "医学"
+      ],
+      "reading": "いがく",
+      "reading_variants": [
+        "いがく"
+      ],
+      "romaji": "igaku",
+      "part_of_speech": "noun",
+      "meaning_zh": "医学",
+      "kanji_readings": [
+        {
+          "form": "医学",
+          "reading": "いがく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "医学について友達と話しました。",
+          "zh": "和朋友谈了关于医学的事。"
+        },
+        {
+          "ja": "医学に関する説明を読みました。",
+          "zh": "读了关于医学的说明。"
+        },
+        {
+          "ja": "医学についてもっと知りたいです。",
+          "zh": "想更多了解医学。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-023",
+      "jlpt": "N4",
+      "headword": "生きる",
+      "source_form": "生きる",
+      "variants": [
+        "生きる"
+      ],
+      "reading": "いきる",
+      "reading_variants": [
+        "いきる"
+      ],
+      "romaji": "ikiru",
+      "part_of_speech": "verb",
+      "meaning_zh": "活；生存",
+      "kanji_readings": [
+        {
+          "form": "生きる",
+          "reading": "いきる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "健康に生きることは大切です。",
+          "zh": "健康地生活很重要。"
+        },
+        {
+          "ja": "祖父は九十歳まで生きました。",
+          "zh": "祖父活到了九十岁。"
+        },
+        {
+          "ja": "この魚はまだ生きています。",
+          "zh": "这条鱼还活着。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-024",
+      "jlpt": "N4",
+      "headword": "意見",
+      "source_form": "意見",
+      "variants": [
+        "意見"
+      ],
+      "reading": "いけん",
+      "reading_variants": [
+        "いけん"
+      ],
+      "romaji": "iken",
+      "part_of_speech": "noun",
+      "meaning_zh": "意见；看法",
+      "kanji_readings": [
+        {
+          "form": "意見",
+          "reading": "いけん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "会議で意見を言いました。",
+          "zh": "在会议上说了意见。"
+        },
+        {
+          "ja": "友達の意見を聞きました。",
+          "zh": "听了朋友的看法。"
+        },
+        {
+          "ja": "違う意見も大切です。",
+          "zh": "不同意见也很重要。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-025",
+      "jlpt": "N4",
+      "headword": "石",
+      "source_form": "石",
+      "variants": [
+        "石"
+      ],
+      "reading": "いし",
+      "reading_variants": [
+        "いし"
+      ],
+      "romaji": "ishi",
+      "part_of_speech": "noun",
+      "meaning_zh": "石头",
+      "kanji_readings": [
+        {
+          "form": "石",
+          "reading": "いし"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "石を見ました。",
+          "zh": "看到了石头。"
+        },
+        {
+          "ja": "石を確認しました。",
+          "zh": "确认了石头。"
+        },
+        {
+          "ja": "石について友達と話しました。",
+          "zh": "和朋友谈了关于石头的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-026",
+      "jlpt": "N4",
+      "headword": "いじめる",
+      "source_form": "いじめる",
+      "variants": [
+        "いじめる"
+      ],
+      "reading": "いじめる",
+      "reading_variants": [
+        "いじめる"
+      ],
+      "romaji": "ijimeru",
+      "part_of_speech": "verb",
+      "meaning_zh": "欺负；捉弄",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "弱い人をいじめてはいけません。",
+          "zh": "不能欺负弱者。"
+        },
+        {
+          "ja": "学校で友達をいじめるのは悪いことです。",
+          "zh": "在学校欺负朋友是不好的事。"
+        },
+        {
+          "ja": "彼は昔いじめられたことがあります。",
+          "zh": "他以前被欺负过。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-027",
+      "jlpt": "N4",
+      "headword": "以上",
+      "source_form": "以上",
+      "variants": [
+        "以上"
+      ],
+      "reading": "いじょう",
+      "reading_variants": [
+        "いじょう"
+      ],
+      "romaji": "ijou",
+      "part_of_speech": "noun/expression",
+      "meaning_zh": "以上；超过；到此为止",
+      "kanji_readings": [
+        {
+          "form": "以上",
+          "reading": "いじょう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "十八歳以上の人だけ入れます。",
+          "zh": "只有十八岁以上的人可以进入。"
+        },
+        {
+          "ja": "これ以上待てません。",
+          "zh": "不能再等了。"
+        },
+        {
+          "ja": "説明は以上です。",
+          "zh": "说明到此为止。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-028",
+      "jlpt": "N4",
+      "headword": "急ぐ",
+      "source_form": "急ぐ",
+      "variants": [
+        "急ぐ"
+      ],
+      "reading": "いそぐ",
+      "reading_variants": [
+        "いそぐ"
+      ],
+      "romaji": "isogu",
+      "part_of_speech": "verb",
+      "meaning_zh": "赶急；赶快",
+      "kanji_readings": [
+        {
+          "form": "急ぐ",
+          "reading": "いそぐ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "時間がないので急ぎましょう。",
+          "zh": "没时间了，快点吧。"
+        },
+        {
+          "ja": "駅まで急いで歩きました。",
+          "zh": "急忙走到车站。"
+        },
+        {
+          "ja": "そんなに急がなくても大丈夫です。",
+          "zh": "不用那么急也没关系。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-029",
+      "jlpt": "N4",
+      "headword": "致す",
+      "source_form": "致す",
+      "variants": [
+        "致す"
+      ],
+      "reading": "いたす",
+      "reading_variants": [
+        "いたす"
+      ],
+      "romaji": "itasu",
+      "part_of_speech": "verb",
+      "meaning_zh": "做；办（「する」的自谦语）",
+      "kanji_readings": [
+        {
+          "form": "致す",
+          "reading": "いたす"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "私がご案内いたします。",
+          "zh": "由我来带路。"
+        },
+        {
+          "ja": "明日、こちらから連絡いたします。",
+          "zh": "明天由我们联系。"
+        },
+        {
+          "ja": "失礼いたしました。",
+          "zh": "失礼了。"
+        }
+      ],
+      "note_zh": "敬语。"
+    },
+    {
+      "id": "n4-030",
+      "jlpt": "N4",
+      "headword": "いただく",
+      "source_form": "いただく",
+      "variants": [
+        "いただく"
+      ],
+      "reading": "いただく",
+      "reading_variants": [
+        "いただく"
+      ],
+      "romaji": "itadaku",
+      "part_of_speech": "verb",
+      "meaning_zh": "得到；吃；喝（自谦语）",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "先生から本をいただきました。",
+          "zh": "从老师那里得到了书。"
+        },
+        {
+          "ja": "先にいただきます。",
+          "zh": "我先用了/先吃了。"
+        },
+        {
+          "ja": "お茶をいただいてもいいですか。",
+          "zh": "可以喝杯茶吗？"
+        }
+      ],
+      "note_zh": "敬语。"
+    },
+    {
+      "id": "n4-031",
+      "jlpt": "N4",
+      "headword": "一度",
+      "source_form": "一度",
+      "variants": [
+        "一度"
+      ],
+      "reading": "いちど",
+      "reading_variants": [
+        "いちど"
+      ],
+      "romaji": "ichido",
+      "part_of_speech": "adverb/noun",
+      "meaning_zh": "一次；一回",
+      "kanji_readings": [
+        {
+          "form": "一度",
+          "reading": "いちど"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "一度、日本へ行ったことがあります。",
+          "zh": "曾经去过一次日本。"
+        },
+        {
+          "ja": "もう一度言ってください。",
+          "zh": "请再说一次。"
+        },
+        {
+          "ja": "一度だけ会ったことがあります。",
+          "zh": "只见过一次。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-032",
+      "jlpt": "N4",
+      "headword": "一生懸命",
+      "source_form": "一生懸命",
+      "variants": [
+        "一生懸命"
+      ],
+      "reading": "いっしょうけんめい",
+      "reading_variants": [
+        "いっしょうけんめい"
+      ],
+      "romaji": "isshoukenmei",
+      "part_of_speech": "adverb/na-adjective",
+      "meaning_zh": "拼命地；努力地",
+      "kanji_readings": [
+        {
+          "form": "一生懸命",
+          "reading": "いっしょうけんめい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "試験のために一生懸命勉強しています。",
+          "zh": "为了考试拼命学习。"
+        },
+        {
+          "ja": "彼は仕事を一生懸命しています。",
+          "zh": "他很努力地工作。"
+        },
+        {
+          "ja": "一生懸命練習すれば上手になります。",
+          "zh": "努力练习就会变好。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-033",
+      "jlpt": "N4",
+      "headword": "いっぱい",
+      "source_form": "いっぱい",
+      "variants": [
+        "いっぱい"
+      ],
+      "reading": "いっぱい",
+      "reading_variants": [
+        "いっぱい"
+      ],
+      "romaji": "ippai",
+      "part_of_speech": "adverb/noun/na-adjective",
+      "meaning_zh": "满满；很多；一杯",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "会場は人でいっぱいです。",
+          "zh": "会场里满是人。"
+        },
+        {
+          "ja": "水を一杯ください。",
+          "zh": "请给我一杯水。"
+        },
+        {
+          "ja": "予定がいっぱいで忙しいです。",
+          "zh": "日程排满了，很忙。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-034",
+      "jlpt": "N4",
+      "headword": "糸",
+      "source_form": "糸",
+      "variants": [
+        "糸"
+      ],
+      "reading": "いと",
+      "reading_variants": [
+        "いと"
+      ],
+      "romaji": "ito",
+      "part_of_speech": "noun",
+      "meaning_zh": "线；丝线",
+      "kanji_readings": [
+        {
+          "form": "糸",
+          "reading": "いと"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "糸を見ました。",
+          "zh": "看到了线。"
+        },
+        {
+          "ja": "糸を確認しました。",
+          "zh": "确认了线。"
+        },
+        {
+          "ja": "糸について友達と話しました。",
+          "zh": "和朋友谈了关于线的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-035",
+      "jlpt": "N4",
+      "headword": "以内",
+      "source_form": "以内",
+      "variants": [
+        "以内"
+      ],
+      "reading": "いない",
+      "reading_variants": [
+        "いない"
+      ],
+      "romaji": "inai",
+      "part_of_speech": "noun/expression",
+      "meaning_zh": "以内；不超过",
+      "kanji_readings": [
+        {
+          "form": "以内",
+          "reading": "いない"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "十分以内に戻ります。",
+          "zh": "十分钟以内回来。"
+        },
+        {
+          "ja": "千円以内で買える物はありますか。",
+          "zh": "有一千日元以内能买的东西吗？"
+        },
+        {
+          "ja": "一週間以内に返事をください。",
+          "zh": "请在一周以内回复。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-036",
+      "jlpt": "N4",
+      "headword": "田舎",
+      "source_form": "田舎",
+      "variants": [
+        "田舎"
+      ],
+      "reading": "いなか",
+      "reading_variants": [
+        "いなか"
+      ],
+      "romaji": "inaka",
+      "part_of_speech": "noun",
+      "meaning_zh": "乡下；农村",
+      "kanji_readings": [
+        {
+          "form": "田舎",
+          "reading": "いなか"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "田舎について調べました。",
+          "zh": "查了关于乡下的资料。"
+        },
+        {
+          "ja": "田舎に関する文章を読みました。",
+          "zh": "读了关于乡下的文章。"
+        },
+        {
+          "ja": "田舎について友達と話しました。",
+          "zh": "和朋友谈了关于乡下的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-037",
+      "jlpt": "N4",
+      "headword": "祈る",
+      "source_form": "祈る",
+      "variants": [
+        "祈る"
+      ],
+      "reading": "いのる",
+      "reading_variants": [
+        "いのる"
+      ],
+      "romaji": "inoru",
+      "part_of_speech": "verb",
+      "meaning_zh": "祈祷；祝愿",
+      "kanji_readings": [
+        {
+          "form": "祈る",
+          "reading": "いのる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "家族の健康を祈っています。",
+          "zh": "祈祷家人健康。"
+        },
+        {
+          "ja": "試験の合格を祈ります。",
+          "zh": "祈祷考试合格。"
+        },
+        {
+          "ja": "神社で静かに祈りました。",
+          "zh": "在神社安静地祈祷了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-038",
+      "jlpt": "N4",
+      "headword": "いらっしゃる",
+      "source_form": "いらっしゃる",
+      "variants": [
+        "いらっしゃる"
+      ],
+      "reading": "いらっしゃる",
+      "reading_variants": [
+        "いらっしゃる"
+      ],
+      "romaji": "irassharu",
+      "part_of_speech": "verb",
+      "meaning_zh": "在；来；去（尊敬语）",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "先生は研究室にいらっしゃいます。",
+          "zh": "老师在研究室。"
+        },
+        {
+          "ja": "明日、社長がいらっしゃいます。",
+          "zh": "明天社长会来。"
+        },
+        {
+          "ja": "どちらへいらっしゃいますか。",
+          "zh": "您去哪里？"
+        }
+      ],
+      "note_zh": "敬语。"
+    },
+    {
+      "id": "n4-039",
+      "jlpt": "N4",
+      "headword": "いる",
+      "source_form": "居る",
+      "variants": [
+        "居る"
+      ],
+      "reading": "いる",
+      "reading_variants": [
+        "いる"
+      ],
+      "romaji": "iru",
+      "part_of_speech": "verb",
+      "meaning_zh": "需要；要；在（人/动物）",
+      "kanji_readings": [
+        {
+          "form": "居る",
+          "reading": "いる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この仕事には時間がいります。",
+          "zh": "这项工作需要时间。"
+        },
+        {
+          "ja": "部屋に猫がいます。",
+          "zh": "房间里有猫。"
+        },
+        {
+          "ja": "予約には名前がいります。",
+          "zh": "预约需要名字。"
+        }
+      ],
+      "note_zh": "现代通常写假名「いる」。"
+    },
+    {
+      "id": "n4-040",
+      "jlpt": "N4",
+      "headword": "植える",
+      "source_form": "植える",
+      "variants": [
+        "植える"
+      ],
+      "reading": "うえる",
+      "reading_variants": [
+        "うえる"
+      ],
+      "romaji": "ueru",
+      "part_of_speech": "verb",
+      "meaning_zh": "种；栽",
+      "kanji_readings": [
+        {
+          "form": "植える",
+          "reading": "うえる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "庭に花を植えました。",
+          "zh": "在院子里种了花。"
+        },
+        {
+          "ja": "春に木を植えます。",
+          "zh": "春天种树。"
+        },
+        {
+          "ja": "子供たちが学校で野菜を植えています。",
+          "zh": "孩子们在学校种菜。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-041",
+      "jlpt": "N4",
+      "headword": "うかがう",
+      "source_form": "うかがう",
+      "variants": [
+        "うかがう"
+      ],
+      "reading": "うかがう",
+      "reading_variants": [
+        "うかがう"
+      ],
+      "romaji": "ukagau",
+      "part_of_speech": "verb",
+      "meaning_zh": "拜访；请教；听说（自谦语）",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "明日、先生のお宅にうかがいます。",
+          "zh": "明天拜访老师家。"
+        },
+        {
+          "ja": "お話をうかがいたいです。",
+          "zh": "想听您说一下。"
+        },
+        {
+          "ja": "ご都合をうかがってもいいですか。",
+          "zh": "可以问一下您方便的时间吗？"
+        }
+      ],
+      "note_zh": "敬语。"
+    },
+    {
+      "id": "n4-042",
+      "jlpt": "N4",
+      "headword": "受付",
+      "source_form": "受付",
+      "variants": [
+        "受付"
+      ],
+      "reading": "うけつけ",
+      "reading_variants": [
+        "うけつけ"
+      ],
+      "romaji": "uketsuke",
+      "part_of_speech": "noun",
+      "meaning_zh": "前台；受理；接待处",
+      "kanji_readings": [
+        {
+          "form": "受付",
+          "reading": "うけつけ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "受付で名前を書いてください。",
+          "zh": "请在前台写名字。"
+        },
+        {
+          "ja": "受付は一階にあります。",
+          "zh": "前台在一楼。"
+        },
+        {
+          "ja": "受付の人に質問しました。",
+          "zh": "向前台的人提问了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-043",
+      "jlpt": "N4",
+      "headword": "受ける",
+      "source_form": "受ける",
+      "variants": [
+        "受ける"
+      ],
+      "reading": "うける",
+      "reading_variants": [
+        "うける"
+      ],
+      "romaji": "ukeru",
+      "part_of_speech": "verb",
+      "meaning_zh": "接受；参加（考试等）；受到",
+      "kanji_readings": [
+        {
+          "form": "受ける",
+          "reading": "うける"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "明日、試験を受けます。",
+          "zh": "明天参加考试。"
+        },
+        {
+          "ja": "日本語の授業を受けています。",
+          "zh": "正在上日语课。"
+        },
+        {
+          "ja": "病院で検査を受けました。",
+          "zh": "在医院做了检查。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-044",
+      "jlpt": "N4",
+      "headword": "動く",
+      "source_form": "動く",
+      "variants": [
+        "動く"
+      ],
+      "reading": "うごく",
+      "reading_variants": [
+        "うごく"
+      ],
+      "romaji": "ugoku",
+      "part_of_speech": "verb",
+      "meaning_zh": "动；移动；运转",
+      "kanji_readings": [
+        {
+          "form": "動く",
+          "reading": "うごく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この時計はまだ動いています。",
+          "zh": "这个钟还在走。"
+        },
+        {
+          "ja": "電車がゆっくり動き出しました。",
+          "zh": "电车慢慢开动了。"
+        },
+        {
+          "ja": "寒くて指が動きません。",
+          "zh": "冷得手指动不了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-045",
+      "jlpt": "N4",
+      "headword": "嘘",
+      "source_form": "うそ; 嘘",
+      "variants": [
+        "うそ",
+        "嘘"
+      ],
+      "reading": "うそ",
+      "reading_variants": [
+        "うそ"
+      ],
+      "romaji": "uso",
+      "part_of_speech": "noun",
+      "meaning_zh": "谎言；假话",
+      "kanji_readings": [
+        {
+          "form": "嘘",
+          "reading": "うそ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "嘘について調べました。",
+          "zh": "查了关于谎言的资料。"
+        },
+        {
+          "ja": "嘘に関する文章を読みました。",
+          "zh": "读了关于谎言的文章。"
+        },
+        {
+          "ja": "嘘について友達と話しました。",
+          "zh": "和朋友谈了关于谎言的事。"
+        }
+      ],
+      "note_zh": "常写假名「うそ」。"
+    },
+    {
+      "id": "n4-046",
+      "jlpt": "N4",
+      "headword": "うち",
+      "source_form": "うち",
+      "variants": [
+        "うち"
+      ],
+      "reading": "うち",
+      "reading_variants": [
+        "うち"
+      ],
+      "romaji": "uchi",
+      "part_of_speech": "noun/expression",
+      "meaning_zh": "内部；之中；趁……",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "若いうちにたくさん勉強したいです。",
+          "zh": "想趁年轻多学习。"
+        },
+        {
+          "ja": "三人のうち、一人が休みました。",
+          "zh": "三个人中有一个休息了。"
+        },
+        {
+          "ja": "雨が降らないうちに帰りましょう。",
+          "zh": "趁还没下雨回去吧。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-047",
+      "jlpt": "N4",
+      "headword": "打つ",
+      "source_form": "打つ",
+      "variants": [
+        "打つ"
+      ],
+      "reading": "うつ",
+      "reading_variants": [
+        "うつ"
+      ],
+      "romaji": "utsu",
+      "part_of_speech": "verb",
+      "meaning_zh": "打；敲；拍",
+      "kanji_readings": [
+        {
+          "form": "打つ",
+          "reading": "うつ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "パソコンで文章を打ちます。",
+          "zh": "用电脑打文章。"
+        },
+        {
+          "ja": "雨が窓を強く打っています。",
+          "zh": "雨猛烈地打在窗上。"
+        },
+        {
+          "ja": "野球でボールを打ちました。",
+          "zh": "打棒球时击中了球。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-048",
+      "jlpt": "N4",
+      "headword": "美しい",
+      "source_form": "美しい",
+      "variants": [
+        "美しい"
+      ],
+      "reading": "うつくしい",
+      "reading_variants": [
+        "うつくしい"
+      ],
+      "romaji": "utsukushii",
+      "part_of_speech": "i-adjective",
+      "meaning_zh": "美丽的",
+      "kanji_readings": [
+        {
+          "form": "美しい",
+          "reading": "うつくしい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この景色はとても美しいです。",
+          "zh": "这个景色非常美。"
+        },
+        {
+          "ja": "美しい日本語を話したいです。",
+          "zh": "想说漂亮的日语。"
+        },
+        {
+          "ja": "庭に美しい花が咲いています。",
+          "zh": "院子里开着美丽的花。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-049",
+      "jlpt": "N4",
+      "headword": "写す",
+      "source_form": "写す",
+      "variants": [
+        "写す"
+      ],
+      "reading": "うつす",
+      "reading_variants": [
+        "うつす"
+      ],
+      "romaji": "utsusu",
+      "part_of_speech": "verb",
+      "meaning_zh": "抄写；拍照；映照",
+      "kanji_readings": [
+        {
+          "form": "写す",
+          "reading": "うつす"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "黒板の字をノートに写します。",
+          "zh": "把黑板上的字抄到笔记本上。"
+        },
+        {
+          "ja": "旅行で写真をたくさん写しました。",
+          "zh": "旅行时拍了很多照片。"
+        },
+        {
+          "ja": "答えをそのまま写してはいけません。",
+          "zh": "不能原样抄答案。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-050",
+      "jlpt": "N4",
+      "headword": "移る",
+      "source_form": "移る",
+      "variants": [
+        "移る"
+      ],
+      "reading": "うつる",
+      "reading_variants": [
+        "うつる"
+      ],
+      "romaji": "utsuru",
+      "part_of_speech": "verb",
+      "meaning_zh": "搬迁；转移；传染",
+      "kanji_readings": [
+        {
+          "form": "移る",
+          "reading": "うつる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "来月、新しい部屋に移ります。",
+          "zh": "下个月搬到新房间。"
+        },
+        {
+          "ja": "話題が次の問題に移りました。",
+          "zh": "话题转到了下一个问题。"
+        },
+        {
+          "ja": "風邪が友達に移りました。",
+          "zh": "感冒传给了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-051",
+      "jlpt": "N4",
+      "headword": "腕",
+      "source_form": "腕",
+      "variants": [
+        "腕"
+      ],
+      "reading": "うで",
+      "reading_variants": [
+        "うで"
+      ],
+      "romaji": "ude",
+      "part_of_speech": "noun",
+      "meaning_zh": "胳膊；本领",
+      "kanji_readings": [
+        {
+          "form": "腕",
+          "reading": "うで"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "腕を見ました。",
+          "zh": "看到了胳膊。"
+        },
+        {
+          "ja": "腕を確認しました。",
+          "zh": "确认了胳膊。"
+        },
+        {
+          "ja": "腕について友達と話しました。",
+          "zh": "和朋友谈了关于胳膊的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-052",
+      "jlpt": "N4",
+      "headword": "うまい",
+      "source_form": "うまい",
+      "variants": [
+        "うまい"
+      ],
+      "reading": "うまい",
+      "reading_variants": [
+        "うまい"
+      ],
+      "romaji": "umai",
+      "part_of_speech": "i-adjective",
+      "meaning_zh": "好吃的；高明的",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "このラーメンはうまいです。",
+          "zh": "这碗拉面很好吃。"
+        },
+        {
+          "ja": "彼は説明がうまいです。",
+          "zh": "他很会说明。"
+        },
+        {
+          "ja": "もっと字をうまく書きたいです。",
+          "zh": "想把字写得更好。"
+        }
+      ],
+      "note_zh": "口语。"
+    },
+    {
+      "id": "n4-053",
+      "jlpt": "N4",
+      "headword": "裏",
+      "source_form": "裏",
+      "variants": [
+        "裏"
+      ],
+      "reading": "うら",
+      "reading_variants": [
+        "うら"
+      ],
+      "romaji": "ura",
+      "part_of_speech": "noun",
+      "meaning_zh": "背面；里面；反面",
+      "kanji_readings": [
+        {
+          "form": "裏",
+          "reading": "うら"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "紙の裏に名前を書きました。",
+          "zh": "在纸背面写了名字。"
+        },
+        {
+          "ja": "店の裏に駐車場があります。",
+          "zh": "店后面有停车场。"
+        },
+        {
+          "ja": "裏の意味も考えてください。",
+          "zh": "也请考虑背后的意思。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-054",
+      "jlpt": "N4",
+      "headword": "売り場",
+      "source_form": "売り場",
+      "variants": [
+        "売り場"
+      ],
+      "reading": "うりば",
+      "reading_variants": [
+        "うりば"
+      ],
+      "romaji": "uriba",
+      "part_of_speech": "noun",
+      "meaning_zh": "柜台；销售处",
+      "kanji_readings": [
+        {
+          "form": "売り場",
+          "reading": "うりば"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "靴売り場は三階です。",
+          "zh": "鞋类柜台在三楼。"
+        },
+        {
+          "ja": "売り場で店員にサイズを聞きました。",
+          "zh": "在卖场向店员问了尺寸。"
+        },
+        {
+          "ja": "お土産売り場は駅の中にあります。",
+          "zh": "伴手礼卖场在车站里。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-055",
+      "jlpt": "N4",
+      "headword": "うれしい",
+      "source_form": "うれしい",
+      "variants": [
+        "うれしい"
+      ],
+      "reading": "うれしい",
+      "reading_variants": [
+        "うれしい"
+      ],
+      "romaji": "ureshii",
+      "part_of_speech": "i-adjective",
+      "meaning_zh": "高兴的；开心的",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "手紙をもらってうれしいです。",
+          "zh": "收到信很开心。"
+        },
+        {
+          "ja": "合格できて本当にうれしかったです。",
+          "zh": "能合格真的很高兴。"
+        },
+        {
+          "ja": "友達に会えるのがうれしいです。",
+          "zh": "能见到朋友很开心。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-056",
+      "jlpt": "N4",
+      "headword": "うん",
+      "source_form": "うん",
+      "variants": [
+        "うん"
+      ],
+      "reading": "うん",
+      "reading_variants": [
+        "うん"
+      ],
+      "romaji": "un",
+      "part_of_speech": "expression",
+      "meaning_zh": "嗯；是（口语）",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "うん、分かった。",
+          "zh": "嗯，明白了。"
+        },
+        {
+          "ja": "うん、明日行くよ。",
+          "zh": "嗯，明天去。"
+        },
+        {
+          "ja": "うん、大丈夫。",
+          "zh": "嗯，没问题。"
+        }
+      ],
+      "note_zh": "口语回答。"
+    },
+    {
+      "id": "n4-057",
+      "jlpt": "N4",
+      "headword": "運転",
+      "source_form": "運転",
+      "variants": [
+        "運転"
+      ],
+      "reading": "うんてん",
+      "reading_variants": [
+        "うんてん"
+      ],
+      "romaji": "unten",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "驾驶；运转",
+      "kanji_readings": [
+        {
+          "form": "運転",
+          "reading": "うんてん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "父は毎日車を運転します。",
+          "zh": "父亲每天开车。"
+        },
+        {
+          "ja": "雨の日の運転は気をつけてください。",
+          "zh": "雨天开车请注意。"
+        },
+        {
+          "ja": "日本で運転するには免許が必要です。",
+          "zh": "在日本开车需要驾照。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-058",
+      "jlpt": "N4",
+      "headword": "運転手",
+      "source_form": "運転手",
+      "variants": [
+        "運転手"
+      ],
+      "reading": "うんてんしゅ",
+      "reading_variants": [
+        "うんてんしゅ"
+      ],
+      "romaji": "untenshu",
+      "part_of_speech": "noun",
+      "meaning_zh": "司机",
+      "kanji_readings": [
+        {
+          "form": "運転手",
+          "reading": "うんてんしゅ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "運転手に相談しました。",
+          "zh": "和司机商量了。"
+        },
+        {
+          "ja": "運転手と少し話しました。",
+          "zh": "和司机稍微聊了一下。"
+        },
+        {
+          "ja": "運転手が駅で待っています。",
+          "zh": "司机在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-059",
+      "jlpt": "N4",
+      "headword": "運動",
+      "source_form": "運動",
+      "variants": [
+        "運動"
+      ],
+      "reading": "うんどう",
+      "reading_variants": [
+        "うんどう"
+      ],
+      "romaji": "undou",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "运动；锻炼",
+      "kanji_readings": [
+        {
+          "form": "運動",
+          "reading": "うんどう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "毎朝三十分運動しています。",
+          "zh": "每天早上运动三十分钟。"
+        },
+        {
+          "ja": "健康のために運動します。",
+          "zh": "为了健康而运动。"
+        },
+        {
+          "ja": "運動した後で水を飲みました。",
+          "zh": "运动后喝了水。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-060",
+      "jlpt": "N4",
+      "headword": "枝",
+      "source_form": "枝",
+      "variants": [
+        "枝"
+      ],
+      "reading": "えだ",
+      "reading_variants": [
+        "えだ"
+      ],
+      "romaji": "eda",
+      "part_of_speech": "noun",
+      "meaning_zh": "树枝",
+      "kanji_readings": [
+        {
+          "form": "枝",
+          "reading": "えだ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "枝を見ました。",
+          "zh": "看到了树枝。"
+        },
+        {
+          "ja": "枝を確認しました。",
+          "zh": "确认了树枝。"
+        },
+        {
+          "ja": "枝について友達と話しました。",
+          "zh": "和朋友谈了关于树枝的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-061",
+      "jlpt": "N4",
+      "headword": "選ぶ",
+      "source_form": "選ぶ",
+      "variants": [
+        "選ぶ"
+      ],
+      "reading": "えらぶ",
+      "reading_variants": [
+        "えらぶ"
+      ],
+      "romaji": "erabu",
+      "part_of_speech": "verb",
+      "meaning_zh": "选择；挑选",
+      "kanji_readings": [
+        {
+          "form": "選ぶ",
+          "reading": "えらぶ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "好きな席を選んでください。",
+          "zh": "请选择喜欢的座位。"
+        },
+        {
+          "ja": "友達へのプレゼントを選びました。",
+          "zh": "给朋友挑了礼物。"
+        },
+        {
+          "ja": "二つの中から一つ選びます。",
+          "zh": "从两个中选一个。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-062",
+      "jlpt": "N4",
+      "headword": "遠慮",
+      "source_form": "遠慮",
+      "variants": [
+        "遠慮"
+      ],
+      "reading": "えんりょ",
+      "reading_variants": [
+        "えんりょ"
+      ],
+      "romaji": "enryo",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "客气；顾虑；谢绝",
+      "kanji_readings": [
+        {
+          "form": "遠慮",
+          "reading": "えんりょ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "遠慮しないで食べてください。",
+          "zh": "别客气，请吃。"
+        },
+        {
+          "ja": "今日はお酒を遠慮します。",
+          "zh": "今天就不喝酒了。"
+        },
+        {
+          "ja": "分からないことは遠慮なく聞いてください。",
+          "zh": "不懂的地方请别客气地问。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-063",
+      "jlpt": "N4",
+      "headword": "おいでになる",
+      "source_form": "おいでになる",
+      "variants": [
+        "おいでになる"
+      ],
+      "reading": "おいでになる",
+      "reading_variants": [
+        "おいでになる"
+      ],
+      "romaji": "oideninaru",
+      "part_of_speech": "verb",
+      "meaning_zh": "在；来；去（尊敬语）",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "先生はもうおいでになりました。",
+          "zh": "老师已经来了。"
+        },
+        {
+          "ja": "社長は会議室においでになります。",
+          "zh": "社长在会议室。"
+        },
+        {
+          "ja": "明日は何時においでになりますか。",
+          "zh": "明天您几点来？"
+        }
+      ],
+      "note_zh": "敬语。"
+    },
+    {
+      "id": "n4-064",
+      "jlpt": "N4",
+      "headword": "お祝い",
+      "source_form": "お祝い",
+      "variants": [
+        "お祝い"
+      ],
+      "reading": "おいわい",
+      "reading_variants": [
+        "おいわい"
+      ],
+      "romaji": "oiwai",
+      "part_of_speech": "noun",
+      "meaning_zh": "祝贺；贺礼",
+      "kanji_readings": [
+        {
+          "form": "お祝い",
+          "reading": "おいわい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "お祝いがあります。",
+          "zh": "有祝贺。"
+        },
+        {
+          "ja": "お祝いの予定を確認しました。",
+          "zh": "确认了祝贺的安排。"
+        },
+        {
+          "ja": "お祝いについて先生に聞きました。",
+          "zh": "向老师询问了祝贺。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-065",
+      "jlpt": "N4",
+      "headword": "お返し",
+      "source_form": "お返し",
+      "variants": [
+        "お返し"
+      ],
+      "reading": "おかえし",
+      "reading_variants": [
+        "おかえし"
+      ],
+      "romaji": "okaeshi",
+      "part_of_speech": "noun",
+      "meaning_zh": "回礼；还礼",
+      "kanji_readings": [
+        {
+          "form": "お返し",
+          "reading": "おかえし"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "お祝いのお返しを送りました。",
+          "zh": "寄了贺礼的回礼。"
+        },
+        {
+          "ja": "友達にお返しを買いました。",
+          "zh": "给朋友买了回礼。"
+        },
+        {
+          "ja": "親切にしてもらったので、お返しをしたいです。",
+          "zh": "受到了照顾，所以想回报。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-066",
+      "jlpt": "N4",
+      "headword": "おかげ",
+      "source_form": "おかげ",
+      "variants": [
+        "おかげ"
+      ],
+      "reading": "おかげ",
+      "reading_variants": [
+        "おかげ"
+      ],
+      "romaji": "okage",
+      "part_of_speech": "noun/expression",
+      "meaning_zh": "多亏；托……的福",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "先生のおかげで合格できました。",
+          "zh": "多亏老师才合格了。"
+        },
+        {
+          "ja": "薬のおかげでよくなりました。",
+          "zh": "多亏药好转了。"
+        },
+        {
+          "ja": "皆さんのおかげです。",
+          "zh": "多亏了大家。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-067",
+      "jlpt": "N4",
+      "headword": "おかしい",
+      "source_form": "おかしい",
+      "variants": [
+        "おかしい"
+      ],
+      "reading": "おかしい",
+      "reading_variants": [
+        "おかしい"
+      ],
+      "romaji": "okashii",
+      "part_of_speech": "i-adjective",
+      "meaning_zh": "奇怪的；可笑的",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "この文章は少しおかしいです。",
+          "zh": "这篇文章有点奇怪。"
+        },
+        {
+          "ja": "彼の話がおかしくて笑いました。",
+          "zh": "他的话很好笑，所以笑了。"
+        },
+        {
+          "ja": "機械の音がおかしいです。",
+          "zh": "机器的声音不对劲。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-068",
+      "jlpt": "N4",
+      "headword": "億",
+      "source_form": "億",
+      "variants": [
+        "億"
+      ],
+      "reading": "おく",
+      "reading_variants": [
+        "おく"
+      ],
+      "romaji": "oku",
+      "part_of_speech": "noun",
+      "meaning_zh": "亿",
+      "kanji_readings": [
+        {
+          "form": "億",
+          "reading": "おく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "億について調べました。",
+          "zh": "查了关于亿的资料。"
+        },
+        {
+          "ja": "億に関する文章を読みました。",
+          "zh": "读了关于亿的文章。"
+        },
+        {
+          "ja": "億について友達と話しました。",
+          "zh": "和朋友谈了关于亿的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-069",
+      "jlpt": "N4",
+      "headword": "屋上",
+      "source_form": "屋上",
+      "variants": [
+        "屋上"
+      ],
+      "reading": "おくじょう",
+      "reading_variants": [
+        "おくじょう"
+      ],
+      "romaji": "okujou",
+      "part_of_speech": "noun",
+      "meaning_zh": "屋顶；楼顶平台",
+      "kanji_readings": [
+        {
+          "form": "屋上",
+          "reading": "おくじょう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "屋上へ行きました。",
+          "zh": "去了屋顶。"
+        },
+        {
+          "ja": "屋上は駅の近くにあります。",
+          "zh": "屋顶在车站附近。"
+        },
+        {
+          "ja": "屋上で友達に会いました。",
+          "zh": "在屋顶见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-070",
+      "jlpt": "N4",
+      "headword": "贈り物",
+      "source_form": "贈り物",
+      "variants": [
+        "贈り物"
+      ],
+      "reading": "おくりもの",
+      "reading_variants": [
+        "おくりもの"
+      ],
+      "romaji": "okurimono",
+      "part_of_speech": "noun",
+      "meaning_zh": "礼物",
+      "kanji_readings": [
+        {
+          "form": "贈り物",
+          "reading": "おくりもの"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "贈り物を見ました。",
+          "zh": "看到了礼物。"
+        },
+        {
+          "ja": "贈り物を確認しました。",
+          "zh": "确认了礼物。"
+        },
+        {
+          "ja": "贈り物について友達と話しました。",
+          "zh": "和朋友谈了关于礼物的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-071",
+      "jlpt": "N4",
+      "headword": "送る",
+      "source_form": "送る",
+      "variants": [
+        "送る"
+      ],
+      "reading": "おくる",
+      "reading_variants": [
+        "おくる"
+      ],
+      "romaji": "okuru",
+      "part_of_speech": "verb",
+      "meaning_zh": "发送；送；寄",
+      "kanji_readings": [
+        {
+          "form": "送る",
+          "reading": "おくる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "友達にメールを送りました。",
+          "zh": "给朋友发了邮件。"
+        },
+        {
+          "ja": "駅まで母を送ります。",
+          "zh": "送母亲到车站。"
+        },
+        {
+          "ja": "荷物を中国へ送ります。",
+          "zh": "把行李寄到中国。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-072",
+      "jlpt": "N4",
+      "headword": "遅れる",
+      "source_form": "遅れる",
+      "variants": [
+        "遅れる"
+      ],
+      "reading": "おくれる",
+      "reading_variants": [
+        "おくれる"
+      ],
+      "romaji": "okureru",
+      "part_of_speech": "verb",
+      "meaning_zh": "迟到；晚；落后",
+      "kanji_readings": [
+        {
+          "form": "遅れる",
+          "reading": "おくれる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "電車が五分遅れています。",
+          "zh": "电车晚点五分钟。"
+        },
+        {
+          "ja": "授業に遅れました。",
+          "zh": "上课迟到了。"
+        },
+        {
+          "ja": "遅れないように早く出ます。",
+          "zh": "为了不迟到早点出门。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-073",
+      "jlpt": "N4",
+      "headword": "起こす",
+      "source_form": "起こす",
+      "variants": [
+        "起こす"
+      ],
+      "reading": "おこす",
+      "reading_variants": [
+        "おこす"
+      ],
+      "romaji": "okosu",
+      "part_of_speech": "verb",
+      "meaning_zh": "叫醒；引起；扶起",
+      "kanji_readings": [
+        {
+          "form": "起こす",
+          "reading": "おこす"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "朝、弟を起こします。",
+          "zh": "早上叫醒弟弟。"
+        },
+        {
+          "ja": "大きな音で子供を起こしてしまいました。",
+          "zh": "大声把孩子吵醒了。"
+        },
+        {
+          "ja": "問題を起こさないでください。",
+          "zh": "请不要惹麻烦。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-074",
+      "jlpt": "N4",
+      "headword": "行う",
+      "source_form": "行う",
+      "variants": [
+        "行う"
+      ],
+      "reading": "おこなう",
+      "reading_variants": [
+        "おこなう"
+      ],
+      "romaji": "okonau",
+      "part_of_speech": "verb",
+      "meaning_zh": "进行；举行；实行",
+      "kanji_readings": [
+        {
+          "form": "行う",
+          "reading": "おこなう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "学校で試験を行います。",
+          "zh": "学校举行考试。"
+        },
+        {
+          "ja": "会議は三時から行われます。",
+          "zh": "会议三点开始举行。"
+        },
+        {
+          "ja": "新しい計画を行いました。",
+          "zh": "实施了新计划。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-075",
+      "jlpt": "N4",
+      "headword": "怒る",
+      "source_form": "怒る",
+      "variants": [
+        "怒る"
+      ],
+      "reading": "おこる",
+      "reading_variants": [
+        "おこる"
+      ],
+      "romaji": "okoru",
+      "part_of_speech": "verb",
+      "meaning_zh": "生气；发怒；训斥",
+      "kanji_readings": [
+        {
+          "form": "怒る",
+          "reading": "おこる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "先生が怒っています。",
+          "zh": "老师在生气。"
+        },
+        {
+          "ja": "遅刻して父に怒られました。",
+          "zh": "迟到后被父亲骂了。"
+        },
+        {
+          "ja": "小さなことで怒らないでください。",
+          "zh": "不要为小事生气。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-076",
+      "jlpt": "N4",
+      "headword": "押し入れ",
+      "source_form": "押し入れ",
+      "variants": [
+        "押し入れ"
+      ],
+      "reading": "おしいれ",
+      "reading_variants": [
+        "おしいれ"
+      ],
+      "romaji": "oshiire",
+      "part_of_speech": "noun",
+      "meaning_zh": "日式壁橱；壁柜",
+      "kanji_readings": [
+        {
+          "form": "押し入れ",
+          "reading": "おしいれ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "押し入れへ行きました。",
+          "zh": "去了日式壁橱。"
+        },
+        {
+          "ja": "押し入れは駅の近くにあります。",
+          "zh": "日式壁橱在车站附近。"
+        },
+        {
+          "ja": "押し入れで友達に会いました。",
+          "zh": "在日式壁橱见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-077",
+      "jlpt": "N4",
+      "headword": "お嬢さん",
+      "source_form": "お嬢さん",
+      "variants": [
+        "お嬢さん"
+      ],
+      "reading": "おじょうさん",
+      "reading_variants": [
+        "おじょうさん"
+      ],
+      "romaji": "ojousan",
+      "part_of_speech": "noun",
+      "meaning_zh": "小姐；别人家的女儿",
+      "kanji_readings": [
+        {
+          "form": "お嬢さん",
+          "reading": "おじょうさん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "お嬢さんに相談しました。",
+          "zh": "和小姐商量了。"
+        },
+        {
+          "ja": "お嬢さんと少し話しました。",
+          "zh": "和小姐稍微聊了一下。"
+        },
+        {
+          "ja": "お嬢さんが駅で待っています。",
+          "zh": "小姐在车站等。"
+        }
+      ],
+      "note_zh": "礼貌说法。"
+    },
+    {
+      "id": "n4-078",
+      "jlpt": "N4",
+      "headword": "お宅",
+      "source_form": "お宅",
+      "variants": [
+        "お宅"
+      ],
+      "reading": "おたく",
+      "reading_variants": [
+        "おたく"
+      ],
+      "romaji": "otaku",
+      "part_of_speech": "noun",
+      "meaning_zh": "府上；您家；您",
+      "kanji_readings": [
+        {
+          "form": "お宅",
+          "reading": "おたく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "お宅について調べました。",
+          "zh": "查了关于府上的资料。"
+        },
+        {
+          "ja": "お宅に関する文章を読みました。",
+          "zh": "读了关于府上的文章。"
+        },
+        {
+          "ja": "お宅について友達と話しました。",
+          "zh": "和朋友谈了关于府上的事。"
+        }
+      ],
+      "note_zh": "礼貌说法。"
+    },
+    {
+      "id": "n4-079",
+      "jlpt": "N4",
+      "headword": "落ちる",
+      "source_form": "落ちる",
+      "variants": [
+        "落ちる"
+      ],
+      "reading": "おちる",
+      "reading_variants": [
+        "おちる"
+      ],
+      "romaji": "ochiru",
+      "part_of_speech": "verb",
+      "meaning_zh": "落下；掉；落榜",
+      "kanji_readings": [
+        {
+          "form": "落ちる",
+          "reading": "おちる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "机からペンが落ちました。",
+          "zh": "笔从桌上掉下来了。"
+        },
+        {
+          "ja": "試験に落ちてしまいました。",
+          "zh": "考试没通过。"
+        },
+        {
+          "ja": "葉が木から落ちています。",
+          "zh": "叶子正从树上落下。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-080",
+      "jlpt": "N4",
+      "headword": "おっしゃる",
+      "source_form": "おっしゃる",
+      "variants": [
+        "おっしゃる"
+      ],
+      "reading": "おっしゃる",
+      "reading_variants": [
+        "おっしゃる"
+      ],
+      "romaji": "ossharu",
+      "part_of_speech": "verb",
+      "meaning_zh": "说（尊敬语）",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "先生は大丈夫だとおっしゃいました。",
+          "zh": "老师说没关系。"
+        },
+        {
+          "ja": "お名前は何とおっしゃいますか。",
+          "zh": "您叫什么名字？"
+        },
+        {
+          "ja": "社長のおっしゃる通りです。",
+          "zh": "正如社长所说。"
+        }
+      ],
+      "note_zh": "敬语。"
+    },
+    {
+      "id": "n4-081",
+      "jlpt": "N4",
+      "headword": "夫",
+      "source_form": "夫",
+      "variants": [
+        "夫"
+      ],
+      "reading": "おっと",
+      "reading_variants": [
+        "おっと"
+      ],
+      "romaji": "otto",
+      "part_of_speech": "noun",
+      "meaning_zh": "丈夫（称自己的丈夫）",
+      "kanji_readings": [
+        {
+          "form": "夫",
+          "reading": "おっと"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "夫に相談しました。",
+          "zh": "和丈夫（称自己的丈夫）商量了。"
+        },
+        {
+          "ja": "夫と少し話しました。",
+          "zh": "和丈夫（称自己的丈夫）稍微聊了一下。"
+        },
+        {
+          "ja": "夫が駅で待っています。",
+          "zh": "丈夫（称自己的丈夫）在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-082",
+      "jlpt": "N4",
+      "headword": "お月見",
+      "source_form": "お月見",
+      "variants": [
+        "お月見"
+      ],
+      "reading": "おつきみ",
+      "reading_variants": [
+        "おつきみ"
+      ],
+      "romaji": "otsukimi",
+      "part_of_speech": "noun",
+      "meaning_zh": "赏月",
+      "kanji_readings": [
+        {
+          "form": "お月見",
+          "reading": "おつきみ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "お月見について調べました。",
+          "zh": "查了关于赏月的资料。"
+        },
+        {
+          "ja": "お月見に関する文章を読みました。",
+          "zh": "读了关于赏月的文章。"
+        },
+        {
+          "ja": "お月見について友達と話しました。",
+          "zh": "和朋友谈了关于赏月的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-083",
+      "jlpt": "N4",
+      "headword": "お釣り",
+      "source_form": "お釣り",
+      "variants": [
+        "お釣り"
+      ],
+      "reading": "おつり",
+      "reading_variants": [
+        "おつり"
+      ],
+      "romaji": "otsuri",
+      "part_of_speech": "noun",
+      "meaning_zh": "找零",
+      "kanji_readings": [
+        {
+          "form": "お釣り",
+          "reading": "おつり"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "お釣りを受け取りました。",
+          "zh": "收到了找零。"
+        },
+        {
+          "ja": "お釣りはいりません。",
+          "zh": "不用找零。"
+        },
+        {
+          "ja": "お釣りを間違えないでください。",
+          "zh": "请不要弄错找零。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-084",
+      "jlpt": "N4",
+      "headword": "音",
+      "source_form": "音",
+      "variants": [
+        "音"
+      ],
+      "reading": "おと",
+      "reading_variants": [
+        "おと"
+      ],
+      "romaji": "oto",
+      "part_of_speech": "noun",
+      "meaning_zh": "声音；声响",
+      "kanji_readings": [
+        {
+          "form": "音",
+          "reading": "おと"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "隣の部屋から音が聞こえます。",
+          "zh": "从隔壁房间听得到声音。"
+        },
+        {
+          "ja": "テレビの音を少し下げてください。",
+          "zh": "请把电视声音调低一点。"
+        },
+        {
+          "ja": "変な音がしたので見に行きました。",
+          "zh": "听到奇怪声音所以去看了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-085",
+      "jlpt": "N4",
+      "headword": "落とす",
+      "source_form": "落とす",
+      "variants": [
+        "落とす"
+      ],
+      "reading": "おとす",
+      "reading_variants": [
+        "おとす"
+      ],
+      "romaji": "otosu",
+      "part_of_speech": "verb",
+      "meaning_zh": "弄掉；丢失；降低",
+      "kanji_readings": [
+        {
+          "form": "落とす",
+          "reading": "おとす"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "財布を落としました。",
+          "zh": "钱包掉了。"
+        },
+        {
+          "ja": "音を少し落としてください。",
+          "zh": "请把声音调低一点。"
+        },
+        {
+          "ja": "大事な資料を駅で落としました。",
+          "zh": "把重要资料掉在车站了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-086",
+      "jlpt": "N4",
+      "headword": "踊り",
+      "source_form": "踊り",
+      "variants": [
+        "踊り"
+      ],
+      "reading": "おどり",
+      "reading_variants": [
+        "おどり"
+      ],
+      "romaji": "odori",
+      "part_of_speech": "noun",
+      "meaning_zh": "舞蹈",
+      "kanji_readings": [
+        {
+          "form": "踊り",
+          "reading": "おどり"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "踊りについて調べました。",
+          "zh": "查了关于舞蹈的资料。"
+        },
+        {
+          "ja": "踊りに関する文章を読みました。",
+          "zh": "读了关于舞蹈的文章。"
+        },
+        {
+          "ja": "踊りについて友達と話しました。",
+          "zh": "和朋友谈了关于舞蹈的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-087",
+      "jlpt": "N4",
+      "headword": "踊る",
+      "source_form": "踊る",
+      "variants": [
+        "踊る"
+      ],
+      "reading": "おどる",
+      "reading_variants": [
+        "おどる"
+      ],
+      "romaji": "odoru",
+      "part_of_speech": "verb",
+      "meaning_zh": "跳舞",
+      "kanji_readings": [
+        {
+          "form": "踊る",
+          "reading": "おどる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "友達と一緒に踊りました。",
+          "zh": "和朋友一起跳舞了。"
+        },
+        {
+          "ja": "祭りで子供たちが踊っています。",
+          "zh": "祭典上孩子们在跳舞。"
+        },
+        {
+          "ja": "音楽に合わせて踊ります。",
+          "zh": "配合音乐跳舞。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-088",
+      "jlpt": "N4",
+      "headword": "驚く",
+      "source_form": "驚く",
+      "variants": [
+        "驚く"
+      ],
+      "reading": "おどろく",
+      "reading_variants": [
+        "おどろく"
+      ],
+      "romaji": "odoroku",
+      "part_of_speech": "verb",
+      "meaning_zh": "吃惊；惊讶",
+      "kanji_readings": [
+        {
+          "form": "驚く",
+          "reading": "おどろく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "急なニュースに驚きました。",
+          "zh": "对突然的消息感到吃惊。"
+        },
+        {
+          "ja": "値段を見て驚きました。",
+          "zh": "看到价格吓了一跳。"
+        },
+        {
+          "ja": "友達の上手な日本語に驚きました。",
+          "zh": "朋友流利的日语让我惊讶。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-089",
+      "jlpt": "N4",
+      "headword": "お祭り",
+      "source_form": "お祭り",
+      "variants": [
+        "お祭り"
+      ],
+      "reading": "おまつり",
+      "reading_variants": [
+        "おまつり"
+      ],
+      "romaji": "omatsuri",
+      "part_of_speech": "noun",
+      "meaning_zh": "节日；祭典",
+      "kanji_readings": [
+        {
+          "form": "お祭り",
+          "reading": "おまつり"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "お祭りがあります。",
+          "zh": "有节日。"
+        },
+        {
+          "ja": "お祭りの予定を確認しました。",
+          "zh": "确认了节日的安排。"
+        },
+        {
+          "ja": "お祭りについて先生に聞きました。",
+          "zh": "向老师询问了节日。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-090",
+      "jlpt": "N4",
+      "headword": "お見舞い",
+      "source_form": "お見舞い",
+      "variants": [
+        "お見舞い"
+      ],
+      "reading": "おみまい",
+      "reading_variants": [
+        "おみまい"
+      ],
+      "romaji": "omimai",
+      "part_of_speech": "noun",
+      "meaning_zh": "探病；慰问",
+      "kanji_readings": [
+        {
+          "form": "お見舞い",
+          "reading": "おみまい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "病院へ友達のお見舞いに行きました。",
+          "zh": "去医院探望朋友了。"
+        },
+        {
+          "ja": "お見舞いの品を買いました。",
+          "zh": "买了慰问品。"
+        },
+        {
+          "ja": "けがをした先生にお見舞いの手紙を書きました。",
+          "zh": "给受伤的老师写了慰问信。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-091",
+      "jlpt": "N4",
+      "headword": "お土産",
+      "source_form": "お土産",
+      "variants": [
+        "お土産"
+      ],
+      "reading": "おみやげ",
+      "reading_variants": [
+        "おみやげ"
+      ],
+      "romaji": "omiyage",
+      "part_of_speech": "noun",
+      "meaning_zh": "土特产；伴手礼",
+      "kanji_readings": [
+        {
+          "form": "お土産",
+          "reading": "おみやげ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "お土産を見ました。",
+          "zh": "看到了土特产。"
+        },
+        {
+          "ja": "お土産を確認しました。",
+          "zh": "确认了土特产。"
+        },
+        {
+          "ja": "お土産について友達と話しました。",
+          "zh": "和朋友谈了关于土特产的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-092",
+      "jlpt": "N4",
+      "headword": "思い出す",
+      "source_form": "思い出す",
+      "variants": [
+        "思い出す"
+      ],
+      "reading": "おもいだす",
+      "reading_variants": [
+        "おもいだす"
+      ],
+      "romaji": "omoidasu",
+      "part_of_speech": "verb",
+      "meaning_zh": "想起；回忆起",
+      "kanji_readings": [
+        {
+          "form": "思い出す",
+          "reading": "おもいだす"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "昔の友達を思い出しました。",
+          "zh": "想起了以前的朋友。"
+        },
+        {
+          "ja": "名前がなかなか思い出せません。",
+          "zh": "怎么也想不起名字。"
+        },
+        {
+          "ja": "この歌を聞くと旅行を思い出します。",
+          "zh": "听到这首歌就想起旅行。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-093",
+      "jlpt": "N4",
+      "headword": "思う",
+      "source_form": "思う",
+      "variants": [
+        "思う"
+      ],
+      "reading": "おもう",
+      "reading_variants": [
+        "おもう"
+      ],
+      "romaji": "omou",
+      "part_of_speech": "verb",
+      "meaning_zh": "想；认为；觉得",
+      "kanji_readings": [
+        {
+          "form": "思う",
+          "reading": "おもう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "私はそう思います。",
+          "zh": "我是这么想的。"
+        },
+        {
+          "ja": "日本語は面白いと思います。",
+          "zh": "我觉得日语有意思。"
+        },
+        {
+          "ja": "明日は雨だと思います。",
+          "zh": "我觉得明天会下雨。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-094",
+      "jlpt": "N4",
+      "headword": "おもちゃ",
+      "source_form": "おもちゃ",
+      "variants": [
+        "おもちゃ"
+      ],
+      "reading": "おもちゃ",
+      "reading_variants": [
+        "おもちゃ"
+      ],
+      "romaji": "omocha",
+      "part_of_speech": "noun",
+      "meaning_zh": "玩具",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "おもちゃを見ました。",
+          "zh": "看到了玩具。"
+        },
+        {
+          "ja": "おもちゃを確認しました。",
+          "zh": "确认了玩具。"
+        },
+        {
+          "ja": "おもちゃについて友達と話しました。",
+          "zh": "和朋友谈了关于玩具的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-095",
+      "jlpt": "N4",
+      "headword": "表",
+      "source_form": "表",
+      "variants": [
+        "表"
+      ],
+      "reading": "おもて",
+      "reading_variants": [
+        "おもて"
+      ],
+      "romaji": "omote",
+      "part_of_speech": "noun",
+      "meaning_zh": "表面；正面；外面",
+      "kanji_readings": [
+        {
+          "form": "表",
+          "reading": "おもて"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "封筒の表に住所を書きます。",
+          "zh": "在信封正面写地址。"
+        },
+        {
+          "ja": "家の表で待っています。",
+          "zh": "在家门口等。"
+        },
+        {
+          "ja": "表と裏を間違えました。",
+          "zh": "弄错了正反面。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-096",
+      "jlpt": "N4",
+      "headword": "親",
+      "source_form": "親",
+      "variants": [
+        "親"
+      ],
+      "reading": "おや",
+      "reading_variants": [
+        "おや"
+      ],
+      "romaji": "oya",
+      "part_of_speech": "noun",
+      "meaning_zh": "父母；父亲或母亲",
+      "kanji_readings": [
+        {
+          "form": "親",
+          "reading": "おや"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "親に相談しました。",
+          "zh": "和父母商量了。"
+        },
+        {
+          "ja": "親と少し話しました。",
+          "zh": "和父母稍微聊了一下。"
+        },
+        {
+          "ja": "親が駅で待っています。",
+          "zh": "父母在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-097",
+      "jlpt": "N4",
+      "headword": "泳ぎ方",
+      "source_form": "泳ぎ方",
+      "variants": [
+        "泳ぎ方"
+      ],
+      "reading": "およぎかた",
+      "reading_variants": [
+        "およぎかた"
+      ],
+      "romaji": "oyogikata",
+      "part_of_speech": "noun",
+      "meaning_zh": "游泳方法",
+      "kanji_readings": [
+        {
+          "form": "泳ぎ方",
+          "reading": "およぎかた"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "泳ぎ方について友達と話しました。",
+          "zh": "和朋友谈了关于游泳方法的事。"
+        },
+        {
+          "ja": "泳ぎ方に関する説明を読みました。",
+          "zh": "读了关于游泳方法的说明。"
+        },
+        {
+          "ja": "泳ぎ方についてもっと知りたいです。",
+          "zh": "想更多了解游泳方法。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-098",
+      "jlpt": "N4",
+      "headword": "下りる",
+      "source_form": "下りる",
+      "variants": [
+        "下りる"
+      ],
+      "reading": "おりる",
+      "reading_variants": [
+        "おりる"
+      ],
+      "romaji": "oriru",
+      "part_of_speech": "verb",
+      "meaning_zh": "下（车、楼等）；下来",
+      "kanji_readings": [
+        {
+          "form": "下りる",
+          "reading": "おりる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "次の駅で下ります。",
+          "zh": "在下一站下车。"
+        },
+        {
+          "ja": "階段をゆっくり下りてください。",
+          "zh": "请慢慢下楼梯。"
+        },
+        {
+          "ja": "山を下りる時は気をつけます。",
+          "zh": "下山时要小心。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-099",
+      "jlpt": "N4",
+      "headword": "折る",
+      "source_form": "折る",
+      "variants": [
+        "折る"
+      ],
+      "reading": "おる",
+      "reading_variants": [
+        "おる"
+      ],
+      "romaji": "oru",
+      "part_of_speech": "verb",
+      "meaning_zh": "折；弯；折断",
+      "kanji_readings": [
+        {
+          "form": "折る",
+          "reading": "おる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "紙を半分に折ります。",
+          "zh": "把纸对折。"
+        },
+        {
+          "ja": "枝を折らないでください。",
+          "zh": "请不要折树枝。"
+        },
+        {
+          "ja": "傘を折ってしまいました。",
+          "zh": "把伞弄折了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-100",
+      "jlpt": "N4",
+      "headword": "お礼",
+      "source_form": "お礼",
+      "variants": [
+        "お礼"
+      ],
+      "reading": "おれい",
+      "reading_variants": [
+        "おれい"
+      ],
+      "romaji": "orei",
+      "part_of_speech": "noun",
+      "meaning_zh": "感谢；谢礼",
+      "kanji_readings": [
+        {
+          "form": "お礼",
+          "reading": "おれい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "お礼があります。",
+          "zh": "有感谢。"
+        },
+        {
+          "ja": "お礼の予定を確認しました。",
+          "zh": "确认了感谢的安排。"
+        },
+        {
+          "ja": "お礼について先生に聞きました。",
+          "zh": "向老师询问了感谢。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-101",
+      "jlpt": "N4",
+      "headword": "折れる",
+      "source_form": "折れる",
+      "variants": [
+        "折れる"
+      ],
+      "reading": "おれる",
+      "reading_variants": [
+        "おれる"
+      ],
+      "romaji": "oreru",
+      "part_of_speech": "verb",
+      "meaning_zh": "折断；折起来",
+      "kanji_readings": [
+        {
+          "form": "折れる",
+          "reading": "おれる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "強い風で枝が折れました。",
+          "zh": "树枝被强风折断了。"
+        },
+        {
+          "ja": "鉛筆の先が折れています。",
+          "zh": "铅笔尖断了。"
+        },
+        {
+          "ja": "この紙はきれいに折れます。",
+          "zh": "这张纸能折得很整齐。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-102",
+      "jlpt": "N4",
+      "headword": "終わり",
+      "source_form": "終わり",
+      "variants": [
+        "終わり"
+      ],
+      "reading": "おわり",
+      "reading_variants": [
+        "おわり"
+      ],
+      "romaji": "owari",
+      "part_of_speech": "noun",
+      "meaning_zh": "结束；结尾",
+      "kanji_readings": [
+        {
+          "form": "終わり",
+          "reading": "おわり"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "終わりがあります。",
+          "zh": "有结束。"
+        },
+        {
+          "ja": "終わりの予定を確認しました。",
+          "zh": "确认了结束的安排。"
+        },
+        {
+          "ja": "終わりについて先生に聞きました。",
+          "zh": "向老师询问了结束。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-103",
+      "jlpt": "N4",
+      "headword": "課",
+      "source_form": "課",
+      "variants": [
+        "課"
+      ],
+      "reading": "か",
+      "reading_variants": [
+        "か"
+      ],
+      "romaji": "ka",
+      "part_of_speech": "noun",
+      "meaning_zh": "课；科；部门",
+      "kanji_readings": [
+        {
+          "form": "課",
+          "reading": "か"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "課について調べました。",
+          "zh": "查了关于课的资料。"
+        },
+        {
+          "ja": "課に関する文章を読みました。",
+          "zh": "读了关于课的文章。"
+        },
+        {
+          "ja": "課について友達と話しました。",
+          "zh": "和朋友谈了关于课的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-104",
+      "jlpt": "N4",
+      "headword": "会員",
+      "source_form": "会員",
+      "variants": [
+        "会員"
+      ],
+      "reading": "かいいん",
+      "reading_variants": [
+        "かいいん"
+      ],
+      "romaji": "kaiin",
+      "part_of_speech": "noun",
+      "meaning_zh": "会员",
+      "kanji_readings": [
+        {
+          "form": "会員",
+          "reading": "かいいん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "会員に相談しました。",
+          "zh": "和会员商量了。"
+        },
+        {
+          "ja": "会員と少し話しました。",
+          "zh": "和会员稍微聊了一下。"
+        },
+        {
+          "ja": "会員が駅で待っています。",
+          "zh": "会员在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-105",
+      "jlpt": "N4",
+      "headword": "海岸",
+      "source_form": "海岸",
+      "variants": [
+        "海岸"
+      ],
+      "reading": "かいがん",
+      "reading_variants": [
+        "かいがん"
+      ],
+      "romaji": "kaigan",
+      "part_of_speech": "noun",
+      "meaning_zh": "海岸",
+      "kanji_readings": [
+        {
+          "form": "海岸",
+          "reading": "かいがん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "海岸へ行きました。",
+          "zh": "去了海岸。"
+        },
+        {
+          "ja": "海岸は駅の近くにあります。",
+          "zh": "海岸在车站附近。"
+        },
+        {
+          "ja": "海岸で友達に会いました。",
+          "zh": "在海岸见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-106",
+      "jlpt": "N4",
+      "headword": "会議",
+      "source_form": "会議",
+      "variants": [
+        "会議"
+      ],
+      "reading": "かいぎ",
+      "reading_variants": [
+        "かいぎ"
+      ],
+      "romaji": "kaigi",
+      "part_of_speech": "noun",
+      "meaning_zh": "会议",
+      "kanji_readings": [
+        {
+          "form": "会議",
+          "reading": "かいぎ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "会議があります。",
+          "zh": "有会议。"
+        },
+        {
+          "ja": "会議の予定を確認しました。",
+          "zh": "确认了会议的安排。"
+        },
+        {
+          "ja": "会議について先生に聞きました。",
+          "zh": "向老师询问了会议。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-107",
+      "jlpt": "N4",
+      "headword": "会議室",
+      "source_form": "会議室",
+      "variants": [
+        "会議室"
+      ],
+      "reading": "かいぎしつ",
+      "reading_variants": [
+        "かいぎしつ"
+      ],
+      "romaji": "kaigishitsu",
+      "part_of_speech": "noun",
+      "meaning_zh": "会议室",
+      "kanji_readings": [
+        {
+          "form": "会議室",
+          "reading": "かいぎしつ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "会議室へ行きました。",
+          "zh": "去了会议室。"
+        },
+        {
+          "ja": "会議室は駅の近くにあります。",
+          "zh": "会议室在车站附近。"
+        },
+        {
+          "ja": "会議室で友達に会いました。",
+          "zh": "在会议室见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-108",
+      "jlpt": "N4",
+      "headword": "会計",
+      "source_form": "会計",
+      "variants": [
+        "会計"
+      ],
+      "reading": "かいけい",
+      "reading_variants": [
+        "かいけい"
+      ],
+      "romaji": "kaikei",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "会计；结账",
+      "kanji_readings": [
+        {
+          "form": "会計",
+          "reading": "かいけい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "レジで会計をお願いします。",
+          "zh": "在收银台结账。"
+        },
+        {
+          "ja": "会計はカードでできますか。",
+          "zh": "可以刷卡结账吗？"
+        },
+        {
+          "ja": "食事の後で会計しました。",
+          "zh": "吃饭后结了账。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-109",
+      "jlpt": "N4",
+      "headword": "会場",
+      "source_form": "会場",
+      "variants": [
+        "会場"
+      ],
+      "reading": "かいじょう",
+      "reading_variants": [
+        "かいじょう"
+      ],
+      "romaji": "kaijou",
+      "part_of_speech": "noun",
+      "meaning_zh": "会场",
+      "kanji_readings": [
+        {
+          "form": "会場",
+          "reading": "かいじょう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "会場へ行きました。",
+          "zh": "去了会场。"
+        },
+        {
+          "ja": "会場は駅の近くにあります。",
+          "zh": "会场在车站附近。"
+        },
+        {
+          "ja": "会場で友達に会いました。",
+          "zh": "在会场见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-110",
+      "jlpt": "N4",
+      "headword": "会話",
+      "source_form": "会話",
+      "variants": [
+        "会話"
+      ],
+      "reading": "かいわ",
+      "reading_variants": [
+        "かいわ"
+      ],
+      "romaji": "kaiwa",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "会话",
+      "kanji_readings": [
+        {
+          "form": "会話",
+          "reading": "かいわ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "友達と日本語で会話しました。",
+          "zh": "和朋友用日语对话了。"
+        },
+        {
+          "ja": "自然な会話を聞いて練習します。",
+          "zh": "听自然会话来练习。"
+        },
+        {
+          "ja": "会話のスピードが速くて驚きました。",
+          "zh": "会话速度很快，吓了一跳。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-111",
+      "jlpt": "N4",
+      "headword": "帰り",
+      "source_form": "帰り",
+      "variants": [
+        "帰り"
+      ],
+      "reading": "かえり",
+      "reading_variants": [
+        "かえり"
+      ],
+      "romaji": "kaeri",
+      "part_of_speech": "noun",
+      "meaning_zh": "回去；归途",
+      "kanji_readings": [
+        {
+          "form": "帰り",
+          "reading": "かえり"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "帰りに友達と会います。",
+          "zh": "回去和朋友见面。"
+        },
+        {
+          "ja": "帰りは少し忙しいです。",
+          "zh": "回去有点忙。"
+        },
+        {
+          "ja": "帰りの予定を確認しました。",
+          "zh": "确认了回去的计划。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-112",
+      "jlpt": "N4",
+      "headword": "帰り道",
+      "source_form": "帰り道",
+      "variants": [
+        "帰り道"
+      ],
+      "reading": "かえりみち",
+      "reading_variants": [
+        "かえりみち"
+      ],
+      "romaji": "kaerimichi",
+      "part_of_speech": "noun",
+      "meaning_zh": "归途；回去的路",
+      "kanji_readings": [
+        {
+          "form": "帰り道",
+          "reading": "かえりみち"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "帰り道に友達と会います。",
+          "zh": "归途和朋友见面。"
+        },
+        {
+          "ja": "帰り道は少し忙しいです。",
+          "zh": "归途有点忙。"
+        },
+        {
+          "ja": "帰り道の予定を確認しました。",
+          "zh": "确认了归途的计划。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-113",
+      "jlpt": "N4",
+      "headword": "代える",
+      "source_form": "代える",
+      "variants": [
+        "代える"
+      ],
+      "reading": "かえる",
+      "reading_variants": [
+        "かえる"
+      ],
+      "romaji": "kaeru",
+      "part_of_speech": "verb",
+      "meaning_zh": "替换；代替",
+      "kanji_readings": [
+        {
+          "form": "代える",
+          "reading": "かえる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "古い電池を新しいものに代えました。",
+          "zh": "把旧电池换成了新的。"
+        },
+        {
+          "ja": "父に代わって兄が出席しました。",
+          "zh": "哥哥代替父亲出席了。"
+        },
+        {
+          "ja": "この言葉を別の言葉に代えてください。",
+          "zh": "请把这个词换成别的词。"
+        }
+      ],
+      "note_zh": "与「変える」意思接近但侧重替代。"
+    },
+    {
+      "id": "n4-114",
+      "jlpt": "N4",
+      "headword": "変える",
+      "source_form": "変える",
+      "variants": [
+        "変える"
+      ],
+      "reading": "かえる",
+      "reading_variants": [
+        "かえる"
+      ],
+      "romaji": "kaeru",
+      "part_of_speech": "verb",
+      "meaning_zh": "改变；更换",
+      "kanji_readings": [
+        {
+          "form": "変える",
+          "reading": "かえる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "予定を少し変えました。",
+          "zh": "稍微改了计划。"
+        },
+        {
+          "ja": "髪型を変えたいです。",
+          "zh": "想换发型。"
+        },
+        {
+          "ja": "席を変えてもいいですか。",
+          "zh": "可以换座位吗？"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-115",
+      "jlpt": "N4",
+      "headword": "係",
+      "source_form": "係",
+      "variants": [
+        "係"
+      ],
+      "reading": "かかり",
+      "reading_variants": [
+        "かかり"
+      ],
+      "romaji": "kakari",
+      "part_of_speech": "noun",
+      "meaning_zh": "负责人；负责部门",
+      "kanji_readings": [
+        {
+          "form": "係",
+          "reading": "かかり"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "係について調べました。",
+          "zh": "查了关于负责人的资料。"
+        },
+        {
+          "ja": "係に関する文章を読みました。",
+          "zh": "读了关于负责人的文章。"
+        },
+        {
+          "ja": "係について友達と話しました。",
+          "zh": "和朋友谈了关于负责人的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-116",
+      "jlpt": "N4",
+      "headword": "掛かる",
+      "source_form": "掛かる",
+      "variants": [
+        "掛かる"
+      ],
+      "reading": "かかる",
+      "reading_variants": [
+        "かかる"
+      ],
+      "romaji": "kakaru",
+      "part_of_speech": "verb",
+      "meaning_zh": "花费；悬挂着；需要",
+      "kanji_readings": [
+        {
+          "form": "掛かる",
+          "reading": "かかる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "駅まで十分かかります。",
+          "zh": "到车站要十分钟。"
+        },
+        {
+          "ja": "壁に絵が掛かっています。",
+          "zh": "墙上挂着画。"
+        },
+        {
+          "ja": "この仕事にはお金がかかります。",
+          "zh": "这项工作需要钱。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-117",
+      "jlpt": "N4",
+      "headword": "科学",
+      "source_form": "科学",
+      "variants": [
+        "科学"
+      ],
+      "reading": "かがく",
+      "reading_variants": [
+        "かがく"
+      ],
+      "romaji": "kagaku",
+      "part_of_speech": "noun",
+      "meaning_zh": "科学",
+      "kanji_readings": [
+        {
+          "form": "科学",
+          "reading": "かがく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "科学について友達と話しました。",
+          "zh": "和朋友谈了关于科学的事。"
+        },
+        {
+          "ja": "科学に関する説明を読みました。",
+          "zh": "读了关于科学的说明。"
+        },
+        {
+          "ja": "科学についてもっと知りたいです。",
+          "zh": "想更多了解科学。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-118",
+      "jlpt": "N4",
+      "headword": "鏡",
+      "source_form": "鏡",
+      "variants": [
+        "鏡"
+      ],
+      "reading": "かがみ",
+      "reading_variants": [
+        "かがみ"
+      ],
+      "romaji": "kagami",
+      "part_of_speech": "noun",
+      "meaning_zh": "镜子",
+      "kanji_readings": [
+        {
+          "form": "鏡",
+          "reading": "かがみ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "鏡を見ました。",
+          "zh": "看到了镜子。"
+        },
+        {
+          "ja": "鏡を確認しました。",
+          "zh": "确认了镜子。"
+        },
+        {
+          "ja": "鏡について友達と話しました。",
+          "zh": "和朋友谈了关于镜子的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-119",
+      "jlpt": "N4",
+      "headword": "掛ける",
+      "source_form": "掛ける",
+      "variants": [
+        "掛ける"
+      ],
+      "reading": "かける",
+      "reading_variants": [
+        "かける"
+      ],
+      "romaji": "kakeru",
+      "part_of_speech": "verb",
+      "meaning_zh": "挂；戴；拨打；花费",
+      "kanji_readings": [
+        {
+          "form": "掛ける",
+          "reading": "かける"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "壁に時計を掛けました。",
+          "zh": "把钟挂在墙上。"
+        },
+        {
+          "ja": "母に電話を掛けます。",
+          "zh": "给母亲打电话。"
+        },
+        {
+          "ja": "椅子にコートを掛けないでください。",
+          "zh": "请不要把外套挂在椅子上。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-120",
+      "jlpt": "N4",
+      "headword": "加減",
+      "source_form": "加減",
+      "variants": [
+        "加減"
+      ],
+      "reading": "かげん",
+      "reading_variants": [
+        "かげん"
+      ],
+      "romaji": "kagen",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "程度；调整；身体状况",
+      "kanji_readings": [
+        {
+          "form": "加減",
+          "reading": "かげん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "塩加減を見てください。",
+          "zh": "请看看咸淡。"
+        },
+        {
+          "ja": "火加減を少し弱くします。",
+          "zh": "把火候稍微调弱。"
+        },
+        {
+          "ja": "いい加減な返事はしないでください。",
+          "zh": "请不要随便回答。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-121",
+      "jlpt": "N4",
+      "headword": "飾る",
+      "source_form": "飾る",
+      "variants": [
+        "飾る"
+      ],
+      "reading": "かざる",
+      "reading_variants": [
+        "かざる"
+      ],
+      "romaji": "kazaru",
+      "part_of_speech": "verb",
+      "meaning_zh": "装饰",
+      "kanji_readings": [
+        {
+          "form": "飾る",
+          "reading": "かざる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "部屋に花を飾りました。",
+          "zh": "在房间里装饰了花。"
+        },
+        {
+          "ja": "写真を壁に飾っています。",
+          "zh": "照片挂在墙上装饰着。"
+        },
+        {
+          "ja": "クリスマスに店をきれいに飾ります。",
+          "zh": "圣诞节把店装饰得很漂亮。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-122",
+      "jlpt": "N4",
+      "headword": "火事",
+      "source_form": "火事",
+      "variants": [
+        "火事"
+      ],
+      "reading": "かじ",
+      "reading_variants": [
+        "かじ"
+      ],
+      "romaji": "kaji",
+      "part_of_speech": "noun",
+      "meaning_zh": "火灾",
+      "kanji_readings": [
+        {
+          "form": "火事",
+          "reading": "かじ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "火事について調べました。",
+          "zh": "查了关于火灾的资料。"
+        },
+        {
+          "ja": "火事に関する文章を読みました。",
+          "zh": "读了关于火灾的文章。"
+        },
+        {
+          "ja": "火事について友達と話しました。",
+          "zh": "和朋友谈了关于火灾的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-123",
+      "jlpt": "N4",
+      "headword": "固い",
+      "source_form": "固い; 硬い; 堅い",
+      "variants": [
+        "固い",
+        "硬い",
+        "堅い"
+      ],
+      "reading": "かたい",
+      "reading_variants": [
+        "かたい"
+      ],
+      "romaji": "katai",
+      "part_of_speech": "i-adjective",
+      "meaning_zh": "硬的；坚固的；严肃的",
+      "kanji_readings": [
+        {
+          "form": "固い",
+          "reading": "かたい"
+        },
+        {
+          "form": "硬い",
+          "reading": "かたい"
+        },
+        {
+          "form": "堅い",
+          "reading": "かたい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "このパンは少し固いです。",
+          "zh": "这个面包有点硬。"
+        },
+        {
+          "ja": "固い約束をしました。",
+          "zh": "做了牢固的约定。"
+        },
+        {
+          "ja": "彼は少し固い表情をしています。",
+          "zh": "他的表情有点僵硬。"
+        }
+      ],
+      "note_zh": "根据对象可写作「固い」「硬い」「堅い」。"
+    },
+    {
+      "id": "n4-124",
+      "jlpt": "N4",
+      "headword": "形",
+      "source_form": "形",
+      "variants": [
+        "形"
+      ],
+      "reading": "かたち",
+      "reading_variants": [
+        "かたち"
+      ],
+      "romaji": "katachi",
+      "part_of_speech": "noun",
+      "meaning_zh": "形状；形式",
+      "kanji_readings": [
+        {
+          "form": "形",
+          "reading": "かたち"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "形を見ました。",
+          "zh": "看到了形状。"
+        },
+        {
+          "ja": "形を確認しました。",
+          "zh": "确认了形状。"
+        },
+        {
+          "ja": "形について友達と話しました。",
+          "zh": "和朋友谈了关于形状的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-125",
+      "jlpt": "N4",
+      "headword": "片付ける",
+      "source_form": "片付ける",
+      "variants": [
+        "片付ける"
+      ],
+      "reading": "かたづける",
+      "reading_variants": [
+        "かたづける"
+      ],
+      "romaji": "katazukeru",
+      "part_of_speech": "verb",
+      "meaning_zh": "收拾；整理",
+      "kanji_readings": [
+        {
+          "form": "片付ける",
+          "reading": "かたづける"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "食事の後で机を片付けます。",
+          "zh": "饭后收拾桌子。"
+        },
+        {
+          "ja": "部屋を片付けてください。",
+          "zh": "请收拾房间。"
+        },
+        {
+          "ja": "古い本を全部片付けました。",
+          "zh": "把旧书全都整理好了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-126",
+      "jlpt": "N4",
+      "headword": "片道",
+      "source_form": "片道",
+      "variants": [
+        "片道"
+      ],
+      "reading": "かたみち",
+      "reading_variants": [
+        "かたみち"
+      ],
+      "romaji": "katamichi",
+      "part_of_speech": "noun",
+      "meaning_zh": "单程",
+      "kanji_readings": [
+        {
+          "form": "片道",
+          "reading": "かたみち"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "片道について調べました。",
+          "zh": "查了关于单程的资料。"
+        },
+        {
+          "ja": "片道に関する文章を読みました。",
+          "zh": "读了关于单程的文章。"
+        },
+        {
+          "ja": "片道について友達と話しました。",
+          "zh": "和朋友谈了关于单程的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-127",
+      "jlpt": "N4",
+      "headword": "課長",
+      "source_form": "課長",
+      "variants": [
+        "課長"
+      ],
+      "reading": "かちょう",
+      "reading_variants": [
+        "かちょう"
+      ],
+      "romaji": "kachou",
+      "part_of_speech": "noun",
+      "meaning_zh": "科长；课长",
+      "kanji_readings": [
+        {
+          "form": "課長",
+          "reading": "かちょう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "課長に相談しました。",
+          "zh": "和科长商量了。"
+        },
+        {
+          "ja": "課長と少し話しました。",
+          "zh": "和科长稍微聊了一下。"
+        },
+        {
+          "ja": "課長が駅で待っています。",
+          "zh": "科长在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-128",
+      "jlpt": "N4",
+      "headword": "格好",
+      "source_form": "格好; かっこう",
+      "variants": [
+        "格好",
+        "かっこう"
+      ],
+      "reading": "かっこう",
+      "reading_variants": [
+        "かっこう"
+      ],
+      "romaji": "kakkou",
+      "part_of_speech": "noun",
+      "meaning_zh": "样子；外表；姿势",
+      "kanji_readings": [
+        {
+          "form": "格好",
+          "reading": "かっこう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "格好について調べました。",
+          "zh": "查了关于样子的资料。"
+        },
+        {
+          "ja": "格好に関する文章を読みました。",
+          "zh": "读了关于样子的文章。"
+        },
+        {
+          "ja": "格好について友達と話しました。",
+          "zh": "和朋友谈了关于样子的事。"
+        }
+      ],
+      "note_zh": "常写假名「かっこう」。"
+    },
+    {
+      "id": "n4-129",
+      "jlpt": "N4",
+      "headword": "勝つ",
+      "source_form": "勝つ",
+      "variants": [
+        "勝つ"
+      ],
+      "reading": "かつ",
+      "reading_variants": [
+        "かつ"
+      ],
+      "romaji": "katsu",
+      "part_of_speech": "verb",
+      "meaning_zh": "赢；获胜",
+      "kanji_readings": [
+        {
+          "form": "勝つ",
+          "reading": "かつ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "試合に勝ちました。",
+          "zh": "比赛赢了。"
+        },
+        {
+          "ja": "次は必ず勝ちたいです。",
+          "zh": "下次一定想赢。"
+        },
+        {
+          "ja": "強いチームに勝つのは大変です。",
+          "zh": "赢强队很不容易。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-130",
+      "jlpt": "N4",
+      "headword": "家庭",
+      "source_form": "家庭",
+      "variants": [
+        "家庭"
+      ],
+      "reading": "かてい",
+      "reading_variants": [
+        "かてい"
+      ],
+      "romaji": "katei",
+      "part_of_speech": "noun",
+      "meaning_zh": "家庭",
+      "kanji_readings": [
+        {
+          "form": "家庭",
+          "reading": "かてい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "家庭について友達と話しました。",
+          "zh": "和朋友谈了关于家庭的事。"
+        },
+        {
+          "ja": "家庭に関する説明を読みました。",
+          "zh": "读了关于家庭的说明。"
+        },
+        {
+          "ja": "家庭についてもっと知りたいです。",
+          "zh": "想更多了解家庭。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-131",
+      "jlpt": "N4",
+      "headword": "家内",
+      "source_form": "家内",
+      "variants": [
+        "家内"
+      ],
+      "reading": "かない",
+      "reading_variants": [
+        "かない"
+      ],
+      "romaji": "kanai",
+      "part_of_speech": "noun",
+      "meaning_zh": "妻子；内人",
+      "kanji_readings": [
+        {
+          "form": "家内",
+          "reading": "かない"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "家内に相談しました。",
+          "zh": "和妻子商量了。"
+        },
+        {
+          "ja": "家内と少し話しました。",
+          "zh": "和妻子稍微聊了一下。"
+        },
+        {
+          "ja": "家内が駅で待っています。",
+          "zh": "妻子在车站等。"
+        }
+      ],
+      "note_zh": "称自己的妻子，现代日常可用「妻」。"
+    },
+    {
+      "id": "n4-132",
+      "jlpt": "N4",
+      "headword": "悲しい",
+      "source_form": "悲しい",
+      "variants": [
+        "悲しい"
+      ],
+      "reading": "かなしい",
+      "reading_variants": [
+        "かなしい"
+      ],
+      "romaji": "kanashii",
+      "part_of_speech": "i-adjective",
+      "meaning_zh": "悲伤的；难过的",
+      "kanji_readings": [
+        {
+          "form": "悲しい",
+          "reading": "かなしい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "悲しいニュースを聞きました。",
+          "zh": "听到了悲伤的消息。"
+        },
+        {
+          "ja": "友達と別れて悲しかったです。",
+          "zh": "和朋友分别很难过。"
+        },
+        {
+          "ja": "悲しい時は音楽を聞きます。",
+          "zh": "难过时听音乐。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-133",
+      "jlpt": "N4",
+      "headword": "必ず",
+      "source_form": "必ず",
+      "variants": [
+        "必ず"
+      ],
+      "reading": "かならず",
+      "reading_variants": [
+        "かならず"
+      ],
+      "romaji": "kanarazu",
+      "part_of_speech": "adverb",
+      "meaning_zh": "一定；必定",
+      "kanji_readings": [
+        {
+          "form": "必ず",
+          "reading": "かならず"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "明日は必ず来てください。",
+          "zh": "明天请一定来。"
+        },
+        {
+          "ja": "約束は必ず守ります。",
+          "zh": "一定遵守约定。"
+        },
+        {
+          "ja": "着いたら必ず連絡します。",
+          "zh": "到了以后一定联系。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-134",
+      "jlpt": "N4",
+      "headword": "金持ち",
+      "source_form": "金持ち; お金持ち",
+      "variants": [
+        "金持ち",
+        "お金持ち"
+      ],
+      "reading": "かねもち",
+      "reading_variants": [
+        "かねもち"
+      ],
+      "romaji": "kanemochi",
+      "part_of_speech": "noun",
+      "meaning_zh": "有钱人；富人",
+      "kanji_readings": [
+        {
+          "form": "金持ち",
+          "reading": "かねもち"
+        },
+        {
+          "form": "お金持ち",
+          "reading": "かねもち"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "金持ちに相談しました。",
+          "zh": "和有钱人商量了。"
+        },
+        {
+          "ja": "金持ちと少し話しました。",
+          "zh": "和有钱人稍微聊了一下。"
+        },
+        {
+          "ja": "金持ちが駅で待っています。",
+          "zh": "有钱人在车站等。"
+        }
+      ],
+      "note_zh": "「お金持ち」更礼貌/口语。"
+    },
+    {
+      "id": "n4-135",
+      "jlpt": "N4",
+      "headword": "彼女",
+      "source_form": "彼女",
+      "variants": [
+        "彼女"
+      ],
+      "reading": "かのじょ",
+      "reading_variants": [
+        "かのじょ"
+      ],
+      "romaji": "kanojo",
+      "part_of_speech": "pronoun/noun",
+      "meaning_zh": "她；女朋友",
+      "kanji_readings": [
+        {
+          "form": "彼女",
+          "reading": "かのじょ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "彼女に相談しました。",
+          "zh": "和她商量了。"
+        },
+        {
+          "ja": "彼女と少し話しました。",
+          "zh": "和她稍微聊了一下。"
+        },
+        {
+          "ja": "彼女が駅で待っています。",
+          "zh": "她在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-136",
+      "jlpt": "N4",
+      "headword": "壁",
+      "source_form": "壁",
+      "variants": [
+        "壁"
+      ],
+      "reading": "かべ",
+      "reading_variants": [
+        "かべ"
+      ],
+      "romaji": "kabe",
+      "part_of_speech": "noun",
+      "meaning_zh": "墙壁",
+      "kanji_readings": [
+        {
+          "form": "壁",
+          "reading": "かべ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "壁に写真を飾りました。",
+          "zh": "把照片装饰在墙上。"
+        },
+        {
+          "ja": "白い壁の部屋です。",
+          "zh": "是白墙房间。"
+        },
+        {
+          "ja": "壁の近くに机を置きました。",
+          "zh": "把桌子放在墙附近。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-137",
+      "jlpt": "N4",
+      "headword": "かまう",
+      "source_form": "かまう",
+      "variants": [
+        "かまう"
+      ],
+      "reading": "かまう",
+      "reading_variants": [
+        "かまう"
+      ],
+      "romaji": "kamau",
+      "part_of_speech": "verb",
+      "meaning_zh": "介意；照顾；理会",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "私はかまいません。",
+          "zh": "我不介意。"
+        },
+        {
+          "ja": "忙しいので、犬にかまう時間がありません。",
+          "zh": "很忙，所以没时间照顾狗。"
+        },
+        {
+          "ja": "そんなことはかまわなくても大丈夫です。",
+          "zh": "那种事不用在意也没关系。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-138",
+      "jlpt": "N4",
+      "headword": "髪",
+      "source_form": "髪",
+      "variants": [
+        "髪"
+      ],
+      "reading": "かみ",
+      "reading_variants": [
+        "かみ"
+      ],
+      "romaji": "kami",
+      "part_of_speech": "noun",
+      "meaning_zh": "头发",
+      "kanji_readings": [
+        {
+          "form": "髪",
+          "reading": "かみ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "髪を短く切りました。",
+          "zh": "把头发剪短了。"
+        },
+        {
+          "ja": "朝、髪を洗いました。",
+          "zh": "早上洗了头。"
+        },
+        {
+          "ja": "彼女は髪が長いです。",
+          "zh": "她头发很长。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-139",
+      "jlpt": "N4",
+      "headword": "噛む",
+      "source_form": "噛む",
+      "variants": [
+        "噛む"
+      ],
+      "reading": "かむ",
+      "reading_variants": [
+        "かむ"
+      ],
+      "romaji": "kamu",
+      "part_of_speech": "verb",
+      "meaning_zh": "咬；嚼",
+      "kanji_readings": [
+        {
+          "form": "噛む",
+          "reading": "かむ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "よく噛んで食べてください。",
+          "zh": "请好好嚼着吃。"
+        },
+        {
+          "ja": "犬に手を噛まれました。",
+          "zh": "手被狗咬了。"
+        },
+        {
+          "ja": "ガムを噛みながら話さないでください。",
+          "zh": "请不要边嚼口香糖边说话。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-140",
+      "jlpt": "N4",
+      "headword": "通う",
+      "source_form": "通う",
+      "variants": [
+        "通う"
+      ],
+      "reading": "かよう",
+      "reading_variants": [
+        "かよう"
+      ],
+      "romaji": "kayou",
+      "part_of_speech": "verb",
+      "meaning_zh": "往返；上学；上班",
+      "kanji_readings": [
+        {
+          "form": "通う",
+          "reading": "かよう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "毎日学校に通っています。",
+          "zh": "每天上学。"
+        },
+        {
+          "ja": "駅から会社に通うのは便利です。",
+          "zh": "从车站通勤去公司很方便。"
+        },
+        {
+          "ja": "週に二回、日本語学校に通います。",
+          "zh": "每周去两次日语学校。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-141",
+      "jlpt": "N4",
+      "headword": "空",
+      "source_form": "空",
+      "variants": [
+        "空"
+      ],
+      "reading": "から",
+      "reading_variants": [
+        "から"
+      ],
+      "romaji": "kara",
+      "part_of_speech": "na-adjective/noun",
+      "meaning_zh": "空；空的",
+      "kanji_readings": [
+        {
+          "form": "空",
+          "reading": "から"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "冷蔵庫の中は空です。",
+          "zh": "冰箱里是空的。"
+        },
+        {
+          "ja": "空の箱を捨てました。",
+          "zh": "扔掉了空盒子。"
+        },
+        {
+          "ja": "席が空いています。",
+          "zh": "座位空着。"
+        }
+      ],
+      "note_zh": "读作「から」。"
+    },
+    {
+      "id": "n4-142",
+      "jlpt": "N4",
+      "headword": "彼",
+      "source_form": "彼",
+      "variants": [
+        "彼"
+      ],
+      "reading": "かれ",
+      "reading_variants": [
+        "かれ"
+      ],
+      "romaji": "kare",
+      "part_of_speech": "pronoun/noun",
+      "meaning_zh": "他；男朋友",
+      "kanji_readings": [
+        {
+          "form": "彼",
+          "reading": "かれ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "彼に相談しました。",
+          "zh": "和他商量了。"
+        },
+        {
+          "ja": "彼と少し話しました。",
+          "zh": "和他稍微聊了一下。"
+        },
+        {
+          "ja": "彼が駅で待っています。",
+          "zh": "他在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-143",
+      "jlpt": "N4",
+      "headword": "彼ら",
+      "source_form": "彼ら",
+      "variants": [
+        "彼ら"
+      ],
+      "reading": "かれら",
+      "reading_variants": [
+        "かれら"
+      ],
+      "romaji": "karera",
+      "part_of_speech": "pronoun",
+      "meaning_zh": "他们",
+      "kanji_readings": [
+        {
+          "form": "彼ら",
+          "reading": "かれら"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "彼らに相談しました。",
+          "zh": "和他们商量了。"
+        },
+        {
+          "ja": "彼らと少し話しました。",
+          "zh": "和他们稍微聊了一下。"
+        },
+        {
+          "ja": "彼らが駅で待っています。",
+          "zh": "他们在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-144",
+      "jlpt": "N4",
+      "headword": "乾く",
+      "source_form": "乾く",
+      "variants": [
+        "乾く"
+      ],
+      "reading": "かわく",
+      "reading_variants": [
+        "かわく"
+      ],
+      "romaji": "kawaku",
+      "part_of_speech": "verb",
+      "meaning_zh": "干；变干",
+      "kanji_readings": [
+        {
+          "form": "乾く",
+          "reading": "かわく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "洗濯物がまだ乾いていません。",
+          "zh": "洗好的衣服还没干。"
+        },
+        {
+          "ja": "雨の後で道が乾きました。",
+          "zh": "雨后路干了。"
+        },
+        {
+          "ja": "冬は肌が乾きやすいです。",
+          "zh": "冬天皮肤容易干。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-145",
+      "jlpt": "N4",
+      "headword": "代わり",
+      "source_form": "代わり",
+      "variants": [
+        "代わり"
+      ],
+      "reading": "かわり",
+      "reading_variants": [
+        "かわり"
+      ],
+      "romaji": "kawari",
+      "part_of_speech": "noun",
+      "meaning_zh": "代替；替换；作为交换",
+      "kanji_readings": [
+        {
+          "form": "代わり",
+          "reading": "かわり"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "代わりについて調べました。",
+          "zh": "查了关于代替的资料。"
+        },
+        {
+          "ja": "代わりに関する文章を読みました。",
+          "zh": "读了关于代替的文章。"
+        },
+        {
+          "ja": "代わりについて友達と話しました。",
+          "zh": "和朋友谈了关于代替的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-146",
+      "jlpt": "N4",
+      "headword": "変わる",
+      "source_form": "変わる",
+      "variants": [
+        "変わる"
+      ],
+      "reading": "かわる",
+      "reading_variants": [
+        "かわる"
+      ],
+      "romaji": "kawaru",
+      "part_of_speech": "verb",
+      "meaning_zh": "改变；变化",
+      "kanji_readings": [
+        {
+          "form": "変わる",
+          "reading": "かわる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "予定が変わりました。",
+          "zh": "计划变了。"
+        },
+        {
+          "ja": "駅前の景色が大きく変わりました。",
+          "zh": "车站前的景色变化很大。"
+        },
+        {
+          "ja": "考え方は人によって変わります。",
+          "zh": "想法因人而异。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-147",
+      "jlpt": "N4",
+      "headword": "考える",
+      "source_form": "考える",
+      "variants": [
+        "考える"
+      ],
+      "reading": "かんがえる",
+      "reading_variants": [
+        "かんがえる"
+      ],
+      "romaji": "kangaeru",
+      "part_of_speech": "verb",
+      "meaning_zh": "思考；考虑",
+      "kanji_readings": [
+        {
+          "form": "考える",
+          "reading": "かんがえる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "将来のことを考えています。",
+          "zh": "正在考虑将来的事。"
+        },
+        {
+          "ja": "少し考えてから答えます。",
+          "zh": "稍微考虑后再回答。"
+        },
+        {
+          "ja": "別の方法を考えましょう。",
+          "zh": "想想别的方法吧。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-148",
+      "jlpt": "N4",
+      "headword": "関係",
+      "source_form": "関係",
+      "variants": [
+        "関係"
+      ],
+      "reading": "かんけい",
+      "reading_variants": [
+        "かんけい"
+      ],
+      "romaji": "kankei",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "关系；相关",
+      "kanji_readings": [
+        {
+          "form": "関係",
+          "reading": "かんけい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この問題は仕事に関係があります。",
+          "zh": "这个问题和工作有关。"
+        },
+        {
+          "ja": "二人はいい関係です。",
+          "zh": "两个人关系很好。"
+        },
+        {
+          "ja": "私には関係ありません。",
+          "zh": "和我没关系。"
+        }
+      ],
+      "note_zh": "可作名词，也可用「関係する」。"
+    },
+    {
+      "id": "n4-149",
+      "jlpt": "N4",
+      "headword": "看護師",
+      "source_form": "看護師; 看護婦",
+      "variants": [
+        "看護師",
+        "看護婦"
+      ],
+      "reading": "かんごし",
+      "reading_variants": [
+        "かんごし"
+      ],
+      "romaji": "kangoshi",
+      "part_of_speech": "noun",
+      "meaning_zh": "护士",
+      "kanji_readings": [
+        {
+          "form": "看護師",
+          "reading": "かんごし"
+        },
+        {
+          "form": "看護婦",
+          "reading": "かんごし"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "看護師に相談しました。",
+          "zh": "和护士商量了。"
+        },
+        {
+          "ja": "看護師と少し話しました。",
+          "zh": "和护士稍微聊了一下。"
+        },
+        {
+          "ja": "看護師が駅で待っています。",
+          "zh": "护士在车站等。"
+        }
+      ],
+      "note_zh": "现代常用「看護師」，「看護婦」较旧。"
+    },
+    {
+      "id": "n4-150",
+      "jlpt": "N4",
+      "headword": "簡単",
+      "source_form": "簡単",
+      "variants": [
+        "簡単"
+      ],
+      "reading": "かんたん",
+      "reading_variants": [
+        "かんたん"
+      ],
+      "romaji": "kantan",
+      "part_of_speech": "na-adjective/noun",
+      "meaning_zh": "简单；容易",
+      "kanji_readings": [
+        {
+          "form": "簡単",
+          "reading": "かんたん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この問題は簡単です。",
+          "zh": "这个问题很简单。"
+        },
+        {
+          "ja": "簡単な日本語で説明してください。",
+          "zh": "请用简单的日语说明。"
+        },
+        {
+          "ja": "この料理は簡単に作れます。",
+          "zh": "这道菜很容易做。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-151",
+      "jlpt": "N4",
+      "headword": "簡単に",
+      "source_form": "簡単に",
+      "variants": [
+        "簡単に"
+      ],
+      "reading": "かんたんに",
+      "reading_variants": [
+        "かんたんに"
+      ],
+      "romaji": "kantanni",
+      "part_of_speech": "adverb",
+      "meaning_zh": "简单地；容易地",
+      "kanji_readings": [
+        {
+          "form": "簡単に",
+          "reading": "かんたんに"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この料理は簡単に作れます。",
+          "zh": "这道菜能简单做出来。"
+        },
+        {
+          "ja": "簡単に説明してください。",
+          "zh": "请简单说明。"
+        },
+        {
+          "ja": "スマホで簡単に予約できます。",
+          "zh": "用手机可以轻松预约。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-152",
+      "jlpt": "N4",
+      "headword": "気",
+      "source_form": "気",
+      "variants": [
+        "気"
+      ],
+      "reading": "き",
+      "reading_variants": [
+        "き"
+      ],
+      "romaji": "ki",
+      "part_of_speech": "noun",
+      "meaning_zh": "心情；精神；意愿",
+      "kanji_readings": [
+        {
+          "form": "気",
+          "reading": "き"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "気について友達と話しました。",
+          "zh": "和朋友谈了关于心情的事。"
+        },
+        {
+          "ja": "気に関する説明を読みました。",
+          "zh": "读了关于心情的说明。"
+        },
+        {
+          "ja": "気についてもっと知りたいです。",
+          "zh": "想更多了解心情。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-153",
+      "jlpt": "N4",
+      "headword": "機会",
+      "source_form": "機会",
+      "variants": [
+        "機会"
+      ],
+      "reading": "きかい",
+      "reading_variants": [
+        "きかい"
+      ],
+      "romaji": "kikai",
+      "part_of_speech": "noun",
+      "meaning_zh": "机会",
+      "kanji_readings": [
+        {
+          "form": "機会",
+          "reading": "きかい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "機会について友達と話しました。",
+          "zh": "和朋友谈了关于机会的事。"
+        },
+        {
+          "ja": "機会に関する説明を読みました。",
+          "zh": "读了关于机会的说明。"
+        },
+        {
+          "ja": "機会についてもっと知りたいです。",
+          "zh": "想更多了解机会。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-154",
+      "jlpt": "N4",
+      "headword": "期間",
+      "source_form": "期間",
+      "variants": [
+        "期間"
+      ],
+      "reading": "きかん",
+      "reading_variants": [
+        "きかん"
+      ],
+      "romaji": "kikan",
+      "part_of_speech": "noun",
+      "meaning_zh": "期间；期限",
+      "kanji_readings": [
+        {
+          "form": "期間",
+          "reading": "きかん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "期間について友達と話しました。",
+          "zh": "和朋友谈了关于期间的事。"
+        },
+        {
+          "ja": "期間に関する説明を読みました。",
+          "zh": "读了关于期间的说明。"
+        },
+        {
+          "ja": "期間についてもっと知りたいです。",
+          "zh": "想更多了解期间。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-155",
+      "jlpt": "N4",
+      "headword": "危険",
+      "source_form": "危険",
+      "variants": [
+        "危険"
+      ],
+      "reading": "きけん",
+      "reading_variants": [
+        "きけん"
+      ],
+      "romaji": "kiken",
+      "part_of_speech": "na-adjective/noun",
+      "meaning_zh": "危险",
+      "kanji_readings": [
+        {
+          "form": "危険",
+          "reading": "きけん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この道は夜、危険です。",
+          "zh": "这条路晚上危险。"
+        },
+        {
+          "ja": "危険な場所には入らないでください。",
+          "zh": "请不要进入危险场所。"
+        },
+        {
+          "ja": "危険を感じたらすぐ逃げてください。",
+          "zh": "感觉到危险就马上逃跑。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-156",
+      "jlpt": "N4",
+      "headword": "聞こえる",
+      "source_form": "聞こえる",
+      "variants": [
+        "聞こえる"
+      ],
+      "reading": "きこえる",
+      "reading_variants": [
+        "きこえる"
+      ],
+      "romaji": "kikoeru",
+      "part_of_speech": "verb",
+      "meaning_zh": "听得见；传来声音",
+      "kanji_readings": [
+        {
+          "form": "聞こえる",
+          "reading": "きこえる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "隣の部屋から音が聞こえます。",
+          "zh": "从隔壁房间听得到声音。"
+        },
+        {
+          "ja": "先生の声がよく聞こえません。",
+          "zh": "听不太清老师的声音。"
+        },
+        {
+          "ja": "遠くで電車の音が聞こえました。",
+          "zh": "远处传来了电车声。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-157",
+      "jlpt": "N4",
+      "headword": "汽車",
+      "source_form": "汽車",
+      "variants": [
+        "汽車"
+      ],
+      "reading": "きしゃ",
+      "reading_variants": [
+        "きしゃ"
+      ],
+      "romaji": "kisha",
+      "part_of_speech": "noun",
+      "meaning_zh": "火车；蒸汽火车",
+      "kanji_readings": [
+        {
+          "form": "汽車",
+          "reading": "きしゃ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "汽車について調べました。",
+          "zh": "查了关于火车的资料。"
+        },
+        {
+          "ja": "汽車に関する文章を読みました。",
+          "zh": "读了关于火车的文章。"
+        },
+        {
+          "ja": "汽車について友達と話しました。",
+          "zh": "和朋友谈了关于火车的事。"
+        }
+      ],
+      "note_zh": "现代通常说「電車」「列車」。"
+    },
+    {
+      "id": "n4-158",
+      "jlpt": "N4",
+      "headword": "季節",
+      "source_form": "季節",
+      "variants": [
+        "季節"
+      ],
+      "reading": "きせつ",
+      "reading_variants": [
+        "きせつ"
+      ],
+      "romaji": "kisetsu",
+      "part_of_speech": "noun",
+      "meaning_zh": "季节",
+      "kanji_readings": [
+        {
+          "form": "季節",
+          "reading": "きせつ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "季節について友達と話しました。",
+          "zh": "和朋友谈了关于季节的事。"
+        },
+        {
+          "ja": "季節に関する説明を読みました。",
+          "zh": "读了关于季节的说明。"
+        },
+        {
+          "ja": "季節についてもっと知りたいです。",
+          "zh": "想更多了解季节。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-159",
+      "jlpt": "N4",
+      "headword": "規則",
+      "source_form": "規則",
+      "variants": [
+        "規則"
+      ],
+      "reading": "きそく",
+      "reading_variants": [
+        "きそく"
+      ],
+      "romaji": "kisoku",
+      "part_of_speech": "noun",
+      "meaning_zh": "规则；规定",
+      "kanji_readings": [
+        {
+          "form": "規則",
+          "reading": "きそく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "規則について友達と話しました。",
+          "zh": "和朋友谈了关于规则的事。"
+        },
+        {
+          "ja": "規則に関する説明を読みました。",
+          "zh": "读了关于规则的说明。"
+        },
+        {
+          "ja": "規則についてもっと知りたいです。",
+          "zh": "想更多了解规则。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-160",
+      "jlpt": "N4",
+      "headword": "きっと",
+      "source_form": "きっと",
+      "variants": [
+        "きっと"
+      ],
+      "reading": "きっと",
+      "reading_variants": [
+        "きっと"
+      ],
+      "romaji": "kitto",
+      "part_of_speech": "adverb",
+      "meaning_zh": "一定；肯定",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "明日はきっと晴れます。",
+          "zh": "明天一定会放晴。"
+        },
+        {
+          "ja": "きっと合格できると思います。",
+          "zh": "我觉得一定能合格。"
+        },
+        {
+          "ja": "彼はきっと来るでしょう。",
+          "zh": "他一定会来吧。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-161",
+      "jlpt": "N4",
+      "headword": "絹",
+      "source_form": "絹",
+      "variants": [
+        "絹"
+      ],
+      "reading": "きぬ",
+      "reading_variants": [
+        "きぬ"
+      ],
+      "romaji": "kinu",
+      "part_of_speech": "noun",
+      "meaning_zh": "丝绸",
+      "kanji_readings": [
+        {
+          "form": "絹",
+          "reading": "きぬ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "絹を見ました。",
+          "zh": "看到了丝绸。"
+        },
+        {
+          "ja": "絹を確認しました。",
+          "zh": "确认了丝绸。"
+        },
+        {
+          "ja": "絹について友達と話しました。",
+          "zh": "和朋友谈了关于丝绸的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-162",
+      "jlpt": "N4",
+      "headword": "厳しい",
+      "source_form": "厳しい",
+      "variants": [
+        "厳しい"
+      ],
+      "reading": "きびしい",
+      "reading_variants": [
+        "きびしい"
+      ],
+      "romaji": "kibishii",
+      "part_of_speech": "i-adjective",
+      "meaning_zh": "严格的；严厉的；严峻的",
+      "kanji_readings": [
+        {
+          "form": "厳しい",
+          "reading": "きびしい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "先生は厳しいですが、親切です。",
+          "zh": "老师很严格，但很亲切。"
+        },
+        {
+          "ja": "今年の冬は寒さが厳しいです。",
+          "zh": "今年冬天寒冷很严峻。"
+        },
+        {
+          "ja": "厳しい規則を守らなければなりません。",
+          "zh": "必须遵守严格的规则。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-163",
+      "jlpt": "N4",
+      "headword": "気分",
+      "source_form": "気分",
+      "variants": [
+        "気分"
+      ],
+      "reading": "きぶん",
+      "reading_variants": [
+        "きぶん"
+      ],
+      "romaji": "kibun",
+      "part_of_speech": "noun",
+      "meaning_zh": "心情；身体状况",
+      "kanji_readings": [
+        {
+          "form": "気分",
+          "reading": "きぶん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "今日は気分がいいです。",
+          "zh": "今天心情很好。"
+        },
+        {
+          "ja": "気分が悪いので少し休みます。",
+          "zh": "身体不舒服，所以休息一下。"
+        },
+        {
+          "ja": "音楽を聞くと気分が変わります。",
+          "zh": "听音乐心情会改变。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-164",
+      "jlpt": "N4",
+      "headword": "決まり",
+      "source_form": "決まり",
+      "variants": [
+        "決まり"
+      ],
+      "reading": "きまり",
+      "reading_variants": [
+        "きまり"
+      ],
+      "romaji": "kimari",
+      "part_of_speech": "noun",
+      "meaning_zh": "规定；惯例",
+      "kanji_readings": [
+        {
+          "form": "決まり",
+          "reading": "きまり"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "決まりについて友達と話しました。",
+          "zh": "和朋友谈了关于规定的事。"
+        },
+        {
+          "ja": "決まりに関する説明を読みました。",
+          "zh": "读了关于规定的说明。"
+        },
+        {
+          "ja": "決まりについてもっと知りたいです。",
+          "zh": "想更多了解规定。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-165",
+      "jlpt": "N4",
+      "headword": "決まる",
+      "source_form": "決まる",
+      "variants": [
+        "決まる"
+      ],
+      "reading": "きまる",
+      "reading_variants": [
+        "きまる"
+      ],
+      "romaji": "kimaru",
+      "part_of_speech": "verb",
+      "meaning_zh": "决定；定下来",
+      "kanji_readings": [
+        {
+          "form": "決まる",
+          "reading": "きまる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "旅行の日が決まりました。",
+          "zh": "旅行日期定下来了。"
+        },
+        {
+          "ja": "まだ予定は決まっていません。",
+          "zh": "计划还没定。"
+        },
+        {
+          "ja": "会議の場所が決まりました。",
+          "zh": "会议地点定下来了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-166",
+      "jlpt": "N4",
+      "headword": "君",
+      "source_form": "君",
+      "variants": [
+        "君"
+      ],
+      "reading": "きみ",
+      "reading_variants": [
+        "きみ"
+      ],
+      "romaji": "kimi",
+      "part_of_speech": "pronoun",
+      "meaning_zh": "你",
+      "kanji_readings": [
+        {
+          "form": "君",
+          "reading": "きみ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "君に相談しました。",
+          "zh": "和你商量了。"
+        },
+        {
+          "ja": "君と少し話しました。",
+          "zh": "和你稍微聊了一下。"
+        },
+        {
+          "ja": "君が駅で待っています。",
+          "zh": "你在车站等。"
+        }
+      ],
+      "note_zh": "偏口语，关系近时使用。"
+    },
+    {
+      "id": "n4-167",
+      "jlpt": "N4",
+      "headword": "決める",
+      "source_form": "決める",
+      "variants": [
+        "決める"
+      ],
+      "reading": "きめる",
+      "reading_variants": [
+        "きめる"
+      ],
+      "romaji": "kimeru",
+      "part_of_speech": "verb",
+      "meaning_zh": "决定",
+      "kanji_readings": [
+        {
+          "form": "決める",
+          "reading": "きめる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "今夜の店を決めました。",
+          "zh": "决定了今晚的店。"
+        },
+        {
+          "ja": "自分で決めたいです。",
+          "zh": "想自己决定。"
+        },
+        {
+          "ja": "出発の時間を決めましょう。",
+          "zh": "决定出发时间吧。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-168",
+      "jlpt": "N4",
+      "headword": "気持ち",
+      "source_form": "気持ち",
+      "variants": [
+        "気持ち"
+      ],
+      "reading": "きもち",
+      "reading_variants": [
+        "きもち"
+      ],
+      "romaji": "kimochi",
+      "part_of_speech": "noun",
+      "meaning_zh": "心情；感觉",
+      "kanji_readings": [
+        {
+          "form": "気持ち",
+          "reading": "きもち"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "気持ちについて友達と話しました。",
+          "zh": "和朋友谈了关于心情的事。"
+        },
+        {
+          "ja": "気持ちに関する説明を読みました。",
+          "zh": "读了关于心情的说明。"
+        },
+        {
+          "ja": "気持ちについてもっと知りたいです。",
+          "zh": "想更多了解心情。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-169",
+      "jlpt": "N4",
+      "headword": "着物",
+      "source_form": "着物",
+      "variants": [
+        "着物"
+      ],
+      "reading": "きもの",
+      "reading_variants": [
+        "きもの"
+      ],
+      "romaji": "kimono",
+      "part_of_speech": "noun",
+      "meaning_zh": "和服",
+      "kanji_readings": [
+        {
+          "form": "着物",
+          "reading": "きもの"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "着物を見ました。",
+          "zh": "看到了和服。"
+        },
+        {
+          "ja": "着物を確認しました。",
+          "zh": "确认了和服。"
+        },
+        {
+          "ja": "着物について友達と話しました。",
+          "zh": "和朋友谈了关于和服的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-170",
+      "jlpt": "N4",
+      "headword": "客",
+      "source_form": "客",
+      "variants": [
+        "客"
+      ],
+      "reading": "きゃく",
+      "reading_variants": [
+        "きゃく"
+      ],
+      "romaji": "kyaku",
+      "part_of_speech": "noun",
+      "meaning_zh": "客人；顾客",
+      "kanji_readings": [
+        {
+          "form": "客",
+          "reading": "きゃく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "客に相談しました。",
+          "zh": "和客人商量了。"
+        },
+        {
+          "ja": "客と少し話しました。",
+          "zh": "和客人稍微聊了一下。"
+        },
+        {
+          "ja": "客が駅で待っています。",
+          "zh": "客人在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-171",
+      "jlpt": "N4",
+      "headword": "急",
+      "source_form": "急",
+      "variants": [
+        "急"
+      ],
+      "reading": "きゅう",
+      "reading_variants": [
+        "きゅう"
+      ],
+      "romaji": "kyuu",
+      "part_of_speech": "na-adjective/noun",
+      "meaning_zh": "突然；急；陡",
+      "kanji_readings": [
+        {
+          "form": "急",
+          "reading": "きゅう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "急な用事ができました。",
+          "zh": "突然有急事了。"
+        },
+        {
+          "ja": "急に雨が降りました。",
+          "zh": "突然下雨了。"
+        },
+        {
+          "ja": "この坂は急です。",
+          "zh": "这个坡很陡。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-172",
+      "jlpt": "N4",
+      "headword": "急行",
+      "source_form": "急行",
+      "variants": [
+        "急行"
+      ],
+      "reading": "きゅうこう",
+      "reading_variants": [
+        "きゅうこう"
+      ],
+      "romaji": "kyuukou",
+      "part_of_speech": "noun",
+      "meaning_zh": "急行列车",
+      "kanji_readings": [
+        {
+          "form": "急行",
+          "reading": "きゅうこう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "急行に乗ると早く着きます。",
+          "zh": "坐急行能更快到。"
+        },
+        {
+          "ja": "次の急行は三番線です。",
+          "zh": "下一班急行在三号线。"
+        },
+        {
+          "ja": "急行はこの駅に止まりません。",
+          "zh": "急行不停这一站。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-173",
+      "jlpt": "N4",
+      "headword": "急に",
+      "source_form": "急に",
+      "variants": [
+        "急に"
+      ],
+      "reading": "きゅうに",
+      "reading_variants": [
+        "きゅうに"
+      ],
+      "romaji": "kyuuni",
+      "part_of_speech": "adverb",
+      "meaning_zh": "突然；急忙地",
+      "kanji_readings": [
+        {
+          "form": "急に",
+          "reading": "きゅうに"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "急に雨が降り出しました。",
+          "zh": "突然下起雨了。"
+        },
+        {
+          "ja": "急に寒くなりました。",
+          "zh": "突然变冷了。"
+        },
+        {
+          "ja": "急に名前を呼ばれて驚きました。",
+          "zh": "突然被叫到名字，吓了一跳。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-174",
+      "jlpt": "N4",
+      "headword": "急用",
+      "source_form": "急用",
+      "variants": [
+        "急用"
+      ],
+      "reading": "きゅうよう",
+      "reading_variants": [
+        "きゅうよう"
+      ],
+      "romaji": "kyuuyou",
+      "part_of_speech": "noun",
+      "meaning_zh": "急事",
+      "kanji_readings": [
+        {
+          "form": "急用",
+          "reading": "きゅうよう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "急用ができたので帰ります。",
+          "zh": "有急事，所以回去。"
+        },
+        {
+          "ja": "急用で会議に出られません。",
+          "zh": "因急事不能出席会议。"
+        },
+        {
+          "ja": "急用なら、すぐ連絡してください。",
+          "zh": "如果是急事，请马上联系。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-175",
+      "jlpt": "N4",
+      "headword": "教育",
+      "source_form": "教育",
+      "variants": [
+        "教育"
+      ],
+      "reading": "きょういく",
+      "reading_variants": [
+        "きょういく"
+      ],
+      "romaji": "kyouiku",
+      "part_of_speech": "noun",
+      "meaning_zh": "教育",
+      "kanji_readings": [
+        {
+          "form": "教育",
+          "reading": "きょういく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "教育について友達と話しました。",
+          "zh": "和朋友谈了关于教育的事。"
+        },
+        {
+          "ja": "教育に関する説明を読みました。",
+          "zh": "读了关于教育的说明。"
+        },
+        {
+          "ja": "教育についてもっと知りたいです。",
+          "zh": "想更多了解教育。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-176",
+      "jlpt": "N4",
+      "headword": "教会",
+      "source_form": "教会",
+      "variants": [
+        "教会"
+      ],
+      "reading": "きょうかい",
+      "reading_variants": [
+        "きょうかい"
+      ],
+      "romaji": "kyoukai",
+      "part_of_speech": "noun",
+      "meaning_zh": "教堂",
+      "kanji_readings": [
+        {
+          "form": "教会",
+          "reading": "きょうかい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "教会へ行きました。",
+          "zh": "去了教堂。"
+        },
+        {
+          "ja": "教会は駅の近くにあります。",
+          "zh": "教堂在车站附近。"
+        },
+        {
+          "ja": "教会で友達に会いました。",
+          "zh": "在教堂见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-177",
+      "jlpt": "N4",
+      "headword": "教室",
+      "source_form": "教室",
+      "variants": [
+        "教室"
+      ],
+      "reading": "きょうしつ",
+      "reading_variants": [
+        "きょうしつ"
+      ],
+      "romaji": "kyoushitsu",
+      "part_of_speech": "noun",
+      "meaning_zh": "教室",
+      "kanji_readings": [
+        {
+          "form": "教室",
+          "reading": "きょうしつ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "教室へ行きました。",
+          "zh": "去了教室。"
+        },
+        {
+          "ja": "教室は駅の近くにあります。",
+          "zh": "教室在车站附近。"
+        },
+        {
+          "ja": "教室で友達に会いました。",
+          "zh": "在教室见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-178",
+      "jlpt": "N4",
+      "headword": "競争",
+      "source_form": "競争",
+      "variants": [
+        "競争"
+      ],
+      "reading": "きょうそう",
+      "reading_variants": [
+        "きょうそう"
+      ],
+      "romaji": "kyousou",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "竞争；比赛",
+      "kanji_readings": [
+        {
+          "form": "競争",
+          "reading": "きょうそう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "友達と走る速さを競争しました。",
+          "zh": "和朋友比赛跑步速度。"
+        },
+        {
+          "ja": "店同士の競争が激しいです。",
+          "zh": "店铺之间竞争激烈。"
+        },
+        {
+          "ja": "競争に勝つために練習します。",
+          "zh": "为了在竞争中获胜而练习。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-179",
+      "jlpt": "N4",
+      "headword": "興味",
+      "source_form": "興味",
+      "variants": [
+        "興味"
+      ],
+      "reading": "きょうみ",
+      "reading_variants": [
+        "きょうみ"
+      ],
+      "romaji": "kyoumi",
+      "part_of_speech": "noun",
+      "meaning_zh": "兴趣",
+      "kanji_readings": [
+        {
+          "form": "興味",
+          "reading": "きょうみ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "興味について調べました。",
+          "zh": "查了关于兴趣的资料。"
+        },
+        {
+          "ja": "興味に関する文章を読みました。",
+          "zh": "读了关于兴趣的文章。"
+        },
+        {
+          "ja": "興味について友達と話しました。",
+          "zh": "和朋友谈了关于兴趣的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-180",
+      "jlpt": "N4",
+      "headword": "きらい",
+      "source_form": "きらい",
+      "variants": [
+        "きらい"
+      ],
+      "reading": "きらい",
+      "reading_variants": [
+        "きらい"
+      ],
+      "romaji": "kirai",
+      "part_of_speech": "na-adjective/noun",
+      "meaning_zh": "讨厌；不喜欢",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "私は虫がきらいです。",
+          "zh": "我讨厌虫子。"
+        },
+        {
+          "ja": "きらいな食べ物はありますか。",
+          "zh": "有讨厌的食物吗？"
+        },
+        {
+          "ja": "彼は嘘をつく人がきらいです。",
+          "zh": "他讨厌说谎的人。"
+        }
+      ],
+      "note_zh": "N5 也常见，扩展表保留。"
+    },
+    {
+      "id": "n4-181",
+      "jlpt": "N4",
+      "headword": "気をつける",
+      "source_form": "気をつける",
+      "variants": [
+        "気をつける"
+      ],
+      "reading": "きをつける",
+      "reading_variants": [
+        "きをつける"
+      ],
+      "romaji": "kiwotsukeru",
+      "part_of_speech": "expression/verb",
+      "meaning_zh": "小心；注意",
+      "kanji_readings": [
+        {
+          "form": "気をつける",
+          "reading": "きをつける"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "車に気をつけてください。",
+          "zh": "请小心车。"
+        },
+        {
+          "ja": "夜道は気をつけて歩きます。",
+          "zh": "夜路会小心走。"
+        },
+        {
+          "ja": "体に気をつけてください。",
+          "zh": "请注意身体。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-182",
+      "jlpt": "N4",
+      "headword": "近所",
+      "source_form": "近所",
+      "variants": [
+        "近所"
+      ],
+      "reading": "きんじょ",
+      "reading_variants": [
+        "きんじょ"
+      ],
+      "romaji": "kinjo",
+      "part_of_speech": "noun",
+      "meaning_zh": "附近；邻近",
+      "kanji_readings": [
+        {
+          "form": "近所",
+          "reading": "きんじょ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "近所へ行きました。",
+          "zh": "去了附近。"
+        },
+        {
+          "ja": "近所は駅の近くにあります。",
+          "zh": "附近在车站附近。"
+        },
+        {
+          "ja": "近所で友達に会いました。",
+          "zh": "在附近见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-183",
+      "jlpt": "N4",
+      "headword": "技術",
+      "source_form": "技術",
+      "variants": [
+        "技術"
+      ],
+      "reading": "ぎじゅつ",
+      "reading_variants": [
+        "ぎじゅつ"
+      ],
+      "romaji": "gijutsu",
+      "part_of_speech": "noun",
+      "meaning_zh": "技术；技能",
+      "kanji_readings": [
+        {
+          "form": "技術",
+          "reading": "ぎじゅつ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "技術について友達と話しました。",
+          "zh": "和朋友谈了关于技术的事。"
+        },
+        {
+          "ja": "技術に関する説明を読みました。",
+          "zh": "读了关于技术的说明。"
+        },
+        {
+          "ja": "技術についてもっと知りたいです。",
+          "zh": "想更多了解技术。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-184",
+      "jlpt": "N4",
+      "headword": "空気",
+      "source_form": "空気",
+      "variants": [
+        "空気"
+      ],
+      "reading": "くうき",
+      "reading_variants": [
+        "くうき"
+      ],
+      "romaji": "kuuki",
+      "part_of_speech": "noun",
+      "meaning_zh": "空气；气氛",
+      "kanji_readings": [
+        {
+          "form": "空気",
+          "reading": "くうき"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "空気を見ました。",
+          "zh": "看到了空气。"
+        },
+        {
+          "ja": "空気を確認しました。",
+          "zh": "确认了空气。"
+        },
+        {
+          "ja": "空気について友達と話しました。",
+          "zh": "和朋友谈了关于空气的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-185",
+      "jlpt": "N4",
+      "headword": "空港",
+      "source_form": "空港",
+      "variants": [
+        "空港"
+      ],
+      "reading": "くうこう",
+      "reading_variants": [
+        "くうこう"
+      ],
+      "romaji": "kuukou",
+      "part_of_speech": "noun",
+      "meaning_zh": "机场",
+      "kanji_readings": [
+        {
+          "form": "空港",
+          "reading": "くうこう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "空港へ行きました。",
+          "zh": "去了机场。"
+        },
+        {
+          "ja": "空港は駅の近くにあります。",
+          "zh": "机场在车站附近。"
+        },
+        {
+          "ja": "空港で友達に会いました。",
+          "zh": "在机场见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-186",
+      "jlpt": "N4",
+      "headword": "空港バス",
+      "source_form": "空港バス",
+      "variants": [
+        "空港バス"
+      ],
+      "reading": "くうこうバス",
+      "reading_variants": [
+        "くうこうバス"
+      ],
+      "romaji": "kuukoubasu",
+      "part_of_speech": "noun",
+      "meaning_zh": "机场巴士",
+      "kanji_readings": [
+        {
+          "form": "空港バス",
+          "reading": "くうこうバス"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "空港バスについて調べました。",
+          "zh": "查了关于机场巴士的资料。"
+        },
+        {
+          "ja": "空港バスに関する文章を読みました。",
+          "zh": "读了关于机场巴士的文章。"
+        },
+        {
+          "ja": "空港バスについて友達と話しました。",
+          "zh": "和朋友谈了关于机场巴士的事。"
+        }
+      ],
+      "note_zh": "补充旅行常用词。"
+    },
+    {
+      "id": "n4-187",
+      "jlpt": "N4",
+      "headword": "草",
+      "source_form": "草",
+      "variants": [
+        "草"
+      ],
+      "reading": "くさ",
+      "reading_variants": [
+        "くさ"
+      ],
+      "romaji": "kusa",
+      "part_of_speech": "noun",
+      "meaning_zh": "草",
+      "kanji_readings": [
+        {
+          "form": "草",
+          "reading": "くさ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "庭の草を取りました。",
+          "zh": "拔了院子里的草。"
+        },
+        {
+          "ja": "雨の後で草が伸びました。",
+          "zh": "雨后草长高了。"
+        },
+        {
+          "ja": "草の上に座りました。",
+          "zh": "坐在草地上。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-188",
+      "jlpt": "N4",
+      "headword": "首",
+      "source_form": "首",
+      "variants": [
+        "首"
+      ],
+      "reading": "くび",
+      "reading_variants": [
+        "くび"
+      ],
+      "romaji": "kubi",
+      "part_of_speech": "noun",
+      "meaning_zh": "脖子；头；解雇",
+      "kanji_readings": [
+        {
+          "form": "首",
+          "reading": "くび"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "首を見ました。",
+          "zh": "看到了脖子。"
+        },
+        {
+          "ja": "首を確認しました。",
+          "zh": "确认了脖子。"
+        },
+        {
+          "ja": "首について友達と話しました。",
+          "zh": "和朋友谈了关于脖子的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-189",
+      "jlpt": "N4",
+      "headword": "雲",
+      "source_form": "雲",
+      "variants": [
+        "雲"
+      ],
+      "reading": "くも",
+      "reading_variants": [
+        "くも"
+      ],
+      "romaji": "kumo",
+      "part_of_speech": "noun",
+      "meaning_zh": "云",
+      "kanji_readings": [
+        {
+          "form": "雲",
+          "reading": "くも"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "空に白い雲が出ています。",
+          "zh": "天空中有白云。"
+        },
+        {
+          "ja": "雲が多くて星が見えません。",
+          "zh": "云多，看不见星星。"
+        },
+        {
+          "ja": "山の上に雲がかかっています。",
+          "zh": "山上挂着云。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-190",
+      "jlpt": "N4",
+      "headword": "暮らす",
+      "source_form": "暮らす",
+      "variants": [
+        "暮らす"
+      ],
+      "reading": "くらす",
+      "reading_variants": [
+        "くらす"
+      ],
+      "romaji": "kurasu",
+      "part_of_speech": "verb",
+      "meaning_zh": "生活；度日",
+      "kanji_readings": [
+        {
+          "form": "暮らす",
+          "reading": "くらす"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "田舎で静かに暮らしています。",
+          "zh": "在乡下安静地生活。"
+        },
+        {
+          "ja": "一人で暮らすのは大変です。",
+          "zh": "一个人生活很不容易。"
+        },
+        {
+          "ja": "日本で暮らしてみたいです。",
+          "zh": "想在日本生活看看。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-191",
+      "jlpt": "N4",
+      "headword": "比べ物",
+      "source_form": "比べ物",
+      "variants": [
+        "比べ物"
+      ],
+      "reading": "くらべもの",
+      "reading_variants": [
+        "くらべもの"
+      ],
+      "romaji": "kurabemono",
+      "part_of_speech": "noun",
+      "meaning_zh": "比较对象",
+      "kanji_readings": [
+        {
+          "form": "比べ物",
+          "reading": "くらべもの"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "比べ物について調べました。",
+          "zh": "查了关于比较对象的资料。"
+        },
+        {
+          "ja": "比べ物に関する文章を読みました。",
+          "zh": "读了关于比较对象的文章。"
+        },
+        {
+          "ja": "比べ物について友達と話しました。",
+          "zh": "和朋友谈了关于比较对象的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-192",
+      "jlpt": "N4",
+      "headword": "比べる",
+      "source_form": "比べる",
+      "variants": [
+        "比べる"
+      ],
+      "reading": "くらべる",
+      "reading_variants": [
+        "くらべる"
+      ],
+      "romaji": "kuraberu",
+      "part_of_speech": "verb",
+      "meaning_zh": "比较",
+      "kanji_readings": [
+        {
+          "form": "比べる",
+          "reading": "くらべる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "二つの値段を比べました。",
+          "zh": "比较了两个价格。"
+        },
+        {
+          "ja": "前の写真と比べてください。",
+          "zh": "请和之前的照片比较。"
+        },
+        {
+          "ja": "人と自分を比べすぎないでください。",
+          "zh": "不要过度拿别人和自己比较。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-193",
+      "jlpt": "N4",
+      "headword": "くれる",
+      "source_form": "くれる",
+      "variants": [
+        "くれる"
+      ],
+      "reading": "くれる",
+      "reading_variants": [
+        "くれる"
+      ],
+      "romaji": "kureru",
+      "part_of_speech": "verb",
+      "meaning_zh": "给我；给我们",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "友達が写真を送ってくれました。",
+          "zh": "朋友给我发了照片。"
+        },
+        {
+          "ja": "母が弁当を作ってくれます。",
+          "zh": "妈妈给我做便当。"
+        },
+        {
+          "ja": "少し手伝ってくれませんか。",
+          "zh": "能稍微帮我一下吗？"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-194",
+      "jlpt": "N4",
+      "headword": "暮れる",
+      "source_form": "暮れる",
+      "variants": [
+        "暮れる"
+      ],
+      "reading": "くれる",
+      "reading_variants": [
+        "くれる"
+      ],
+      "romaji": "kureru",
+      "part_of_speech": "verb",
+      "meaning_zh": "天黑；岁月结束",
+      "kanji_readings": [
+        {
+          "form": "暮れる",
+          "reading": "くれる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "冬は日が暮れるのが早いです。",
+          "zh": "冬天天黑得早。"
+        },
+        {
+          "ja": "日が暮れる前に帰りましょう。",
+          "zh": "天黑前回去吧。"
+        },
+        {
+          "ja": "一年が静かに暮れていきます。",
+          "zh": "一年静静地走向尾声。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-195",
+      "jlpt": "N4",
+      "headword": "君",
+      "source_form": "君",
+      "variants": [
+        "君"
+      ],
+      "reading": "くん",
+      "reading_variants": [
+        "くん"
+      ],
+      "romaji": "kun",
+      "part_of_speech": "suffix",
+      "meaning_zh": "君；小……",
+      "kanji_readings": [
+        {
+          "form": "君",
+          "reading": "くん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "君に相談しました。",
+          "zh": "和君商量了。"
+        },
+        {
+          "ja": "君と少し話しました。",
+          "zh": "和君稍微聊了一下。"
+        },
+        {
+          "ja": "君が駅で待っています。",
+          "zh": "君在车站等。"
+        }
+      ],
+      "note_zh": "接在人名后，多用于男性或下级。"
+    },
+    {
+      "id": "n4-196",
+      "jlpt": "N4",
+      "headword": "具合",
+      "source_form": "具合",
+      "variants": [
+        "具合"
+      ],
+      "reading": "ぐあい",
+      "reading_variants": [
+        "ぐあい"
+      ],
+      "romaji": "guai",
+      "part_of_speech": "noun",
+      "meaning_zh": "情况；身体状况；方便程度",
+      "kanji_readings": [
+        {
+          "form": "具合",
+          "reading": "ぐあい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "具合について調べました。",
+          "zh": "查了关于情况的资料。"
+        },
+        {
+          "ja": "具合に関する文章を読みました。",
+          "zh": "读了关于情况的文章。"
+        },
+        {
+          "ja": "具合について友達と話しました。",
+          "zh": "和朋友谈了关于情况的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-197",
+      "jlpt": "N4",
+      "headword": "具合が悪い",
+      "source_form": "具合が悪い",
+      "variants": [
+        "具合が悪い"
+      ],
+      "reading": "ぐあいがわるい",
+      "reading_variants": [
+        "ぐあいがわるい"
+      ],
+      "romaji": "guaigawarui",
+      "part_of_speech": "expression",
+      "meaning_zh": "身体不舒服；情况不好",
+      "kanji_readings": [
+        {
+          "form": "具合が悪い",
+          "reading": "ぐあいがわるい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "今日は具合が悪いので休みます。",
+          "zh": "今天身体不舒服，所以休息。"
+        },
+        {
+          "ja": "母は少し具合が悪そうです。",
+          "zh": "母亲看起来有点不舒服。"
+        },
+        {
+          "ja": "機械の具合が悪いです。",
+          "zh": "机器状态不好。"
+        }
+      ],
+      "note_zh": "常用搭配。"
+    },
+    {
+      "id": "n4-198",
+      "jlpt": "N4",
+      "headword": "毛",
+      "source_form": "毛",
+      "variants": [
+        "毛"
+      ],
+      "reading": "け",
+      "reading_variants": [
+        "け"
+      ],
+      "romaji": "ke",
+      "part_of_speech": "noun",
+      "meaning_zh": "毛；体毛",
+      "kanji_readings": [
+        {
+          "form": "毛",
+          "reading": "け"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "毛を見ました。",
+          "zh": "看到了毛。"
+        },
+        {
+          "ja": "毛を確認しました。",
+          "zh": "确认了毛。"
+        },
+        {
+          "ja": "毛について友達と話しました。",
+          "zh": "和朋友谈了关于毛的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-199",
+      "jlpt": "N4",
+      "headword": "計画",
+      "source_form": "計画",
+      "variants": [
+        "計画"
+      ],
+      "reading": "けいかく",
+      "reading_variants": [
+        "けいかく"
+      ],
+      "romaji": "keikaku",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "计划",
+      "kanji_readings": [
+        {
+          "form": "計画",
+          "reading": "けいかく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "旅行を計画しています。",
+          "zh": "正在计划旅行。"
+        },
+        {
+          "ja": "新しい計画を立てました。",
+          "zh": "制定了新计划。"
+        },
+        {
+          "ja": "計画通りに進んでいます。",
+          "zh": "正按计划推进。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-200",
+      "jlpt": "N4",
+      "headword": "経験",
+      "source_form": "経験",
+      "variants": [
+        "経験"
+      ],
+      "reading": "けいけん",
+      "reading_variants": [
+        "けいけん"
+      ],
+      "romaji": "keiken",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "经验；经历",
+      "kanji_readings": [
+        {
+          "form": "経験",
+          "reading": "けいけん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "日本で生活した経験があります。",
+          "zh": "有在日本生活的经验。"
+        },
+        {
+          "ja": "いい経験になりました。",
+          "zh": "成了很好的经验。"
+        },
+        {
+          "ja": "色々な仕事を経験しました。",
+          "zh": "经历过各种工作。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-201",
+      "jlpt": "N4",
+      "headword": "警察",
+      "source_form": "警察",
+      "variants": [
+        "警察"
+      ],
+      "reading": "けいさつ",
+      "reading_variants": [
+        "けいさつ"
+      ],
+      "romaji": "keisatsu",
+      "part_of_speech": "noun",
+      "meaning_zh": "警察；警察署",
+      "kanji_readings": [
+        {
+          "form": "警察",
+          "reading": "けいさつ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "警察について友達と話しました。",
+          "zh": "和朋友谈了关于警察的事。"
+        },
+        {
+          "ja": "警察に関する説明を読みました。",
+          "zh": "读了关于警察的说明。"
+        },
+        {
+          "ja": "警察についてもっと知りたいです。",
+          "zh": "想更多了解警察。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-202",
+      "jlpt": "N4",
+      "headword": "計算",
+      "source_form": "計算",
+      "variants": [
+        "計算"
+      ],
+      "reading": "けいさん",
+      "reading_variants": [
+        "けいさん"
+      ],
+      "romaji": "keisan",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "计算",
+      "kanji_readings": [
+        {
+          "form": "計算",
+          "reading": "けいさん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "値段を計算しました。",
+          "zh": "计算了价格。"
+        },
+        {
+          "ja": "暗算で計算できますか。",
+          "zh": "能心算吗？"
+        },
+        {
+          "ja": "計算を間違えました。",
+          "zh": "算错了。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-203",
+      "jlpt": "N4",
+      "headword": "経済",
+      "source_form": "経済",
+      "variants": [
+        "経済"
+      ],
+      "reading": "けいざい",
+      "reading_variants": [
+        "けいざい"
+      ],
+      "romaji": "keizai",
+      "part_of_speech": "noun",
+      "meaning_zh": "经济",
+      "kanji_readings": [
+        {
+          "form": "経済",
+          "reading": "けいざい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "経済について友達と話しました。",
+          "zh": "和朋友谈了关于经济的事。"
+        },
+        {
+          "ja": "経済に関する説明を読みました。",
+          "zh": "读了关于经济的说明。"
+        },
+        {
+          "ja": "経済についてもっと知りたいです。",
+          "zh": "想更多了解经济。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-204",
+      "jlpt": "N4",
+      "headword": "けが",
+      "source_form": "けが",
+      "variants": [
+        "けが"
+      ],
+      "reading": "けが",
+      "reading_variants": [
+        "けが"
+      ],
+      "romaji": "kega",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "受伤；伤口",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "子供が公園でけがをしました。",
+          "zh": "孩子在公园受伤了。"
+        },
+        {
+          "ja": "けがはもう治りました。",
+          "zh": "伤已经好了。"
+        },
+        {
+          "ja": "けがをしないように気をつけてください。",
+          "zh": "请小心不要受伤。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-205",
+      "jlpt": "N4",
+      "headword": "景色",
+      "source_form": "景色",
+      "variants": [
+        "景色"
+      ],
+      "reading": "けしき",
+      "reading_variants": [
+        "けしき"
+      ],
+      "romaji": "keshiki",
+      "part_of_speech": "noun",
+      "meaning_zh": "景色；风景",
+      "kanji_readings": [
+        {
+          "form": "景色",
+          "reading": "けしき"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "窓から見える景色がきれいです。",
+          "zh": "从窗户看到的景色很美。"
+        },
+        {
+          "ja": "山の景色を写真に撮りました。",
+          "zh": "拍了山景。"
+        },
+        {
+          "ja": "駅前の景色が変わりました。",
+          "zh": "车站前的景色变了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-206",
+      "jlpt": "N4",
+      "headword": "消しゴム",
+      "source_form": "消しゴム",
+      "variants": [
+        "消しゴム"
+      ],
+      "reading": "けしゴム",
+      "reading_variants": [
+        "けしゴム"
+      ],
+      "romaji": "keshigomu",
+      "part_of_speech": "noun",
+      "meaning_zh": "橡皮",
+      "kanji_readings": [
+        {
+          "form": "消しゴム",
+          "reading": "けしゴム"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "消しゴムを見ました。",
+          "zh": "看到了橡皮。"
+        },
+        {
+          "ja": "消しゴムを確認しました。",
+          "zh": "确认了橡皮。"
+        },
+        {
+          "ja": "消しゴムについて友達と話しました。",
+          "zh": "和朋友谈了关于橡皮的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-207",
+      "jlpt": "N4",
+      "headword": "けっこう",
+      "source_form": "けっこう",
+      "variants": [
+        "けっこう"
+      ],
+      "reading": "けっこう",
+      "reading_variants": [
+        "けっこう"
+      ],
+      "romaji": "kekkou",
+      "part_of_speech": "na-adjective/adverb/expression",
+      "meaning_zh": "相当；可以；不用了",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "この店はけっこう安いです。",
+          "zh": "这家店相当便宜。"
+        },
+        {
+          "ja": "もうけっこうです。",
+          "zh": "已经够了/不用了。"
+        },
+        {
+          "ja": "けっこう時間がかかります。",
+          "zh": "要花相当多时间。"
+        }
+      ],
+      "note_zh": "常写假名。"
+    },
+    {
+      "id": "n4-208",
+      "jlpt": "N4",
+      "headword": "決して",
+      "source_form": "決して",
+      "variants": [
+        "決して"
+      ],
+      "reading": "けっして",
+      "reading_variants": [
+        "けっして"
+      ],
+      "romaji": "kesshite",
+      "part_of_speech": "adverb",
+      "meaning_zh": "绝不；决不",
+      "kanji_readings": [
+        {
+          "form": "決して",
+          "reading": "けっして"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "決して忘れません。",
+          "zh": "绝不会忘。"
+        },
+        {
+          "ja": "危ないので決して触らないでください。",
+          "zh": "很危险，所以绝对不要碰。"
+        },
+        {
+          "ja": "彼は決して嘘を言いません。",
+          "zh": "他绝不会说谎。"
+        }
+      ],
+      "note_zh": "常与否定呼应。"
+    },
+    {
+      "id": "n4-209",
+      "jlpt": "N4",
+      "headword": "欠席",
+      "source_form": "欠席",
+      "variants": [
+        "欠席"
+      ],
+      "reading": "けっせき",
+      "reading_variants": [
+        "けっせき"
+      ],
+      "romaji": "kesseki",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "缺席",
+      "kanji_readings": [
+        {
+          "form": "欠席",
+          "reading": "けっせき"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "風邪で授業を欠席しました。",
+          "zh": "因为感冒缺席了课。"
+        },
+        {
+          "ja": "明日の会議は欠席します。",
+          "zh": "明天的会议缺席。"
+        },
+        {
+          "ja": "欠席する時は連絡してください。",
+          "zh": "缺席时请联系。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-210",
+      "jlpt": "N4",
+      "headword": "煙",
+      "source_form": "煙",
+      "variants": [
+        "煙"
+      ],
+      "reading": "けむり",
+      "reading_variants": [
+        "けむり"
+      ],
+      "romaji": "kemuri",
+      "part_of_speech": "noun",
+      "meaning_zh": "烟",
+      "kanji_readings": [
+        {
+          "form": "煙",
+          "reading": "けむり"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "煙について調べました。",
+          "zh": "查了关于烟的资料。"
+        },
+        {
+          "ja": "煙に関する文章を読みました。",
+          "zh": "读了关于烟的文章。"
+        },
+        {
+          "ja": "煙について友達と話しました。",
+          "zh": "和朋友谈了关于烟的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-211",
+      "jlpt": "N4",
+      "headword": "けれど",
+      "source_form": "けれど; けれども",
+      "variants": [
+        "けれど",
+        "けれども"
+      ],
+      "reading": "けれど",
+      "reading_variants": [
+        "けれど"
+      ],
+      "romaji": "keredo",
+      "part_of_speech": "expression/conjunction",
+      "meaning_zh": "但是；不过",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "行きたいけれど、時間がありません。",
+          "zh": "想去，但是没时间。"
+        },
+        {
+          "ja": "難しいけれど、面白いです。",
+          "zh": "虽然难，但是有意思。"
+        },
+        {
+          "ja": "雨だけれど、出かけます。",
+          "zh": "虽然下雨，但要出门。"
+        }
+      ],
+      "note_zh": "口语接续。"
+    },
+    {
+      "id": "n4-212",
+      "jlpt": "N4",
+      "headword": "けんか",
+      "source_form": "けんか",
+      "variants": [
+        "けんか"
+      ],
+      "reading": "けんか",
+      "reading_variants": [
+        "けんか"
+      ],
+      "romaji": "kenka",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "吵架；打架",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "弟とけんかしました。",
+          "zh": "和弟弟吵架了。"
+        },
+        {
+          "ja": "けんかしないで仲良くしてください。",
+          "zh": "不要吵架，好好相处。"
+        },
+        {
+          "ja": "小さなことでけんかになりました。",
+          "zh": "因为小事吵了起来。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-213",
+      "jlpt": "N4",
+      "headword": "研究",
+      "source_form": "研究",
+      "variants": [
+        "研究"
+      ],
+      "reading": "けんきゅう",
+      "reading_variants": [
+        "けんきゅう"
+      ],
+      "romaji": "kenkyuu",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "研究",
+      "kanji_readings": [
+        {
+          "form": "研究",
+          "reading": "けんきゅう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "大学で日本語を研究しています。",
+          "zh": "在大学研究日语。"
+        },
+        {
+          "ja": "新しい薬の研究が進んでいます。",
+          "zh": "新药研究正在推进。"
+        },
+        {
+          "ja": "研究の結果を発表しました。",
+          "zh": "发表了研究结果。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-214",
+      "jlpt": "N4",
+      "headword": "研究室",
+      "source_form": "研究室",
+      "variants": [
+        "研究室"
+      ],
+      "reading": "けんきゅうしつ",
+      "reading_variants": [
+        "けんきゅうしつ"
+      ],
+      "romaji": "kenkyuushitsu",
+      "part_of_speech": "noun",
+      "meaning_zh": "研究室；实验室",
+      "kanji_readings": [
+        {
+          "form": "研究室",
+          "reading": "けんきゅうしつ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "研究室へ行きました。",
+          "zh": "去了研究室。"
+        },
+        {
+          "ja": "研究室は駅の近くにあります。",
+          "zh": "研究室在车站附近。"
+        },
+        {
+          "ja": "研究室で友達に会いました。",
+          "zh": "在研究室见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-215",
+      "jlpt": "N4",
+      "headword": "見物",
+      "source_form": "見物",
+      "variants": [
+        "見物"
+      ],
+      "reading": "けんぶつ",
+      "reading_variants": [
+        "けんぶつ"
+      ],
+      "romaji": "kenbutsu",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "参观；观光",
+      "kanji_readings": [
+        {
+          "form": "見物",
+          "reading": "けんぶつ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "京都のお寺を見物しました。",
+          "zh": "参观了京都的寺庙。"
+        },
+        {
+          "ja": "祭りを見物する人が多いです。",
+          "zh": "观看祭典的人很多。"
+        },
+        {
+          "ja": "午前中に町を見物します。",
+          "zh": "上午参观城市。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-216",
+      "jlpt": "N4",
+      "headword": "下宿",
+      "source_form": "下宿",
+      "variants": [
+        "下宿"
+      ],
+      "reading": "げしゅく",
+      "reading_variants": [
+        "げしゅく"
+      ],
+      "romaji": "geshuku",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "寄宿；租住处",
+      "kanji_readings": [
+        {
+          "form": "下宿",
+          "reading": "げしゅく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "大学の近くに下宿しています。",
+          "zh": "寄宿在大学附近。"
+        },
+        {
+          "ja": "下宿先から学校まで歩きます。",
+          "zh": "从住处走到学校。"
+        },
+        {
+          "ja": "新しい下宿を探しています。",
+          "zh": "正在找新的寄宿处。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-217",
+      "jlpt": "N4",
+      "headword": "原因",
+      "source_form": "原因",
+      "variants": [
+        "原因"
+      ],
+      "reading": "げんいん",
+      "reading_variants": [
+        "げんいん"
+      ],
+      "romaji": "genin",
+      "part_of_speech": "noun",
+      "meaning_zh": "原因",
+      "kanji_readings": [
+        {
+          "form": "原因",
+          "reading": "げんいん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "原因について友達と話しました。",
+          "zh": "和朋友谈了关于原因的事。"
+        },
+        {
+          "ja": "原因に関する説明を読みました。",
+          "zh": "读了关于原因的说明。"
+        },
+        {
+          "ja": "原因についてもっと知りたいです。",
+          "zh": "想更多了解原因。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-218",
+      "jlpt": "N4",
+      "headword": "原因になる",
+      "source_form": "原因になる",
+      "variants": [
+        "原因になる"
+      ],
+      "reading": "げんいんになる",
+      "reading_variants": [
+        "げんいんになる"
+      ],
+      "romaji": "geninninaru",
+      "part_of_speech": "expression",
+      "meaning_zh": "成为原因",
+      "kanji_readings": [
+        {
+          "form": "原因になる",
+          "reading": "げんいんになる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "寝不足が病気の原因になることがあります。",
+          "zh": "睡眠不足有时会成为生病的原因。"
+        },
+        {
+          "ja": "小さなミスが大きな問題の原因になります。",
+          "zh": "小错误会成为大问题的原因。"
+        },
+        {
+          "ja": "雨が事故の原因になりました。",
+          "zh": "雨成了事故的原因。"
+        }
+      ],
+      "note_zh": "常用搭配。"
+    },
+    {
+      "id": "n4-219",
+      "jlpt": "N4",
+      "headword": "子",
+      "source_form": "子",
+      "variants": [
+        "子"
+      ],
+      "reading": "こ",
+      "reading_variants": [
+        "こ"
+      ],
+      "romaji": "ko",
+      "part_of_speech": "noun",
+      "meaning_zh": "孩子；小……",
+      "kanji_readings": [
+        {
+          "form": "子",
+          "reading": "こ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "子に相談しました。",
+          "zh": "和孩子商量了。"
+        },
+        {
+          "ja": "子と少し話しました。",
+          "zh": "和孩子稍微聊了一下。"
+        },
+        {
+          "ja": "子が駅で待っています。",
+          "zh": "孩子在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-220",
+      "jlpt": "N4",
+      "headword": "こう",
+      "source_form": "こう",
+      "variants": [
+        "こう"
+      ],
+      "reading": "こう",
+      "reading_variants": [
+        "こう"
+      ],
+      "romaji": "kou",
+      "part_of_speech": "adverb/expression",
+      "meaning_zh": "这样；如此",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "こう書いてください。",
+          "zh": "请这样写。"
+        },
+        {
+          "ja": "こうすれば早くできます。",
+          "zh": "这样做就能快点完成。"
+        },
+        {
+          "ja": "私はこう思います。",
+          "zh": "我是这样想的。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-221",
+      "jlpt": "N4",
+      "headword": "郊外",
+      "source_form": "郊外",
+      "variants": [
+        "郊外"
+      ],
+      "reading": "こうがい",
+      "reading_variants": [
+        "こうがい"
+      ],
+      "romaji": "kougai",
+      "part_of_speech": "noun",
+      "meaning_zh": "郊外",
+      "kanji_readings": [
+        {
+          "form": "郊外",
+          "reading": "こうがい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "郊外へ行きました。",
+          "zh": "去了郊外。"
+        },
+        {
+          "ja": "郊外は駅の近くにあります。",
+          "zh": "郊外在车站附近。"
+        },
+        {
+          "ja": "郊外で友達に会いました。",
+          "zh": "在郊外见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-222",
+      "jlpt": "N4",
+      "headword": "講義",
+      "source_form": "講義",
+      "variants": [
+        "講義"
+      ],
+      "reading": "こうぎ",
+      "reading_variants": [
+        "こうぎ"
+      ],
+      "romaji": "kougi",
+      "part_of_speech": "noun",
+      "meaning_zh": "讲课；讲义",
+      "kanji_readings": [
+        {
+          "form": "講義",
+          "reading": "こうぎ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "講義について友達と話しました。",
+          "zh": "和朋友谈了关于讲课的事。"
+        },
+        {
+          "ja": "講義に関する説明を読みました。",
+          "zh": "读了关于讲课的说明。"
+        },
+        {
+          "ja": "講義についてもっと知りたいです。",
+          "zh": "想更多了解讲课。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-223",
+      "jlpt": "N4",
+      "headword": "工業",
+      "source_form": "工業",
+      "variants": [
+        "工業"
+      ],
+      "reading": "こうぎょう",
+      "reading_variants": [
+        "こうぎょう"
+      ],
+      "romaji": "kougyou",
+      "part_of_speech": "noun",
+      "meaning_zh": "工业",
+      "kanji_readings": [
+        {
+          "form": "工業",
+          "reading": "こうぎょう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "工業について友達と話しました。",
+          "zh": "和朋友谈了关于工业的事。"
+        },
+        {
+          "ja": "工業に関する説明を読みました。",
+          "zh": "读了关于工业的说明。"
+        },
+        {
+          "ja": "工業についてもっと知りたいです。",
+          "zh": "想更多了解工业。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-224",
+      "jlpt": "N4",
+      "headword": "高校",
+      "source_form": "高校",
+      "variants": [
+        "高校"
+      ],
+      "reading": "こうこう",
+      "reading_variants": [
+        "こうこう"
+      ],
+      "romaji": "koukou",
+      "part_of_speech": "noun",
+      "meaning_zh": "高中",
+      "kanji_readings": [
+        {
+          "form": "高校",
+          "reading": "こうこう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "高校へ行きました。",
+          "zh": "去了高中。"
+        },
+        {
+          "ja": "高校は駅の近くにあります。",
+          "zh": "高中在车站附近。"
+        },
+        {
+          "ja": "高校で友達に会いました。",
+          "zh": "在高中见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-225",
+      "jlpt": "N4",
+      "headword": "高校時代",
+      "source_form": "高校時代",
+      "variants": [
+        "高校時代"
+      ],
+      "reading": "こうこうじだい",
+      "reading_variants": [
+        "こうこうじだい"
+      ],
+      "romaji": "koukoujidai",
+      "part_of_speech": "noun",
+      "meaning_zh": "高中时代",
+      "kanji_readings": [
+        {
+          "form": "高校時代",
+          "reading": "こうこうじだい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "高校時代に友達と会います。",
+          "zh": "高中时代和朋友见面。"
+        },
+        {
+          "ja": "高校時代は少し忙しいです。",
+          "zh": "高中时代有点忙。"
+        },
+        {
+          "ja": "高校時代の予定を確認しました。",
+          "zh": "确认了高中时代的计划。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-226",
+      "jlpt": "N4",
+      "headword": "高校生",
+      "source_form": "高校生",
+      "variants": [
+        "高校生"
+      ],
+      "reading": "こうこうせい",
+      "reading_variants": [
+        "こうこうせい"
+      ],
+      "romaji": "koukousei",
+      "part_of_speech": "noun",
+      "meaning_zh": "高中生",
+      "kanji_readings": [
+        {
+          "form": "高校生",
+          "reading": "こうこうせい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "高校生について調べました。",
+          "zh": "查了关于高中生的资料。"
+        },
+        {
+          "ja": "高校生に関する文章を読みました。",
+          "zh": "读了关于高中生的文章。"
+        },
+        {
+          "ja": "高校生について友達と話しました。",
+          "zh": "和朋友谈了关于高中生的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-227",
+      "jlpt": "N4",
+      "headword": "工場",
+      "source_form": "工場",
+      "variants": [
+        "工場"
+      ],
+      "reading": "こうじょう",
+      "reading_variants": [
+        "こうじょう"
+      ],
+      "romaji": "koujou",
+      "part_of_speech": "noun",
+      "meaning_zh": "工厂",
+      "kanji_readings": [
+        {
+          "form": "工場",
+          "reading": "こうじょう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "工場へ行きました。",
+          "zh": "去了工厂。"
+        },
+        {
+          "ja": "工場は駅の近くにあります。",
+          "zh": "工厂在车站附近。"
+        },
+        {
+          "ja": "工場で友達に会いました。",
+          "zh": "在工厂见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-228",
+      "jlpt": "N4",
+      "headword": "校長",
+      "source_form": "校長",
+      "variants": [
+        "校長"
+      ],
+      "reading": "こうちょう",
+      "reading_variants": [
+        "こうちょう"
+      ],
+      "romaji": "kouchou",
+      "part_of_speech": "noun",
+      "meaning_zh": "校长",
+      "kanji_readings": [
+        {
+          "form": "校長",
+          "reading": "こうちょう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "校長に相談しました。",
+          "zh": "和校长商量了。"
+        },
+        {
+          "ja": "校長と少し話しました。",
+          "zh": "和校长稍微聊了一下。"
+        },
+        {
+          "ja": "校長が駅で待っています。",
+          "zh": "校长在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-229",
+      "jlpt": "N4",
+      "headword": "交通",
+      "source_form": "交通",
+      "variants": [
+        "交通"
+      ],
+      "reading": "こうつう",
+      "reading_variants": [
+        "こうつう"
+      ],
+      "romaji": "koutsuu",
+      "part_of_speech": "noun",
+      "meaning_zh": "交通",
+      "kanji_readings": [
+        {
+          "form": "交通",
+          "reading": "こうつう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "交通について友達と話しました。",
+          "zh": "和朋友谈了关于交通的事。"
+        },
+        {
+          "ja": "交通に関する説明を読みました。",
+          "zh": "读了关于交通的说明。"
+        },
+        {
+          "ja": "交通についてもっと知りたいです。",
+          "zh": "想更多了解交通。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-230",
+      "jlpt": "N4",
+      "headword": "交通事故",
+      "source_form": "交通事故",
+      "variants": [
+        "交通事故"
+      ],
+      "reading": "こうつうじこ",
+      "reading_variants": [
+        "こうつうじこ"
+      ],
+      "romaji": "koutsuujiko",
+      "part_of_speech": "noun",
+      "meaning_zh": "交通事故",
+      "kanji_readings": [
+        {
+          "form": "交通事故",
+          "reading": "こうつうじこ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "駅前で交通事故がありました。",
+          "zh": "车站前发生了交通事故。"
+        },
+        {
+          "ja": "交通事故に気をつけてください。",
+          "zh": "请小心交通事故。"
+        },
+        {
+          "ja": "交通事故のニュースを見ました。",
+          "zh": "看了交通事故新闻。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-231",
+      "jlpt": "N4",
+      "headword": "交通費",
+      "source_form": "交通費",
+      "variants": [
+        "交通費"
+      ],
+      "reading": "こうつうひ",
+      "reading_variants": [
+        "こうつうひ"
+      ],
+      "romaji": "koutsuuhi",
+      "part_of_speech": "noun",
+      "meaning_zh": "交通费",
+      "kanji_readings": [
+        {
+          "form": "交通費",
+          "reading": "こうつうひ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "交通費について友達と話しました。",
+          "zh": "和朋友谈了关于交通费的事。"
+        },
+        {
+          "ja": "交通費に関する説明を読みました。",
+          "zh": "读了关于交通费的说明。"
+        },
+        {
+          "ja": "交通費についてもっと知りたいです。",
+          "zh": "想更多了解交通费。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-232",
+      "jlpt": "N4",
+      "headword": "高等学校",
+      "source_form": "高等学校",
+      "variants": [
+        "高等学校"
+      ],
+      "reading": "こうとうがっこう",
+      "reading_variants": [
+        "こうとうがっこう"
+      ],
+      "romaji": "koutougakkou",
+      "part_of_speech": "noun",
+      "meaning_zh": "高中",
+      "kanji_readings": [
+        {
+          "form": "高等学校",
+          "reading": "こうとうがっこう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "高等学校へ行きました。",
+          "zh": "去了高中。"
+        },
+        {
+          "ja": "高等学校は駅の近くにあります。",
+          "zh": "高中在车站附近。"
+        },
+        {
+          "ja": "高等学校で友達に会いました。",
+          "zh": "在高中见了朋友。"
+        }
+      ],
+      "note_zh": "正式说法。"
+    },
+    {
+      "id": "n4-233",
+      "jlpt": "N4",
+      "headword": "講堂",
+      "source_form": "講堂",
+      "variants": [
+        "講堂"
+      ],
+      "reading": "こうどう",
+      "reading_variants": [
+        "こうどう"
+      ],
+      "romaji": "koudou",
+      "part_of_speech": "noun",
+      "meaning_zh": "礼堂",
+      "kanji_readings": [
+        {
+          "form": "講堂",
+          "reading": "こうどう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "講堂へ行きました。",
+          "zh": "去了礼堂。"
+        },
+        {
+          "ja": "講堂は駅の近くにあります。",
+          "zh": "礼堂在车站附近。"
+        },
+        {
+          "ja": "講堂で友達に会いました。",
+          "zh": "在礼堂见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-234",
+      "jlpt": "N4",
+      "headword": "公務員",
+      "source_form": "公務員",
+      "variants": [
+        "公務員"
+      ],
+      "reading": "こうむいん",
+      "reading_variants": [
+        "こうむいん"
+      ],
+      "romaji": "koumuin",
+      "part_of_speech": "noun",
+      "meaning_zh": "公务员",
+      "kanji_readings": [
+        {
+          "form": "公務員",
+          "reading": "こうむいん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "公務員に相談しました。",
+          "zh": "和公务员商量了。"
+        },
+        {
+          "ja": "公務員と少し話しました。",
+          "zh": "和公务员稍微聊了一下。"
+        },
+        {
+          "ja": "公務員が駅で待っています。",
+          "zh": "公务员在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-235",
+      "jlpt": "N4",
+      "headword": "国際",
+      "source_form": "国際",
+      "variants": [
+        "国際"
+      ],
+      "reading": "こくさい",
+      "reading_variants": [
+        "こくさい"
+      ],
+      "romaji": "kokusai",
+      "part_of_speech": "noun/prefix",
+      "meaning_zh": "国际",
+      "kanji_readings": [
+        {
+          "form": "国際",
+          "reading": "こくさい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "国際について友達と話しました。",
+          "zh": "和朋友谈了关于国际的事。"
+        },
+        {
+          "ja": "国際に関する説明を読みました。",
+          "zh": "读了关于国际的说明。"
+        },
+        {
+          "ja": "国際についてもっと知りたいです。",
+          "zh": "想更多了解国际。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-236",
+      "jlpt": "N4",
+      "headword": "国際線",
+      "source_form": "国際線",
+      "variants": [
+        "国際線"
+      ],
+      "reading": "こくさいせん",
+      "reading_variants": [
+        "こくさいせん"
+      ],
+      "romaji": "kokusaisen",
+      "part_of_speech": "noun",
+      "meaning_zh": "国际航线",
+      "kanji_readings": [
+        {
+          "form": "国際線",
+          "reading": "こくさいせん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "国際線について調べました。",
+          "zh": "查了关于国际航线的资料。"
+        },
+        {
+          "ja": "国際線に関する文章を読みました。",
+          "zh": "读了关于国际航线的文章。"
+        },
+        {
+          "ja": "国際線について友達と話しました。",
+          "zh": "和朋友谈了关于国际航线的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-237",
+      "jlpt": "N4",
+      "headword": "国内",
+      "source_form": "国内",
+      "variants": [
+        "国内"
+      ],
+      "reading": "こくない",
+      "reading_variants": [
+        "こくない"
+      ],
+      "romaji": "kokunai",
+      "part_of_speech": "noun",
+      "meaning_zh": "国内",
+      "kanji_readings": [
+        {
+          "form": "国内",
+          "reading": "こくない"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "国内について友達と話しました。",
+          "zh": "和朋友谈了关于国内的事。"
+        },
+        {
+          "ja": "国内に関する説明を読みました。",
+          "zh": "读了关于国内的说明。"
+        },
+        {
+          "ja": "国内についてもっと知りたいです。",
+          "zh": "想更多了解国内。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-238",
+      "jlpt": "N4",
+      "headword": "心",
+      "source_form": "心",
+      "variants": [
+        "心"
+      ],
+      "reading": "こころ",
+      "reading_variants": [
+        "こころ"
+      ],
+      "romaji": "kokoro",
+      "part_of_speech": "noun",
+      "meaning_zh": "心；内心",
+      "kanji_readings": [
+        {
+          "form": "心",
+          "reading": "こころ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "心について友達と話しました。",
+          "zh": "和朋友谈了关于心的事。"
+        },
+        {
+          "ja": "心に関する説明を読みました。",
+          "zh": "读了关于心的说明。"
+        },
+        {
+          "ja": "心についてもっと知りたいです。",
+          "zh": "想更多了解心。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-239",
+      "jlpt": "N4",
+      "headword": "故障",
+      "source_form": "故障",
+      "variants": [
+        "故障"
+      ],
+      "reading": "こしょう",
+      "reading_variants": [
+        "こしょう"
+      ],
+      "romaji": "koshou",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "故障",
+      "kanji_readings": [
+        {
+          "form": "故障",
+          "reading": "こしょう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "エレベーターが故障しています。",
+          "zh": "电梯故障了。"
+        },
+        {
+          "ja": "パソコンの故障で仕事ができません。",
+          "zh": "因为电脑故障无法工作。"
+        },
+        {
+          "ja": "故障した機械を直します。",
+          "zh": "修理故障的机器。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-240",
+      "jlpt": "N4",
+      "headword": "答え",
+      "source_form": "答え; 答",
+      "variants": [
+        "答え",
+        "答"
+      ],
+      "reading": "こたえ",
+      "reading_variants": [
+        "こたえ"
+      ],
+      "romaji": "kotae",
+      "part_of_speech": "noun",
+      "meaning_zh": "回答；答案",
+      "kanji_readings": [
+        {
+          "form": "答え",
+          "reading": "こたえ"
+        },
+        {
+          "form": "答",
+          "reading": "こたえ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "答えについて友達と話しました。",
+          "zh": "和朋友谈了关于回答的事。"
+        },
+        {
+          "ja": "答えに関する説明を読みました。",
+          "zh": "读了关于回答的说明。"
+        },
+        {
+          "ja": "答えについてもっと知りたいです。",
+          "zh": "想更多了解回答。"
+        }
+      ],
+      "note_zh": "现代常写「答え」。"
+    },
+    {
+      "id": "n4-241",
+      "jlpt": "N4",
+      "headword": "こと",
+      "source_form": "こと",
+      "variants": [
+        "こと"
+      ],
+      "reading": "こと",
+      "reading_variants": [
+        "こと"
+      ],
+      "romaji": "koto",
+      "part_of_speech": "noun/expression",
+      "meaning_zh": "事情；内容；形式名词",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "会話で「こと」を聞きました。",
+          "zh": "在会话中听到了“こと”。"
+        },
+        {
+          "ja": "「こと」を使って短い文を作りました。",
+          "zh": "用“こと”造了短句。"
+        },
+        {
+          "ja": "先生が「こと」の使い方を説明しました。",
+          "zh": "老师说明了“こと”的用法。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-242",
+      "jlpt": "N4",
+      "headword": "小鳥",
+      "source_form": "小鳥",
+      "variants": [
+        "小鳥"
+      ],
+      "reading": "ことり",
+      "reading_variants": [
+        "ことり"
+      ],
+      "romaji": "kotori",
+      "part_of_speech": "noun",
+      "meaning_zh": "小鸟",
+      "kanji_readings": [
+        {
+          "form": "小鳥",
+          "reading": "ことり"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "小鳥に相談しました。",
+          "zh": "和小鸟商量了。"
+        },
+        {
+          "ja": "小鳥と少し話しました。",
+          "zh": "和小鸟稍微聊了一下。"
+        },
+        {
+          "ja": "小鳥が駅で待っています。",
+          "zh": "小鸟在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-243",
+      "jlpt": "N4",
+      "headword": "この間",
+      "source_form": "この間",
+      "variants": [
+        "この間"
+      ],
+      "reading": "このあいだ",
+      "reading_variants": [
+        "このあいだ"
+      ],
+      "romaji": "konoaida",
+      "part_of_speech": "adverb/noun",
+      "meaning_zh": "前几天；最近",
+      "kanji_readings": [
+        {
+          "form": "この間",
+          "reading": "このあいだ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この間、駅で友達に会いました。",
+          "zh": "前几天在车站见到了朋友。"
+        },
+        {
+          "ja": "この間の話を覚えていますか。",
+          "zh": "还记得前几天的话吗？"
+        },
+        {
+          "ja": "この間買った本を読みました。",
+          "zh": "读了前几天买的书。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-244",
+      "jlpt": "N4",
+      "headword": "このごろ",
+      "source_form": "このごろ",
+      "variants": [
+        "このごろ"
+      ],
+      "reading": "このごろ",
+      "reading_variants": [
+        "このごろ"
+      ],
+      "romaji": "konogoro",
+      "part_of_speech": "adverb/noun",
+      "meaning_zh": "近来；最近",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "このごろ、少し忙しいです。",
+          "zh": "最近有点忙。"
+        },
+        {
+          "ja": "このごろ暑い日が続いています。",
+          "zh": "最近热天持续着。"
+        },
+        {
+          "ja": "このごろ日本語のニュースを聞いています。",
+          "zh": "最近在听日语新闻。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-245",
+      "jlpt": "N4",
+      "headword": "細かい",
+      "source_form": "細かい",
+      "variants": [
+        "細かい"
+      ],
+      "reading": "こまかい",
+      "reading_variants": [
+        "こまかい"
+      ],
+      "romaji": "komakai",
+      "part_of_speech": "i-adjective",
+      "meaning_zh": "细小的；详细的",
+      "kanji_readings": [
+        {
+          "form": "細かい",
+          "reading": "こまかい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "細かい字は読みにくいです。",
+          "zh": "细小的字不好读。"
+        },
+        {
+          "ja": "細かい説明をありがとうございます。",
+          "zh": "谢谢详细说明。"
+        },
+        {
+          "ja": "細かいお金はありますか。",
+          "zh": "有零钱吗？"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-246",
+      "jlpt": "N4",
+      "headword": "混む",
+      "source_form": "混む",
+      "variants": [
+        "混む"
+      ],
+      "reading": "こむ",
+      "reading_variants": [
+        "こむ"
+      ],
+      "romaji": "komu",
+      "part_of_speech": "verb",
+      "meaning_zh": "拥挤",
+      "kanji_readings": [
+        {
+          "form": "混む",
+          "reading": "こむ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "朝の電車はとても混みます。",
+          "zh": "早上的电车很拥挤。"
+        },
+        {
+          "ja": "週末は道が混んでいます。",
+          "zh": "周末路上很堵。"
+        },
+        {
+          "ja": "店が混む前に入りました。",
+          "zh": "在店变拥挤前进去了。"
+        }
+      ],
+      "note_zh": "常写「混む」。"
+    },
+    {
+      "id": "n4-247",
+      "jlpt": "N4",
+      "headword": "込む",
+      "source_form": "込む",
+      "variants": [
+        "込む"
+      ],
+      "reading": "こむ",
+      "reading_variants": [
+        "こむ"
+      ],
+      "romaji": "komu",
+      "part_of_speech": "verb",
+      "meaning_zh": "拥挤；复杂；进入",
+      "kanji_readings": [
+        {
+          "form": "込む",
+          "reading": "こむ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "朝の電車はとても込んでいます。",
+          "zh": "早上的电车很挤。"
+        },
+        {
+          "ja": "週末は店が込みます。",
+          "zh": "周末店里会很拥挤。"
+        },
+        {
+          "ja": "道が込んでいて遅れました。",
+          "zh": "路上堵所以迟到了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-248",
+      "jlpt": "N4",
+      "headword": "米",
+      "source_form": "米",
+      "variants": [
+        "米"
+      ],
+      "reading": "こめ",
+      "reading_variants": [
+        "こめ"
+      ],
+      "romaji": "kome",
+      "part_of_speech": "noun",
+      "meaning_zh": "米；大米",
+      "kanji_readings": [
+        {
+          "form": "米",
+          "reading": "こめ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "米を少し食べました。",
+          "zh": "吃了一点米。"
+        },
+        {
+          "ja": "米が好きです。",
+          "zh": "喜欢米。"
+        },
+        {
+          "ja": "この店の米は有名です。",
+          "zh": "这家店的米很有名。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-249",
+      "jlpt": "N4",
+      "headword": "これから",
+      "source_form": "これから",
+      "variants": [
+        "これから"
+      ],
+      "reading": "これから",
+      "reading_variants": [
+        "これから"
+      ],
+      "romaji": "korekara",
+      "part_of_speech": "expression",
+      "meaning_zh": "从现在起；今后",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "これから図書館へ行きます。",
+          "zh": "接下来去图书馆。"
+        },
+        {
+          "ja": "これからもっと勉強します。",
+          "zh": "今后会更加学习。"
+        },
+        {
+          "ja": "これから会議が始まります。",
+          "zh": "接下来会议开始。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-250",
+      "jlpt": "N4",
+      "headword": "怖い",
+      "source_form": "怖い",
+      "variants": [
+        "怖い"
+      ],
+      "reading": "こわい",
+      "reading_variants": [
+        "こわい"
+      ],
+      "romaji": "kowai",
+      "part_of_speech": "i-adjective",
+      "meaning_zh": "可怕的；令人害怕的",
+      "kanji_readings": [
+        {
+          "form": "怖い",
+          "reading": "こわい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "夜の道は少し怖いです。",
+          "zh": "夜里的路有点可怕。"
+        },
+        {
+          "ja": "怖い映画はあまり見ません。",
+          "zh": "不太看恐怖电影。"
+        },
+        {
+          "ja": "地震が怖くて眠れませんでした。",
+          "zh": "因为害怕地震睡不着。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-251",
+      "jlpt": "N4",
+      "headword": "壊す",
+      "source_form": "壊す",
+      "variants": [
+        "壊す"
+      ],
+      "reading": "こわす",
+      "reading_variants": [
+        "こわす"
+      ],
+      "romaji": "kowasu",
+      "part_of_speech": "verb",
+      "meaning_zh": "弄坏；破坏",
+      "kanji_readings": [
+        {
+          "form": "壊す",
+          "reading": "こわす"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "弟が時計を壊しました。",
+          "zh": "弟弟把钟弄坏了。"
+        },
+        {
+          "ja": "大事な物を壊さないでください。",
+          "zh": "请不要弄坏重要的东西。"
+        },
+        {
+          "ja": "古い家を壊して新しいビルを建てます。",
+          "zh": "拆掉旧房子建新楼。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-252",
+      "jlpt": "N4",
+      "headword": "壊れる",
+      "source_form": "壊れる",
+      "variants": [
+        "壊れる"
+      ],
+      "reading": "こわれる",
+      "reading_variants": [
+        "こわれる"
+      ],
+      "romaji": "kowareru",
+      "part_of_speech": "verb",
+      "meaning_zh": "坏；破裂",
+      "kanji_readings": [
+        {
+          "form": "壊れる",
+          "reading": "こわれる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "パソコンが壊れました。",
+          "zh": "电脑坏了。"
+        },
+        {
+          "ja": "この椅子は壊れています。",
+          "zh": "这把椅子坏了。"
+        },
+        {
+          "ja": "雨でカメラが壊れてしまいました。",
+          "zh": "相机被雨弄坏了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-253",
+      "jlpt": "N4",
+      "headword": "今月",
+      "source_form": "今月",
+      "variants": [
+        "今月"
+      ],
+      "reading": "こんげつ",
+      "reading_variants": [
+        "こんげつ"
+      ],
+      "romaji": "kongetsu",
+      "part_of_speech": "noun",
+      "meaning_zh": "这个月；本月",
+      "kanji_readings": [
+        {
+          "form": "今月",
+          "reading": "こんげつ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "今月に友達と会います。",
+          "zh": "这个月和朋友见面。"
+        },
+        {
+          "ja": "今月は少し忙しいです。",
+          "zh": "这个月有点忙。"
+        },
+        {
+          "ja": "今月の予定を確認しました。",
+          "zh": "确认了这个月的计划。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-254",
+      "jlpt": "N4",
+      "headword": "今週",
+      "source_form": "今週",
+      "variants": [
+        "今週"
+      ],
+      "reading": "こんしゅう",
+      "reading_variants": [
+        "こんしゅう"
+      ],
+      "romaji": "konshuu",
+      "part_of_speech": "noun",
+      "meaning_zh": "这周；本周",
+      "kanji_readings": [
+        {
+          "form": "今週",
+          "reading": "こんしゅう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "今週に友達と会います。",
+          "zh": "这周和朋友见面。"
+        },
+        {
+          "ja": "今週は少し忙しいです。",
+          "zh": "这周有点忙。"
+        },
+        {
+          "ja": "今週の予定を確認しました。",
+          "zh": "确认了这周的计划。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-255",
+      "jlpt": "N4",
+      "headword": "今度",
+      "source_form": "今度",
+      "variants": [
+        "今度"
+      ],
+      "reading": "こんど",
+      "reading_variants": [
+        "こんど"
+      ],
+      "romaji": "kondo",
+      "part_of_speech": "noun/adverb",
+      "meaning_zh": "这次；下次；最近",
+      "kanji_readings": [
+        {
+          "form": "今度",
+          "reading": "こんど"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "今度、一緒に食事しましょう。",
+          "zh": "下次一起吃饭吧。"
+        },
+        {
+          "ja": "今度の試験は難しそうです。",
+          "zh": "这次考试好像很难。"
+        },
+        {
+          "ja": "今度こそ遅れません。",
+          "zh": "这次一定不迟到。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-256",
+      "jlpt": "N4",
+      "headword": "今度こそ",
+      "source_form": "今度こそ",
+      "variants": [
+        "今度こそ"
+      ],
+      "reading": "こんどこそ",
+      "reading_variants": [
+        "こんどこそ"
+      ],
+      "romaji": "kondokoso",
+      "part_of_speech": "expression",
+      "meaning_zh": "这次一定",
+      "kanji_readings": [
+        {
+          "form": "今度こそ",
+          "reading": "こんどこそ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "今度こそ合格したいです。",
+          "zh": "这次一定想合格。"
+        },
+        {
+          "ja": "今度こそ遅れません。",
+          "zh": "这次一定不迟到。"
+        },
+        {
+          "ja": "今度こそ最後まで頑張ります。",
+          "zh": "这次一定坚持到最后。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-257",
+      "jlpt": "N4",
+      "headword": "今夜",
+      "source_form": "今夜",
+      "variants": [
+        "今夜"
+      ],
+      "reading": "こんや",
+      "reading_variants": [
+        "こんや"
+      ],
+      "romaji": "konya",
+      "part_of_speech": "noun",
+      "meaning_zh": "今晚",
+      "kanji_readings": [
+        {
+          "form": "今夜",
+          "reading": "こんや"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "今夜に友達と会います。",
+          "zh": "今晚和朋友见面。"
+        },
+        {
+          "ja": "今夜は少し忙しいです。",
+          "zh": "今晚有点忙。"
+        },
+        {
+          "ja": "今夜の予定を確認しました。",
+          "zh": "确认了今晚的计划。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-258",
+      "jlpt": "N4",
+      "headword": "ご主人",
+      "source_form": "ご主人",
+      "variants": [
+        "ご主人"
+      ],
+      "reading": "ごしゅじん",
+      "reading_variants": [
+        "ごしゅじん"
+      ],
+      "romaji": "goshujin",
+      "part_of_speech": "noun",
+      "meaning_zh": "您丈夫；主人",
+      "kanji_readings": [
+        {
+          "form": "ご主人",
+          "reading": "ごしゅじん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "ご主人はお元気ですか。",
+          "zh": "您丈夫身体好吗？"
+        },
+        {
+          "ja": "ご主人にもよろしくお伝えください。",
+          "zh": "也请代我向您丈夫问好。"
+        },
+        {
+          "ja": "ご主人はいつ帰りますか。",
+          "zh": "您丈夫什么时候回来？"
+        }
+      ],
+      "note_zh": "称对方丈夫的礼貌说法。"
+    },
+    {
+      "id": "n4-259",
+      "jlpt": "N4",
+      "headword": "ご存じ",
+      "source_form": "ご存じ",
+      "variants": [
+        "ご存じ"
+      ],
+      "reading": "ごぞんじ",
+      "reading_variants": [
+        "ごぞんじ"
+      ],
+      "romaji": "gozonji",
+      "part_of_speech": "noun/na-adjective",
+      "meaning_zh": "知道；认识",
+      "kanji_readings": [
+        {
+          "form": "ご存じ",
+          "reading": "ごぞんじ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "先生はその話をご存じです。",
+          "zh": "老师知道那件事。"
+        },
+        {
+          "ja": "この店をご存じですか。",
+          "zh": "您知道这家店吗？"
+        },
+        {
+          "ja": "ご存じの通り、明日は休みです。",
+          "zh": "如您所知，明天休息。"
+        }
+      ],
+      "note_zh": "尊敬语表达。"
+    },
+    {
+      "id": "n4-260",
+      "jlpt": "N4",
+      "headword": "ごちそう",
+      "source_form": "ごちそう",
+      "variants": [
+        "ごちそう"
+      ],
+      "reading": "ごちそう",
+      "reading_variants": [
+        "ごちそう"
+      ],
+      "romaji": "gochisou",
+      "part_of_speech": "noun",
+      "meaning_zh": "盛宴；款待",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "ごちそうを少し食べました。",
+          "zh": "吃了一点盛宴。"
+        },
+        {
+          "ja": "ごちそうが好きです。",
+          "zh": "喜欢盛宴。"
+        },
+        {
+          "ja": "この店のごちそうは有名です。",
+          "zh": "这家店的盛宴很有名。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-261",
+      "jlpt": "N4",
+      "headword": "ごみ",
+      "source_form": "ごみ",
+      "variants": [
+        "ごみ"
+      ],
+      "reading": "ごみ",
+      "reading_variants": [
+        "ごみ"
+      ],
+      "romaji": "gomi",
+      "part_of_speech": "noun",
+      "meaning_zh": "垃圾",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "ごみについて調べました。",
+          "zh": "查了关于垃圾的资料。"
+        },
+        {
+          "ja": "ごみに関する文章を読みました。",
+          "zh": "读了关于垃圾的文章。"
+        },
+        {
+          "ja": "ごみについて友達と話しました。",
+          "zh": "和朋友谈了关于垃圾的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-262",
+      "jlpt": "N4",
+      "headword": "ごらんになる",
+      "source_form": "ごらんになる",
+      "variants": [
+        "ごらんになる"
+      ],
+      "reading": "ごらんになる",
+      "reading_variants": [
+        "ごらんになる"
+      ],
+      "romaji": "goranninaru",
+      "part_of_speech": "verb",
+      "meaning_zh": "看（尊敬语）",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "先生はもう資料をごらんになりました。",
+          "zh": "老师已经看了资料。"
+        },
+        {
+          "ja": "こちらの写真をごらんください。",
+          "zh": "请看这张照片。"
+        },
+        {
+          "ja": "社長が発表をごらんになります。",
+          "zh": "社长会看发表。"
+        }
+      ],
+      "note_zh": "敬语。"
+    },
+    {
+      "id": "n4-263",
+      "jlpt": "N4",
+      "headword": "最近",
+      "source_form": "最近",
+      "variants": [
+        "最近"
+      ],
+      "reading": "さいきん",
+      "reading_variants": [
+        "さいきん"
+      ],
+      "romaji": "saikin",
+      "part_of_speech": "noun/adverb",
+      "meaning_zh": "最近；近来",
+      "kanji_readings": [
+        {
+          "form": "最近",
+          "reading": "さいきん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "最近、日本語を毎日聞いています。",
+          "zh": "最近每天听日语。"
+        },
+        {
+          "ja": "最近忙しくて、あまり寝ていません。",
+          "zh": "最近很忙，没怎么睡。"
+        },
+        {
+          "ja": "最近できた店に行きました。",
+          "zh": "去了最近新开的店。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-264",
+      "jlpt": "N4",
+      "headword": "最後",
+      "source_form": "最後",
+      "variants": [
+        "最後"
+      ],
+      "reading": "さいご",
+      "reading_variants": [
+        "さいご"
+      ],
+      "romaji": "saigo",
+      "part_of_speech": "noun",
+      "meaning_zh": "最后；末尾",
+      "kanji_readings": [
+        {
+          "form": "最後",
+          "reading": "さいご"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "最後について友達と話しました。",
+          "zh": "和朋友谈了关于最后的事。"
+        },
+        {
+          "ja": "最後に関する説明を読みました。",
+          "zh": "读了关于最后的说明。"
+        },
+        {
+          "ja": "最後についてもっと知りたいです。",
+          "zh": "想更多了解最后。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-265",
+      "jlpt": "N4",
+      "headword": "最初",
+      "source_form": "最初",
+      "variants": [
+        "最初"
+      ],
+      "reading": "さいしょ",
+      "reading_variants": [
+        "さいしょ"
+      ],
+      "romaji": "saisho",
+      "part_of_speech": "noun",
+      "meaning_zh": "最初；开始",
+      "kanji_readings": [
+        {
+          "form": "最初",
+          "reading": "さいしょ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "最初について友達と話しました。",
+          "zh": "和朋友谈了关于最初的事。"
+        },
+        {
+          "ja": "最初に関する説明を読みました。",
+          "zh": "读了关于最初的说明。"
+        },
+        {
+          "ja": "最初についてもっと知りたいです。",
+          "zh": "想更多了解最初。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-266",
+      "jlpt": "N4",
+      "headword": "財布",
+      "source_form": "財布",
+      "variants": [
+        "財布"
+      ],
+      "reading": "さいふ",
+      "reading_variants": [
+        "さいふ"
+      ],
+      "romaji": "saifu",
+      "part_of_speech": "noun",
+      "meaning_zh": "钱包",
+      "kanji_readings": [
+        {
+          "form": "財布",
+          "reading": "さいふ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "財布を見ました。",
+          "zh": "看到了钱包。"
+        },
+        {
+          "ja": "財布を確認しました。",
+          "zh": "确认了钱包。"
+        },
+        {
+          "ja": "財布について友達と話しました。",
+          "zh": "和朋友谈了关于钱包的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-267",
+      "jlpt": "N4",
+      "headword": "坂",
+      "source_form": "坂",
+      "variants": [
+        "坂"
+      ],
+      "reading": "さか",
+      "reading_variants": [
+        "さか"
+      ],
+      "romaji": "saka",
+      "part_of_speech": "noun",
+      "meaning_zh": "坡；坡道",
+      "kanji_readings": [
+        {
+          "form": "坂",
+          "reading": "さか"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "坂について調べました。",
+          "zh": "查了关于坡的资料。"
+        },
+        {
+          "ja": "坂に関する文章を読みました。",
+          "zh": "读了关于坡的文章。"
+        },
+        {
+          "ja": "坂について友達と話しました。",
+          "zh": "和朋友谈了关于坡的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-268",
+      "jlpt": "N4",
+      "headword": "盛ん",
+      "source_form": "盛ん",
+      "variants": [
+        "盛ん"
+      ],
+      "reading": "さかん",
+      "reading_variants": [
+        "さかん"
+      ],
+      "romaji": "sakan",
+      "part_of_speech": "na-adjective",
+      "meaning_zh": "繁盛；盛行；活跃",
+      "kanji_readings": [
+        {
+          "form": "盛ん",
+          "reading": "さかん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この町ではスポーツが盛んです。",
+          "zh": "这个城市体育很盛行。"
+        },
+        {
+          "ja": "議論が盛んに行われています。",
+          "zh": "讨论正活跃地进行。"
+        },
+        {
+          "ja": "夏祭りが盛んな地域です。",
+          "zh": "是夏祭很盛行的地区。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-269",
+      "jlpt": "N4",
+      "headword": "探す",
+      "source_form": "探す",
+      "variants": [
+        "探す"
+      ],
+      "reading": "さがす",
+      "reading_variants": [
+        "さがす"
+      ],
+      "romaji": "sagasu",
+      "part_of_speech": "verb",
+      "meaning_zh": "寻找",
+      "kanji_readings": [
+        {
+          "form": "探す",
+          "reading": "さがす"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "なくした財布を探しています。",
+          "zh": "正在找丢了的钱包。"
+        },
+        {
+          "ja": "駅の近くでホテルを探しました。",
+          "zh": "在车站附近找了酒店。"
+        },
+        {
+          "ja": "仕事を探すのは大変です。",
+          "zh": "找工作很不容易。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-270",
+      "jlpt": "N4",
+      "headword": "下がる",
+      "source_form": "下がる",
+      "variants": [
+        "下がる"
+      ],
+      "reading": "さがる",
+      "reading_variants": [
+        "さがる"
+      ],
+      "romaji": "sagaru",
+      "part_of_speech": "verb",
+      "meaning_zh": "下降；后退；降低",
+      "kanji_readings": [
+        {
+          "form": "下がる",
+          "reading": "さがる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "気温が急に下がりました。",
+          "zh": "气温突然下降了。"
+        },
+        {
+          "ja": "値段が少し下がりました。",
+          "zh": "价格稍微降了。"
+        },
+        {
+          "ja": "一歩下がってください。",
+          "zh": "请后退一步。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-271",
+      "jlpt": "N4",
+      "headword": "下げる",
+      "source_form": "下げる",
+      "variants": [
+        "下げる"
+      ],
+      "reading": "さげる",
+      "reading_variants": [
+        "さげる"
+      ],
+      "romaji": "sageru",
+      "part_of_speech": "verb",
+      "meaning_zh": "降低；垂下；撤下",
+      "kanji_readings": [
+        {
+          "form": "下げる",
+          "reading": "さげる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "音を下げてください。",
+          "zh": "请把声音调低。"
+        },
+        {
+          "ja": "店が値段を下げました。",
+          "zh": "店里降价了。"
+        },
+        {
+          "ja": "手を下げてもいいです。",
+          "zh": "可以把手放下了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-272",
+      "jlpt": "N4",
+      "headword": "差し上げる",
+      "source_form": "差し上げる",
+      "variants": [
+        "差し上げる"
+      ],
+      "reading": "さしあげる",
+      "reading_variants": [
+        "さしあげる"
+      ],
+      "romaji": "sashiageru",
+      "part_of_speech": "verb",
+      "meaning_zh": "给（谦让语）",
+      "kanji_readings": [
+        {
+          "form": "差し上げる",
+          "reading": "さしあげる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "先生にお土産を差し上げました。",
+          "zh": "给老师送了土特产。"
+        },
+        {
+          "ja": "詳しい資料を差し上げます。",
+          "zh": "给您详细资料。"
+        },
+        {
+          "ja": "お手伝いを差し上げましょうか。",
+          "zh": "我来帮您好吗？"
+        }
+      ],
+      "note_zh": "敬语。"
+    },
+    {
+      "id": "n4-273",
+      "jlpt": "N4",
+      "headword": "作家",
+      "source_form": "作家",
+      "variants": [
+        "作家"
+      ],
+      "reading": "さっか",
+      "reading_variants": [
+        "さっか"
+      ],
+      "romaji": "sakka",
+      "part_of_speech": "noun",
+      "meaning_zh": "作家",
+      "kanji_readings": [
+        {
+          "form": "作家",
+          "reading": "さっか"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "作家に相談しました。",
+          "zh": "和作家商量了。"
+        },
+        {
+          "ja": "作家と少し話しました。",
+          "zh": "和作家稍微聊了一下。"
+        },
+        {
+          "ja": "作家が駅で待っています。",
+          "zh": "作家在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-274",
+      "jlpt": "N4",
+      "headword": "さっき",
+      "source_form": "さっき",
+      "variants": [
+        "さっき"
+      ],
+      "reading": "さっき",
+      "reading_variants": [
+        "さっき"
+      ],
+      "romaji": "sakki",
+      "part_of_speech": "adverb/noun",
+      "meaning_zh": "刚才",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "さっき電話がありました。",
+          "zh": "刚才有电话。"
+        },
+        {
+          "ja": "さっき駅で先生に会いました。",
+          "zh": "刚才在车站见到了老师。"
+        },
+        {
+          "ja": "さっき食べたばかりです。",
+          "zh": "刚刚才吃过。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-275",
+      "jlpt": "N4",
+      "headword": "寂しい",
+      "source_form": "寂しい; 淋しい",
+      "variants": [
+        "寂しい",
+        "淋しい"
+      ],
+      "reading": "さびしい",
+      "reading_variants": [
+        "さびしい"
+      ],
+      "romaji": "sabishii",
+      "part_of_speech": "i-adjective",
+      "meaning_zh": "寂寞的；冷清的",
+      "kanji_readings": [
+        {
+          "form": "寂しい",
+          "reading": "さびしい"
+        },
+        {
+          "form": "淋しい",
+          "reading": "さびしい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "一人で暮らすのは寂しいです。",
+          "zh": "一个人生活很寂寞。"
+        },
+        {
+          "ja": "夜の駅は少し寂しいです。",
+          "zh": "夜里的车站有点冷清。"
+        },
+        {
+          "ja": "友達が帰って寂しくなりました。",
+          "zh": "朋友回去后变得寂寞了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-276",
+      "jlpt": "N4",
+      "headword": "さ来月",
+      "source_form": "さ来月",
+      "variants": [
+        "さ来月"
+      ],
+      "reading": "さらいげつ",
+      "reading_variants": [
+        "さらいげつ"
+      ],
+      "romaji": "saraigetsu",
+      "part_of_speech": "noun",
+      "meaning_zh": "下下个月",
+      "kanji_readings": [
+        {
+          "form": "さ来月",
+          "reading": "さらいげつ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "さ来月に友達と会います。",
+          "zh": "下下个月和朋友见面。"
+        },
+        {
+          "ja": "さ来月は少し忙しいです。",
+          "zh": "下下个月有点忙。"
+        },
+        {
+          "ja": "さ来月の予定を確認しました。",
+          "zh": "确认了下下个月的计划。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-277",
+      "jlpt": "N4",
+      "headword": "さ来週",
+      "source_form": "さ来週",
+      "variants": [
+        "さ来週"
+      ],
+      "reading": "さらいしゅう",
+      "reading_variants": [
+        "さらいしゅう"
+      ],
+      "romaji": "saraishuu",
+      "part_of_speech": "noun",
+      "meaning_zh": "下下周",
+      "kanji_readings": [
+        {
+          "form": "さ来週",
+          "reading": "さらいしゅう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "さ来週に友達と会います。",
+          "zh": "下下周和朋友见面。"
+        },
+        {
+          "ja": "さ来週は少し忙しいです。",
+          "zh": "下下周有点忙。"
+        },
+        {
+          "ja": "さ来週の予定を確認しました。",
+          "zh": "确认了下下周的计划。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-278",
+      "jlpt": "N4",
+      "headword": "騒ぐ",
+      "source_form": "騒ぐ",
+      "variants": [
+        "騒ぐ"
+      ],
+      "reading": "さわぐ",
+      "reading_variants": [
+        "さわぐ"
+      ],
+      "romaji": "sawagu",
+      "part_of_speech": "verb",
+      "meaning_zh": "吵闹；骚动",
+      "kanji_readings": [
+        {
+          "form": "騒ぐ",
+          "reading": "さわぐ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "夜遅くに騒がないでください。",
+          "zh": "请不要深夜吵闹。"
+        },
+        {
+          "ja": "子供たちが公園で騒いでいます。",
+          "zh": "孩子们在公园里闹。"
+        },
+        {
+          "ja": "小さなことで騒ぎすぎです。",
+          "zh": "为了小事太吵了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-279",
+      "jlpt": "N4",
+      "headword": "触る",
+      "source_form": "触る",
+      "variants": [
+        "触る"
+      ],
+      "reading": "さわる",
+      "reading_variants": [
+        "さわる"
+      ],
+      "romaji": "sawaru",
+      "part_of_speech": "verb",
+      "meaning_zh": "触摸；碰",
+      "kanji_readings": [
+        {
+          "form": "触る",
+          "reading": "さわる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "展示品に触らないでください。",
+          "zh": "请不要触摸展品。"
+        },
+        {
+          "ja": "熱い鍋に触ってしまいました。",
+          "zh": "不小心碰到了热锅。"
+        },
+        {
+          "ja": "犬の頭に優しく触りました。",
+          "zh": "轻轻摸了狗的头。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-280",
+      "jlpt": "N4",
+      "headword": "産業",
+      "source_form": "産業",
+      "variants": [
+        "産業"
+      ],
+      "reading": "さんぎょう",
+      "reading_variants": [
+        "さんぎょう"
+      ],
+      "romaji": "sangyou",
+      "part_of_speech": "noun",
+      "meaning_zh": "产业；工业",
+      "kanji_readings": [
+        {
+          "form": "産業",
+          "reading": "さんぎょう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "産業について調べました。",
+          "zh": "查了关于产业的资料。"
+        },
+        {
+          "ja": "産業に関する文章を読みました。",
+          "zh": "读了关于产业的文章。"
+        },
+        {
+          "ja": "産業について友達と話しました。",
+          "zh": "和朋友谈了关于产业的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-281",
+      "jlpt": "N4",
+      "headword": "雑誌",
+      "source_form": "雑誌",
+      "variants": [
+        "雑誌"
+      ],
+      "reading": "ざっし",
+      "reading_variants": [
+        "ざっし"
+      ],
+      "romaji": "zasshi",
+      "part_of_speech": "noun",
+      "meaning_zh": "杂志",
+      "kanji_readings": [
+        {
+          "form": "雑誌",
+          "reading": "ざっし"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "雑誌を見ました。",
+          "zh": "看到了杂志。"
+        },
+        {
+          "ja": "雑誌を確認しました。",
+          "zh": "确认了杂志。"
+        },
+        {
+          "ja": "雑誌について友達と話しました。",
+          "zh": "和朋友谈了关于杂志的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-282",
+      "jlpt": "N4",
+      "headword": "残業",
+      "source_form": "残業",
+      "variants": [
+        "残業"
+      ],
+      "reading": "ざんぎょう",
+      "reading_variants": [
+        "ざんぎょう"
+      ],
+      "romaji": "zangyou",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "加班",
+      "kanji_readings": [
+        {
+          "form": "残業",
+          "reading": "ざんぎょう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "今日は残業します。",
+          "zh": "今天加班。"
+        },
+        {
+          "ja": "昨日は二時間残業しました。",
+          "zh": "昨天加班了两个小时。"
+        },
+        {
+          "ja": "残業が多くて疲れました。",
+          "zh": "加班多，累了。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-283",
+      "jlpt": "N4",
+      "headword": "残念",
+      "source_form": "残念",
+      "variants": [
+        "残念"
+      ],
+      "reading": "ざんねん",
+      "reading_variants": [
+        "ざんねん"
+      ],
+      "romaji": "zannen",
+      "part_of_speech": "na-adjective/noun",
+      "meaning_zh": "遗憾；可惜",
+      "kanji_readings": [
+        {
+          "form": "残念",
+          "reading": "ざんねん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "試合に負けて残念です。",
+          "zh": "比赛输了很遗憾。"
+        },
+        {
+          "ja": "残念ですが、今日は行けません。",
+          "zh": "很遗憾，今天去不了。"
+        },
+        {
+          "ja": "残念な結果になりました。",
+          "zh": "成了遗憾的结果。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-284",
+      "jlpt": "N4",
+      "headword": "市",
+      "source_form": "市",
+      "variants": [
+        "市"
+      ],
+      "reading": "し",
+      "reading_variants": [
+        "し"
+      ],
+      "romaji": "shi",
+      "part_of_speech": "noun",
+      "meaning_zh": "市；城市",
+      "kanji_readings": [
+        {
+          "form": "市",
+          "reading": "し"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "市へ行きました。",
+          "zh": "去了市。"
+        },
+        {
+          "ja": "市は駅の近くにあります。",
+          "zh": "市在车站附近。"
+        },
+        {
+          "ja": "市で友達に会いました。",
+          "zh": "在市见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-285",
+      "jlpt": "N4",
+      "headword": "試合",
+      "source_form": "試合",
+      "variants": [
+        "試合"
+      ],
+      "reading": "しあい",
+      "reading_variants": [
+        "しあい"
+      ],
+      "romaji": "shiai",
+      "part_of_speech": "noun",
+      "meaning_zh": "比赛",
+      "kanji_readings": [
+        {
+          "form": "試合",
+          "reading": "しあい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "試合があります。",
+          "zh": "有比赛。"
+        },
+        {
+          "ja": "試合の予定を確認しました。",
+          "zh": "确认了比赛的安排。"
+        },
+        {
+          "ja": "試合について先生に聞きました。",
+          "zh": "向老师询问了比赛。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-286",
+      "jlpt": "N4",
+      "headword": "仕方",
+      "source_form": "仕方",
+      "variants": [
+        "仕方"
+      ],
+      "reading": "しかた",
+      "reading_variants": [
+        "しかた"
+      ],
+      "romaji": "shikata",
+      "part_of_speech": "noun",
+      "meaning_zh": "方法；办法",
+      "kanji_readings": [
+        {
+          "form": "仕方",
+          "reading": "しかた"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "仕方について友達と話しました。",
+          "zh": "和朋友谈了关于方法的事。"
+        },
+        {
+          "ja": "仕方に関する説明を読みました。",
+          "zh": "读了关于方法的说明。"
+        },
+        {
+          "ja": "仕方についてもっと知りたいです。",
+          "zh": "想更多了解方法。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-287",
+      "jlpt": "N4",
+      "headword": "しかる",
+      "source_form": "しかる",
+      "variants": [
+        "しかる"
+      ],
+      "reading": "しかる",
+      "reading_variants": [
+        "しかる"
+      ],
+      "romaji": "shikaru",
+      "part_of_speech": "verb",
+      "meaning_zh": "责备；训斥",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "先生が学生をしかりました。",
+          "zh": "老师批评了学生。"
+        },
+        {
+          "ja": "危ないことをして父にしかられました。",
+          "zh": "做了危险的事，被父亲训了。"
+        },
+        {
+          "ja": "理由を聞かずにしかるのはよくありません。",
+          "zh": "不问理由就训斥不好。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-288",
+      "jlpt": "N4",
+      "headword": "試験",
+      "source_form": "試験",
+      "variants": [
+        "試験"
+      ],
+      "reading": "しけん",
+      "reading_variants": [
+        "しけん"
+      ],
+      "romaji": "shiken",
+      "part_of_speech": "noun",
+      "meaning_zh": "考试",
+      "kanji_readings": [
+        {
+          "form": "試験",
+          "reading": "しけん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "明日、日本語の試験があります。",
+          "zh": "明天有日语考试。"
+        },
+        {
+          "ja": "試験に合格したいです。",
+          "zh": "想通过考试。"
+        },
+        {
+          "ja": "試験の前に復習します。",
+          "zh": "考试前复习。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-289",
+      "jlpt": "N4",
+      "headword": "自然",
+      "source_form": "自然",
+      "variants": [
+        "自然"
+      ],
+      "reading": "しぜん",
+      "reading_variants": [
+        "しぜん"
+      ],
+      "romaji": "shizen",
+      "part_of_speech": "na-adjective/noun",
+      "meaning_zh": "自然；自然的",
+      "kanji_readings": [
+        {
+          "form": "自然",
+          "reading": "しぜん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "自然な日本語を話したいです。",
+          "zh": "想说自然的日语。"
+        },
+        {
+          "ja": "この町は自然が多いです。",
+          "zh": "这个城市自然环境很多。"
+        },
+        {
+          "ja": "自然に笑えるようになりました。",
+          "zh": "变得能自然地笑了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-290",
+      "jlpt": "N4",
+      "headword": "下着",
+      "source_form": "下着",
+      "variants": [
+        "下着"
+      ],
+      "reading": "したぎ",
+      "reading_variants": [
+        "したぎ"
+      ],
+      "romaji": "shitagi",
+      "part_of_speech": "noun",
+      "meaning_zh": "内衣",
+      "kanji_readings": [
+        {
+          "form": "下着",
+          "reading": "したぎ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "下着を見ました。",
+          "zh": "看到了内衣。"
+        },
+        {
+          "ja": "下着を確認しました。",
+          "zh": "确认了内衣。"
+        },
+        {
+          "ja": "下着について友達と話しました。",
+          "zh": "和朋友谈了关于内衣的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-291",
+      "jlpt": "N4",
+      "headword": "支度",
+      "source_form": "支度",
+      "variants": [
+        "支度"
+      ],
+      "reading": "したく",
+      "reading_variants": [
+        "したく"
+      ],
+      "romaji": "shitaku",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "准备；打点",
+      "kanji_readings": [
+        {
+          "form": "支度",
+          "reading": "したく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "旅行の支度をしています。",
+          "zh": "正在准备旅行。"
+        },
+        {
+          "ja": "朝の支度に時間がかかります。",
+          "zh": "早上准备要花时间。"
+        },
+        {
+          "ja": "出かける支度ができました。",
+          "zh": "出门准备好了。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-292",
+      "jlpt": "N4",
+      "headword": "しっかり",
+      "source_form": "しっかり",
+      "variants": [
+        "しっかり"
+      ],
+      "reading": "しっかり",
+      "reading_variants": [
+        "しっかり"
+      ],
+      "romaji": "shikkari",
+      "part_of_speech": "adverb",
+      "meaning_zh": "牢固地；认真地；可靠地",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "ドアをしっかり閉めてください。",
+          "zh": "请把门关牢。"
+        },
+        {
+          "ja": "試験前にしっかり復習します。",
+          "zh": "考试前认真复习。"
+        },
+        {
+          "ja": "しっかり食べてから出かけましょう。",
+          "zh": "好好吃完再出门吧。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-293",
+      "jlpt": "N4",
+      "headword": "失敗",
+      "source_form": "失敗",
+      "variants": [
+        "失敗"
+      ],
+      "reading": "しっぱい",
+      "reading_variants": [
+        "しっぱい"
+      ],
+      "romaji": "shippai",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "失败；失误",
+      "kanji_readings": [
+        {
+          "form": "失敗",
+          "reading": "しっぱい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "料理に失敗しました。",
+          "zh": "做菜失败了。"
+        },
+        {
+          "ja": "失敗しても、もう一度やります。",
+          "zh": "即使失败，也再做一次。"
+        },
+        {
+          "ja": "大きな失敗から学びました。",
+          "zh": "从重大失败中学到了东西。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-294",
+      "jlpt": "N4",
+      "headword": "失礼",
+      "source_form": "失礼",
+      "variants": [
+        "失礼"
+      ],
+      "reading": "しつれい",
+      "reading_variants": [
+        "しつれい"
+      ],
+      "romaji": "shitsurei",
+      "part_of_speech": "suru-verb/noun/na-adjective",
+      "meaning_zh": "失礼；告辞；打扰",
+      "kanji_readings": [
+        {
+          "form": "失礼",
+          "reading": "しつれい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "失礼します。",
+          "zh": "失礼了。"
+        },
+        {
+          "ja": "失礼な言い方をしてしまいました。",
+          "zh": "不小心用了失礼的说法。"
+        },
+        {
+          "ja": "先に失礼してもよろしいですか。",
+          "zh": "我可以先告辞吗？"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-295",
+      "jlpt": "N4",
+      "headword": "品物",
+      "source_form": "品物",
+      "variants": [
+        "品物"
+      ],
+      "reading": "しなもの",
+      "reading_variants": [
+        "しなもの"
+      ],
+      "romaji": "shinamono",
+      "part_of_speech": "noun",
+      "meaning_zh": "物品；商品",
+      "kanji_readings": [
+        {
+          "form": "品物",
+          "reading": "しなもの"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "品物を見ました。",
+          "zh": "看到了物品。"
+        },
+        {
+          "ja": "品物を確認しました。",
+          "zh": "确认了物品。"
+        },
+        {
+          "ja": "品物について友達と話しました。",
+          "zh": "和朋友谈了关于物品的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-296",
+      "jlpt": "N4",
+      "headword": "しばらく",
+      "source_form": "しばらく",
+      "variants": [
+        "しばらく"
+      ],
+      "reading": "しばらく",
+      "reading_variants": [
+        "しばらく"
+      ],
+      "romaji": "shibaraku",
+      "part_of_speech": "adverb/noun",
+      "meaning_zh": "一会儿；暂时；好久",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "ここでしばらく待ちます。",
+          "zh": "在这里等一会儿。"
+        },
+        {
+          "ja": "しばらく会っていませんね。",
+          "zh": "好久不见了。"
+        },
+        {
+          "ja": "しばらく雨が続きそうです。",
+          "zh": "雨好像会持续一阵子。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-297",
+      "jlpt": "N4",
+      "headword": "島",
+      "source_form": "島",
+      "variants": [
+        "島"
+      ],
+      "reading": "しま",
+      "reading_variants": [
+        "しま"
+      ],
+      "romaji": "shima",
+      "part_of_speech": "noun",
+      "meaning_zh": "岛",
+      "kanji_readings": [
+        {
+          "form": "島",
+          "reading": "しま"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "島について調べました。",
+          "zh": "查了关于岛的资料。"
+        },
+        {
+          "ja": "島に関する文章を読みました。",
+          "zh": "读了关于岛的文章。"
+        },
+        {
+          "ja": "島について友達と話しました。",
+          "zh": "和朋友谈了关于岛的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-298",
+      "jlpt": "N4",
+      "headword": "市民",
+      "source_form": "市民",
+      "variants": [
+        "市民"
+      ],
+      "reading": "しみん",
+      "reading_variants": [
+        "しみん"
+      ],
+      "romaji": "shimin",
+      "part_of_speech": "noun",
+      "meaning_zh": "市民",
+      "kanji_readings": [
+        {
+          "form": "市民",
+          "reading": "しみん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "市民に相談しました。",
+          "zh": "和市民商量了。"
+        },
+        {
+          "ja": "市民と少し話しました。",
+          "zh": "和市民稍微聊了一下。"
+        },
+        {
+          "ja": "市民が駅で待っています。",
+          "zh": "市民在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-299",
+      "jlpt": "N4",
+      "headword": "社会",
+      "source_form": "社会",
+      "variants": [
+        "社会"
+      ],
+      "reading": "しゃかい",
+      "reading_variants": [
+        "しゃかい"
+      ],
+      "romaji": "shakai",
+      "part_of_speech": "noun",
+      "meaning_zh": "社会",
+      "kanji_readings": [
+        {
+          "form": "社会",
+          "reading": "しゃかい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "社会について調べました。",
+          "zh": "查了关于社会的资料。"
+        },
+        {
+          "ja": "社会に関する文章を読みました。",
+          "zh": "读了关于社会的文章。"
+        },
+        {
+          "ja": "社会について友達と話しました。",
+          "zh": "和朋友谈了关于社会的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-300",
+      "jlpt": "N4",
+      "headword": "社長",
+      "source_form": "社長",
+      "variants": [
+        "社長"
+      ],
+      "reading": "しゃちょう",
+      "reading_variants": [
+        "しゃちょう"
+      ],
+      "romaji": "shachou",
+      "part_of_speech": "noun",
+      "meaning_zh": "社长；公司总经理",
+      "kanji_readings": [
+        {
+          "form": "社長",
+          "reading": "しゃちょう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "社長に相談しました。",
+          "zh": "和社长商量了。"
+        },
+        {
+          "ja": "社長と少し話しました。",
+          "zh": "和社长稍微聊了一下。"
+        },
+        {
+          "ja": "社長が駅で待っています。",
+          "zh": "社长在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-301",
+      "jlpt": "N4",
+      "headword": "習慣",
+      "source_form": "習慣",
+      "variants": [
+        "習慣"
+      ],
+      "reading": "しゅうかん",
+      "reading_variants": [
+        "しゅうかん"
+      ],
+      "romaji": "shuukan",
+      "part_of_speech": "noun",
+      "meaning_zh": "习惯",
+      "kanji_readings": [
+        {
+          "form": "習慣",
+          "reading": "しゅうかん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "習慣について友達と話しました。",
+          "zh": "和朋友谈了关于习惯的事。"
+        },
+        {
+          "ja": "習慣に関する説明を読みました。",
+          "zh": "读了关于习惯的说明。"
+        },
+        {
+          "ja": "習慣についてもっと知りたいです。",
+          "zh": "想更多了解习惯。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-302",
+      "jlpt": "N4",
+      "headword": "出席",
+      "source_form": "出席",
+      "variants": [
+        "出席"
+      ],
+      "reading": "しゅっせき",
+      "reading_variants": [
+        "しゅっせき"
+      ],
+      "romaji": "shusseki",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "出席；参加",
+      "kanji_readings": [
+        {
+          "form": "出席",
+          "reading": "しゅっせき"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "会議に出席します。",
+          "zh": "出席会议。"
+        },
+        {
+          "ja": "全員が授業に出席しました。",
+          "zh": "全员出席了课程。"
+        },
+        {
+          "ja": "出席できない時は連絡してください。",
+          "zh": "不能出席时请联系。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-303",
+      "jlpt": "N4",
+      "headword": "出張",
+      "source_form": "出張",
+      "variants": [
+        "出張"
+      ],
+      "reading": "しゅっちょう",
+      "reading_variants": [
+        "しゅっちょう"
+      ],
+      "romaji": "shucchou",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "出差",
+      "kanji_readings": [
+        {
+          "form": "出張",
+          "reading": "しゅっちょう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "来週、大阪へ出張します。",
+          "zh": "下周去大阪出差。"
+        },
+        {
+          "ja": "父は出張で家にいません。",
+          "zh": "父亲出差不在家。"
+        },
+        {
+          "ja": "出張の準備をしています。",
+          "zh": "正在准备出差。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-304",
+      "jlpt": "N4",
+      "headword": "出発",
+      "source_form": "出発",
+      "variants": [
+        "出発"
+      ],
+      "reading": "しゅっぱつ",
+      "reading_variants": [
+        "しゅっぱつ"
+      ],
+      "romaji": "shuppatsu",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "出发",
+      "kanji_readings": [
+        {
+          "form": "出発",
+          "reading": "しゅっぱつ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "明日の朝、東京を出発します。",
+          "zh": "明天早上从东京出发。"
+        },
+        {
+          "ja": "出発の時間を確認しました。",
+          "zh": "确认了出发时间。"
+        },
+        {
+          "ja": "バスは十時に出発します。",
+          "zh": "公交十点出发。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-305",
+      "jlpt": "N4",
+      "headword": "趣味",
+      "source_form": "趣味",
+      "variants": [
+        "趣味"
+      ],
+      "reading": "しゅみ",
+      "reading_variants": [
+        "しゅみ"
+      ],
+      "romaji": "shumi",
+      "part_of_speech": "noun",
+      "meaning_zh": "兴趣；爱好",
+      "kanji_readings": [
+        {
+          "form": "趣味",
+          "reading": "しゅみ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "趣味について友達と話しました。",
+          "zh": "和朋友谈了关于兴趣的事。"
+        },
+        {
+          "ja": "趣味に関する説明を読みました。",
+          "zh": "读了关于兴趣的说明。"
+        },
+        {
+          "ja": "趣味についてもっと知りたいです。",
+          "zh": "想更多了解兴趣。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-306",
+      "jlpt": "N4",
+      "headword": "紹介",
+      "source_form": "紹介",
+      "variants": [
+        "紹介"
+      ],
+      "reading": "しょうかい",
+      "reading_variants": [
+        "しょうかい"
+      ],
+      "romaji": "shoukai",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "介绍",
+      "kanji_readings": [
+        {
+          "form": "紹介",
+          "reading": "しょうかい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "友達を先生に紹介しました。",
+          "zh": "把朋友介绍给老师。"
+        },
+        {
+          "ja": "自己紹介をしてください。",
+          "zh": "请做自我介绍。"
+        },
+        {
+          "ja": "いい店を紹介してもらいました。",
+          "zh": "别人给我介绍了一家好店。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-307",
+      "jlpt": "N4",
+      "headword": "小学校",
+      "source_form": "小学校",
+      "variants": [
+        "小学校"
+      ],
+      "reading": "しょうがっこう",
+      "reading_variants": [
+        "しょうがっこう"
+      ],
+      "romaji": "shougakkou",
+      "part_of_speech": "noun",
+      "meaning_zh": "小学",
+      "kanji_readings": [
+        {
+          "form": "小学校",
+          "reading": "しょうがっこう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "小学校へ行きました。",
+          "zh": "去了小学。"
+        },
+        {
+          "ja": "小学校は駅の近くにあります。",
+          "zh": "小学在车站附近。"
+        },
+        {
+          "ja": "小学校で友達に会いました。",
+          "zh": "在小学见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-308",
+      "jlpt": "N4",
+      "headword": "小説",
+      "source_form": "小説",
+      "variants": [
+        "小説"
+      ],
+      "reading": "しょうせつ",
+      "reading_variants": [
+        "しょうせつ"
+      ],
+      "romaji": "shousetsu",
+      "part_of_speech": "noun",
+      "meaning_zh": "小说",
+      "kanji_readings": [
+        {
+          "form": "小説",
+          "reading": "しょうせつ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "小説について調べました。",
+          "zh": "查了关于小说的资料。"
+        },
+        {
+          "ja": "小説に関する文章を読みました。",
+          "zh": "读了关于小说的文章。"
+        },
+        {
+          "ja": "小説について友達と話しました。",
+          "zh": "和朋友谈了关于小说的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-309",
+      "jlpt": "N4",
+      "headword": "招待",
+      "source_form": "招待",
+      "variants": [
+        "招待"
+      ],
+      "reading": "しょうたい",
+      "reading_variants": [
+        "しょうたい"
+      ],
+      "romaji": "shoutai",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "邀请；招待",
+      "kanji_readings": [
+        {
+          "form": "招待",
+          "reading": "しょうたい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "友達を家に招待しました。",
+          "zh": "邀请朋友来家里。"
+        },
+        {
+          "ja": "結婚式に招待されました。",
+          "zh": "被邀请参加婚礼。"
+        },
+        {
+          "ja": "招待状を送りました。",
+          "zh": "寄了邀请函。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-310",
+      "jlpt": "N4",
+      "headword": "招待状",
+      "source_form": "招待状",
+      "variants": [
+        "招待状"
+      ],
+      "reading": "しょうたいじょう",
+      "reading_variants": [
+        "しょうたいじょう"
+      ],
+      "romaji": "shoutaijou",
+      "part_of_speech": "noun",
+      "meaning_zh": "邀请函",
+      "kanji_readings": [
+        {
+          "form": "招待状",
+          "reading": "しょうたいじょう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "結婚式の招待状が届きました。",
+          "zh": "收到了婚礼邀请函。"
+        },
+        {
+          "ja": "招待状に返事を書きました。",
+          "zh": "在邀请函上写了回复。"
+        },
+        {
+          "ja": "友達に招待状を送りました。",
+          "zh": "给朋友寄了邀请函。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-311",
+      "jlpt": "N4",
+      "headword": "承知",
+      "source_form": "承知",
+      "variants": [
+        "承知"
+      ],
+      "reading": "しょうち",
+      "reading_variants": [
+        "しょうち"
+      ],
+      "romaji": "shouchi",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "知道；同意；承知",
+      "kanji_readings": [
+        {
+          "form": "承知",
+          "reading": "しょうち"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "承知しました。",
+          "zh": "知道了/明白了。"
+        },
+        {
+          "ja": "その件は承知しています。",
+          "zh": "那件事我知道。"
+        },
+        {
+          "ja": "ご希望は承知しました。",
+          "zh": "您的希望我明白了。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-312",
+      "jlpt": "N4",
+      "headword": "将来",
+      "source_form": "将来",
+      "variants": [
+        "将来"
+      ],
+      "reading": "しょうらい",
+      "reading_variants": [
+        "しょうらい"
+      ],
+      "romaji": "shourai",
+      "part_of_speech": "noun",
+      "meaning_zh": "将来",
+      "kanji_readings": [
+        {
+          "form": "将来",
+          "reading": "しょうらい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "将来に友達と会います。",
+          "zh": "将来和朋友见面。"
+        },
+        {
+          "ja": "将来は少し忙しいです。",
+          "zh": "将来有点忙。"
+        },
+        {
+          "ja": "将来の予定を確認しました。",
+          "zh": "确认了将来的计划。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-313",
+      "jlpt": "N4",
+      "headword": "食事",
+      "source_form": "食事",
+      "variants": [
+        "食事"
+      ],
+      "reading": "しょくじ",
+      "reading_variants": [
+        "しょくじ"
+      ],
+      "romaji": "shokuji",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "吃饭；用餐；饭食",
+      "kanji_readings": [
+        {
+          "form": "食事",
+          "reading": "しょくじ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "友達と食事しました。",
+          "zh": "和朋友吃了饭。"
+        },
+        {
+          "ja": "食事の前に手を洗います。",
+          "zh": "饭前洗手。"
+        },
+        {
+          "ja": "駅の近くで食事しましょう。",
+          "zh": "在车站附近吃饭吧。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-314",
+      "jlpt": "N4",
+      "headword": "食料品",
+      "source_form": "食料品",
+      "variants": [
+        "食料品"
+      ],
+      "reading": "しょくりょうひん",
+      "reading_variants": [
+        "しょくりょうひん"
+      ],
+      "romaji": "shokuryouhin",
+      "part_of_speech": "noun",
+      "meaning_zh": "食品；杂货食品",
+      "kanji_readings": [
+        {
+          "form": "食料品",
+          "reading": "しょくりょうひん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "食料品について友達と話しました。",
+          "zh": "和朋友谈了关于食品的事。"
+        },
+        {
+          "ja": "食料品に関する説明を読みました。",
+          "zh": "读了关于食品的说明。"
+        },
+        {
+          "ja": "食料品についてもっと知りたいです。",
+          "zh": "想更多了解食品。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-315",
+      "jlpt": "N4",
+      "headword": "知らせる",
+      "source_form": "知らせる",
+      "variants": [
+        "知らせる"
+      ],
+      "reading": "しらせる",
+      "reading_variants": [
+        "しらせる"
+      ],
+      "romaji": "shiraseru",
+      "part_of_speech": "verb",
+      "meaning_zh": "通知；告知",
+      "kanji_readings": [
+        {
+          "form": "知らせる",
+          "reading": "しらせる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "到着したら知らせてください。",
+          "zh": "到了请告诉我。"
+        },
+        {
+          "ja": "予定が変わったことを先生に知らせました。",
+          "zh": "把计划变更告诉了老师。"
+        },
+        {
+          "ja": "結果をメールで知らせます。",
+          "zh": "用邮件通知结果。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-316",
+      "jlpt": "N4",
+      "headword": "調べる",
+      "source_form": "調べる",
+      "variants": [
+        "調べる"
+      ],
+      "reading": "しらべる",
+      "reading_variants": [
+        "しらべる"
+      ],
+      "romaji": "shiraberu",
+      "part_of_speech": "verb",
+      "meaning_zh": "调查；查找",
+      "kanji_readings": [
+        {
+          "form": "調べる",
+          "reading": "しらべる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "分からない言葉を辞書で調べます。",
+          "zh": "用词典查不懂的词。"
+        },
+        {
+          "ja": "旅行の前に天気を調べました。",
+          "zh": "旅行前查了天气。"
+        },
+        {
+          "ja": "原因を詳しく調べています。",
+          "zh": "正在详细调查原因。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-317",
+      "jlpt": "N4",
+      "headword": "資料",
+      "source_form": "資料",
+      "variants": [
+        "資料"
+      ],
+      "reading": "しりょう",
+      "reading_variants": [
+        "しりょう"
+      ],
+      "romaji": "shiryou",
+      "part_of_speech": "noun",
+      "meaning_zh": "资料",
+      "kanji_readings": [
+        {
+          "form": "資料",
+          "reading": "しりょう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "資料について友達と話しました。",
+          "zh": "和朋友谈了关于资料的事。"
+        },
+        {
+          "ja": "資料に関する説明を読みました。",
+          "zh": "读了关于资料的说明。"
+        },
+        {
+          "ja": "資料についてもっと知りたいです。",
+          "zh": "想更多了解资料。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-318",
+      "jlpt": "N4",
+      "headword": "新幹線",
+      "source_form": "新幹線",
+      "variants": [
+        "新幹線"
+      ],
+      "reading": "しんかんせん",
+      "reading_variants": [
+        "しんかんせん"
+      ],
+      "romaji": "shinkansen",
+      "part_of_speech": "noun",
+      "meaning_zh": "新干线",
+      "kanji_readings": [
+        {
+          "form": "新幹線",
+          "reading": "しんかんせん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "新幹線で京都へ行きます。",
+          "zh": "坐新干线去京都。"
+        },
+        {
+          "ja": "新幹線の切符を予約しました。",
+          "zh": "预约了新干线车票。"
+        },
+        {
+          "ja": "新幹線は速くて便利です。",
+          "zh": "新干线又快又方便。"
+        }
+      ],
+      "note_zh": "旅行常用词，部分学习表会提前收录。"
+    },
+    {
+      "id": "n4-319",
+      "jlpt": "N4",
+      "headword": "進学",
+      "source_form": "進学",
+      "variants": [
+        "進学"
+      ],
+      "reading": "しんがく",
+      "reading_variants": [
+        "しんがく"
+      ],
+      "romaji": "shingaku",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "升学",
+      "kanji_readings": [
+        {
+          "form": "進学",
+          "reading": "しんがく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "兄は大学に進学しました。",
+          "zh": "哥哥升入了大学。"
+        },
+        {
+          "ja": "進学のために勉強しています。",
+          "zh": "为了升学而学习。"
+        },
+        {
+          "ja": "東京の学校へ進学したいです。",
+          "zh": "想升入东京的学校。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-320",
+      "jlpt": "N4",
+      "headword": "信号",
+      "source_form": "信号",
+      "variants": [
+        "信号"
+      ],
+      "reading": "しんごう",
+      "reading_variants": [
+        "しんごう"
+      ],
+      "romaji": "shingou",
+      "part_of_speech": "noun",
+      "meaning_zh": "信号；红绿灯",
+      "kanji_readings": [
+        {
+          "form": "信号",
+          "reading": "しんごう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "信号が赤になりました。",
+          "zh": "信号灯变红了。"
+        },
+        {
+          "ja": "信号を渡って右に曲がります。",
+          "zh": "过红绿灯后右转。"
+        },
+        {
+          "ja": "青信号まで待ってください。",
+          "zh": "请等到绿灯。"
+        }
+      ],
+      "note_zh": "N5/N4 边界词，扩展保留。"
+    },
+    {
+      "id": "n4-321",
+      "jlpt": "N4",
+      "headword": "親切",
+      "source_form": "親切",
+      "variants": [
+        "親切"
+      ],
+      "reading": "しんせつ",
+      "reading_variants": [
+        "しんせつ"
+      ],
+      "romaji": "shinsetsu",
+      "part_of_speech": "na-adjective/noun",
+      "meaning_zh": "亲切；热心",
+      "kanji_readings": [
+        {
+          "form": "親切",
+          "reading": "しんせつ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "店員さんはとても親切でした。",
+          "zh": "店员非常亲切。"
+        },
+        {
+          "ja": "親切に道を教えてくれました。",
+          "zh": "亲切地告诉了我路。"
+        },
+        {
+          "ja": "親切な人に助けてもらいました。",
+          "zh": "得到了亲切的人的帮助。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-322",
+      "jlpt": "N4",
+      "headword": "心配",
+      "source_form": "心配",
+      "variants": [
+        "心配"
+      ],
+      "reading": "しんぱい",
+      "reading_variants": [
+        "しんぱい"
+      ],
+      "romaji": "shinpai",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "担心；不安",
+      "kanji_readings": [
+        {
+          "form": "心配",
+          "reading": "しんぱい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "母が私を心配しています。",
+          "zh": "妈妈担心我。"
+        },
+        {
+          "ja": "心配しないでください。",
+          "zh": "请不要担心。"
+        },
+        {
+          "ja": "試験の結果が心配です。",
+          "zh": "担心考试结果。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-323",
+      "jlpt": "N4",
+      "headword": "新聞社",
+      "source_form": "新聞社",
+      "variants": [
+        "新聞社"
+      ],
+      "reading": "しんぶんしゃ",
+      "reading_variants": [
+        "しんぶんしゃ"
+      ],
+      "romaji": "shinbunsha",
+      "part_of_speech": "noun",
+      "meaning_zh": "报社",
+      "kanji_readings": [
+        {
+          "form": "新聞社",
+          "reading": "しんぶんしゃ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "新聞社へ行きました。",
+          "zh": "去了报社。"
+        },
+        {
+          "ja": "新聞社は駅の近くにあります。",
+          "zh": "报社在车站附近。"
+        },
+        {
+          "ja": "新聞社で友達に会いました。",
+          "zh": "在报社见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-324",
+      "jlpt": "N4",
+      "headword": "字",
+      "source_form": "字",
+      "variants": [
+        "字"
+      ],
+      "reading": "じ",
+      "reading_variants": [
+        "じ"
+      ],
+      "romaji": "ji",
+      "part_of_speech": "noun",
+      "meaning_zh": "字；文字",
+      "kanji_readings": [
+        {
+          "form": "字",
+          "reading": "じ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "字について調べました。",
+          "zh": "查了关于字的资料。"
+        },
+        {
+          "ja": "字に関する文章を読みました。",
+          "zh": "读了关于字的文章。"
+        },
+        {
+          "ja": "字について友達と話しました。",
+          "zh": "和朋友谈了关于字的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-325",
+      "jlpt": "N4",
+      "headword": "事故",
+      "source_form": "事故",
+      "variants": [
+        "事故"
+      ],
+      "reading": "じこ",
+      "reading_variants": [
+        "じこ"
+      ],
+      "romaji": "jiko",
+      "part_of_speech": "noun",
+      "meaning_zh": "事故",
+      "kanji_readings": [
+        {
+          "form": "事故",
+          "reading": "じこ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "事故について友達と話しました。",
+          "zh": "和朋友谈了关于事故的事。"
+        },
+        {
+          "ja": "事故に関する説明を読みました。",
+          "zh": "读了关于事故的说明。"
+        },
+        {
+          "ja": "事故についてもっと知りたいです。",
+          "zh": "想更多了解事故。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-326",
+      "jlpt": "N4",
+      "headword": "地震",
+      "source_form": "地震",
+      "variants": [
+        "地震"
+      ],
+      "reading": "じしん",
+      "reading_variants": [
+        "じしん"
+      ],
+      "romaji": "jishin",
+      "part_of_speech": "noun",
+      "meaning_zh": "地震",
+      "kanji_readings": [
+        {
+          "form": "地震",
+          "reading": "じしん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "地震について調べました。",
+          "zh": "查了关于地震的资料。"
+        },
+        {
+          "ja": "地震に関する文章を読みました。",
+          "zh": "读了关于地震的文章。"
+        },
+        {
+          "ja": "地震について友達と話しました。",
+          "zh": "和朋友谈了关于地震的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-327",
+      "jlpt": "N4",
+      "headword": "時代",
+      "source_form": "時代",
+      "variants": [
+        "時代"
+      ],
+      "reading": "じだい",
+      "reading_variants": [
+        "じだい"
+      ],
+      "romaji": "jidai",
+      "part_of_speech": "noun",
+      "meaning_zh": "时代",
+      "kanji_readings": [
+        {
+          "form": "時代",
+          "reading": "じだい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "時代に友達と会います。",
+          "zh": "时代和朋友见面。"
+        },
+        {
+          "ja": "時代は少し忙しいです。",
+          "zh": "时代有点忙。"
+        },
+        {
+          "ja": "時代の予定を確認しました。",
+          "zh": "确认了时代的计划。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-328",
+      "jlpt": "N4",
+      "headword": "辞典",
+      "source_form": "辞典",
+      "variants": [
+        "辞典"
+      ],
+      "reading": "じてん",
+      "reading_variants": [
+        "じてん"
+      ],
+      "romaji": "jiten",
+      "part_of_speech": "noun",
+      "meaning_zh": "词典；辞典",
+      "kanji_readings": [
+        {
+          "form": "辞典",
+          "reading": "じてん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "辞典を見ました。",
+          "zh": "看到了词典。"
+        },
+        {
+          "ja": "辞典を確認しました。",
+          "zh": "确认了词典。"
+        },
+        {
+          "ja": "辞典について友達と話しました。",
+          "zh": "和朋友谈了关于词典的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-329",
+      "jlpt": "N4",
+      "headword": "自動",
+      "source_form": "自動",
+      "variants": [
+        "自動"
+      ],
+      "reading": "じどう",
+      "reading_variants": [
+        "じどう"
+      ],
+      "romaji": "jidou",
+      "part_of_speech": "noun/prefix",
+      "meaning_zh": "自动",
+      "kanji_readings": [
+        {
+          "form": "自動",
+          "reading": "じどう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "自動について友達と話しました。",
+          "zh": "和朋友谈了关于自动的事。"
+        },
+        {
+          "ja": "自動に関する説明を読みました。",
+          "zh": "读了关于自动的说明。"
+        },
+        {
+          "ja": "自動についてもっと知りたいです。",
+          "zh": "想更多了解自动。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-330",
+      "jlpt": "N4",
+      "headword": "事務所",
+      "source_form": "事務所",
+      "variants": [
+        "事務所"
+      ],
+      "reading": "じむしょ",
+      "reading_variants": [
+        "じむしょ"
+      ],
+      "romaji": "jimusho",
+      "part_of_speech": "noun",
+      "meaning_zh": "办公室；事务所",
+      "kanji_readings": [
+        {
+          "form": "事務所",
+          "reading": "じむしょ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "事務所へ行きました。",
+          "zh": "去了办公室。"
+        },
+        {
+          "ja": "事務所は駅の近くにあります。",
+          "zh": "办公室在车站附近。"
+        },
+        {
+          "ja": "事務所で友達に会いました。",
+          "zh": "在办公室见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-331",
+      "jlpt": "N4",
+      "headword": "邪魔",
+      "source_form": "邪魔; じゃま",
+      "variants": [
+        "邪魔",
+        "じゃま"
+      ],
+      "reading": "じゃま",
+      "reading_variants": [
+        "じゃま"
+      ],
+      "romaji": "jama",
+      "part_of_speech": "na-adjective/noun",
+      "meaning_zh": "妨碍；打扰",
+      "kanji_readings": [
+        {
+          "form": "邪魔",
+          "reading": "じゃま"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "ここに荷物を置くと邪魔です。",
+          "zh": "把行李放这里会碍事。"
+        },
+        {
+          "ja": "勉強の邪魔をしないでください。",
+          "zh": "请不要打扰学习。"
+        },
+        {
+          "ja": "邪魔な物を片付けました。",
+          "zh": "收拾了碍事的东西。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-332",
+      "jlpt": "N4",
+      "headword": "住所",
+      "source_form": "住所",
+      "variants": [
+        "住所"
+      ],
+      "reading": "じゅうしょ",
+      "reading_variants": [
+        "じゅうしょ"
+      ],
+      "romaji": "juusho",
+      "part_of_speech": "noun",
+      "meaning_zh": "地址；住址",
+      "kanji_readings": [
+        {
+          "form": "住所",
+          "reading": "じゅうしょ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "住所について友達と話しました。",
+          "zh": "和朋友谈了关于地址的事。"
+        },
+        {
+          "ja": "住所に関する説明を読みました。",
+          "zh": "读了关于地址的说明。"
+        },
+        {
+          "ja": "住所についてもっと知りたいです。",
+          "zh": "想更多了解地址。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-333",
+      "jlpt": "N4",
+      "headword": "柔道",
+      "source_form": "柔道",
+      "variants": [
+        "柔道"
+      ],
+      "reading": "じゅうどう",
+      "reading_variants": [
+        "じゅうどう"
+      ],
+      "romaji": "juudou",
+      "part_of_speech": "noun",
+      "meaning_zh": "柔道",
+      "kanji_readings": [
+        {
+          "form": "柔道",
+          "reading": "じゅうどう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "柔道があります。",
+          "zh": "有柔道。"
+        },
+        {
+          "ja": "柔道の予定を確認しました。",
+          "zh": "确认了柔道的安排。"
+        },
+        {
+          "ja": "柔道について先生に聞きました。",
+          "zh": "向老师询问了柔道。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-334",
+      "jlpt": "N4",
+      "headword": "十分",
+      "source_form": "十分; 充分",
+      "variants": [
+        "十分",
+        "充分"
+      ],
+      "reading": "じゅうぶん",
+      "reading_variants": [
+        "じゅうぶん"
+      ],
+      "romaji": "juubun",
+      "part_of_speech": "na-adjective/adverb",
+      "meaning_zh": "充分；足够",
+      "kanji_readings": [
+        {
+          "form": "十分",
+          "reading": "じゅうぶん"
+        },
+        {
+          "form": "充分",
+          "reading": "じゅうぶん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "時間は十分あります。",
+          "zh": "时间很充足。"
+        },
+        {
+          "ja": "説明は十分分かりました。",
+          "zh": "说明已经充分明白了。"
+        },
+        {
+          "ja": "十分気をつけてください。",
+          "zh": "请充分注意。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-335",
+      "jlpt": "N4",
+      "headword": "十分に",
+      "source_form": "十分に",
+      "variants": [
+        "十分に"
+      ],
+      "reading": "じゅうぶんに",
+      "reading_variants": [
+        "じゅうぶんに"
+      ],
+      "romaji": "juubunni",
+      "part_of_speech": "adverb",
+      "meaning_zh": "充分地；足够地",
+      "kanji_readings": [
+        {
+          "form": "十分に",
+          "reading": "じゅうぶんに"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "十分に休んでください。",
+          "zh": "请充分休息。"
+        },
+        {
+          "ja": "準備は十分にできています。",
+          "zh": "准备已经充分做好了。"
+        },
+        {
+          "ja": "説明を十分に理解しました。",
+          "zh": "充分理解了说明。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-336",
+      "jlpt": "N4",
+      "headword": "順番",
+      "source_form": "順番",
+      "variants": [
+        "順番"
+      ],
+      "reading": "じゅんばん",
+      "reading_variants": [
+        "じゅんばん"
+      ],
+      "romaji": "junban",
+      "part_of_speech": "noun",
+      "meaning_zh": "顺序；轮流",
+      "kanji_readings": [
+        {
+          "form": "順番",
+          "reading": "じゅんばん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "順番について友達と話しました。",
+          "zh": "和朋友谈了关于顺序的事。"
+        },
+        {
+          "ja": "順番に関する説明を読みました。",
+          "zh": "读了关于顺序的说明。"
+        },
+        {
+          "ja": "順番についてもっと知りたいです。",
+          "zh": "想更多了解顺序。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-337",
+      "jlpt": "N4",
+      "headword": "準備",
+      "source_form": "準備",
+      "variants": [
+        "準備"
+      ],
+      "reading": "じゅんび",
+      "reading_variants": [
+        "じゅんび"
+      ],
+      "romaji": "junbi",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "准备",
+      "kanji_readings": [
+        {
+          "form": "準備",
+          "reading": "じゅんび"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "旅行の準備をしています。",
+          "zh": "正在准备旅行。"
+        },
+        {
+          "ja": "会議の資料を準備しました。",
+          "zh": "准备了会议资料。"
+        },
+        {
+          "ja": "準備ができたら出発しましょう。",
+          "zh": "准备好了就出发吧。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-338",
+      "jlpt": "N4",
+      "headword": "自由",
+      "source_form": "自由",
+      "variants": [
+        "自由"
+      ],
+      "reading": "じゆう",
+      "reading_variants": [
+        "じゆう"
+      ],
+      "romaji": "jiyuu",
+      "part_of_speech": "na-adjective/noun",
+      "meaning_zh": "自由",
+      "kanji_readings": [
+        {
+          "form": "自由",
+          "reading": "じゆう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "今日は自由に見学できます。",
+          "zh": "今天可以自由参观。"
+        },
+        {
+          "ja": "自由な時間がほしいです。",
+          "zh": "想要自由时间。"
+        },
+        {
+          "ja": "ここでは自由に写真を撮れます。",
+          "zh": "这里可以自由拍照。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-339",
+      "jlpt": "N4",
+      "headword": "自由席",
+      "source_form": "自由席",
+      "variants": [
+        "自由席"
+      ],
+      "reading": "じゆうせき",
+      "reading_variants": [
+        "じゆうせき"
+      ],
+      "romaji": "jiyuuseki",
+      "part_of_speech": "noun",
+      "meaning_zh": "自由席；非指定席",
+      "kanji_readings": [
+        {
+          "form": "自由席",
+          "reading": "じゆうせき"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "自由席に座りました。",
+          "zh": "坐了自由席。"
+        },
+        {
+          "ja": "自由席は混んでいました。",
+          "zh": "自由席很拥挤。"
+        },
+        {
+          "ja": "指定席がないので自由席に乗ります。",
+          "zh": "没有指定席，所以坐自由席。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-340",
+      "jlpt": "N4",
+      "headword": "女性",
+      "source_form": "女性",
+      "variants": [
+        "女性"
+      ],
+      "reading": "じょせい",
+      "reading_variants": [
+        "じょせい"
+      ],
+      "romaji": "josei",
+      "part_of_speech": "noun",
+      "meaning_zh": "女性",
+      "kanji_readings": [
+        {
+          "form": "女性",
+          "reading": "じょせい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "女性に相談しました。",
+          "zh": "和女性商量了。"
+        },
+        {
+          "ja": "女性と少し話しました。",
+          "zh": "和女性稍微聊了一下。"
+        },
+        {
+          "ja": "女性が駅で待っています。",
+          "zh": "女性在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-341",
+      "jlpt": "N4",
+      "headword": "人口",
+      "source_form": "人口",
+      "variants": [
+        "人口"
+      ],
+      "reading": "じんこう",
+      "reading_variants": [
+        "じんこう"
+      ],
+      "romaji": "jinkou",
+      "part_of_speech": "noun",
+      "meaning_zh": "人口",
+      "kanji_readings": [
+        {
+          "form": "人口",
+          "reading": "じんこう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "人口について友達と話しました。",
+          "zh": "和朋友谈了关于人口的事。"
+        },
+        {
+          "ja": "人口に関する説明を読みました。",
+          "zh": "读了关于人口的说明。"
+        },
+        {
+          "ja": "人口についてもっと知りたいです。",
+          "zh": "想更多了解人口。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-342",
+      "jlpt": "N4",
+      "headword": "人口が多い",
+      "source_form": "人口が多い",
+      "variants": [
+        "人口が多い"
+      ],
+      "reading": "じんこうがおおい",
+      "reading_variants": [
+        "じんこうがおおい"
+      ],
+      "romaji": "jinkougaooi",
+      "part_of_speech": "expression",
+      "meaning_zh": "人口多",
+      "kanji_readings": [
+        {
+          "form": "人口が多い",
+          "reading": "じんこうがおおい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "東京は人口が多いです。",
+          "zh": "东京人口很多。"
+        },
+        {
+          "ja": "人口が多い町は交通も便利です。",
+          "zh": "人口多的城市交通也方便。"
+        },
+        {
+          "ja": "この国は人口が多いことで有名です。",
+          "zh": "这个国家以人口多而闻名。"
+        }
+      ],
+      "note_zh": "常用搭配。"
+    },
+    {
+      "id": "n4-343",
+      "jlpt": "N4",
+      "headword": "神社",
+      "source_form": "神社",
+      "variants": [
+        "神社"
+      ],
+      "reading": "じんじゃ",
+      "reading_variants": [
+        "じんじゃ"
+      ],
+      "romaji": "jinja",
+      "part_of_speech": "noun",
+      "meaning_zh": "神社",
+      "kanji_readings": [
+        {
+          "form": "神社",
+          "reading": "じんじゃ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "神社へ行きました。",
+          "zh": "去了神社。"
+        },
+        {
+          "ja": "神社は駅の近くにあります。",
+          "zh": "神社在车站附近。"
+        },
+        {
+          "ja": "神社で友達に会いました。",
+          "zh": "在神社见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-344",
+      "jlpt": "N4",
+      "headword": "水泳",
+      "source_form": "水泳",
+      "variants": [
+        "水泳"
+      ],
+      "reading": "すいえい",
+      "reading_variants": [
+        "すいえい"
+      ],
+      "romaji": "suiei",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "游泳",
+      "kanji_readings": [
+        {
+          "form": "水泳",
+          "reading": "すいえい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "子供のころ水泳を習いました。",
+          "zh": "小时候学过游泳。"
+        },
+        {
+          "ja": "水泳は体にいい運動です。",
+          "zh": "游泳是对身体好的运动。"
+        },
+        {
+          "ja": "週末にプールで水泳をします。",
+          "zh": "周末在游泳池游泳。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-345",
+      "jlpt": "N4",
+      "headword": "水道",
+      "source_form": "水道",
+      "variants": [
+        "水道"
+      ],
+      "reading": "すいどう",
+      "reading_variants": [
+        "すいどう"
+      ],
+      "romaji": "suidou",
+      "part_of_speech": "noun",
+      "meaning_zh": "自来水；水道",
+      "kanji_readings": [
+        {
+          "form": "水道",
+          "reading": "すいどう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "水道について友達と話しました。",
+          "zh": "和朋友谈了关于自来水的事。"
+        },
+        {
+          "ja": "水道に関する説明を読みました。",
+          "zh": "读了关于自来水的说明。"
+        },
+        {
+          "ja": "水道についてもっと知りたいです。",
+          "zh": "想更多了解自来水。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-346",
+      "jlpt": "N4",
+      "headword": "数学",
+      "source_form": "数学",
+      "variants": [
+        "数学"
+      ],
+      "reading": "すうがく",
+      "reading_variants": [
+        "すうがく"
+      ],
+      "romaji": "suugaku",
+      "part_of_speech": "noun",
+      "meaning_zh": "数学",
+      "kanji_readings": [
+        {
+          "form": "数学",
+          "reading": "すうがく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "数学について友達と話しました。",
+          "zh": "和朋友谈了关于数学的事。"
+        },
+        {
+          "ja": "数学に関する説明を読みました。",
+          "zh": "读了关于数学的说明。"
+        },
+        {
+          "ja": "数学についてもっと知りたいです。",
+          "zh": "想更多了解数学。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-347",
+      "jlpt": "N4",
+      "headword": "すぐに",
+      "source_form": "すぐに",
+      "variants": [
+        "すぐに"
+      ],
+      "reading": "すぐに",
+      "reading_variants": [
+        "すぐに"
+      ],
+      "romaji": "suguni",
+      "part_of_speech": "adverb",
+      "meaning_zh": "马上；立刻",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "すぐに戻ります。",
+          "zh": "马上回来。"
+        },
+        {
+          "ja": "着いたらすぐに連絡してください。",
+          "zh": "到了请马上联系。"
+        },
+        {
+          "ja": "薬を飲んだらすぐに楽になりました。",
+          "zh": "吃药后马上舒服了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-348",
+      "jlpt": "N4",
+      "headword": "すっかり",
+      "source_form": "すっかり",
+      "variants": [
+        "すっかり"
+      ],
+      "reading": "すっかり",
+      "reading_variants": [
+        "すっかり"
+      ],
+      "romaji": "sukkari",
+      "part_of_speech": "adverb",
+      "meaning_zh": "完全；彻底",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "宿題をすっかり忘れていました。",
+          "zh": "把作业完全忘了。"
+        },
+        {
+          "ja": "町の景色がすっかり変わりました。",
+          "zh": "城市景色完全变了。"
+        },
+        {
+          "ja": "風邪はすっかり治りました。",
+          "zh": "感冒完全好了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-349",
+      "jlpt": "N4",
+      "headword": "すっと",
+      "source_form": "すっと",
+      "variants": [
+        "すっと"
+      ],
+      "reading": "すっと",
+      "reading_variants": [
+        "すっと"
+      ],
+      "romaji": "sutto",
+      "part_of_speech": "adverb",
+      "meaning_zh": "笔直地；一下子；迅速地",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "彼はすっと立ち上がりました。",
+          "zh": "他一下子站了起来。"
+        },
+        {
+          "ja": "背中をすっと伸ばしてください。",
+          "zh": "请把背挺直。"
+        },
+        {
+          "ja": "ドアがすっと開きました。",
+          "zh": "门一下子开了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-350",
+      "jlpt": "N4",
+      "headword": "捨てる",
+      "source_form": "捨てる",
+      "variants": [
+        "捨てる"
+      ],
+      "reading": "すてる",
+      "reading_variants": [
+        "すてる"
+      ],
+      "romaji": "suteru",
+      "part_of_speech": "verb",
+      "meaning_zh": "扔掉；抛弃",
+      "kanji_readings": [
+        {
+          "form": "捨てる",
+          "reading": "すてる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "古い雑誌を捨てました。",
+          "zh": "扔掉了旧杂志。"
+        },
+        {
+          "ja": "ごみはここに捨ててください。",
+          "zh": "垃圾请扔在这里。"
+        },
+        {
+          "ja": "まだ使える物を捨てるのはもったいないです。",
+          "zh": "把还能用的东西扔掉很可惜。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-351",
+      "jlpt": "N4",
+      "headword": "砂浜",
+      "source_form": "砂浜",
+      "variants": [
+        "砂浜"
+      ],
+      "reading": "すなはま",
+      "reading_variants": [
+        "すなはま"
+      ],
+      "romaji": "sunahama",
+      "part_of_speech": "noun",
+      "meaning_zh": "沙滩",
+      "kanji_readings": [
+        {
+          "form": "砂浜",
+          "reading": "すなはま"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "砂浜へ行きました。",
+          "zh": "去了沙滩。"
+        },
+        {
+          "ja": "砂浜は駅の近くにあります。",
+          "zh": "沙滩在车站附近。"
+        },
+        {
+          "ja": "砂浜で友達に会いました。",
+          "zh": "在沙滩见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-352",
+      "jlpt": "N4",
+      "headword": "すばらしい",
+      "source_form": "すばらしい",
+      "variants": [
+        "すばらしい"
+      ],
+      "reading": "すばらしい",
+      "reading_variants": [
+        "すばらしい"
+      ],
+      "romaji": "subarashii",
+      "part_of_speech": "i-adjective",
+      "meaning_zh": "极好的；精彩的",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "すばらしい発表でした。",
+          "zh": "是很精彩的发表。"
+        },
+        {
+          "ja": "この景色はすばらしいです。",
+          "zh": "这个景色很棒。"
+        },
+        {
+          "ja": "すばらしい経験になりました。",
+          "zh": "成了很棒的经历。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-353",
+      "jlpt": "N4",
+      "headword": "すべる",
+      "source_form": "すべる; 滑る",
+      "variants": [
+        "すべる",
+        "滑る"
+      ],
+      "reading": "すべる",
+      "reading_variants": [
+        "すべる"
+      ],
+      "romaji": "suberu",
+      "part_of_speech": "verb",
+      "meaning_zh": "滑；滑倒",
+      "kanji_readings": [
+        {
+          "form": "滑る",
+          "reading": "すべる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "雨で道がすべります。",
+          "zh": "因为下雨路滑。"
+        },
+        {
+          "ja": "床がぬれていてすべりました。",
+          "zh": "地板湿，滑倒了。"
+        },
+        {
+          "ja": "階段ですべらないように気をつけてください。",
+          "zh": "请小心不要在楼梯上滑倒。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-354",
+      "jlpt": "N4",
+      "headword": "隅",
+      "source_form": "隅",
+      "variants": [
+        "隅"
+      ],
+      "reading": "すみ",
+      "reading_variants": [
+        "すみ"
+      ],
+      "romaji": "sumi",
+      "part_of_speech": "noun",
+      "meaning_zh": "角落",
+      "kanji_readings": [
+        {
+          "form": "隅",
+          "reading": "すみ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "隅について調べました。",
+          "zh": "查了关于角落的资料。"
+        },
+        {
+          "ja": "隅に関する文章を読みました。",
+          "zh": "读了关于角落的文章。"
+        },
+        {
+          "ja": "隅について友達と話しました。",
+          "zh": "和朋友谈了关于角落的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-355",
+      "jlpt": "N4",
+      "headword": "済む",
+      "source_form": "済む",
+      "variants": [
+        "済む"
+      ],
+      "reading": "すむ",
+      "reading_variants": [
+        "すむ"
+      ],
+      "romaji": "sumu",
+      "part_of_speech": "verb",
+      "meaning_zh": "结束；解决；足够",
+      "kanji_readings": [
+        {
+          "form": "済む",
+          "reading": "すむ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "宿題はもう済みました。",
+          "zh": "作业已经完成了。"
+        },
+        {
+          "ja": "会議は五時に済みました。",
+          "zh": "会议五点结束了。"
+        },
+        {
+          "ja": "これで用事が済みました。",
+          "zh": "这样事情就办完了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-356",
+      "jlpt": "N4",
+      "headword": "すり",
+      "source_form": "すり",
+      "variants": [
+        "すり"
+      ],
+      "reading": "すり",
+      "reading_variants": [
+        "すり"
+      ],
+      "romaji": "suri",
+      "part_of_speech": "noun",
+      "meaning_zh": "扒手",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "すりに相談しました。",
+          "zh": "和扒手商量了。"
+        },
+        {
+          "ja": "すりと少し話しました。",
+          "zh": "和扒手稍微聊了一下。"
+        },
+        {
+          "ja": "すりが駅で待っています。",
+          "zh": "扒手在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-357",
+      "jlpt": "N4",
+      "headword": "すりに遭う",
+      "source_form": "すりに遭う",
+      "variants": [
+        "すりに遭う"
+      ],
+      "reading": "すりにあう",
+      "reading_variants": [
+        "すりにあう"
+      ],
+      "romaji": "suriniau",
+      "part_of_speech": "expression",
+      "meaning_zh": "遇到扒手；被扒窃",
+      "kanji_readings": [
+        {
+          "form": "すりに遭う",
+          "reading": "すりにあう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "旅行中にすりに遭いました。",
+          "zh": "旅行中遇到了扒手。"
+        },
+        {
+          "ja": "人が多い場所ではすりに遭わないように気をつけます。",
+          "zh": "在人多的地方小心不要被扒窃。"
+        },
+        {
+          "ja": "駅ですりに遭って財布をなくしました。",
+          "zh": "在车站被扒手偷了，丢了钱包。"
+        }
+      ],
+      "note_zh": "常用搭配。"
+    },
+    {
+      "id": "n4-358",
+      "jlpt": "N4",
+      "headword": "すると",
+      "source_form": "すると",
+      "variants": [
+        "すると"
+      ],
+      "reading": "すると",
+      "reading_variants": [
+        "すると"
+      ],
+      "romaji": "suruto",
+      "part_of_speech": "conjunction",
+      "meaning_zh": "于是；然后",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "ボタンを押しました。すると、ドアが開きました。",
+          "zh": "按了按钮。于是门开了。"
+        },
+        {
+          "ja": "外に出ました。すると、雨が降り出しました。",
+          "zh": "出了门。结果下起雨了。"
+        },
+        {
+          "ja": "名前を呼びました。すると、猫が来ました。",
+          "zh": "叫了名字。于是猫来了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-359",
+      "jlpt": "N4",
+      "headword": "ずいぶん",
+      "source_form": "ずいぶん",
+      "variants": [
+        "ずいぶん"
+      ],
+      "reading": "ずいぶん",
+      "reading_variants": [
+        "ずいぶん"
+      ],
+      "romaji": "zuibun",
+      "part_of_speech": "adverb",
+      "meaning_zh": "相当；非常；很",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "今日はずいぶん寒いですね。",
+          "zh": "今天相当冷啊。"
+        },
+        {
+          "ja": "駅前はずいぶん変わりました。",
+          "zh": "车站前变化很大。"
+        },
+        {
+          "ja": "ずいぶん長く待ちました。",
+          "zh": "等了相当久。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-360",
+      "jlpt": "N4",
+      "headword": "生活",
+      "source_form": "生活",
+      "variants": [
+        "生活"
+      ],
+      "reading": "せいかつ",
+      "reading_variants": [
+        "せいかつ"
+      ],
+      "romaji": "seikatsu",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "生活",
+      "kanji_readings": [
+        {
+          "form": "生活",
+          "reading": "せいかつ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "東京で一人で生活しています。",
+          "zh": "在东京独自生活。"
+        },
+        {
+          "ja": "日本の生活に慣れました。",
+          "zh": "习惯了日本的生活。"
+        },
+        {
+          "ja": "健康な生活をしたいです。",
+          "zh": "想过健康的生活。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-361",
+      "jlpt": "N4",
+      "headword": "生産",
+      "source_form": "生産",
+      "variants": [
+        "生産"
+      ],
+      "reading": "せいさん",
+      "reading_variants": [
+        "せいさん"
+      ],
+      "romaji": "seisan",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "生产",
+      "kanji_readings": [
+        {
+          "form": "生産",
+          "reading": "せいさん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この工場では車を生産しています。",
+          "zh": "这家工厂生产汽车。"
+        },
+        {
+          "ja": "米の生産が増えました。",
+          "zh": "大米产量增加了。"
+        },
+        {
+          "ja": "生産の仕事をしています。",
+          "zh": "从事生产工作。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-362",
+      "jlpt": "N4",
+      "headword": "政治",
+      "source_form": "政治",
+      "variants": [
+        "政治"
+      ],
+      "reading": "せいじ",
+      "reading_variants": [
+        "せいじ"
+      ],
+      "romaji": "seiji",
+      "part_of_speech": "noun",
+      "meaning_zh": "政治",
+      "kanji_readings": [
+        {
+          "form": "政治",
+          "reading": "せいじ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "政治について友達と話しました。",
+          "zh": "和朋友谈了关于政治的事。"
+        },
+        {
+          "ja": "政治に関する説明を読みました。",
+          "zh": "读了关于政治的说明。"
+        },
+        {
+          "ja": "政治についてもっと知りたいです。",
+          "zh": "想更多了解政治。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-363",
+      "jlpt": "N4",
+      "headword": "成人",
+      "source_form": "成人",
+      "variants": [
+        "成人"
+      ],
+      "reading": "せいじん",
+      "reading_variants": [
+        "せいじん"
+      ],
+      "romaji": "seijin",
+      "part_of_speech": "noun",
+      "meaning_zh": "成年人",
+      "kanji_readings": [
+        {
+          "form": "成人",
+          "reading": "せいじん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "成人に相談しました。",
+          "zh": "和成年人商量了。"
+        },
+        {
+          "ja": "成人と少し話しました。",
+          "zh": "和成年人稍微聊了一下。"
+        },
+        {
+          "ja": "成人が駅で待っています。",
+          "zh": "成年人在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-364",
+      "jlpt": "N4",
+      "headword": "西洋",
+      "source_form": "西洋",
+      "variants": [
+        "西洋"
+      ],
+      "reading": "せいよう",
+      "reading_variants": [
+        "せいよう"
+      ],
+      "romaji": "seiyou",
+      "part_of_speech": "noun",
+      "meaning_zh": "西方；西洋",
+      "kanji_readings": [
+        {
+          "form": "西洋",
+          "reading": "せいよう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "西洋について友達と話しました。",
+          "zh": "和朋友谈了关于西方的事。"
+        },
+        {
+          "ja": "西洋に関する説明を読みました。",
+          "zh": "读了关于西方的说明。"
+        },
+        {
+          "ja": "西洋についてもっと知りたいです。",
+          "zh": "想更多了解西方。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-365",
+      "jlpt": "N4",
+      "headword": "世界",
+      "source_form": "世界",
+      "variants": [
+        "世界"
+      ],
+      "reading": "せかい",
+      "reading_variants": [
+        "せかい"
+      ],
+      "romaji": "sekai",
+      "part_of_speech": "noun",
+      "meaning_zh": "世界",
+      "kanji_readings": [
+        {
+          "form": "世界",
+          "reading": "せかい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "世界について友達と話しました。",
+          "zh": "和朋友谈了关于世界的事。"
+        },
+        {
+          "ja": "世界に関する説明を読みました。",
+          "zh": "读了关于世界的说明。"
+        },
+        {
+          "ja": "世界についてもっと知りたいです。",
+          "zh": "想更多了解世界。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-366",
+      "jlpt": "N4",
+      "headword": "席",
+      "source_form": "席",
+      "variants": [
+        "席"
+      ],
+      "reading": "せき",
+      "reading_variants": [
+        "せき"
+      ],
+      "romaji": "seki",
+      "part_of_speech": "noun",
+      "meaning_zh": "座位；席位",
+      "kanji_readings": [
+        {
+          "form": "席",
+          "reading": "せき"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "席を見ました。",
+          "zh": "看到了座位。"
+        },
+        {
+          "ja": "席を確認しました。",
+          "zh": "确认了座位。"
+        },
+        {
+          "ja": "席について友達と話しました。",
+          "zh": "和朋友谈了关于座位的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-367",
+      "jlpt": "N4",
+      "headword": "説明",
+      "source_form": "説明",
+      "variants": [
+        "説明"
+      ],
+      "reading": "せつめい",
+      "reading_variants": [
+        "せつめい"
+      ],
+      "romaji": "setsumei",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "说明；解释",
+      "kanji_readings": [
+        {
+          "form": "説明",
+          "reading": "せつめい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "先生が文法を説明しました。",
+          "zh": "老师说明了语法。"
+        },
+        {
+          "ja": "もう一度説明してください。",
+          "zh": "请再说明一次。"
+        },
+        {
+          "ja": "説明を聞いて分かりました。",
+          "zh": "听了说明后明白了。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-368",
+      "jlpt": "N4",
+      "headword": "説明書",
+      "source_form": "説明書",
+      "variants": [
+        "説明書"
+      ],
+      "reading": "せつめいしょ",
+      "reading_variants": [
+        "せつめいしょ"
+      ],
+      "romaji": "setsumeisho",
+      "part_of_speech": "noun",
+      "meaning_zh": "说明书",
+      "kanji_readings": [
+        {
+          "form": "説明書",
+          "reading": "せつめいしょ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "説明書を読んでから使ってください。",
+          "zh": "请读说明书后再使用。"
+        },
+        {
+          "ja": "説明書が箱の中に入っています。",
+          "zh": "说明书在盒子里。"
+        },
+        {
+          "ja": "説明書を見ても分かりませんでした。",
+          "zh": "看了说明书也没明白。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-369",
+      "jlpt": "N4",
+      "headword": "背中",
+      "source_form": "背中",
+      "variants": [
+        "背中"
+      ],
+      "reading": "せなか",
+      "reading_variants": [
+        "せなか"
+      ],
+      "romaji": "senaka",
+      "part_of_speech": "noun",
+      "meaning_zh": "背；后背",
+      "kanji_readings": [
+        {
+          "form": "背中",
+          "reading": "せなか"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "背中を見ました。",
+          "zh": "看到了背。"
+        },
+        {
+          "ja": "背中を確認しました。",
+          "zh": "确认了背。"
+        },
+        {
+          "ja": "背中について友達と話しました。",
+          "zh": "和朋友谈了关于背的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-370",
+      "jlpt": "N4",
+      "headword": "世話",
+      "source_form": "世話",
+      "variants": [
+        "世話"
+      ],
+      "reading": "せわ",
+      "reading_variants": [
+        "せわ"
+      ],
+      "romaji": "sewa",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "照顾；关照",
+      "kanji_readings": [
+        {
+          "form": "世話",
+          "reading": "せわ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "祖母の世話をしています。",
+          "zh": "在照顾祖母。"
+        },
+        {
+          "ja": "旅行中、友達に世話になりました。",
+          "zh": "旅行中受朋友照顾了。"
+        },
+        {
+          "ja": "犬の世話は毎日必要です。",
+          "zh": "每天都需要照顾狗。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-371",
+      "jlpt": "N4",
+      "headword": "線",
+      "source_form": "線",
+      "variants": [
+        "線"
+      ],
+      "reading": "せん",
+      "reading_variants": [
+        "せん"
+      ],
+      "romaji": "sen",
+      "part_of_speech": "noun",
+      "meaning_zh": "线；路线",
+      "kanji_readings": [
+        {
+          "form": "線",
+          "reading": "せん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "線を見ました。",
+          "zh": "看到了线。"
+        },
+        {
+          "ja": "線を確認しました。",
+          "zh": "确认了线。"
+        },
+        {
+          "ja": "線について友達と話しました。",
+          "zh": "和朋友谈了关于线的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-372",
+      "jlpt": "N4",
+      "headword": "戦争",
+      "source_form": "戦争",
+      "variants": [
+        "戦争"
+      ],
+      "reading": "せんそう",
+      "reading_variants": [
+        "せんそう"
+      ],
+      "romaji": "sensou",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "战争",
+      "kanji_readings": [
+        {
+          "form": "戦争",
+          "reading": "せんそう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "戦争のない世界を願っています。",
+          "zh": "希望没有战争的世界。"
+        },
+        {
+          "ja": "祖父から戦争の話を聞きました。",
+          "zh": "从祖父那里听了战争的故事。"
+        },
+        {
+          "ja": "戦争で多くの人が苦しみました。",
+          "zh": "战争中很多人受苦了。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-373",
+      "jlpt": "N4",
+      "headword": "洗濯機",
+      "source_form": "洗濯機",
+      "variants": [
+        "洗濯機"
+      ],
+      "reading": "せんたくき",
+      "reading_variants": [
+        "せんたくき"
+      ],
+      "romaji": "sentakuki",
+      "part_of_speech": "noun",
+      "meaning_zh": "洗衣机",
+      "kanji_readings": [
+        {
+          "form": "洗濯機",
+          "reading": "せんたくき"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "洗濯機を見ました。",
+          "zh": "看到了洗衣机。"
+        },
+        {
+          "ja": "洗濯機を確認しました。",
+          "zh": "确认了洗衣机。"
+        },
+        {
+          "ja": "洗濯機について友達と話しました。",
+          "zh": "和朋友谈了关于洗衣机的事。"
+        }
+      ],
+      "note_zh": "N5/N4 边界词，扩展保留。"
+    },
+    {
+      "id": "n4-374",
+      "jlpt": "N4",
+      "headword": "先輩",
+      "source_form": "先輩",
+      "variants": [
+        "先輩"
+      ],
+      "reading": "せんぱい",
+      "reading_variants": [
+        "せんぱい"
+      ],
+      "romaji": "senpai",
+      "part_of_speech": "noun",
+      "meaning_zh": "前辈",
+      "kanji_readings": [
+        {
+          "form": "先輩",
+          "reading": "せんぱい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "先輩に相談しました。",
+          "zh": "和前辈商量了。"
+        },
+        {
+          "ja": "先輩と少し話しました。",
+          "zh": "和前辈稍微聊了一下。"
+        },
+        {
+          "ja": "先輩が駅で待っています。",
+          "zh": "前辈在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-375",
+      "jlpt": "N4",
+      "headword": "ぜひ",
+      "source_form": "ぜひ",
+      "variants": [
+        "ぜひ"
+      ],
+      "reading": "ぜひ",
+      "reading_variants": [
+        "ぜひ"
+      ],
+      "romaji": "zehi",
+      "part_of_speech": "adverb",
+      "meaning_zh": "一定；务必",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "ぜひ遊びに来てください。",
+          "zh": "请一定来玩。"
+        },
+        {
+          "ja": "その映画はぜひ見たいです。",
+          "zh": "那部电影一定想看。"
+        },
+        {
+          "ja": "機会があれば、ぜひ参加します。",
+          "zh": "有机会的话一定参加。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-376",
+      "jlpt": "N4",
+      "headword": "ぜんぜん",
+      "source_form": "ぜんぜん",
+      "variants": [
+        "ぜんぜん"
+      ],
+      "reading": "ぜんぜん",
+      "reading_variants": [
+        "ぜんぜん"
+      ],
+      "romaji": "zenzen",
+      "part_of_speech": "adverb",
+      "meaning_zh": "完全不；根本不",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "日本語はぜんぜん難しくありません。",
+          "zh": "日语一点也不难。"
+        },
+        {
+          "ja": "今日はぜんぜん寒くないです。",
+          "zh": "今天一点也不冷。"
+        },
+        {
+          "ja": "彼の話はぜんぜん分かりませんでした。",
+          "zh": "他的话完全没听懂。"
+        }
+      ],
+      "note_zh": "常与否定呼应。"
+    },
+    {
+      "id": "n4-377",
+      "jlpt": "N4",
+      "headword": "全然",
+      "source_form": "全然",
+      "variants": [
+        "全然"
+      ],
+      "reading": "ぜんぜん",
+      "reading_variants": [
+        "ぜんぜん"
+      ],
+      "romaji": "zenzen",
+      "part_of_speech": "adverb",
+      "meaning_zh": "完全不；根本不",
+      "kanji_readings": [
+        {
+          "form": "全然",
+          "reading": "ぜんぜん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この店は全然高くありません。",
+          "zh": "这家店一点也不贵。"
+        },
+        {
+          "ja": "全然心配しなくても大丈夫です。",
+          "zh": "完全不用担心也没关系。"
+        },
+        {
+          "ja": "昨日は全然眠れませんでした。",
+          "zh": "昨天完全睡不着。"
+        }
+      ],
+      "note_zh": "通常写汉字或假名。"
+    },
+    {
+      "id": "n4-378",
+      "jlpt": "N4",
+      "headword": "そう",
+      "source_form": "そう",
+      "variants": [
+        "そう"
+      ],
+      "reading": "そう",
+      "reading_variants": [
+        "そう"
+      ],
+      "romaji": "sou",
+      "part_of_speech": "adverb/expression",
+      "meaning_zh": "那样；是的；真的",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "私もそう思います。",
+          "zh": "我也那么想。"
+        },
+        {
+          "ja": "そうしてください。",
+          "zh": "请那样做。"
+        },
+        {
+          "ja": "そう言われると安心します。",
+          "zh": "被那样说就放心了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-379",
+      "jlpt": "N4",
+      "headword": "相談",
+      "source_form": "相談",
+      "variants": [
+        "相談"
+      ],
+      "reading": "そうだん",
+      "reading_variants": [
+        "そうだん"
+      ],
+      "romaji": "soudan",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "商量；咨询",
+      "kanji_readings": [
+        {
+          "form": "相談",
+          "reading": "そうだん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "先生に進学のことを相談しました。",
+          "zh": "和老师商量了升学的事。"
+        },
+        {
+          "ja": "困った時は友達に相談します。",
+          "zh": "遇到困难时和朋友商量。"
+        },
+        {
+          "ja": "相談したいことがあります。",
+          "zh": "有想商量的事。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-380",
+      "jlpt": "N4",
+      "headword": "育てる",
+      "source_form": "育てる",
+      "variants": [
+        "育てる"
+      ],
+      "reading": "そだてる",
+      "reading_variants": [
+        "そだてる"
+      ],
+      "romaji": "sodateru",
+      "part_of_speech": "verb",
+      "meaning_zh": "养育；培养",
+      "kanji_readings": [
+        {
+          "form": "育てる",
+          "reading": "そだてる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "庭で野菜を育てています。",
+          "zh": "在院子里种菜。"
+        },
+        {
+          "ja": "子供を大切に育てます。",
+          "zh": "用心养育孩子。"
+        },
+        {
+          "ja": "新しい社員を育てる仕事です。",
+          "zh": "是培养新员工的工作。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-381",
+      "jlpt": "N4",
+      "headword": "卒業",
+      "source_form": "卒業",
+      "variants": [
+        "卒業"
+      ],
+      "reading": "そつぎょう",
+      "reading_variants": [
+        "そつぎょう"
+      ],
+      "romaji": "sotsugyou",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "毕业",
+      "kanji_readings": [
+        {
+          "form": "卒業",
+          "reading": "そつぎょう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "来年、大学を卒業します。",
+          "zh": "明年大学毕业。"
+        },
+        {
+          "ja": "卒業式で写真を撮りました。",
+          "zh": "在毕业典礼拍了照片。"
+        },
+        {
+          "ja": "高校を卒業してから働き始めました。",
+          "zh": "高中毕业后开始工作。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-382",
+      "jlpt": "N4",
+      "headword": "祖父",
+      "source_form": "祖父",
+      "variants": [
+        "祖父"
+      ],
+      "reading": "そふ",
+      "reading_variants": [
+        "そふ"
+      ],
+      "romaji": "sofu",
+      "part_of_speech": "noun",
+      "meaning_zh": "祖父；外祖父",
+      "kanji_readings": [
+        {
+          "form": "祖父",
+          "reading": "そふ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "祖父に相談しました。",
+          "zh": "和祖父商量了。"
+        },
+        {
+          "ja": "祖父と少し話しました。",
+          "zh": "和祖父稍微聊了一下。"
+        },
+        {
+          "ja": "祖父が駅で待っています。",
+          "zh": "祖父在车站等。"
+        }
+      ],
+      "note_zh": "称自己的祖父/外祖父。"
+    },
+    {
+      "id": "n4-383",
+      "jlpt": "N4",
+      "headword": "祖父母",
+      "source_form": "祖父母",
+      "variants": [
+        "祖父母"
+      ],
+      "reading": "そふぼ",
+      "reading_variants": [
+        "そふぼ"
+      ],
+      "romaji": "sofubo",
+      "part_of_speech": "noun",
+      "meaning_zh": "祖父母；外祖父母",
+      "kanji_readings": [
+        {
+          "form": "祖父母",
+          "reading": "そふぼ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "週末に祖父母の家へ行きます。",
+          "zh": "周末去祖父母家。"
+        },
+        {
+          "ja": "祖父母は田舎に住んでいます。",
+          "zh": "祖父母住在乡下。"
+        },
+        {
+          "ja": "祖父母に写真を送りました。",
+          "zh": "给祖父母寄了照片。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-384",
+      "jlpt": "N4",
+      "headword": "祖母",
+      "source_form": "祖母",
+      "variants": [
+        "祖母"
+      ],
+      "reading": "そぼ",
+      "reading_variants": [
+        "そぼ"
+      ],
+      "romaji": "sobo",
+      "part_of_speech": "noun",
+      "meaning_zh": "祖母；外祖母",
+      "kanji_readings": [
+        {
+          "form": "祖母",
+          "reading": "そぼ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "祖母に相談しました。",
+          "zh": "和祖母商量了。"
+        },
+        {
+          "ja": "祖母と少し話しました。",
+          "zh": "和祖母稍微聊了一下。"
+        },
+        {
+          "ja": "祖母が駅で待っています。",
+          "zh": "祖母在车站等。"
+        }
+      ],
+      "note_zh": "称自己的祖母/外祖母。"
+    },
+    {
+      "id": "n4-385",
+      "jlpt": "N4",
+      "headword": "それで",
+      "source_form": "それで",
+      "variants": [
+        "それで"
+      ],
+      "reading": "それで",
+      "reading_variants": [
+        "それで"
+      ],
+      "romaji": "sorede",
+      "part_of_speech": "conjunction",
+      "meaning_zh": "因此；所以；然后",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "電車が遅れました。それで、会議に遅刻しました。",
+          "zh": "电车晚点了。因此会议迟到了。"
+        },
+        {
+          "ja": "財布を忘れました。それで、家に戻りました。",
+          "zh": "忘了钱包。所以回家了。"
+        },
+        {
+          "ja": "風邪をひきました。それで、学校を休みました。",
+          "zh": "感冒了。因此请假没去学校。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-386",
+      "jlpt": "N4",
+      "headword": "それに",
+      "source_form": "それに",
+      "variants": [
+        "それに"
+      ],
+      "reading": "それに",
+      "reading_variants": [
+        "それに"
+      ],
+      "romaji": "soreni",
+      "part_of_speech": "conjunction",
+      "meaning_zh": "而且；再加上",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "この部屋は広いです。それに、駅にも近いです。",
+          "zh": "这个房间很宽敞。而且也离车站近。"
+        },
+        {
+          "ja": "この店は安いです。それに、おいしいです。",
+          "zh": "这家店便宜。而且好吃。"
+        },
+        {
+          "ja": "彼は親切です。それに、日本語も上手です。",
+          "zh": "他很亲切。而且日语也好。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-387",
+      "jlpt": "N4",
+      "headword": "それほど",
+      "source_form": "それほど",
+      "variants": [
+        "それほど"
+      ],
+      "reading": "それほど",
+      "reading_variants": [
+        "それほど"
+      ],
+      "romaji": "sorehodo",
+      "part_of_speech": "adverb",
+      "meaning_zh": "那么；那种程度",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "今日はそれほど寒くありません。",
+          "zh": "今天没那么冷。"
+        },
+        {
+          "ja": "それほど心配しなくても大丈夫です。",
+          "zh": "不用那么担心。"
+        },
+        {
+          "ja": "この仕事はそれほど難しくないです。",
+          "zh": "这项工作没那么难。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-388",
+      "jlpt": "N4",
+      "headword": "そろそろ",
+      "source_form": "そろそろ",
+      "variants": [
+        "そろそろ"
+      ],
+      "reading": "そろそろ",
+      "reading_variants": [
+        "そろそろ"
+      ],
+      "romaji": "sorosoro",
+      "part_of_speech": "adverb",
+      "meaning_zh": "差不多；该……了",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "そろそろ帰りましょう。",
+          "zh": "差不多该回去了。"
+        },
+        {
+          "ja": "そろそろ会議が始まります。",
+          "zh": "会议快开始了。"
+        },
+        {
+          "ja": "そろそろ準備をしなければなりません。",
+          "zh": "差不多必须准备了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-389",
+      "jlpt": "N4",
+      "headword": "そんな",
+      "source_form": "そんな",
+      "variants": [
+        "そんな"
+      ],
+      "reading": "そんな",
+      "reading_variants": [
+        "そんな"
+      ],
+      "romaji": "sonna",
+      "part_of_speech": "pre-noun",
+      "meaning_zh": "那样的",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "そんな話は初めて聞きました。",
+          "zh": "那样的话第一次听说。"
+        },
+        {
+          "ja": "そんなに心配しなくても大丈夫です。",
+          "zh": "不用那么担心也没关系。"
+        },
+        {
+          "ja": "そんなことを言わないでください。",
+          "zh": "请不要说那种话。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-390",
+      "jlpt": "N4",
+      "headword": "そんなこと",
+      "source_form": "そんなこと",
+      "variants": [
+        "そんなこと"
+      ],
+      "reading": "そんなこと",
+      "reading_variants": [
+        "そんなこと"
+      ],
+      "romaji": "sonnakoto",
+      "part_of_speech": "expression",
+      "meaning_zh": "那种事；那样的话",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "そんなことは言わないでください。",
+          "zh": "请不要说那种话。"
+        },
+        {
+          "ja": "そんなこと、初めて聞きました。",
+          "zh": "那种事第一次听说。"
+        },
+        {
+          "ja": "そんなことを心配しなくても大丈夫です。",
+          "zh": "不用担心那种事也没关系。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-391",
+      "jlpt": "N4",
+      "headword": "そんなに",
+      "source_form": "そんなに",
+      "variants": [
+        "そんなに"
+      ],
+      "reading": "そんなに",
+      "reading_variants": [
+        "そんなに"
+      ],
+      "romaji": "sonnani",
+      "part_of_speech": "adverb",
+      "meaning_zh": "那么；那么多",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "そんなに急がなくてもいいです。",
+          "zh": "不用那么急。"
+        },
+        {
+          "ja": "今日はそんなに暑くありません。",
+          "zh": "今天没那么热。"
+        },
+        {
+          "ja": "そんなにたくさん食べられません。",
+          "zh": "吃不了那么多。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-392",
+      "jlpt": "N4",
+      "headword": "退院",
+      "source_form": "退院",
+      "variants": [
+        "退院"
+      ],
+      "reading": "たいいん",
+      "reading_variants": [
+        "たいいん"
+      ],
+      "romaji": "taiin",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "出院",
+      "kanji_readings": [
+        {
+          "form": "退院",
+          "reading": "たいいん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "母は明日退院します。",
+          "zh": "妈妈明天出院。"
+        },
+        {
+          "ja": "退院してから家で休みました。",
+          "zh": "出院后在家休息。"
+        },
+        {
+          "ja": "退院の日が決まりました。",
+          "zh": "出院日期定下来了。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-393",
+      "jlpt": "N4",
+      "headword": "大切",
+      "source_form": "大切",
+      "variants": [
+        "大切"
+      ],
+      "reading": "たいせつ",
+      "reading_variants": [
+        "たいせつ"
+      ],
+      "romaji": "taisetsu",
+      "part_of_speech": "na-adjective/noun",
+      "meaning_zh": "重要；珍贵",
+      "kanji_readings": [
+        {
+          "form": "大切",
+          "reading": "たいせつ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "家族はとても大切です。",
+          "zh": "家人非常重要。"
+        },
+        {
+          "ja": "大切な書類をなくしました。",
+          "zh": "弄丢了重要文件。"
+        },
+        {
+          "ja": "時間を大切にしています。",
+          "zh": "很珍惜时间。"
+        }
+      ],
+      "note_zh": "N5/N4 边界词，扩展保留。"
+    },
+    {
+      "id": "n4-394",
+      "jlpt": "N4",
+      "headword": "大抵",
+      "source_form": "大抵",
+      "variants": [
+        "大抵"
+      ],
+      "reading": "たいてい",
+      "reading_variants": [
+        "たいてい"
+      ],
+      "romaji": "taitei",
+      "part_of_speech": "adverb/noun",
+      "meaning_zh": "通常；大多",
+      "kanji_readings": [
+        {
+          "form": "大抵",
+          "reading": "たいてい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "朝は大抵パンを食べます。",
+          "zh": "早上通常吃面包。"
+        },
+        {
+          "ja": "週末は大抵家にいます。",
+          "zh": "周末大多在家。"
+        },
+        {
+          "ja": "大抵の人はこの駅で降ります。",
+          "zh": "大多数人在这一站下车。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-395",
+      "jlpt": "N4",
+      "headword": "台風",
+      "source_form": "台風",
+      "variants": [
+        "台風"
+      ],
+      "reading": "たいふう",
+      "reading_variants": [
+        "たいふう"
+      ],
+      "romaji": "taifuu",
+      "part_of_speech": "noun",
+      "meaning_zh": "台风",
+      "kanji_readings": [
+        {
+          "form": "台風",
+          "reading": "たいふう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "台風を見ました。",
+          "zh": "看到了台风。"
+        },
+        {
+          "ja": "台風を確認しました。",
+          "zh": "确认了台风。"
+        },
+        {
+          "ja": "台風について友達と話しました。",
+          "zh": "和朋友谈了关于台风的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-396",
+      "jlpt": "N4",
+      "headword": "倒れる",
+      "source_form": "倒れる",
+      "variants": [
+        "倒れる"
+      ],
+      "reading": "たおれる",
+      "reading_variants": [
+        "たおれる"
+      ],
+      "romaji": "taoreru",
+      "part_of_speech": "verb",
+      "meaning_zh": "倒下；倒塌；垮掉",
+      "kanji_readings": [
+        {
+          "form": "倒れる",
+          "reading": "たおれる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "強い風で木が倒れました。",
+          "zh": "树被强风吹倒了。"
+        },
+        {
+          "ja": "暑さで人が倒れました。",
+          "zh": "有人因炎热倒下了。"
+        },
+        {
+          "ja": "古い建物が地震で倒れました。",
+          "zh": "旧建筑因地震倒塌了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-397",
+      "jlpt": "N4",
+      "headword": "確か",
+      "source_form": "確か",
+      "variants": [
+        "確か"
+      ],
+      "reading": "たしか",
+      "reading_variants": [
+        "たしか"
+      ],
+      "romaji": "tashika",
+      "part_of_speech": "na-adjective/adverb",
+      "meaning_zh": "确实；大概；可靠",
+      "kanji_readings": [
+        {
+          "form": "確か",
+          "reading": "たしか"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "確か、駅はこの先です。",
+          "zh": "我记得车站在前面。"
+        },
+        {
+          "ja": "彼の名前は確か田中さんです。",
+          "zh": "他的名字好像是田中。"
+        },
+        {
+          "ja": "この情報は確かです。",
+          "zh": "这个信息是可靠的。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-398",
+      "jlpt": "N4",
+      "headword": "足す",
+      "source_form": "足す",
+      "variants": [
+        "足す"
+      ],
+      "reading": "たす",
+      "reading_variants": [
+        "たす"
+      ],
+      "romaji": "tasu",
+      "part_of_speech": "verb",
+      "meaning_zh": "加；添",
+      "kanji_readings": [
+        {
+          "form": "足す",
+          "reading": "たす"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "二に三を足すと五です。",
+          "zh": "二加三等于五。"
+        },
+        {
+          "ja": "スープに塩を少し足します。",
+          "zh": "往汤里加一点盐。"
+        },
+        {
+          "ja": "足りない分を後で足してください。",
+          "zh": "不足的部分请之后补上。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-399",
+      "jlpt": "N4",
+      "headword": "尋ねる",
+      "source_form": "尋ねる",
+      "variants": [
+        "尋ねる"
+      ],
+      "reading": "たずねる",
+      "reading_variants": [
+        "たずねる"
+      ],
+      "romaji": "tazuneru",
+      "part_of_speech": "verb",
+      "meaning_zh": "询问",
+      "kanji_readings": [
+        {
+          "form": "尋ねる",
+          "reading": "たずねる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "先生に意味を尋ねました。",
+          "zh": "向老师询问了意思。"
+        },
+        {
+          "ja": "道を人に尋ねます。",
+          "zh": "向别人问路。"
+        },
+        {
+          "ja": "分からない点を尋ねてもいいですか。",
+          "zh": "可以询问不懂的地方吗？"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-400",
+      "jlpt": "N4",
+      "headword": "訪ねる",
+      "source_form": "訪ねる",
+      "variants": [
+        "訪ねる"
+      ],
+      "reading": "たずねる",
+      "reading_variants": [
+        "たずねる"
+      ],
+      "romaji": "tazuneru",
+      "part_of_speech": "verb",
+      "meaning_zh": "拜访；访问",
+      "kanji_readings": [
+        {
+          "form": "訪ねる",
+          "reading": "たずねる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "京都の友達を訪ねました。",
+          "zh": "拜访了京都的朋友。"
+        },
+        {
+          "ja": "週末に先生のお宅を訪ねます。",
+          "zh": "周末拜访老师家。"
+        },
+        {
+          "ja": "昔住んでいた町を訪ねました。",
+          "zh": "访问了以前住过的城市。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-401",
+      "jlpt": "N4",
+      "headword": "畳",
+      "source_form": "畳",
+      "variants": [
+        "畳"
+      ],
+      "reading": "たたみ",
+      "reading_variants": [
+        "たたみ"
+      ],
+      "romaji": "tatami",
+      "part_of_speech": "noun",
+      "meaning_zh": "榻榻米",
+      "kanji_readings": [
+        {
+          "form": "畳",
+          "reading": "たたみ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "畳を見ました。",
+          "zh": "看到了榻榻米。"
+        },
+        {
+          "ja": "畳を確認しました。",
+          "zh": "确认了榻榻米。"
+        },
+        {
+          "ja": "畳について友達と話しました。",
+          "zh": "和朋友谈了关于榻榻米的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-402",
+      "jlpt": "N4",
+      "headword": "正しい",
+      "source_form": "正しい",
+      "variants": [
+        "正しい"
+      ],
+      "reading": "ただしい",
+      "reading_variants": [
+        "ただしい"
+      ],
+      "romaji": "tadashii",
+      "part_of_speech": "i-adjective",
+      "meaning_zh": "正确的；正当的",
+      "kanji_readings": [
+        {
+          "form": "正しい",
+          "reading": "ただしい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "正しい答えを選んでください。",
+          "zh": "请选择正确答案。"
+        },
+        {
+          "ja": "この使い方は正しいです。",
+          "zh": "这个用法是正确的。"
+        },
+        {
+          "ja": "正しい発音を練習します。",
+          "zh": "练习正确发音。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-403",
+      "jlpt": "N4",
+      "headword": "建てる",
+      "source_form": "建てる",
+      "variants": [
+        "建てる"
+      ],
+      "reading": "たてる",
+      "reading_variants": [
+        "たてる"
+      ],
+      "romaji": "tateru",
+      "part_of_speech": "verb",
+      "meaning_zh": "建造",
+      "kanji_readings": [
+        {
+          "form": "建てる",
+          "reading": "たてる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "ここに新しい家を建てます。",
+          "zh": "在这里建新房子。"
+        },
+        {
+          "ja": "駅前にビルが建ちました。",
+          "zh": "车站前建起了大楼。"
+        },
+        {
+          "ja": "木で小さな小屋を建てました。",
+          "zh": "用木头建了小屋。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-404",
+      "jlpt": "N4",
+      "headword": "立てる",
+      "source_form": "立てる",
+      "variants": [
+        "立てる"
+      ],
+      "reading": "たてる",
+      "reading_variants": [
+        "たてる"
+      ],
+      "romaji": "tateru",
+      "part_of_speech": "verb",
+      "meaning_zh": "立起；制定",
+      "kanji_readings": [
+        {
+          "form": "立てる",
+          "reading": "たてる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "椅子を壁の横に立てました。",
+          "zh": "把椅子立在墙边。"
+        },
+        {
+          "ja": "旅行の計画を立てます。",
+          "zh": "制定旅行计划。"
+        },
+        {
+          "ja": "大きな音を立てないでください。",
+          "zh": "请不要发出大声响。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-405",
+      "jlpt": "N4",
+      "headword": "例えば",
+      "source_form": "例えば",
+      "variants": [
+        "例えば"
+      ],
+      "reading": "たとえば",
+      "reading_variants": [
+        "たとえば"
+      ],
+      "romaji": "tatoeba",
+      "part_of_speech": "adverb/expression",
+      "meaning_zh": "例如",
+      "kanji_readings": [
+        {
+          "form": "例えば",
+          "reading": "たとえば"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "例えば、こんな言い方があります。",
+          "zh": "比如，有这种说法。"
+        },
+        {
+          "ja": "日本の食べ物、例えば寿司が好きです。",
+          "zh": "喜欢日本食物，比如寿司。"
+        },
+        {
+          "ja": "例えば何が必要ですか。",
+          "zh": "比如需要什么？"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-406",
+      "jlpt": "N4",
+      "headword": "棚",
+      "source_form": "棚",
+      "variants": [
+        "棚"
+      ],
+      "reading": "たな",
+      "reading_variants": [
+        "たな"
+      ],
+      "romaji": "tana",
+      "part_of_speech": "noun",
+      "meaning_zh": "架子；搁板",
+      "kanji_readings": [
+        {
+          "form": "棚",
+          "reading": "たな"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "棚を見ました。",
+          "zh": "看到了架子。"
+        },
+        {
+          "ja": "棚を確認しました。",
+          "zh": "确认了架子。"
+        },
+        {
+          "ja": "棚について友達と話しました。",
+          "zh": "和朋友谈了关于架子的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-407",
+      "jlpt": "N4",
+      "headword": "楽しみ",
+      "source_form": "楽しみ",
+      "variants": [
+        "楽しみ"
+      ],
+      "reading": "たのしみ",
+      "reading_variants": [
+        "たのしみ"
+      ],
+      "romaji": "tanoshimi",
+      "part_of_speech": "noun/na-adjective",
+      "meaning_zh": "期待；乐趣",
+      "kanji_readings": [
+        {
+          "form": "楽しみ",
+          "reading": "たのしみ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "旅行がとても楽しみです。",
+          "zh": "非常期待旅行。"
+        },
+        {
+          "ja": "週末の予定を楽しみにしています。",
+          "zh": "期待周末的计划。"
+        },
+        {
+          "ja": "楽しみがあると頑張れます。",
+          "zh": "有期待就能努力。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-408",
+      "jlpt": "N4",
+      "headword": "楽しむ",
+      "source_form": "楽しむ",
+      "variants": [
+        "楽しむ"
+      ],
+      "reading": "たのしむ",
+      "reading_variants": [
+        "たのしむ"
+      ],
+      "romaji": "tanoshimu",
+      "part_of_speech": "verb",
+      "meaning_zh": "享受；期待；玩得开心",
+      "kanji_readings": [
+        {
+          "form": "楽しむ",
+          "reading": "たのしむ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "旅行を楽しんでください。",
+          "zh": "请享受旅行。"
+        },
+        {
+          "ja": "友達と映画を楽しみました。",
+          "zh": "和朋友愉快地看了电影。"
+        },
+        {
+          "ja": "週末は家で音楽を楽しみます。",
+          "zh": "周末在家享受音乐。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-409",
+      "jlpt": "N4",
+      "headword": "たまに",
+      "source_form": "たまに",
+      "variants": [
+        "たまに"
+      ],
+      "reading": "たまに",
+      "reading_variants": [
+        "たまに"
+      ],
+      "romaji": "tamani",
+      "part_of_speech": "adverb",
+      "meaning_zh": "偶尔",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "たまに映画を見ます。",
+          "zh": "偶尔看电影。"
+        },
+        {
+          "ja": "この店にはたまに来ます。",
+          "zh": "偶尔来这家店。"
+        },
+        {
+          "ja": "たまにはゆっくり休みたいです。",
+          "zh": "偶尔也想好好休息。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-410",
+      "jlpt": "N4",
+      "headword": "ため",
+      "source_form": "為; ため",
+      "variants": [
+        "為",
+        "ため"
+      ],
+      "reading": "ため",
+      "reading_variants": [
+        "ため"
+      ],
+      "romaji": "tame",
+      "part_of_speech": "noun/expression",
+      "meaning_zh": "为了；原因；缘故",
+      "kanji_readings": [
+        {
+          "form": "為",
+          "reading": "ため"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "試験のために勉強しています。",
+          "zh": "为了考试正在学习。"
+        },
+        {
+          "ja": "雨のため、電車が遅れました。",
+          "zh": "因为下雨，电车晚点了。"
+        },
+        {
+          "ja": "家族のために料理を作りました。",
+          "zh": "为了家人做了饭。"
+        }
+      ],
+      "note_zh": "常写假名「ため」。"
+    },
+    {
+      "id": "n4-411",
+      "jlpt": "N4",
+      "headword": "足りない",
+      "source_form": "足りない",
+      "variants": [
+        "足りない"
+      ],
+      "reading": "たりない",
+      "reading_variants": [
+        "たりない"
+      ],
+      "romaji": "tarinai",
+      "part_of_speech": "expression/i-adjective",
+      "meaning_zh": "不足；不够",
+      "kanji_readings": [
+        {
+          "form": "足りない",
+          "reading": "たりない"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "時間が足りないです。",
+          "zh": "时间不够。"
+        },
+        {
+          "ja": "お金が少し足りません。",
+          "zh": "钱稍微不够。"
+        },
+        {
+          "ja": "説明が足りないと思います。",
+          "zh": "我觉得说明不够。"
+        }
+      ],
+      "note_zh": "常用形。"
+    },
+    {
+      "id": "n4-412",
+      "jlpt": "N4",
+      "headword": "足りる",
+      "source_form": "足りる",
+      "variants": [
+        "足りる"
+      ],
+      "reading": "たりる",
+      "reading_variants": [
+        "たりる"
+      ],
+      "romaji": "tariru",
+      "part_of_speech": "verb",
+      "meaning_zh": "足够；够用",
+      "kanji_readings": [
+        {
+          "form": "足りる",
+          "reading": "たりる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "お金は足りますか。",
+          "zh": "钱够吗？"
+        },
+        {
+          "ja": "時間が足りません。",
+          "zh": "时间不够。"
+        },
+        {
+          "ja": "三人ならこの量で足ります。",
+          "zh": "三个人的话这个量够了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-413",
+      "jlpt": "N4",
+      "headword": "担当",
+      "source_form": "担当",
+      "variants": [
+        "担当"
+      ],
+      "reading": "たんとう",
+      "reading_variants": [
+        "たんとう"
+      ],
+      "romaji": "tantou",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "负责；担当",
+      "kanji_readings": [
+        {
+          "form": "担当",
+          "reading": "たんとう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "私は受付を担当します。",
+          "zh": "我负责接待。"
+        },
+        {
+          "ja": "この仕事は田中さんが担当しています。",
+          "zh": "这项工作由田中负责。"
+        },
+        {
+          "ja": "担当の先生に聞いてください。",
+          "zh": "请问负责的老师。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-414",
+      "jlpt": "N4",
+      "headword": "大学生",
+      "source_form": "大学生",
+      "variants": [
+        "大学生"
+      ],
+      "reading": "だいがくせい",
+      "reading_variants": [
+        "だいがくせい"
+      ],
+      "romaji": "daigakusei",
+      "part_of_speech": "noun",
+      "meaning_zh": "大学生",
+      "kanji_readings": [
+        {
+          "form": "大学生",
+          "reading": "だいがくせい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "大学生に相談しました。",
+          "zh": "和大学生商量了。"
+        },
+        {
+          "ja": "大学生と少し話しました。",
+          "zh": "和大学生稍微聊了一下。"
+        },
+        {
+          "ja": "大学生が駅で待っています。",
+          "zh": "大学生在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-415",
+      "jlpt": "N4",
+      "headword": "大事",
+      "source_form": "大事",
+      "variants": [
+        "大事"
+      ],
+      "reading": "だいじ",
+      "reading_variants": [
+        "だいじ"
+      ],
+      "romaji": "daiji",
+      "part_of_speech": "na-adjective/noun",
+      "meaning_zh": "重要；珍贵；严重",
+      "kanji_readings": [
+        {
+          "form": "大事",
+          "reading": "だいじ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "これは大事な話です。",
+          "zh": "这是重要的话。"
+        },
+        {
+          "ja": "体を大事にしてください。",
+          "zh": "请保重身体。"
+        },
+        {
+          "ja": "大事な約束を忘れました。",
+          "zh": "忘记了重要约定。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-416",
+      "jlpt": "N4",
+      "headword": "大体",
+      "source_form": "大体",
+      "variants": [
+        "大体"
+      ],
+      "reading": "だいたい",
+      "reading_variants": [
+        "だいたい"
+      ],
+      "romaji": "daitai",
+      "part_of_speech": "adverb/noun",
+      "meaning_zh": "大体；大致；基本上",
+      "kanji_readings": [
+        {
+          "form": "大体",
+          "reading": "だいたい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "大体分かりました。",
+          "zh": "大致明白了。"
+        },
+        {
+          "ja": "駅まで大体十分です。",
+          "zh": "到车站大约十分钟。"
+        },
+        {
+          "ja": "大体の予定を決めました。",
+          "zh": "决定了大致计划。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-417",
+      "jlpt": "N4",
+      "headword": "大分",
+      "source_form": "大分",
+      "variants": [
+        "大分"
+      ],
+      "reading": "だいぶ",
+      "reading_variants": [
+        "だいぶ"
+      ],
+      "romaji": "daibu",
+      "part_of_speech": "adverb",
+      "meaning_zh": "相当；很；大大地",
+      "kanji_readings": [
+        {
+          "form": "大分",
+          "reading": "だいぶ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "日本語が大分分かるようになりました。",
+          "zh": "日语变得相当能懂了。"
+        },
+        {
+          "ja": "今日は大分暖かいです。",
+          "zh": "今天暖和多了。"
+        },
+        {
+          "ja": "病気は大分よくなりました。",
+          "zh": "病好了不少。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-418",
+      "jlpt": "N4",
+      "headword": "だから",
+      "source_form": "だから",
+      "variants": [
+        "だから"
+      ],
+      "reading": "だから",
+      "reading_variants": [
+        "だから"
+      ],
+      "romaji": "dakara",
+      "part_of_speech": "conjunction",
+      "meaning_zh": "所以；因此",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "雨が降っています。だから、傘を持って行きます。",
+          "zh": "在下雨。所以带伞去。"
+        },
+        {
+          "ja": "明日は試験です。だから、今日は早く寝ます。",
+          "zh": "明天考试。所以今天早点睡。"
+        },
+        {
+          "ja": "時間がありません。だから、急ぎましょう。",
+          "zh": "没有时间。所以快点吧。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-419",
+      "jlpt": "N4",
+      "headword": "だめ",
+      "source_form": "だめ",
+      "variants": [
+        "だめ"
+      ],
+      "reading": "だめ",
+      "reading_variants": [
+        "だめ"
+      ],
+      "romaji": "dame",
+      "part_of_speech": "na-adjective/expression",
+      "meaning_zh": "不行；没用；不可以",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "ここで写真を撮ってはだめです。",
+          "zh": "这里不可以拍照。"
+        },
+        {
+          "ja": "無理をしてはだめですよ。",
+          "zh": "不要勉强哦。"
+        },
+        {
+          "ja": "この方法ではだめかもしれません。",
+          "zh": "这个方法可能不行。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-420",
+      "jlpt": "N4",
+      "headword": "男性",
+      "source_form": "男性",
+      "variants": [
+        "男性"
+      ],
+      "reading": "だんせい",
+      "reading_variants": [
+        "だんせい"
+      ],
+      "romaji": "dansei",
+      "part_of_speech": "noun",
+      "meaning_zh": "男性",
+      "kanji_readings": [
+        {
+          "form": "男性",
+          "reading": "だんせい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "男性に相談しました。",
+          "zh": "和男性商量了。"
+        },
+        {
+          "ja": "男性と少し話しました。",
+          "zh": "和男性稍微聊了一下。"
+        },
+        {
+          "ja": "男性が駅で待っています。",
+          "zh": "男性在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-421",
+      "jlpt": "N4",
+      "headword": "暖房",
+      "source_form": "暖房",
+      "variants": [
+        "暖房"
+      ],
+      "reading": "だんぼう",
+      "reading_variants": [
+        "だんぼう"
+      ],
+      "romaji": "danbou",
+      "part_of_speech": "noun",
+      "meaning_zh": "暖气；供暖",
+      "kanji_readings": [
+        {
+          "form": "暖房",
+          "reading": "だんぼう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "暖房について調べました。",
+          "zh": "查了关于暖气的资料。"
+        },
+        {
+          "ja": "暖房に関する文章を読みました。",
+          "zh": "读了关于暖气的文章。"
+        },
+        {
+          "ja": "暖房について友達と話しました。",
+          "zh": "和朋友谈了关于暖气的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-422",
+      "jlpt": "N4",
+      "headword": "血",
+      "source_form": "血",
+      "variants": [
+        "血"
+      ],
+      "reading": "ち",
+      "reading_variants": [
+        "ち"
+      ],
+      "romaji": "chi",
+      "part_of_speech": "noun",
+      "meaning_zh": "血",
+      "kanji_readings": [
+        {
+          "form": "血",
+          "reading": "ち"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "指から血が出ました。",
+          "zh": "手指流血了。"
+        },
+        {
+          "ja": "血を見ると少し怖いです。",
+          "zh": "看到血会有点害怕。"
+        },
+        {
+          "ja": "けがをして血が止まりません。",
+          "zh": "受伤后血止不住。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-423",
+      "jlpt": "N4",
+      "headword": "小さな",
+      "source_form": "小さな",
+      "variants": [
+        "小さな"
+      ],
+      "reading": "ちいさな",
+      "reading_variants": [
+        "ちいさな"
+      ],
+      "romaji": "chiisana",
+      "part_of_speech": "pre-noun",
+      "meaning_zh": "小小的；小的",
+      "kanji_readings": [
+        {
+          "form": "小さな",
+          "reading": "ちいさな"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "小さな店を見つけました。",
+          "zh": "找到了一家小店。"
+        },
+        {
+          "ja": "小さな声で話してください。",
+          "zh": "请小声说话。"
+        },
+        {
+          "ja": "小さなことでもメモします。",
+          "zh": "即使是小事也会记下来。"
+        }
+      ],
+      "note_zh": "连体词。"
+    },
+    {
+      "id": "n4-424",
+      "jlpt": "N4",
+      "headword": "力",
+      "source_form": "力",
+      "variants": [
+        "力"
+      ],
+      "reading": "ちから",
+      "reading_variants": [
+        "ちから"
+      ],
+      "romaji": "chikara",
+      "part_of_speech": "noun",
+      "meaning_zh": "力量；能力",
+      "kanji_readings": [
+        {
+          "form": "力",
+          "reading": "ちから"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "一人では力が足りません。",
+          "zh": "一个人的力量不够。"
+        },
+        {
+          "ja": "力を合わせて運びましょう。",
+          "zh": "合力搬吧。"
+        },
+        {
+          "ja": "日本語の力を伸ばしたいです。",
+          "zh": "想提高日语能力。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-425",
+      "jlpt": "N4",
+      "headword": "ちっとも",
+      "source_form": "ちっとも",
+      "variants": [
+        "ちっとも"
+      ],
+      "reading": "ちっとも",
+      "reading_variants": [
+        "ちっとも"
+      ],
+      "romaji": "chittomo",
+      "part_of_speech": "adverb",
+      "meaning_zh": "一点也不",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "ちっとも分かりません。",
+          "zh": "一点也不明白。"
+        },
+        {
+          "ja": "今日はちっとも寒くありません。",
+          "zh": "今天一点也不冷。"
+        },
+        {
+          "ja": "彼はちっとも来ません。",
+          "zh": "他怎么也不来。"
+        }
+      ],
+      "note_zh": "常与否定呼应。"
+    },
+    {
+      "id": "n4-426",
+      "jlpt": "N4",
+      "headword": "ちゃん",
+      "source_form": "ちゃん",
+      "variants": [
+        "ちゃん"
+      ],
+      "reading": "ちゃん",
+      "reading_variants": [
+        "ちゃん"
+      ],
+      "romaji": "chan",
+      "part_of_speech": "suffix",
+      "meaning_zh": "小……；……酱",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "ちゃんについて調べました。",
+          "zh": "查了关于小……的资料。"
+        },
+        {
+          "ja": "ちゃんに関する文章を読みました。",
+          "zh": "读了关于小……的文章。"
+        },
+        {
+          "ja": "ちゃんについて友達と話しました。",
+          "zh": "和朋友谈了关于小……的事。"
+        }
+      ],
+      "note_zh": "亲昵称呼后缀。"
+    },
+    {
+      "id": "n4-427",
+      "jlpt": "N4",
+      "headword": "注意",
+      "source_form": "注意",
+      "variants": [
+        "注意"
+      ],
+      "reading": "ちゅうい",
+      "reading_variants": [
+        "ちゅうい"
+      ],
+      "romaji": "chuui",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "注意；提醒；警告",
+      "kanji_readings": [
+        {
+          "form": "注意",
+          "reading": "ちゅうい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "車に注意してください。",
+          "zh": "请注意车。"
+        },
+        {
+          "ja": "先生に注意されました。",
+          "zh": "被老师提醒/批评了。"
+        },
+        {
+          "ja": "注意書きをよく読んでください。",
+          "zh": "请仔细阅读注意事项。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-428",
+      "jlpt": "N4",
+      "headword": "注意書き",
+      "source_form": "注意書き",
+      "variants": [
+        "注意書き"
+      ],
+      "reading": "ちゅういがき",
+      "reading_variants": [
+        "ちゅういがき"
+      ],
+      "romaji": "chuuigaki",
+      "part_of_speech": "noun",
+      "meaning_zh": "注意事项；警示说明",
+      "kanji_readings": [
+        {
+          "form": "注意書き",
+          "reading": "ちゅういがき"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "注意書きを見ました。",
+          "zh": "看到了注意事项。"
+        },
+        {
+          "ja": "注意書きを確認しました。",
+          "zh": "确认了注意事项。"
+        },
+        {
+          "ja": "注意書きについて友達と話しました。",
+          "zh": "和朋友谈了关于注意事项的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-429",
+      "jlpt": "N4",
+      "headword": "中学校",
+      "source_form": "中学校",
+      "variants": [
+        "中学校"
+      ],
+      "reading": "ちゅうがっこう",
+      "reading_variants": [
+        "ちゅうがっこう"
+      ],
+      "romaji": "chuugakkou",
+      "part_of_speech": "noun",
+      "meaning_zh": "初中",
+      "kanji_readings": [
+        {
+          "form": "中学校",
+          "reading": "ちゅうがっこう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "中学校へ行きました。",
+          "zh": "去了初中。"
+        },
+        {
+          "ja": "中学校は駅の近くにあります。",
+          "zh": "初中在车站附近。"
+        },
+        {
+          "ja": "中学校で友達に会いました。",
+          "zh": "在初中见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-430",
+      "jlpt": "N4",
+      "headword": "注射",
+      "source_form": "注射",
+      "variants": [
+        "注射"
+      ],
+      "reading": "ちゅうしゃ",
+      "reading_variants": [
+        "ちゅうしゃ"
+      ],
+      "romaji": "chuusha",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "注射",
+      "kanji_readings": [
+        {
+          "form": "注射",
+          "reading": "ちゅうしゃ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "病院で注射を受けました。",
+          "zh": "在医院打了针。"
+        },
+        {
+          "ja": "注射は少し痛かったです。",
+          "zh": "打针有点痛。"
+        },
+        {
+          "ja": "子供は注射が苦手です。",
+          "zh": "孩子不擅长/怕打针。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-431",
+      "jlpt": "N4",
+      "headword": "駐車場",
+      "source_form": "駐車場",
+      "variants": [
+        "駐車場"
+      ],
+      "reading": "ちゅうしゃじょう",
+      "reading_variants": [
+        "ちゅうしゃじょう"
+      ],
+      "romaji": "chuushajou",
+      "part_of_speech": "noun",
+      "meaning_zh": "停车场",
+      "kanji_readings": [
+        {
+          "form": "駐車場",
+          "reading": "ちゅうしゃじょう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "駐車場へ行きました。",
+          "zh": "去了停车场。"
+        },
+        {
+          "ja": "駐車場は駅の近くにあります。",
+          "zh": "停车场在车站附近。"
+        },
+        {
+          "ja": "駐車場で友達に会いました。",
+          "zh": "在停车场见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-432",
+      "jlpt": "N4",
+      "headword": "注文",
+      "source_form": "注文",
+      "variants": [
+        "注文"
+      ],
+      "reading": "ちゅうもん",
+      "reading_variants": [
+        "ちゅうもん"
+      ],
+      "romaji": "chuumon",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "点餐；订购；要求",
+      "kanji_readings": [
+        {
+          "form": "注文",
+          "reading": "ちゅうもん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "レストランでカレーを注文しました。",
+          "zh": "在餐厅点了咖喱。"
+        },
+        {
+          "ja": "インターネットで本を注文しました。",
+          "zh": "在网上订购了书。"
+        },
+        {
+          "ja": "注文した料理がまだ来ません。",
+          "zh": "点的菜还没来。"
+        }
+      ],
+      "note_zh": "N5/N4 边界词，扩展保留。"
+    },
+    {
+      "id": "n4-433",
+      "jlpt": "N4",
+      "headword": "地理",
+      "source_form": "地理",
+      "variants": [
+        "地理"
+      ],
+      "reading": "ちり",
+      "reading_variants": [
+        "ちり"
+      ],
+      "romaji": "chiri",
+      "part_of_speech": "noun",
+      "meaning_zh": "地理",
+      "kanji_readings": [
+        {
+          "form": "地理",
+          "reading": "ちり"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "地理について調べました。",
+          "zh": "查了关于地理的资料。"
+        },
+        {
+          "ja": "地理に関する文章を読みました。",
+          "zh": "读了关于地理的文章。"
+        },
+        {
+          "ja": "地理について友達と話しました。",
+          "zh": "和朋友谈了关于地理的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-434",
+      "jlpt": "N4",
+      "headword": "捕まえる",
+      "source_form": "捕まえる",
+      "variants": [
+        "捕まえる"
+      ],
+      "reading": "つかまえる",
+      "reading_variants": [
+        "つかまえる"
+      ],
+      "romaji": "tsukamaeru",
+      "part_of_speech": "verb",
+      "meaning_zh": "抓住；逮住",
+      "kanji_readings": [
+        {
+          "form": "捕まえる",
+          "reading": "つかまえる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "猫を捕まえました。",
+          "zh": "抓住了猫。"
+        },
+        {
+          "ja": "タクシーを捕まえたいです。",
+          "zh": "想拦一辆出租车。"
+        },
+        {
+          "ja": "警察が泥棒を捕まえました。",
+          "zh": "警察抓住了小偷。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-435",
+      "jlpt": "N4",
+      "headword": "月",
+      "source_form": "月",
+      "variants": [
+        "月"
+      ],
+      "reading": "つき",
+      "reading_variants": [
+        "つき"
+      ],
+      "romaji": "tsuki",
+      "part_of_speech": "noun",
+      "meaning_zh": "月亮；月",
+      "kanji_readings": [
+        {
+          "form": "月",
+          "reading": "つき"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "今夜は月がきれいです。",
+          "zh": "今晚月亮很美。"
+        },
+        {
+          "ja": "月に一回、友達と会います。",
+          "zh": "每月一次和朋友见面。"
+        },
+        {
+          "ja": "空に丸い月が出ています。",
+          "zh": "天空中有圆月。"
+        }
+      ],
+      "note_zh": "读作「つき」时多指月亮或月份。"
+    },
+    {
+      "id": "n4-436",
+      "jlpt": "N4",
+      "headword": "付く",
+      "source_form": "付く",
+      "variants": [
+        "付く"
+      ],
+      "reading": "つく",
+      "reading_variants": [
+        "つく"
+      ],
+      "romaji": "tsuku",
+      "part_of_speech": "verb",
+      "meaning_zh": "附着；带有；开着",
+      "kanji_readings": [
+        {
+          "form": "付く",
+          "reading": "つく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "シャツに汚れが付きました。",
+          "zh": "衬衫上沾了污渍。"
+        },
+        {
+          "ja": "部屋の電気が付いています。",
+          "zh": "房间的灯开着。"
+        },
+        {
+          "ja": "この本にはCDが付いています。",
+          "zh": "这本书附有CD。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-437",
+      "jlpt": "N4",
+      "headword": "漬ける",
+      "source_form": "漬ける",
+      "variants": [
+        "漬ける"
+      ],
+      "reading": "つける",
+      "reading_variants": [
+        "つける"
+      ],
+      "romaji": "tsukeru",
+      "part_of_speech": "verb",
+      "meaning_zh": "腌；浸泡",
+      "kanji_readings": [
+        {
+          "form": "漬ける",
+          "reading": "つける"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "野菜を塩で漬けます。",
+          "zh": "用盐腌菜。"
+        },
+        {
+          "ja": "肉をたれに漬けておきます。",
+          "zh": "把肉先浸在酱汁里。"
+        },
+        {
+          "ja": "きゅうりを一晩漬けました。",
+          "zh": "腌了一晚黄瓜。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-438",
+      "jlpt": "N4",
+      "headword": "都合",
+      "source_form": "都合",
+      "variants": [
+        "都合"
+      ],
+      "reading": "つごう",
+      "reading_variants": [
+        "つごう"
+      ],
+      "romaji": "tsugou",
+      "part_of_speech": "noun",
+      "meaning_zh": "情况；方便；安排",
+      "kanji_readings": [
+        {
+          "form": "都合",
+          "reading": "つごう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "都合について友達と話しました。",
+          "zh": "和朋友谈了关于情况的事。"
+        },
+        {
+          "ja": "都合に関する説明を読みました。",
+          "zh": "读了关于情况的说明。"
+        },
+        {
+          "ja": "都合についてもっと知りたいです。",
+          "zh": "想更多了解情况。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-439",
+      "jlpt": "N4",
+      "headword": "都合がいい",
+      "source_form": "都合がいい",
+      "variants": [
+        "都合がいい"
+      ],
+      "reading": "つごうがいい",
+      "reading_variants": [
+        "つごうがいい"
+      ],
+      "romaji": "tsugougaii",
+      "part_of_speech": "expression",
+      "meaning_zh": "方便；时间合适",
+      "kanji_readings": [
+        {
+          "form": "都合がいい",
+          "reading": "つごうがいい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "明日の午後は都合がいいです。",
+          "zh": "明天下午方便。"
+        },
+        {
+          "ja": "都合がいい時間を教えてください。",
+          "zh": "请告诉我方便的时间。"
+        },
+        {
+          "ja": "駅前なら都合がいいです。",
+          "zh": "车站前的话方便。"
+        }
+      ],
+      "note_zh": "常用搭配。"
+    },
+    {
+      "id": "n4-440",
+      "jlpt": "N4",
+      "headword": "都合が悪い",
+      "source_form": "都合が悪い",
+      "variants": [
+        "都合が悪い"
+      ],
+      "reading": "つごうがわるい",
+      "reading_variants": [
+        "つごうがわるい"
+      ],
+      "romaji": "tsugougawarui",
+      "part_of_speech": "expression",
+      "meaning_zh": "不方便；时间不合适",
+      "kanji_readings": [
+        {
+          "form": "都合が悪い",
+          "reading": "つごうがわるい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "今日は都合が悪いです。",
+          "zh": "今天不方便。"
+        },
+        {
+          "ja": "都合が悪ければ、別の日にしましょう。",
+          "zh": "不方便的话，改天吧。"
+        },
+        {
+          "ja": "その時間は少し都合が悪いです。",
+          "zh": "那个时间有点不方便。"
+        }
+      ],
+      "note_zh": "常用搭配。"
+    },
+    {
+      "id": "n4-441",
+      "jlpt": "N4",
+      "headword": "伝える",
+      "source_form": "伝える",
+      "variants": [
+        "伝える"
+      ],
+      "reading": "つたえる",
+      "reading_variants": [
+        "つたえる"
+      ],
+      "romaji": "tsutaeru",
+      "part_of_speech": "verb",
+      "meaning_zh": "传达；告诉",
+      "kanji_readings": [
+        {
+          "form": "伝える",
+          "reading": "つたえる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "母に時間を伝えました。",
+          "zh": "把时间告诉了母亲。"
+        },
+        {
+          "ja": "大事なことを正しく伝えます。",
+          "zh": "正确传达重要的事。"
+        },
+        {
+          "ja": "先生からの連絡を友達に伝えてください。",
+          "zh": "请把老师的通知转告朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-442",
+      "jlpt": "N4",
+      "headword": "包み",
+      "source_form": "包み",
+      "variants": [
+        "包み"
+      ],
+      "reading": "つつみ",
+      "reading_variants": [
+        "つつみ"
+      ],
+      "romaji": "tsutsumi",
+      "part_of_speech": "noun",
+      "meaning_zh": "包裹；包装",
+      "kanji_readings": [
+        {
+          "form": "包み",
+          "reading": "つつみ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この包みを開けてもいいですか。",
+          "zh": "可以打开这个包裹吗？"
+        },
+        {
+          "ja": "母から小さな包みが届きました。",
+          "zh": "母亲寄来了一个小包裹。"
+        },
+        {
+          "ja": "包みの中に本が入っています。",
+          "zh": "包裹里装着书。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-443",
+      "jlpt": "N4",
+      "headword": "包む",
+      "source_form": "包む",
+      "variants": [
+        "包む"
+      ],
+      "reading": "つつむ",
+      "reading_variants": [
+        "つつむ"
+      ],
+      "romaji": "tsutsumu",
+      "part_of_speech": "verb",
+      "meaning_zh": "包；包裹",
+      "kanji_readings": [
+        {
+          "form": "包む",
+          "reading": "つつむ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "プレゼントを紙で包みました。",
+          "zh": "用纸把礼物包起来了。"
+        },
+        {
+          "ja": "お弁当を布で包みます。",
+          "zh": "用布包便当。"
+        },
+        {
+          "ja": "荷物を丁寧に包んでください。",
+          "zh": "请仔细包好行李。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-444",
+      "jlpt": "N4",
+      "headword": "続く",
+      "source_form": "続く",
+      "variants": [
+        "続く"
+      ],
+      "reading": "つづく",
+      "reading_variants": [
+        "つづく"
+      ],
+      "romaji": "tsuzuku",
+      "part_of_speech": "verb",
+      "meaning_zh": "继续；持续",
+      "kanji_readings": [
+        {
+          "form": "続く",
+          "reading": "つづく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "雨が三日続いています。",
+          "zh": "雨连续下了三天。"
+        },
+        {
+          "ja": "この道は海まで続きます。",
+          "zh": "这条路通向海边。"
+        },
+        {
+          "ja": "授業はまだ続いています。",
+          "zh": "课程还在继续。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-445",
+      "jlpt": "N4",
+      "headword": "続ける",
+      "source_form": "続ける",
+      "variants": [
+        "続ける"
+      ],
+      "reading": "つづける",
+      "reading_variants": [
+        "つづける"
+      ],
+      "romaji": "tsuzukeru",
+      "part_of_speech": "verb",
+      "meaning_zh": "继续；持续做",
+      "kanji_readings": [
+        {
+          "form": "続ける",
+          "reading": "つづける"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "日本語の勉強を続けます。",
+          "zh": "继续学日语。"
+        },
+        {
+          "ja": "毎日運動を続けています。",
+          "zh": "每天坚持运动。"
+        },
+        {
+          "ja": "話を続けてください。",
+          "zh": "请继续说。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-446",
+      "jlpt": "N4",
+      "headword": "妻",
+      "source_form": "妻",
+      "variants": [
+        "妻"
+      ],
+      "reading": "つま",
+      "reading_variants": [
+        "つま"
+      ],
+      "romaji": "tsuma",
+      "part_of_speech": "noun",
+      "meaning_zh": "妻子（称自己的妻子）",
+      "kanji_readings": [
+        {
+          "form": "妻",
+          "reading": "つま"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "妻について調べました。",
+          "zh": "查了关于妻子（称自己的妻子）的资料。"
+        },
+        {
+          "ja": "妻に関する文章を読みました。",
+          "zh": "读了关于妻子（称自己的妻子）的文章。"
+        },
+        {
+          "ja": "妻について友達と話しました。",
+          "zh": "和朋友谈了关于妻子（称自己的妻子）的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-447",
+      "jlpt": "N4",
+      "headword": "つもり",
+      "source_form": "つもり",
+      "variants": [
+        "つもり"
+      ],
+      "reading": "つもり",
+      "reading_variants": [
+        "つもり"
+      ],
+      "romaji": "tsumori",
+      "part_of_speech": "noun",
+      "meaning_zh": "打算；意图",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "つもりについて友達と話しました。",
+          "zh": "和朋友谈了关于打算的事。"
+        },
+        {
+          "ja": "つもりに関する説明を読みました。",
+          "zh": "读了关于打算的说明。"
+        },
+        {
+          "ja": "つもりについてもっと知りたいです。",
+          "zh": "想更多了解打算。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-448",
+      "jlpt": "N4",
+      "headword": "釣る",
+      "source_form": "釣る",
+      "variants": [
+        "釣る"
+      ],
+      "reading": "つる",
+      "reading_variants": [
+        "つる"
+      ],
+      "romaji": "tsuru",
+      "part_of_speech": "verb",
+      "meaning_zh": "钓鱼；吊起",
+      "kanji_readings": [
+        {
+          "form": "釣る",
+          "reading": "つる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "川で魚を釣りました。",
+          "zh": "在河里钓了鱼。"
+        },
+        {
+          "ja": "週末に父と釣りに行きます。",
+          "zh": "周末和父亲去钓鱼。"
+        },
+        {
+          "ja": "大きな魚を釣ってみたいです。",
+          "zh": "想试着钓大鱼。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-449",
+      "jlpt": "N4",
+      "headword": "連れて行く",
+      "source_form": "連れて行く",
+      "variants": [
+        "連れて行く"
+      ],
+      "reading": "つれていく",
+      "reading_variants": [
+        "つれていく"
+      ],
+      "romaji": "tsureteiku",
+      "part_of_speech": "expression/verb",
+      "meaning_zh": "带去",
+      "kanji_readings": [
+        {
+          "form": "連れて行く",
+          "reading": "つれていく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "子供を病院へ連れて行きました。",
+          "zh": "带孩子去了医院。"
+        },
+        {
+          "ja": "友達を新しい店へ連れて行きます。",
+          "zh": "带朋友去新店。"
+        },
+        {
+          "ja": "犬を公園へ連れて行きました。",
+          "zh": "带狗去了公园。"
+        }
+      ],
+      "note_zh": "常用复合表达。"
+    },
+    {
+      "id": "n4-450",
+      "jlpt": "N4",
+      "headword": "連れる",
+      "source_form": "連れる",
+      "variants": [
+        "連れる"
+      ],
+      "reading": "つれる",
+      "reading_variants": [
+        "つれる"
+      ],
+      "romaji": "tsureru",
+      "part_of_speech": "verb",
+      "meaning_zh": "带领；带着",
+      "kanji_readings": [
+        {
+          "form": "連れる",
+          "reading": "つれる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "子供を病院へ連れて行きました。",
+          "zh": "带孩子去了医院。"
+        },
+        {
+          "ja": "友達を家に連れて来ます。",
+          "zh": "把朋友带到家来。"
+        },
+        {
+          "ja": "犬を連れて散歩します。",
+          "zh": "带狗散步。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-451",
+      "jlpt": "N4",
+      "headword": "丁寧",
+      "source_form": "丁寧",
+      "variants": [
+        "丁寧"
+      ],
+      "reading": "ていねい",
+      "reading_variants": [
+        "ていねい"
+      ],
+      "romaji": "teinei",
+      "part_of_speech": "na-adjective/noun",
+      "meaning_zh": "礼貌；仔细",
+      "kanji_readings": [
+        {
+          "form": "丁寧",
+          "reading": "ていねい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "先生は丁寧に説明してくれました。",
+          "zh": "老师详细/认真地说明了。"
+        },
+        {
+          "ja": "丁寧な言葉を使います。",
+          "zh": "使用礼貌的语言。"
+        },
+        {
+          "ja": "字を丁寧に書いてください。",
+          "zh": "请认真写字。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-452",
+      "jlpt": "N4",
+      "headword": "適当",
+      "source_form": "適当",
+      "variants": [
+        "適当"
+      ],
+      "reading": "てきとう",
+      "reading_variants": [
+        "てきとう"
+      ],
+      "romaji": "tekitou",
+      "part_of_speech": "na-adjective/noun",
+      "meaning_zh": "适当；随便；敷衍",
+      "kanji_readings": [
+        {
+          "form": "適当",
+          "reading": "てきとう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "適当な答えを書かないでください。",
+          "zh": "不要随便写答案。"
+        },
+        {
+          "ja": "適当な店を探しています。",
+          "zh": "正在找合适的店。"
+        },
+        {
+          "ja": "この服は旅行に適当です。",
+          "zh": "这件衣服适合旅行。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-453",
+      "jlpt": "N4",
+      "headword": "手伝う",
+      "source_form": "手伝う",
+      "variants": [
+        "手伝う"
+      ],
+      "reading": "てつだう",
+      "reading_variants": [
+        "てつだう"
+      ],
+      "romaji": "tetsudau",
+      "part_of_speech": "verb",
+      "meaning_zh": "帮忙",
+      "kanji_readings": [
+        {
+          "form": "手伝う",
+          "reading": "てつだう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "母の料理を手伝いました。",
+          "zh": "帮母亲做饭了。"
+        },
+        {
+          "ja": "少し手伝ってください。",
+          "zh": "请帮我一下。"
+        },
+        {
+          "ja": "引っ越しを友達に手伝ってもらいました。",
+          "zh": "请朋友帮忙搬家了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-454",
+      "jlpt": "N4",
+      "headword": "手続き",
+      "source_form": "手続き",
+      "variants": [
+        "手続き"
+      ],
+      "reading": "てつづき",
+      "reading_variants": [
+        "てつづき"
+      ],
+      "romaji": "tetsuzuki",
+      "part_of_speech": "noun",
+      "meaning_zh": "手续；程序",
+      "kanji_readings": [
+        {
+          "form": "手続き",
+          "reading": "てつづき"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "手続きを見ました。",
+          "zh": "看到了手续。"
+        },
+        {
+          "ja": "手続きを確認しました。",
+          "zh": "确认了手续。"
+        },
+        {
+          "ja": "手続きについて友達と話しました。",
+          "zh": "和朋友谈了关于手续的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-455",
+      "jlpt": "N4",
+      "headword": "手袋",
+      "source_form": "手袋",
+      "variants": [
+        "手袋"
+      ],
+      "reading": "てぶくろ",
+      "reading_variants": [
+        "てぶくろ"
+      ],
+      "romaji": "tebukuro",
+      "part_of_speech": "noun",
+      "meaning_zh": "手套",
+      "kanji_readings": [
+        {
+          "form": "手袋",
+          "reading": "てぶくろ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "手袋を見ました。",
+          "zh": "看到了手套。"
+        },
+        {
+          "ja": "手袋を確認しました。",
+          "zh": "确认了手套。"
+        },
+        {
+          "ja": "手袋について友達と話しました。",
+          "zh": "和朋友谈了关于手套的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-456",
+      "jlpt": "N4",
+      "headword": "寺",
+      "source_form": "寺",
+      "variants": [
+        "寺"
+      ],
+      "reading": "てら",
+      "reading_variants": [
+        "てら"
+      ],
+      "romaji": "tera",
+      "part_of_speech": "noun",
+      "meaning_zh": "寺庙",
+      "kanji_readings": [
+        {
+          "form": "寺",
+          "reading": "てら"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "寺へ行きました。",
+          "zh": "去了寺庙。"
+        },
+        {
+          "ja": "寺は駅の近くにあります。",
+          "zh": "寺庙在车站附近。"
+        },
+        {
+          "ja": "寺で友達に会いました。",
+          "zh": "在寺庙见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-457",
+      "jlpt": "N4",
+      "headword": "点",
+      "source_form": "点",
+      "variants": [
+        "点"
+      ],
+      "reading": "てん",
+      "reading_variants": [
+        "てん"
+      ],
+      "romaji": "ten",
+      "part_of_speech": "noun",
+      "meaning_zh": "点；分数；方面",
+      "kanji_readings": [
+        {
+          "form": "点",
+          "reading": "てん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "点を見ました。",
+          "zh": "看到了点。"
+        },
+        {
+          "ja": "点を確認しました。",
+          "zh": "确认了点。"
+        },
+        {
+          "ja": "点について友達と話しました。",
+          "zh": "和朋友谈了关于点的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-458",
+      "jlpt": "N4",
+      "headword": "店員",
+      "source_form": "店員",
+      "variants": [
+        "店員"
+      ],
+      "reading": "てんいん",
+      "reading_variants": [
+        "てんいん"
+      ],
+      "romaji": "tenin",
+      "part_of_speech": "noun",
+      "meaning_zh": "店员",
+      "kanji_readings": [
+        {
+          "form": "店員",
+          "reading": "てんいん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "店員に相談しました。",
+          "zh": "和店员商量了。"
+        },
+        {
+          "ja": "店員と少し話しました。",
+          "zh": "和店员稍微聊了一下。"
+        },
+        {
+          "ja": "店員が駅で待っています。",
+          "zh": "店员在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-459",
+      "jlpt": "N4",
+      "headword": "天気予報",
+      "source_form": "天気予報",
+      "variants": [
+        "天気予報"
+      ],
+      "reading": "てんきよほう",
+      "reading_variants": [
+        "てんきよほう"
+      ],
+      "romaji": "tenkiyohou",
+      "part_of_speech": "noun",
+      "meaning_zh": "天气预报",
+      "kanji_readings": [
+        {
+          "form": "天気予報",
+          "reading": "てんきよほう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "天気予報について調べました。",
+          "zh": "查了关于天气预报的资料。"
+        },
+        {
+          "ja": "天気予報に関する文章を読みました。",
+          "zh": "读了关于天气预报的文章。"
+        },
+        {
+          "ja": "天気予報について友達と話しました。",
+          "zh": "和朋友谈了关于天气预报的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-460",
+      "jlpt": "N4",
+      "headword": "展覧会",
+      "source_form": "展覧会",
+      "variants": [
+        "展覧会"
+      ],
+      "reading": "てんらんかい",
+      "reading_variants": [
+        "てんらんかい"
+      ],
+      "romaji": "tenrankai",
+      "part_of_speech": "noun",
+      "meaning_zh": "展览会",
+      "kanji_readings": [
+        {
+          "form": "展覧会",
+          "reading": "てんらんかい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "展覧会へ行きました。",
+          "zh": "去了展览会。"
+        },
+        {
+          "ja": "展覧会は駅の近くにあります。",
+          "zh": "展览会在车站附近。"
+        },
+        {
+          "ja": "展覧会で友達に会いました。",
+          "zh": "在展览会见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-461",
+      "jlpt": "N4",
+      "headword": "展覧会場",
+      "source_form": "展覧会場",
+      "variants": [
+        "展覧会場"
+      ],
+      "reading": "てんらんかいじょう",
+      "reading_variants": [
+        "てんらんかいじょう"
+      ],
+      "romaji": "tenrankaijou",
+      "part_of_speech": "noun",
+      "meaning_zh": "展览会场",
+      "kanji_readings": [
+        {
+          "form": "展覧会場",
+          "reading": "てんらんかいじょう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "展覧会場へ行きました。",
+          "zh": "去了展览会场。"
+        },
+        {
+          "ja": "展覧会場は駅の近くにあります。",
+          "zh": "展览会场在车站附近。"
+        },
+        {
+          "ja": "展覧会場で友達に会いました。",
+          "zh": "在展览会场见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-462",
+      "jlpt": "N4",
+      "headword": "できるだけ",
+      "source_form": "できるだけ",
+      "variants": [
+        "できるだけ"
+      ],
+      "reading": "できるだけ",
+      "reading_variants": [
+        "できるだけ"
+      ],
+      "romaji": "dekirudake",
+      "part_of_speech": "adverb/expression",
+      "meaning_zh": "尽可能",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "できるだけ早く来てください。",
+          "zh": "请尽可能早点来。"
+        },
+        {
+          "ja": "できるだけ日本語で話します。",
+          "zh": "尽量用日语说。"
+        },
+        {
+          "ja": "荷物はできるだけ少なくします。",
+          "zh": "行李尽量少带。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-463",
+      "jlpt": "N4",
+      "headword": "電灯",
+      "source_form": "電灯",
+      "variants": [
+        "電灯"
+      ],
+      "reading": "でんとう",
+      "reading_variants": [
+        "でんとう"
+      ],
+      "romaji": "dentou",
+      "part_of_speech": "noun",
+      "meaning_zh": "电灯",
+      "kanji_readings": [
+        {
+          "form": "電灯",
+          "reading": "でんとう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "部屋の電灯をつけました。",
+          "zh": "打开了房间电灯。"
+        },
+        {
+          "ja": "電灯が急に消えました。",
+          "zh": "电灯突然灭了。"
+        },
+        {
+          "ja": "古い電灯を新しいものに替えました。",
+          "zh": "把旧电灯换成了新的。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-464",
+      "jlpt": "N4",
+      "headword": "電報",
+      "source_form": "電報",
+      "variants": [
+        "電報"
+      ],
+      "reading": "でんぽう",
+      "reading_variants": [
+        "でんぽう"
+      ],
+      "romaji": "denpou",
+      "part_of_speech": "noun",
+      "meaning_zh": "电报",
+      "kanji_readings": [
+        {
+          "form": "電報",
+          "reading": "でんぽう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "電報を見ました。",
+          "zh": "看到了电报。"
+        },
+        {
+          "ja": "電報を確認しました。",
+          "zh": "确认了电报。"
+        },
+        {
+          "ja": "電報について友達と話しました。",
+          "zh": "和朋友谈了关于电报的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-465",
+      "jlpt": "N4",
+      "headword": "都",
+      "source_form": "都",
+      "variants": [
+        "都"
+      ],
+      "reading": "と",
+      "reading_variants": [
+        "と"
+      ],
+      "romaji": "to",
+      "part_of_speech": "noun",
+      "meaning_zh": "都；东京都；首都级行政区",
+      "kanji_readings": [
+        {
+          "form": "都",
+          "reading": "と"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "都へ行きました。",
+          "zh": "去了都。"
+        },
+        {
+          "ja": "都は駅の近くにあります。",
+          "zh": "都在车站附近。"
+        },
+        {
+          "ja": "都で友達に会いました。",
+          "zh": "在都见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-466",
+      "jlpt": "N4",
+      "headword": "とうとう",
+      "source_form": "とうとう",
+      "variants": [
+        "とうとう"
+      ],
+      "reading": "とうとう",
+      "reading_variants": [
+        "とうとう"
+      ],
+      "romaji": "toutou",
+      "part_of_speech": "adverb",
+      "meaning_zh": "终于；到底",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "とうとう試験の日になりました。",
+          "zh": "终于到了考试这天。"
+        },
+        {
+          "ja": "長い本をとうとう読み終わりました。",
+          "zh": "终于读完了长书。"
+        },
+        {
+          "ja": "彼はとうとう来ませんでした。",
+          "zh": "他最终还是没来。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-467",
+      "jlpt": "N4",
+      "headword": "遠く",
+      "source_form": "遠く",
+      "variants": [
+        "遠く"
+      ],
+      "reading": "とおく",
+      "reading_variants": [
+        "とおく"
+      ],
+      "romaji": "tooku",
+      "part_of_speech": "noun/adverb",
+      "meaning_zh": "远处；远方",
+      "kanji_readings": [
+        {
+          "form": "遠く",
+          "reading": "とおく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "遠くに山が見えます。",
+          "zh": "远处看得见山。"
+        },
+        {
+          "ja": "駅はここから遠くありません。",
+          "zh": "车站离这里不远。"
+        },
+        {
+          "ja": "遠くまで歩きました。",
+          "zh": "走到了很远的地方。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-468",
+      "jlpt": "N4",
+      "headword": "通り",
+      "source_form": "通り",
+      "variants": [
+        "通り"
+      ],
+      "reading": "とおり",
+      "reading_variants": [
+        "とおり"
+      ],
+      "romaji": "toori",
+      "part_of_speech": "noun",
+      "meaning_zh": "街道；按照；种类",
+      "kanji_readings": [
+        {
+          "form": "通り",
+          "reading": "とおり"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "通りについて調べました。",
+          "zh": "查了关于街道的资料。"
+        },
+        {
+          "ja": "通りに関する文章を読みました。",
+          "zh": "读了关于街道的文章。"
+        },
+        {
+          "ja": "通りについて友達と話しました。",
+          "zh": "和朋友谈了关于街道的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-469",
+      "jlpt": "N4",
+      "headword": "通る",
+      "source_form": "通る",
+      "variants": [
+        "通る"
+      ],
+      "reading": "とおる",
+      "reading_variants": [
+        "とおる"
+      ],
+      "romaji": "tooru",
+      "part_of_speech": "verb",
+      "meaning_zh": "通过；穿过；经过",
+      "kanji_readings": [
+        {
+          "form": "通る",
+          "reading": "とおる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この道をまっすぐ通ります。",
+          "zh": "直走通过这条路。"
+        },
+        {
+          "ja": "電車が橋を通りました。",
+          "zh": "电车通过了桥。"
+        },
+        {
+          "ja": "試験に通りました。",
+          "zh": "考试通过了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-470",
+      "jlpt": "N4",
+      "headword": "特に",
+      "source_form": "特に",
+      "variants": [
+        "特に"
+      ],
+      "reading": "とくに",
+      "reading_variants": [
+        "とくに"
+      ],
+      "romaji": "tokuni",
+      "part_of_speech": "adverb",
+      "meaning_zh": "特别；尤其",
+      "kanji_readings": [
+        {
+          "form": "特に",
+          "reading": "とくに"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "特に問題はありません。",
+          "zh": "没有特别的问题。"
+        },
+        {
+          "ja": "日本料理の中で寿司が特に好きです。",
+          "zh": "日本料理中尤其喜欢寿司。"
+        },
+        {
+          "ja": "今日は特に寒いです。",
+          "zh": "今天特别冷。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-471",
+      "jlpt": "N4",
+      "headword": "特別",
+      "source_form": "特別",
+      "variants": [
+        "特別"
+      ],
+      "reading": "とくべつ",
+      "reading_variants": [
+        "とくべつ"
+      ],
+      "romaji": "tokubetsu",
+      "part_of_speech": "na-adjective/noun",
+      "meaning_zh": "特别；特殊",
+      "kanji_readings": [
+        {
+          "form": "特別",
+          "reading": "とくべつ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "今日は特別な日です。",
+          "zh": "今天是特别的日子。"
+        },
+        {
+          "ja": "特別に説明します。",
+          "zh": "特别说明一下。"
+        },
+        {
+          "ja": "特別な準備は必要ありません。",
+          "zh": "不需要特别准备。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-472",
+      "jlpt": "N4",
+      "headword": "床屋",
+      "source_form": "床屋",
+      "variants": [
+        "床屋"
+      ],
+      "reading": "とこや",
+      "reading_variants": [
+        "とこや"
+      ],
+      "romaji": "tokoya",
+      "part_of_speech": "noun",
+      "meaning_zh": "理发店；理发师",
+      "kanji_readings": [
+        {
+          "form": "床屋",
+          "reading": "とこや"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "床屋へ行きました。",
+          "zh": "去了理发店。"
+        },
+        {
+          "ja": "床屋は駅の近くにあります。",
+          "zh": "理发店在车站附近。"
+        },
+        {
+          "ja": "床屋で友達に会いました。",
+          "zh": "在理发店见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-473",
+      "jlpt": "N4",
+      "headword": "途中",
+      "source_form": "途中",
+      "variants": [
+        "途中"
+      ],
+      "reading": "とちゅう",
+      "reading_variants": [
+        "とちゅう"
+      ],
+      "romaji": "tochuu",
+      "part_of_speech": "noun/adverb",
+      "meaning_zh": "途中；半路",
+      "kanji_readings": [
+        {
+          "form": "途中",
+          "reading": "とちゅう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "途中で雨が降り出しました。",
+          "zh": "中途下起雨了。"
+        },
+        {
+          "ja": "学校へ行く途中で友達に会いました。",
+          "zh": "去学校途中见到了朋友。"
+        },
+        {
+          "ja": "話の途中で電話が鳴りました。",
+          "zh": "说话途中电话响了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-474",
+      "jlpt": "N4",
+      "headword": "途中で",
+      "source_form": "途中で",
+      "variants": [
+        "途中で"
+      ],
+      "reading": "とちゅうで",
+      "reading_variants": [
+        "とちゅうで"
+      ],
+      "romaji": "tochuude",
+      "part_of_speech": "adverb/expression",
+      "meaning_zh": "在途中；中途",
+      "kanji_readings": [
+        {
+          "form": "途中で",
+          "reading": "とちゅうで"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "途中で電車を降りました。",
+          "zh": "中途下了电车。"
+        },
+        {
+          "ja": "旅行の途中で財布をなくしました。",
+          "zh": "旅行途中丢了钱包。"
+        },
+        {
+          "ja": "説明の途中で質問しました。",
+          "zh": "说明中途提问了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-475",
+      "jlpt": "N4",
+      "headword": "特急",
+      "source_form": "特急",
+      "variants": [
+        "特急"
+      ],
+      "reading": "とっきゅう",
+      "reading_variants": [
+        "とっきゅう"
+      ],
+      "romaji": "tokkyuu",
+      "part_of_speech": "noun",
+      "meaning_zh": "特急；特快列车",
+      "kanji_readings": [
+        {
+          "form": "特急",
+          "reading": "とっきゅう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "特急で京都へ行きます。",
+          "zh": "坐特急去京都。"
+        },
+        {
+          "ja": "特急券を買いました。",
+          "zh": "买了特急券。"
+        },
+        {
+          "ja": "この電車は特急です。",
+          "zh": "这辆电车是特急。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-476",
+      "jlpt": "N4",
+      "headword": "特急券",
+      "source_form": "特急券",
+      "variants": [
+        "特急券"
+      ],
+      "reading": "とっきゅうけん",
+      "reading_variants": [
+        "とっきゅうけん"
+      ],
+      "romaji": "tokkyuuken",
+      "part_of_speech": "noun",
+      "meaning_zh": "特急券",
+      "kanji_readings": [
+        {
+          "form": "特急券",
+          "reading": "とっきゅうけん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "特急券を見ました。",
+          "zh": "看到了特急券。"
+        },
+        {
+          "ja": "特急券を確認しました。",
+          "zh": "确认了特急券。"
+        },
+        {
+          "ja": "特急券について友達と話しました。",
+          "zh": "和朋友谈了关于特急券的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-477",
+      "jlpt": "N4",
+      "headword": "届ける",
+      "source_form": "届ける",
+      "variants": [
+        "届ける"
+      ],
+      "reading": "とどける",
+      "reading_variants": [
+        "とどける"
+      ],
+      "romaji": "todokeru",
+      "part_of_speech": "verb",
+      "meaning_zh": "送到；提交；报告",
+      "kanji_readings": [
+        {
+          "form": "届ける",
+          "reading": "とどける"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "荷物を友達の家に届けました。",
+          "zh": "把行李送到了朋友家。"
+        },
+        {
+          "ja": "忘れ物を駅に届けます。",
+          "zh": "把遗失物交到车站。"
+        },
+        {
+          "ja": "書類を事務所へ届けてください。",
+          "zh": "请把文件送到事务所。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-478",
+      "jlpt": "N4",
+      "headword": "隣",
+      "source_form": "隣",
+      "variants": [
+        "隣"
+      ],
+      "reading": "となり",
+      "reading_variants": [
+        "となり"
+      ],
+      "romaji": "tonari",
+      "part_of_speech": "noun",
+      "meaning_zh": "旁边；邻居",
+      "kanji_readings": [
+        {
+          "form": "隣",
+          "reading": "となり"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "隣について調べました。",
+          "zh": "查了关于旁边的资料。"
+        },
+        {
+          "ja": "隣に関する文章を読みました。",
+          "zh": "读了关于旁边的文章。"
+        },
+        {
+          "ja": "隣について友達と話しました。",
+          "zh": "和朋友谈了关于旁边的事。"
+        }
+      ],
+      "note_zh": "N5/N4 边界词，扩展保留。"
+    },
+    {
+      "id": "n4-479",
+      "jlpt": "N4",
+      "headword": "泊まる",
+      "source_form": "泊まる",
+      "variants": [
+        "泊まる"
+      ],
+      "reading": "とまる",
+      "reading_variants": [
+        "とまる"
+      ],
+      "romaji": "tomaru",
+      "part_of_speech": "verb",
+      "meaning_zh": "住宿；停泊",
+      "kanji_readings": [
+        {
+          "form": "泊まる",
+          "reading": "とまる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "京都の旅館に泊まりました。",
+          "zh": "住在了京都的日式旅馆。"
+        },
+        {
+          "ja": "今夜は友達の家に泊まります。",
+          "zh": "今晚住朋友家。"
+        },
+        {
+          "ja": "駅の近くのホテルに泊まりたいです。",
+          "zh": "想住在车站附近的酒店。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-480",
+      "jlpt": "N4",
+      "headword": "止める",
+      "source_form": "止める",
+      "variants": [
+        "止める"
+      ],
+      "reading": "とめる",
+      "reading_variants": [
+        "とめる"
+      ],
+      "romaji": "tomeru",
+      "part_of_speech": "verb",
+      "meaning_zh": "停止；停住；阻止",
+      "kanji_readings": [
+        {
+          "form": "止める",
+          "reading": "とめる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "会社を辞めるつもりです。",
+          "zh": "打算辞职。"
+        },
+        {
+          "ja": "たばこをやめました。",
+          "zh": "戒烟了。"
+        },
+        {
+          "ja": "無理をするのはやめてください。",
+          "zh": "请不要勉强。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-481",
+      "jlpt": "N4",
+      "headword": "取り替える",
+      "source_form": "取り替える",
+      "variants": [
+        "取り替える"
+      ],
+      "reading": "とりかえる",
+      "reading_variants": [
+        "とりかえる"
+      ],
+      "romaji": "torikaeru",
+      "part_of_speech": "verb",
+      "meaning_zh": "更换；交换",
+      "kanji_readings": [
+        {
+          "form": "取り替える",
+          "reading": "とりかえる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "壊れた電池を取り替えます。",
+          "zh": "更换坏掉的电池。"
+        },
+        {
+          "ja": "サイズが合わないので取り替えたいです。",
+          "zh": "尺寸不合适，所以想换。"
+        },
+        {
+          "ja": "古い部品を新しいものに取り替えました。",
+          "zh": "把旧零件换成了新的。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-482",
+      "jlpt": "N4",
+      "headword": "取り消す",
+      "source_form": "取り消す",
+      "variants": [
+        "取り消す"
+      ],
+      "reading": "とりけす",
+      "reading_variants": [
+        "とりけす"
+      ],
+      "romaji": "torikesu",
+      "part_of_speech": "verb",
+      "meaning_zh": "取消；撤销",
+      "kanji_readings": [
+        {
+          "form": "取り消す",
+          "reading": "とりけす"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "明日、「取り消す」を使った文を作ります。",
+          "zh": "明天造使用“取り消す”的句子。"
+        },
+        {
+          "ja": "会話で「取り消す」を練習しました。",
+          "zh": "在会话中练习了“取り消す”。"
+        },
+        {
+          "ja": "「取り消す」の形をノートに書きました。",
+          "zh": "把“取り消す”的形式写在了笔记本上。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-483",
+      "jlpt": "N4",
+      "headword": "道具",
+      "source_form": "道具",
+      "variants": [
+        "道具"
+      ],
+      "reading": "どうぐ",
+      "reading_variants": [
+        "どうぐ"
+      ],
+      "romaji": "dougu",
+      "part_of_speech": "noun",
+      "meaning_zh": "工具；道具",
+      "kanji_readings": [
+        {
+          "form": "道具",
+          "reading": "どうぐ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "道具を見ました。",
+          "zh": "看到了工具。"
+        },
+        {
+          "ja": "道具を確認しました。",
+          "zh": "确认了工具。"
+        },
+        {
+          "ja": "道具について友達と話しました。",
+          "zh": "和朋友谈了关于工具的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-484",
+      "jlpt": "N4",
+      "headword": "動物園",
+      "source_form": "動物園",
+      "variants": [
+        "動物園"
+      ],
+      "reading": "どうぶつえん",
+      "reading_variants": [
+        "どうぶつえん"
+      ],
+      "romaji": "doubutsuen",
+      "part_of_speech": "noun",
+      "meaning_zh": "动物园",
+      "kanji_readings": [
+        {
+          "form": "動物園",
+          "reading": "どうぶつえん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "動物園へ行きました。",
+          "zh": "去了动物园。"
+        },
+        {
+          "ja": "動物園は駅の近くにあります。",
+          "zh": "动物园在车站附近。"
+        },
+        {
+          "ja": "動物園で友達に会いました。",
+          "zh": "在动物园见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-485",
+      "jlpt": "N4",
+      "headword": "泥棒",
+      "source_form": "泥棒",
+      "variants": [
+        "泥棒"
+      ],
+      "reading": "どろぼう",
+      "reading_variants": [
+        "どろぼう"
+      ],
+      "romaji": "dorobou",
+      "part_of_speech": "noun",
+      "meaning_zh": "小偷；盗贼",
+      "kanji_readings": [
+        {
+          "form": "泥棒",
+          "reading": "どろぼう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "泥棒に相談しました。",
+          "zh": "和小偷商量了。"
+        },
+        {
+          "ja": "泥棒と少し話しました。",
+          "zh": "和小偷稍微聊了一下。"
+        },
+        {
+          "ja": "泥棒が駅で待っています。",
+          "zh": "小偷在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-486",
+      "jlpt": "N4",
+      "headword": "どんどん",
+      "source_form": "どんどん",
+      "variants": [
+        "どんどん"
+      ],
+      "reading": "どんどん",
+      "reading_variants": [
+        "どんどん"
+      ],
+      "romaji": "dondon",
+      "part_of_speech": "adverb",
+      "meaning_zh": "不断地；接连地",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "雨がどんどん強くなりました。",
+          "zh": "雨越来越大。"
+        },
+        {
+          "ja": "日本語がどんどん上手になっています。",
+          "zh": "日语不断变好。"
+        },
+        {
+          "ja": "人がどんどん集まってきました。",
+          "zh": "人不断聚集过来了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-487",
+      "jlpt": "N4",
+      "headword": "治す",
+      "source_form": "治す",
+      "variants": [
+        "治す"
+      ],
+      "reading": "なおす",
+      "reading_variants": [
+        "なおす"
+      ],
+      "romaji": "naosu",
+      "part_of_speech": "verb",
+      "meaning_zh": "治疗；治好",
+      "kanji_readings": [
+        {
+          "form": "治す",
+          "reading": "なおす"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "明日、「治す」を使った文を作ります。",
+          "zh": "明天造使用“治す”的句子。"
+        },
+        {
+          "ja": "会話で「治す」を練習しました。",
+          "zh": "在会话中练习了“治す”。"
+        },
+        {
+          "ja": "「治す」の形をノートに書きました。",
+          "zh": "把“治す”的形式写在了笔记本上。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-488",
+      "jlpt": "N4",
+      "headword": "直す",
+      "source_form": "直す",
+      "variants": [
+        "直す"
+      ],
+      "reading": "なおす",
+      "reading_variants": [
+        "なおす"
+      ],
+      "romaji": "naosu",
+      "part_of_speech": "verb",
+      "meaning_zh": "修理；改正；治好",
+      "kanji_readings": [
+        {
+          "form": "直す",
+          "reading": "なおす"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "壊れた時計を直しました。",
+          "zh": "修好了坏掉的钟。"
+        },
+        {
+          "ja": "間違いを直してください。",
+          "zh": "请改正错误。"
+        },
+        {
+          "ja": "風邪を早く直したいです。",
+          "zh": "想早点把感冒治好。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-489",
+      "jlpt": "N4",
+      "headword": "治る",
+      "source_form": "治る",
+      "variants": [
+        "治る"
+      ],
+      "reading": "なおる",
+      "reading_variants": [
+        "なおる"
+      ],
+      "romaji": "naoru",
+      "part_of_speech": "verb",
+      "meaning_zh": "治愈；病好",
+      "kanji_readings": [
+        {
+          "form": "治る",
+          "reading": "なおる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "風邪が治りました。",
+          "zh": "感冒好了。"
+        },
+        {
+          "ja": "けがはすぐ治ります。",
+          "zh": "伤很快会好。"
+        },
+        {
+          "ja": "病気が治って安心しました。",
+          "zh": "病好了，放心了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-490",
+      "jlpt": "N4",
+      "headword": "直る",
+      "source_form": "直る",
+      "variants": [
+        "直る"
+      ],
+      "reading": "なおる",
+      "reading_variants": [
+        "なおる"
+      ],
+      "romaji": "naoru",
+      "part_of_speech": "verb",
+      "meaning_zh": "修好；恢复；改正过来",
+      "kanji_readings": [
+        {
+          "form": "直る",
+          "reading": "なおる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "パソコンが直りました。",
+          "zh": "电脑修好了。"
+        },
+        {
+          "ja": "悪い習慣が少し直りました。",
+          "zh": "坏习惯稍微改过来了。"
+        },
+        {
+          "ja": "電気はもう直っています。",
+          "zh": "电灯已经修好了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-491",
+      "jlpt": "N4",
+      "headword": "なかなか",
+      "source_form": "中々; なかなか",
+      "variants": [
+        "中々",
+        "なかなか"
+      ],
+      "reading": "なかなか",
+      "reading_variants": [
+        "なかなか"
+      ],
+      "romaji": "nakanaka",
+      "part_of_speech": "adverb",
+      "meaning_zh": "相当；怎么也不",
+      "kanji_readings": [
+        {
+          "form": "中々",
+          "reading": "なかなか"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この問題はなかなか難しいです。",
+          "zh": "这个问题相当难。"
+        },
+        {
+          "ja": "バスがなかなか来ません。",
+          "zh": "公交怎么也不来。"
+        },
+        {
+          "ja": "彼はなかなか親切な人です。",
+          "zh": "他是个相当亲切的人。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-492",
+      "jlpt": "N4",
+      "headword": "泣く",
+      "source_form": "泣く",
+      "variants": [
+        "泣く"
+      ],
+      "reading": "なく",
+      "reading_variants": [
+        "なく"
+      ],
+      "romaji": "naku",
+      "part_of_speech": "verb",
+      "meaning_zh": "哭",
+      "kanji_readings": [
+        {
+          "form": "泣く",
+          "reading": "なく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "子供が泣いています。",
+          "zh": "孩子在哭。"
+        },
+        {
+          "ja": "映画を見て泣きました。",
+          "zh": "看电影看哭了。"
+        },
+        {
+          "ja": "泣かないで、ゆっくり話してください。",
+          "zh": "别哭，请慢慢说。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-493",
+      "jlpt": "N4",
+      "headword": "亡くなる",
+      "source_form": "亡くなる",
+      "variants": [
+        "亡くなる"
+      ],
+      "reading": "なくなる",
+      "reading_variants": [
+        "なくなる"
+      ],
+      "romaji": "nakunaru",
+      "part_of_speech": "verb",
+      "meaning_zh": "去世",
+      "kanji_readings": [
+        {
+          "form": "亡くなる",
+          "reading": "なくなる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "祖父は去年亡くなりました。",
+          "zh": "祖父去年去世了。"
+        },
+        {
+          "ja": "大切な人が亡くなって悲しいです。",
+          "zh": "重要的人去世了，很难过。"
+        },
+        {
+          "ja": "亡くなった先生を今も覚えています。",
+          "zh": "至今还记得去世的老师。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-494",
+      "jlpt": "N4",
+      "headword": "無くなる",
+      "source_form": "無くなる",
+      "variants": [
+        "無くなる"
+      ],
+      "reading": "なくなる",
+      "reading_variants": [
+        "なくなる"
+      ],
+      "romaji": "nakunaru",
+      "part_of_speech": "verb",
+      "meaning_zh": "丢失；消失；用完",
+      "kanji_readings": [
+        {
+          "form": "無くなる",
+          "reading": "なくなる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "財布が無くなりました。",
+          "zh": "钱包不见了。"
+        },
+        {
+          "ja": "時間が無くなってきました。",
+          "zh": "时间快没了。"
+        },
+        {
+          "ja": "冷蔵庫の牛乳が無くなりました。",
+          "zh": "冰箱里的牛奶没有了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-495",
+      "jlpt": "N4",
+      "headword": "投げる",
+      "source_form": "投げる",
+      "variants": [
+        "投げる"
+      ],
+      "reading": "なげる",
+      "reading_variants": [
+        "なげる"
+      ],
+      "romaji": "nageru",
+      "part_of_speech": "verb",
+      "meaning_zh": "扔；投",
+      "kanji_readings": [
+        {
+          "form": "投げる",
+          "reading": "なげる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "ボールを遠くへ投げました。",
+          "zh": "把球扔到远处。"
+        },
+        {
+          "ja": "ごみを道に投げないでください。",
+          "zh": "请不要把垃圾扔在路上。"
+        },
+        {
+          "ja": "彼は速くボールを投げます。",
+          "zh": "他投球很快。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-496",
+      "jlpt": "N4",
+      "headword": "なさる",
+      "source_form": "なさる",
+      "variants": [
+        "なさる"
+      ],
+      "reading": "なさる",
+      "reading_variants": [
+        "なさる"
+      ],
+      "romaji": "nasaru",
+      "part_of_speech": "verb",
+      "meaning_zh": "做（尊敬语）",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "明日、「なさる」を使った文を作ります。",
+          "zh": "明天造使用“なさる”的句子。"
+        },
+        {
+          "ja": "会話で「なさる」を練習しました。",
+          "zh": "在会话中练习了“なさる”。"
+        },
+        {
+          "ja": "「なさる」の形をノートに書きました。",
+          "zh": "把“なさる”的形式写在了笔记本上。"
+        }
+      ],
+      "note_zh": "敬语。"
+    },
+    {
+      "id": "n4-497",
+      "jlpt": "N4",
+      "headword": "など",
+      "source_form": "など",
+      "variants": [
+        "など"
+      ],
+      "reading": "など",
+      "reading_variants": [
+        "など"
+      ],
+      "romaji": "nado",
+      "part_of_speech": "particle/expression",
+      "meaning_zh": "等等；之类",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "本や雑誌などを買いました。",
+          "zh": "买了书和杂志等。"
+        },
+        {
+          "ja": "京都や奈良などへ行きたいです。",
+          "zh": "想去京都、奈良等地。"
+        },
+        {
+          "ja": "飲み物などは自分で用意してください。",
+          "zh": "饮料等请自己准备。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-498",
+      "jlpt": "N4",
+      "headword": "鳴る",
+      "source_form": "鳴る",
+      "variants": [
+        "鳴る"
+      ],
+      "reading": "なる",
+      "reading_variants": [
+        "なる"
+      ],
+      "romaji": "naru",
+      "part_of_speech": "verb",
+      "meaning_zh": "响；鸣；发出声音",
+      "kanji_readings": [
+        {
+          "form": "鳴る",
+          "reading": "なる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "電話が鳴っています。",
+          "zh": "电话在响。"
+        },
+        {
+          "ja": "ベルが鳴ったら教室に入ります。",
+          "zh": "铃响后进入教室。"
+        },
+        {
+          "ja": "お腹が鳴って恥ずかしかったです。",
+          "zh": "肚子叫了，很难为情。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-499",
+      "jlpt": "N4",
+      "headword": "なるべく",
+      "source_form": "なるべく",
+      "variants": [
+        "なるべく"
+      ],
+      "reading": "なるべく",
+      "reading_variants": [
+        "なるべく"
+      ],
+      "romaji": "narubeku",
+      "part_of_speech": "adverb",
+      "meaning_zh": "尽量；尽可能",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "なるべく早く帰ります。",
+          "zh": "尽量早点回去。"
+        },
+        {
+          "ja": "なるべく毎日練習します。",
+          "zh": "尽量每天练习。"
+        },
+        {
+          "ja": "荷物はなるべく軽くしてください。",
+          "zh": "行李请尽量轻。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-500",
+      "jlpt": "N4",
+      "headword": "なるほど",
+      "source_form": "なるほど",
+      "variants": [
+        "なるほど"
+      ],
+      "reading": "なるほど",
+      "reading_variants": [
+        "なるほど"
+      ],
+      "romaji": "naruhodo",
+      "part_of_speech": "expression/adverb",
+      "meaning_zh": "原来如此；的确",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "なるほど、そういう意味ですか。",
+          "zh": "原来如此，是那个意思啊。"
+        },
+        {
+          "ja": "なるほど、よく分かりました。",
+          "zh": "原来如此，明白了。"
+        },
+        {
+          "ja": "説明を聞いて、なるほどと思いました。",
+          "zh": "听了说明后觉得原来如此。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-501",
+      "jlpt": "N4",
+      "headword": "慣れる",
+      "source_form": "慣れる",
+      "variants": [
+        "慣れる"
+      ],
+      "reading": "なれる",
+      "reading_variants": [
+        "なれる"
+      ],
+      "romaji": "nareru",
+      "part_of_speech": "verb",
+      "meaning_zh": "习惯；适应",
+      "kanji_readings": [
+        {
+          "form": "慣れる",
+          "reading": "なれる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "日本の生活に慣れました。",
+          "zh": "习惯了日本的生活。"
+        },
+        {
+          "ja": "新しい仕事にまだ慣れていません。",
+          "zh": "还没习惯新工作。"
+        },
+        {
+          "ja": "毎日使うと少しずつ慣れます。",
+          "zh": "每天用就会慢慢习惯。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-502",
+      "jlpt": "N4",
+      "headword": "匂い",
+      "source_form": "匂い; におい",
+      "variants": [
+        "匂い",
+        "におい"
+      ],
+      "reading": "におい",
+      "reading_variants": [
+        "におい"
+      ],
+      "romaji": "nioi",
+      "part_of_speech": "noun",
+      "meaning_zh": "气味；味道",
+      "kanji_readings": [
+        {
+          "form": "匂い",
+          "reading": "におい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "匂いを見ました。",
+          "zh": "看到了气味。"
+        },
+        {
+          "ja": "匂いを確認しました。",
+          "zh": "确认了气味。"
+        },
+        {
+          "ja": "匂いについて友達と話しました。",
+          "zh": "和朋友谈了关于气味的事。"
+        }
+      ],
+      "note_zh": "常写假名「におい」。"
+    },
+    {
+      "id": "n4-503",
+      "jlpt": "N4",
+      "headword": "二階建て",
+      "source_form": "二階建て",
+      "variants": [
+        "二階建て"
+      ],
+      "reading": "にかいだて",
+      "reading_variants": [
+        "にかいだて"
+      ],
+      "romaji": "nikaidate",
+      "part_of_speech": "noun",
+      "meaning_zh": "两层建筑",
+      "kanji_readings": [
+        {
+          "form": "二階建て",
+          "reading": "にかいだて"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "二階建てを見ました。",
+          "zh": "看到了两层建筑。"
+        },
+        {
+          "ja": "二階建てを確認しました。",
+          "zh": "确认了两层建筑。"
+        },
+        {
+          "ja": "二階建てについて友達と話しました。",
+          "zh": "和朋友谈了关于两层建筑的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-504",
+      "jlpt": "N4",
+      "headword": "苦い",
+      "source_form": "苦い",
+      "variants": [
+        "苦い"
+      ],
+      "reading": "にがい",
+      "reading_variants": [
+        "にがい"
+      ],
+      "romaji": "nigai",
+      "part_of_speech": "i-adjective",
+      "meaning_zh": "苦的",
+      "kanji_readings": [
+        {
+          "form": "苦い",
+          "reading": "にがい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この薬は苦いです。",
+          "zh": "这个药很苦。"
+        },
+        {
+          "ja": "苦いコーヒーは苦手です。",
+          "zh": "不喜欢苦咖啡。"
+        },
+        {
+          "ja": "苦い経験から学びました。",
+          "zh": "从痛苦的经验中学到了东西。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-505",
+      "jlpt": "N4",
+      "headword": "逃げる",
+      "source_form": "逃げる",
+      "variants": [
+        "逃げる"
+      ],
+      "reading": "にげる",
+      "reading_variants": [
+        "にげる"
+      ],
+      "romaji": "nigeru",
+      "part_of_speech": "verb",
+      "meaning_zh": "逃跑；逃避",
+      "kanji_readings": [
+        {
+          "form": "逃げる",
+          "reading": "にげる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "猫が外へ逃げました。",
+          "zh": "猫逃到外面去了。"
+        },
+        {
+          "ja": "危ない時はすぐ逃げてください。",
+          "zh": "危险时请马上逃跑。"
+        },
+        {
+          "ja": "問題から逃げないで考えましょう。",
+          "zh": "不要逃避问题，好好思考吧。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-506",
+      "jlpt": "N4",
+      "headword": "日記",
+      "source_form": "日記",
+      "variants": [
+        "日記"
+      ],
+      "reading": "にっき",
+      "reading_variants": [
+        "にっき"
+      ],
+      "romaji": "nikki",
+      "part_of_speech": "noun",
+      "meaning_zh": "日记",
+      "kanji_readings": [
+        {
+          "form": "日記",
+          "reading": "にっき"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "日記を見ました。",
+          "zh": "看到了日记。"
+        },
+        {
+          "ja": "日記を確認しました。",
+          "zh": "确认了日记。"
+        },
+        {
+          "ja": "日記について友達と話しました。",
+          "zh": "和朋友谈了关于日记的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-507",
+      "jlpt": "N4",
+      "headword": "荷物",
+      "source_form": "荷物",
+      "variants": [
+        "荷物"
+      ],
+      "reading": "にもつ",
+      "reading_variants": [
+        "にもつ"
+      ],
+      "romaji": "nimotsu",
+      "part_of_speech": "noun",
+      "meaning_zh": "行李；货物",
+      "kanji_readings": [
+        {
+          "form": "荷物",
+          "reading": "にもつ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "荷物を見ました。",
+          "zh": "看到了行李。"
+        },
+        {
+          "ja": "荷物を確認しました。",
+          "zh": "确认了行李。"
+        },
+        {
+          "ja": "荷物について友達と話しました。",
+          "zh": "和朋友谈了关于行李的事。"
+        }
+      ],
+      "note_zh": "N5/N4 边界词，扩展保留。"
+    },
+    {
+      "id": "n4-508",
+      "jlpt": "N4",
+      "headword": "入院",
+      "source_form": "入院",
+      "variants": [
+        "入院"
+      ],
+      "reading": "にゅういん",
+      "reading_variants": [
+        "にゅういん"
+      ],
+      "romaji": "nyuuin",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "住院",
+      "kanji_readings": [
+        {
+          "form": "入院",
+          "reading": "にゅういん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "父は昨日入院しました。",
+          "zh": "父亲昨天住院了。"
+        },
+        {
+          "ja": "一週間入院することになりました。",
+          "zh": "决定住院一周。"
+        },
+        {
+          "ja": "入院中に友達がお見舞いに来ました。",
+          "zh": "住院期间朋友来探病了。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-509",
+      "jlpt": "N4",
+      "headword": "入学",
+      "source_form": "入学",
+      "variants": [
+        "入学"
+      ],
+      "reading": "にゅうがく",
+      "reading_variants": [
+        "にゅうがく"
+      ],
+      "romaji": "nyuugaku",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "入学",
+      "kanji_readings": [
+        {
+          "form": "入学",
+          "reading": "にゅうがく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "四月に大学へ入学します。",
+          "zh": "四月进入大学。"
+        },
+        {
+          "ja": "入学式で新しい友達ができました。",
+          "zh": "入学典礼上交到了新朋友。"
+        },
+        {
+          "ja": "妹は今年小学校に入学しました。",
+          "zh": "妹妹今年进入小学。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-510",
+      "jlpt": "N4",
+      "headword": "入場",
+      "source_form": "入場",
+      "variants": [
+        "入場"
+      ],
+      "reading": "にゅうじょう",
+      "reading_variants": [
+        "にゅうじょう"
+      ],
+      "romaji": "nyuujou",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "入场",
+      "kanji_readings": [
+        {
+          "form": "入場",
+          "reading": "にゅうじょう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "チケットを見せて入場します。",
+          "zh": "出示票后入场。"
+        },
+        {
+          "ja": "入場は無料です。",
+          "zh": "入场免费。"
+        },
+        {
+          "ja": "入場する前に並んでください。",
+          "zh": "入场前请排队。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-511",
+      "jlpt": "N4",
+      "headword": "入場料",
+      "source_form": "入場料",
+      "variants": [
+        "入場料"
+      ],
+      "reading": "にゅうじょうりょう",
+      "reading_variants": [
+        "にゅうじょうりょう"
+      ],
+      "romaji": "nyuujouryou",
+      "part_of_speech": "noun",
+      "meaning_zh": "入场费",
+      "kanji_readings": [
+        {
+          "form": "入場料",
+          "reading": "にゅうじょうりょう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "入場料を見ました。",
+          "zh": "看到了入场费。"
+        },
+        {
+          "ja": "入場料を確認しました。",
+          "zh": "确认了入场费。"
+        },
+        {
+          "ja": "入場料について友達と話しました。",
+          "zh": "和朋友谈了关于入场费的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-512",
+      "jlpt": "N4",
+      "headword": "似る",
+      "source_form": "似る",
+      "variants": [
+        "似る"
+      ],
+      "reading": "にる",
+      "reading_variants": [
+        "にる"
+      ],
+      "romaji": "niru",
+      "part_of_speech": "verb",
+      "meaning_zh": "相似；像",
+      "kanji_readings": [
+        {
+          "form": "似る",
+          "reading": "にる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "妹は母に似ています。",
+          "zh": "妹妹像母亲。"
+        },
+        {
+          "ja": "この二つの漢字はよく似ています。",
+          "zh": "这两个汉字很像。"
+        },
+        {
+          "ja": "声が兄に似ていると言われました。",
+          "zh": "别人说我的声音像哥哥。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-513",
+      "jlpt": "N4",
+      "headword": "人形",
+      "source_form": "人形",
+      "variants": [
+        "人形"
+      ],
+      "reading": "にんぎょう",
+      "reading_variants": [
+        "にんぎょう"
+      ],
+      "romaji": "ningyou",
+      "part_of_speech": "noun",
+      "meaning_zh": "玩偶；人偶",
+      "kanji_readings": [
+        {
+          "form": "人形",
+          "reading": "にんぎょう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "人形を見ました。",
+          "zh": "看到了玩偶。"
+        },
+        {
+          "ja": "人形を確認しました。",
+          "zh": "确认了玩偶。"
+        },
+        {
+          "ja": "人形について友達と話しました。",
+          "zh": "和朋友谈了关于玩偶的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-514",
+      "jlpt": "N4",
+      "headword": "盗む",
+      "source_form": "盗む",
+      "variants": [
+        "盗む"
+      ],
+      "reading": "ぬすむ",
+      "reading_variants": [
+        "ぬすむ"
+      ],
+      "romaji": "nusumu",
+      "part_of_speech": "verb",
+      "meaning_zh": "偷；盗取",
+      "kanji_readings": [
+        {
+          "form": "盗む",
+          "reading": "ぬすむ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "誰かが自転車を盗みました。",
+          "zh": "有人偷了自行车。"
+        },
+        {
+          "ja": "人の物を盗んではいけません。",
+          "zh": "不能偷别人的东西。"
+        },
+        {
+          "ja": "店で商品を盗んだ人が捕まりました。",
+          "zh": "在店里偷东西的人被抓住了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-515",
+      "jlpt": "N4",
+      "headword": "塗り方",
+      "source_form": "塗り方",
+      "variants": [
+        "塗り方"
+      ],
+      "reading": "ぬりかた",
+      "reading_variants": [
+        "ぬりかた"
+      ],
+      "romaji": "nurikata",
+      "part_of_speech": "noun",
+      "meaning_zh": "涂法；刷法",
+      "kanji_readings": [
+        {
+          "form": "塗り方",
+          "reading": "ぬりかた"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "塗り方について調べました。",
+          "zh": "查了关于涂法的资料。"
+        },
+        {
+          "ja": "塗り方に関する文章を読みました。",
+          "zh": "读了关于涂法的文章。"
+        },
+        {
+          "ja": "塗り方について友達と話しました。",
+          "zh": "和朋友谈了关于涂法的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-516",
+      "jlpt": "N4",
+      "headword": "塗る",
+      "source_form": "塗る",
+      "variants": [
+        "塗る"
+      ],
+      "reading": "ぬる",
+      "reading_variants": [
+        "ぬる"
+      ],
+      "romaji": "nuru",
+      "part_of_speech": "verb",
+      "meaning_zh": "涂；抹；刷",
+      "kanji_readings": [
+        {
+          "form": "塗る",
+          "reading": "ぬる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "壁を白く塗りました。",
+          "zh": "把墙刷成了白色。"
+        },
+        {
+          "ja": "パンにバターを塗ります。",
+          "zh": "把黄油涂在面包上。"
+        },
+        {
+          "ja": "薬を傷に塗ってください。",
+          "zh": "请把药涂在伤口上。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-517",
+      "jlpt": "N4",
+      "headword": "濡れる",
+      "source_form": "濡れる",
+      "variants": [
+        "濡れる"
+      ],
+      "reading": "ぬれる",
+      "reading_variants": [
+        "ぬれる"
+      ],
+      "romaji": "nureru",
+      "part_of_speech": "verb",
+      "meaning_zh": "淋湿；弄湿",
+      "kanji_readings": [
+        {
+          "form": "濡れる",
+          "reading": "ぬれる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "雨で服が濡れました。",
+          "zh": "衣服被雨淋湿了。"
+        },
+        {
+          "ja": "床が濡れているので気をつけてください。",
+          "zh": "地板湿着，请小心。"
+        },
+        {
+          "ja": "髪がまだ濡れています。",
+          "zh": "头发还湿着。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-518",
+      "jlpt": "N4",
+      "headword": "値段",
+      "source_form": "値段",
+      "variants": [
+        "値段"
+      ],
+      "reading": "ねだん",
+      "reading_variants": [
+        "ねだん"
+      ],
+      "romaji": "nedan",
+      "part_of_speech": "noun",
+      "meaning_zh": "价格；价钱",
+      "kanji_readings": [
+        {
+          "form": "値段",
+          "reading": "ねだん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この時計の値段を見ました。",
+          "zh": "看了这块表的价格。"
+        },
+        {
+          "ja": "値段が少し高いです。",
+          "zh": "价格有点贵。"
+        },
+        {
+          "ja": "値段を店員に聞きました。",
+          "zh": "向店员问了价格。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-519",
+      "jlpt": "N4",
+      "headword": "値段が高い",
+      "source_form": "値段が高い",
+      "variants": [
+        "値段が高い"
+      ],
+      "reading": "ねだんがたかい",
+      "reading_variants": [
+        "ねだんがたかい"
+      ],
+      "romaji": "nedangatakai",
+      "part_of_speech": "expression",
+      "meaning_zh": "价格高",
+      "kanji_readings": [
+        {
+          "form": "値段が高い",
+          "reading": "ねだんがたかい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この店は少し値段が高いです。",
+          "zh": "这家店价格有点贵。"
+        },
+        {
+          "ja": "値段が高いので、買いませんでした。",
+          "zh": "因为价格高，所以没买。"
+        },
+        {
+          "ja": "駅前のホテルは値段が高いです。",
+          "zh": "车站前的酒店价格高。"
+        }
+      ],
+      "note_zh": "常用搭配。"
+    },
+    {
+      "id": "n4-520",
+      "jlpt": "N4",
+      "headword": "値段が安い",
+      "source_form": "値段が安い",
+      "variants": [
+        "値段が安い"
+      ],
+      "reading": "ねだんがやすい",
+      "reading_variants": [
+        "ねだんがやすい"
+      ],
+      "romaji": "nedangayasui",
+      "part_of_speech": "expression",
+      "meaning_zh": "价格便宜",
+      "kanji_readings": [
+        {
+          "form": "値段が安い",
+          "reading": "ねだんがやすい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "このスーパーは値段が安いです。",
+          "zh": "这家超市价格便宜。"
+        },
+        {
+          "ja": "値段が安い時に買いました。",
+          "zh": "价格便宜的时候买了。"
+        },
+        {
+          "ja": "駅から遠いので値段が安いです。",
+          "zh": "因为离车站远，所以价格便宜。"
+        }
+      ],
+      "note_zh": "常用搭配。"
+    },
+    {
+      "id": "n4-521",
+      "jlpt": "N4",
+      "headword": "熱心",
+      "source_form": "熱心",
+      "variants": [
+        "熱心"
+      ],
+      "reading": "ねっしん",
+      "reading_variants": [
+        "ねっしん"
+      ],
+      "romaji": "nesshin",
+      "part_of_speech": "na-adjective/noun",
+      "meaning_zh": "热心；热情",
+      "kanji_readings": [
+        {
+          "form": "熱心",
+          "reading": "ねっしん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "彼は日本語の勉強に熱心です。",
+          "zh": "他热心于日语学习。"
+        },
+        {
+          "ja": "熱心に説明を聞きました。",
+          "zh": "认真/热心地听了说明。"
+        },
+        {
+          "ja": "熱心な先生に教えてもらいました。",
+          "zh": "得到了热心老师的教导。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-522",
+      "jlpt": "N4",
+      "headword": "熱",
+      "source_form": "熱",
+      "variants": [
+        "熱"
+      ],
+      "reading": "ねつ",
+      "reading_variants": [
+        "ねつ"
+      ],
+      "romaji": "netsu",
+      "part_of_speech": "noun",
+      "meaning_zh": "热；发烧",
+      "kanji_readings": [
+        {
+          "form": "熱",
+          "reading": "ねつ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "熱があります。",
+          "zh": "发烧了。"
+        },
+        {
+          "ja": "熱を測ってください。",
+          "zh": "请量体温。"
+        },
+        {
+          "ja": "薬を飲んだら熱が下がりました。",
+          "zh": "吃药后烧退了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-523",
+      "jlpt": "N4",
+      "headword": "寝坊",
+      "source_form": "寝坊",
+      "variants": [
+        "寝坊"
+      ],
+      "reading": "ねぼう",
+      "reading_variants": [
+        "ねぼう"
+      ],
+      "romaji": "nebou",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "睡懒觉；起晚",
+      "kanji_readings": [
+        {
+          "form": "寝坊",
+          "reading": "ねぼう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "今朝、寝坊しました。",
+          "zh": "今天早上睡过头了。"
+        },
+        {
+          "ja": "寝坊して授業に遅れました。",
+          "zh": "睡过头上课迟到了。"
+        },
+        {
+          "ja": "明日は寝坊しないように早く寝ます。",
+          "zh": "为了明天不睡过头，早点睡。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-524",
+      "jlpt": "N4",
+      "headword": "眠い",
+      "source_form": "眠い",
+      "variants": [
+        "眠い"
+      ],
+      "reading": "ねむい",
+      "reading_variants": [
+        "ねむい"
+      ],
+      "romaji": "nemui",
+      "part_of_speech": "i-adjective",
+      "meaning_zh": "困的；想睡的",
+      "kanji_readings": [
+        {
+          "form": "眠い",
+          "reading": "ねむい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "今日はとても眠いです。",
+          "zh": "今天很困。"
+        },
+        {
+          "ja": "眠い時は少し休みます。",
+          "zh": "困的时候稍微休息。"
+        },
+        {
+          "ja": "授業中に眠くなりました。",
+          "zh": "上课时困了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-525",
+      "jlpt": "N4",
+      "headword": "眠る",
+      "source_form": "眠る",
+      "variants": [
+        "眠る"
+      ],
+      "reading": "ねむる",
+      "reading_variants": [
+        "ねむる"
+      ],
+      "romaji": "nemuru",
+      "part_of_speech": "verb",
+      "meaning_zh": "睡；睡觉",
+      "kanji_readings": [
+        {
+          "form": "眠る",
+          "reading": "ねむる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "昨夜はよく眠れました。",
+          "zh": "昨晚睡得很好。"
+        },
+        {
+          "ja": "赤ちゃんが静かに眠っています。",
+          "zh": "宝宝安静地睡着。"
+        },
+        {
+          "ja": "電車の中で少し眠りました。",
+          "zh": "在电车里睡了一会儿。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-526",
+      "jlpt": "N4",
+      "headword": "残る",
+      "source_form": "残る",
+      "variants": [
+        "残る"
+      ],
+      "reading": "のこる",
+      "reading_variants": [
+        "のこる"
+      ],
+      "romaji": "nokoru",
+      "part_of_speech": "verb",
+      "meaning_zh": "剩下；留下",
+      "kanji_readings": [
+        {
+          "form": "残る",
+          "reading": "のこる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "料理が少し残りました。",
+          "zh": "饭菜剩了一点。"
+        },
+        {
+          "ja": "仕事がまだ残っています。",
+          "zh": "工作还剩着。"
+        },
+        {
+          "ja": "思い出は心に残ります。",
+          "zh": "回忆会留在心里。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-527",
+      "jlpt": "N4",
+      "headword": "のど",
+      "source_form": "のど",
+      "variants": [
+        "のど"
+      ],
+      "reading": "のど",
+      "reading_variants": [
+        "のど"
+      ],
+      "romaji": "nodo",
+      "part_of_speech": "noun",
+      "meaning_zh": "喉咙",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "のどを見ました。",
+          "zh": "看到了喉咙。"
+        },
+        {
+          "ja": "のどを確認しました。",
+          "zh": "确认了喉咙。"
+        },
+        {
+          "ja": "のどについて友達と話しました。",
+          "zh": "和朋友谈了关于喉咙的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-528",
+      "jlpt": "N4",
+      "headword": "乗り換え",
+      "source_form": "乗り換え",
+      "variants": [
+        "乗り換え"
+      ],
+      "reading": "のりかえ",
+      "reading_variants": [
+        "のりかえ"
+      ],
+      "romaji": "norikae",
+      "part_of_speech": "noun",
+      "meaning_zh": "换乘",
+      "kanji_readings": [
+        {
+          "form": "乗り換え",
+          "reading": "のりかえ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "乗り換えについて調べました。",
+          "zh": "查了关于换乘的资料。"
+        },
+        {
+          "ja": "乗り換えに関する文章を読みました。",
+          "zh": "读了关于换乘的文章。"
+        },
+        {
+          "ja": "乗り換えについて友達と話しました。",
+          "zh": "和朋友谈了关于换乘的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-529",
+      "jlpt": "N4",
+      "headword": "乗り換える",
+      "source_form": "乗り換える",
+      "variants": [
+        "乗り換える"
+      ],
+      "reading": "のりかえる",
+      "reading_variants": [
+        "のりかえる"
+      ],
+      "romaji": "norikaeru",
+      "part_of_speech": "verb",
+      "meaning_zh": "换乘；改乘",
+      "kanji_readings": [
+        {
+          "form": "乗り換える",
+          "reading": "のりかえる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "新宿で電車を乗り換えます。",
+          "zh": "在新宿换乘电车。"
+        },
+        {
+          "ja": "バスから地下鉄に乗り換えました。",
+          "zh": "从公交换乘了地铁。"
+        },
+        {
+          "ja": "ここで乗り換えると便利です。",
+          "zh": "在这里换乘很方便。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-530",
+      "jlpt": "N4",
+      "headword": "乗り場",
+      "source_form": "乗り場",
+      "variants": [
+        "乗り場"
+      ],
+      "reading": "のりば",
+      "reading_variants": [
+        "のりば"
+      ],
+      "romaji": "noriba",
+      "part_of_speech": "noun",
+      "meaning_zh": "乘车处；站台",
+      "kanji_readings": [
+        {
+          "form": "乗り場",
+          "reading": "のりば"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "乗り場へ行きました。",
+          "zh": "去了乘车处。"
+        },
+        {
+          "ja": "乗り場は駅の近くにあります。",
+          "zh": "乘车处在车站附近。"
+        },
+        {
+          "ja": "乗り場で友達に会いました。",
+          "zh": "在乘车处见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-531",
+      "jlpt": "N4",
+      "headword": "乗り物",
+      "source_form": "乗り物",
+      "variants": [
+        "乗り物"
+      ],
+      "reading": "のりもの",
+      "reading_variants": [
+        "のりもの"
+      ],
+      "romaji": "norimono",
+      "part_of_speech": "noun",
+      "meaning_zh": "交通工具；乘坐物",
+      "kanji_readings": [
+        {
+          "form": "乗り物",
+          "reading": "のりもの"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "乗り物を見ました。",
+          "zh": "看到了交通工具。"
+        },
+        {
+          "ja": "乗り物を確認しました。",
+          "zh": "确认了交通工具。"
+        },
+        {
+          "ja": "乗り物について友達と話しました。",
+          "zh": "和朋友谈了关于交通工具的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-532",
+      "jlpt": "N4",
+      "headword": "葉",
+      "source_form": "葉",
+      "variants": [
+        "葉"
+      ],
+      "reading": "は",
+      "reading_variants": [
+        "は"
+      ],
+      "romaji": "ha",
+      "part_of_speech": "noun",
+      "meaning_zh": "叶子",
+      "kanji_readings": [
+        {
+          "form": "葉",
+          "reading": "は"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "葉を見ました。",
+          "zh": "看到了叶子。"
+        },
+        {
+          "ja": "葉を確認しました。",
+          "zh": "确认了叶子。"
+        },
+        {
+          "ja": "葉について友達と話しました。",
+          "zh": "和朋友谈了关于叶子的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-533",
+      "jlpt": "N4",
+      "headword": "拝見",
+      "source_form": "拝見",
+      "variants": [
+        "拝見"
+      ],
+      "reading": "はいけん",
+      "reading_variants": [
+        "はいけん"
+      ],
+      "romaji": "haiken",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "看（自谦语）",
+      "kanji_readings": [
+        {
+          "form": "拝見",
+          "reading": "はいけん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "資料を拝見しました。",
+          "zh": "拜读了资料。"
+        },
+        {
+          "ja": "お写真を拝見してもよろしいですか。",
+          "zh": "可以看一下您的照片吗？"
+        },
+        {
+          "ja": "先生の作品を拝見しました。",
+          "zh": "拜看了老师的作品。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-534",
+      "jlpt": "N4",
+      "headword": "歯医者",
+      "source_form": "歯医者",
+      "variants": [
+        "歯医者"
+      ],
+      "reading": "はいしゃ",
+      "reading_variants": [
+        "はいしゃ"
+      ],
+      "romaji": "haisha",
+      "part_of_speech": "noun",
+      "meaning_zh": "牙医",
+      "kanji_readings": [
+        {
+          "form": "歯医者",
+          "reading": "はいしゃ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "歯医者に相談しました。",
+          "zh": "和牙医商量了。"
+        },
+        {
+          "ja": "歯医者と少し話しました。",
+          "zh": "和牙医稍微聊了一下。"
+        },
+        {
+          "ja": "歯医者が駅で待っています。",
+          "zh": "牙医在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-535",
+      "jlpt": "N4",
+      "headword": "運ぶ",
+      "source_form": "運ぶ",
+      "variants": [
+        "運ぶ"
+      ],
+      "reading": "はこぶ",
+      "reading_variants": [
+        "はこぶ"
+      ],
+      "romaji": "hakobu",
+      "part_of_speech": "verb",
+      "meaning_zh": "搬运；运输",
+      "kanji_readings": [
+        {
+          "form": "運ぶ",
+          "reading": "はこぶ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "重い荷物を部屋まで運びました。",
+          "zh": "把重行李搬到房间了。"
+        },
+        {
+          "ja": "店員が料理を運んできました。",
+          "zh": "店员把菜端来了。"
+        },
+        {
+          "ja": "この箱を車に運んでください。",
+          "zh": "请把这个箱子搬到车上。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-536",
+      "jlpt": "N4",
+      "headword": "始める",
+      "source_form": "始める",
+      "variants": [
+        "始める"
+      ],
+      "reading": "はじめる",
+      "reading_variants": [
+        "はじめる"
+      ],
+      "romaji": "hajimeru",
+      "part_of_speech": "verb",
+      "meaning_zh": "开始",
+      "kanji_readings": [
+        {
+          "form": "始める",
+          "reading": "はじめる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "日本語の勉強を始めました。",
+          "zh": "开始学日语了。"
+        },
+        {
+          "ja": "会議を始めましょう。",
+          "zh": "开始会议吧。"
+        },
+        {
+          "ja": "新しい仕事を来月始めます。",
+          "zh": "下个月开始新工作。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-537",
+      "jlpt": "N4",
+      "headword": "はず",
+      "source_form": "はず",
+      "variants": [
+        "はず"
+      ],
+      "reading": "はず",
+      "reading_variants": [
+        "はず"
+      ],
+      "romaji": "hazu",
+      "part_of_speech": "noun/expression",
+      "meaning_zh": "应该；按理说",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "彼はもう着いたはずです。",
+          "zh": "他应该已经到了。"
+        },
+        {
+          "ja": "今日は休みのはずです。",
+          "zh": "今天应该休息。"
+        },
+        {
+          "ja": "この道で合っているはずです。",
+          "zh": "这条路应该没错。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-538",
+      "jlpt": "N4",
+      "headword": "恥ずかしい",
+      "source_form": "恥ずかしい",
+      "variants": [
+        "恥ずかしい"
+      ],
+      "reading": "はずかしい",
+      "reading_variants": [
+        "はずかしい"
+      ],
+      "romaji": "hazukashii",
+      "part_of_speech": "i-adjective",
+      "meaning_zh": "害羞的；难为情的",
+      "kanji_readings": [
+        {
+          "form": "恥ずかしい",
+          "reading": "はずかしい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "人の前で話すのは恥ずかしいです。",
+          "zh": "在人前说话很害羞。"
+        },
+        {
+          "ja": "名前を間違えて恥ずかしかったです。",
+          "zh": "弄错名字很难为情。"
+        },
+        {
+          "ja": "恥ずかしがらずに質問してください。",
+          "zh": "不要害羞，请提问。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-539",
+      "jlpt": "N4",
+      "headword": "はっきり",
+      "source_form": "はっきり",
+      "variants": [
+        "はっきり"
+      ],
+      "reading": "はっきり",
+      "reading_variants": [
+        "はっきり"
+      ],
+      "romaji": "hakkiri",
+      "part_of_speech": "adverb/suru-verb",
+      "meaning_zh": "清楚地；明确地",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "名前をはっきり書いてください。",
+          "zh": "请把名字写清楚。"
+        },
+        {
+          "ja": "理由をはっきり説明しました。",
+          "zh": "清楚说明了理由。"
+        },
+        {
+          "ja": "今日は山がはっきり見えます。",
+          "zh": "今天山看得很清楚。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-540",
+      "jlpt": "N4",
+      "headword": "発表",
+      "source_form": "発表",
+      "variants": [
+        "発表"
+      ],
+      "reading": "はっぴょう",
+      "reading_variants": [
+        "はっぴょう"
+      ],
+      "romaji": "happyou",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "发表；发布；做报告",
+      "kanji_readings": [
+        {
+          "form": "発表",
+          "reading": "はっぴょう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "授業で日本の文化について発表しました。",
+          "zh": "课堂上发表了关于日本文化的内容。"
+        },
+        {
+          "ja": "新しい商品が発表されました。",
+          "zh": "新商品发布了。"
+        },
+        {
+          "ja": "発表の前は緊張します。",
+          "zh": "发表前会紧张。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-541",
+      "jlpt": "N4",
+      "headword": "発音",
+      "source_form": "発音",
+      "variants": [
+        "発音"
+      ],
+      "reading": "はつおん",
+      "reading_variants": [
+        "はつおん"
+      ],
+      "romaji": "hatsuon",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "发音",
+      "kanji_readings": [
+        {
+          "form": "発音",
+          "reading": "はつおん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "日本語の発音を練習しています。",
+          "zh": "正在练习日语发音。"
+        },
+        {
+          "ja": "この単語の発音は難しいです。",
+          "zh": "这个单词的发音很难。"
+        },
+        {
+          "ja": "先生に発音を直してもらいました。",
+          "zh": "请老师纠正了发音。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-542",
+      "jlpt": "N4",
+      "headword": "花見",
+      "source_form": "花見",
+      "variants": [
+        "花見"
+      ],
+      "reading": "はなみ",
+      "reading_variants": [
+        "はなみ"
+      ],
+      "romaji": "hanami",
+      "part_of_speech": "noun",
+      "meaning_zh": "赏樱",
+      "kanji_readings": [
+        {
+          "form": "花見",
+          "reading": "はなみ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "花見があります。",
+          "zh": "有赏樱。"
+        },
+        {
+          "ja": "花見の予定を確認しました。",
+          "zh": "确认了赏樱的安排。"
+        },
+        {
+          "ja": "花見について先生に聞きました。",
+          "zh": "向老师询问了赏樱。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-543",
+      "jlpt": "N4",
+      "headword": "林",
+      "source_form": "林",
+      "variants": [
+        "林"
+      ],
+      "reading": "はやし",
+      "reading_variants": [
+        "はやし"
+      ],
+      "romaji": "hayashi",
+      "part_of_speech": "noun",
+      "meaning_zh": "树林；林子",
+      "kanji_readings": [
+        {
+          "form": "林",
+          "reading": "はやし"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "林の中を歩きました。",
+          "zh": "在树林中走了。"
+        },
+        {
+          "ja": "家の後ろに小さな林があります。",
+          "zh": "家后面有一片小树林。"
+        },
+        {
+          "ja": "林から鳥の声が聞こえます。",
+          "zh": "从树林里听得到鸟叫声。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-544",
+      "jlpt": "N4",
+      "headword": "払う",
+      "source_form": "払う",
+      "variants": [
+        "払う"
+      ],
+      "reading": "はらう",
+      "reading_variants": [
+        "はらう"
+      ],
+      "romaji": "harau",
+      "part_of_speech": "verb",
+      "meaning_zh": "支付；払除",
+      "kanji_readings": [
+        {
+          "form": "払う",
+          "reading": "はらう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "レジでお金を払います。",
+          "zh": "在收银台付钱。"
+        },
+        {
+          "ja": "カードで払ってもいいですか。",
+          "zh": "可以刷卡支付吗？"
+        },
+        {
+          "ja": "家賃を毎月払っています。",
+          "zh": "每个月付房租。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-545",
+      "jlpt": "N4",
+      "headword": "反対",
+      "source_form": "反対",
+      "variants": [
+        "反対"
+      ],
+      "reading": "はんたい",
+      "reading_variants": [
+        "はんたい"
+      ],
+      "romaji": "hantai",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "反对；相反",
+      "kanji_readings": [
+        {
+          "form": "反対",
+          "reading": "はんたい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "私はその意見に反対です。",
+          "zh": "我反对那个意见。"
+        },
+        {
+          "ja": "駅は道の反対側にあります。",
+          "zh": "车站在路对面。"
+        },
+        {
+          "ja": "反対の手を上げてください。",
+          "zh": "请举另一只手。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-546",
+      "jlpt": "N4",
+      "headword": "反対側",
+      "source_form": "反対側",
+      "variants": [
+        "反対側"
+      ],
+      "reading": "はんたいがわ",
+      "reading_variants": [
+        "はんたいがわ"
+      ],
+      "romaji": "hantaigawa",
+      "part_of_speech": "noun",
+      "meaning_zh": "对面；相反一侧",
+      "kanji_readings": [
+        {
+          "form": "反対側",
+          "reading": "はんたいがわ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "反対側について調べました。",
+          "zh": "查了关于对面的资料。"
+        },
+        {
+          "ja": "反対側に関する文章を読みました。",
+          "zh": "读了关于对面的文章。"
+        },
+        {
+          "ja": "反対側について友達と話しました。",
+          "zh": "和朋友谈了关于对面的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-547",
+      "jlpt": "N4",
+      "headword": "場合",
+      "source_form": "場合",
+      "variants": [
+        "場合"
+      ],
+      "reading": "ばあい",
+      "reading_variants": [
+        "ばあい"
+      ],
+      "romaji": "baai",
+      "part_of_speech": "noun",
+      "meaning_zh": "场合；情况",
+      "kanji_readings": [
+        {
+          "form": "場合",
+          "reading": "ばあい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "場合について友達と話しました。",
+          "zh": "和朋友谈了关于场合的事。"
+        },
+        {
+          "ja": "場合に関する説明を読みました。",
+          "zh": "读了关于场合的说明。"
+        },
+        {
+          "ja": "場合についてもっと知りたいです。",
+          "zh": "想更多了解场合。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-548",
+      "jlpt": "N4",
+      "headword": "場合によって",
+      "source_form": "場合によって",
+      "variants": [
+        "場合によって"
+      ],
+      "reading": "ばあいによって",
+      "reading_variants": [
+        "ばあいによって"
+      ],
+      "romaji": "baainiyotte",
+      "part_of_speech": "expression",
+      "meaning_zh": "根据情况；视情况而定",
+      "kanji_readings": [
+        {
+          "form": "場合によって",
+          "reading": "ばあいによって"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "場合によって、予定を変えます。",
+          "zh": "根据情况改变计划。"
+        },
+        {
+          "ja": "場合によっては中止になります。",
+          "zh": "视情况会取消。"
+        },
+        {
+          "ja": "場合によって、先生に相談します。",
+          "zh": "视情况咨询老师。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-549",
+      "jlpt": "N4",
+      "headword": "倍",
+      "source_form": "倍",
+      "variants": [
+        "倍"
+      ],
+      "reading": "ばい",
+      "reading_variants": [
+        "ばい"
+      ],
+      "romaji": "bai",
+      "part_of_speech": "noun/suffix",
+      "meaning_zh": "倍",
+      "kanji_readings": [
+        {
+          "form": "倍",
+          "reading": "ばい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "倍について友達と話しました。",
+          "zh": "和朋友谈了关于倍的事。"
+        },
+        {
+          "ja": "倍に関する説明を読みました。",
+          "zh": "读了关于倍的说明。"
+        },
+        {
+          "ja": "倍についてもっと知りたいです。",
+          "zh": "想更多了解倍。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-550",
+      "jlpt": "N4",
+      "headword": "倍になる",
+      "source_form": "倍になる",
+      "variants": [
+        "倍になる"
+      ],
+      "reading": "ばいになる",
+      "reading_variants": [
+        "ばいになる"
+      ],
+      "romaji": "baininaru",
+      "part_of_speech": "expression",
+      "meaning_zh": "变成两倍；成倍增加",
+      "kanji_readings": [
+        {
+          "form": "倍になる",
+          "reading": "ばいになる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "値段が去年の倍になりました。",
+          "zh": "价格变成去年的两倍。"
+        },
+        {
+          "ja": "勉強時間を倍にしました。",
+          "zh": "把学习时间加倍了。"
+        },
+        {
+          "ja": "人が増えて、仕事も倍になりました。",
+          "zh": "人增加了，工作也翻倍了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-551",
+      "jlpt": "N4",
+      "headword": "場所",
+      "source_form": "場所",
+      "variants": [
+        "場所"
+      ],
+      "reading": "ばしょ",
+      "reading_variants": [
+        "ばしょ"
+      ],
+      "romaji": "basho",
+      "part_of_speech": "noun",
+      "meaning_zh": "地点；场所",
+      "kanji_readings": [
+        {
+          "form": "場所",
+          "reading": "ばしょ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "場所について調べました。",
+          "zh": "查了关于地点的资料。"
+        },
+        {
+          "ja": "場所に関する文章を読みました。",
+          "zh": "读了关于地点的文章。"
+        },
+        {
+          "ja": "場所について友達と話しました。",
+          "zh": "和朋友谈了关于地点的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-552",
+      "jlpt": "N4",
+      "headword": "番組",
+      "source_form": "番組",
+      "variants": [
+        "番組"
+      ],
+      "reading": "ばんぐみ",
+      "reading_variants": [
+        "ばんぐみ"
+      ],
+      "romaji": "bangumi",
+      "part_of_speech": "noun",
+      "meaning_zh": "节目",
+      "kanji_readings": [
+        {
+          "form": "番組",
+          "reading": "ばんぐみ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "番組を見ました。",
+          "zh": "看到了节目。"
+        },
+        {
+          "ja": "番組を確認しました。",
+          "zh": "确认了节目。"
+        },
+        {
+          "ja": "番組について友達と話しました。",
+          "zh": "和朋友谈了关于节目的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-553",
+      "jlpt": "N4",
+      "headword": "日",
+      "source_form": "日",
+      "variants": [
+        "日"
+      ],
+      "reading": "ひ",
+      "reading_variants": [
+        "ひ"
+      ],
+      "romaji": "hi",
+      "part_of_speech": "noun",
+      "meaning_zh": "太阳；日子",
+      "kanji_readings": [
+        {
+          "form": "日",
+          "reading": "ひ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "今日は特別な日です。",
+          "zh": "今天是特别的日子。"
+        },
+        {
+          "ja": "晴れた日は外を歩きます。",
+          "zh": "晴天会在外面走走。"
+        },
+        {
+          "ja": "日が長くなりました。",
+          "zh": "白天变长了。"
+        }
+      ],
+      "note_zh": "读作「ひ」。"
+    },
+    {
+      "id": "n4-554",
+      "jlpt": "N4",
+      "headword": "火",
+      "source_form": "火",
+      "variants": [
+        "火"
+      ],
+      "reading": "ひ",
+      "reading_variants": [
+        "ひ"
+      ],
+      "romaji": "hi",
+      "part_of_speech": "noun",
+      "meaning_zh": "火",
+      "kanji_readings": [
+        {
+          "form": "火",
+          "reading": "ひ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "火を見ました。",
+          "zh": "看到了火。"
+        },
+        {
+          "ja": "火を確認しました。",
+          "zh": "确认了火。"
+        },
+        {
+          "ja": "火について友達と話しました。",
+          "zh": "和朋友谈了关于火的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-555",
+      "jlpt": "N4",
+      "headword": "冷える",
+      "source_form": "冷える",
+      "variants": [
+        "冷える"
+      ],
+      "reading": "ひえる",
+      "reading_variants": [
+        "ひえる"
+      ],
+      "romaji": "hieru",
+      "part_of_speech": "verb",
+      "meaning_zh": "变冷；感觉冷",
+      "kanji_readings": [
+        {
+          "form": "冷える",
+          "reading": "ひえる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "夜になると部屋が冷えます。",
+          "zh": "到了晚上房间会变冷。"
+        },
+        {
+          "ja": "冷えた水を飲みました。",
+          "zh": "喝了冰凉的水。"
+        },
+        {
+          "ja": "足が冷えて眠れません。",
+          "zh": "脚冷得睡不着。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-556",
+      "jlpt": "N4",
+      "headword": "光",
+      "source_form": "光",
+      "variants": [
+        "光"
+      ],
+      "reading": "ひかり",
+      "reading_variants": [
+        "ひかり"
+      ],
+      "romaji": "hikari",
+      "part_of_speech": "noun",
+      "meaning_zh": "光；光线",
+      "kanji_readings": [
+        {
+          "form": "光",
+          "reading": "ひかり"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "光を見ました。",
+          "zh": "看到了光。"
+        },
+        {
+          "ja": "光を確認しました。",
+          "zh": "确认了光。"
+        },
+        {
+          "ja": "光について友達と話しました。",
+          "zh": "和朋友谈了关于光的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-557",
+      "jlpt": "N4",
+      "headword": "光る",
+      "source_form": "光る",
+      "variants": [
+        "光る"
+      ],
+      "reading": "ひかる",
+      "reading_variants": [
+        "ひかる"
+      ],
+      "romaji": "hikaru",
+      "part_of_speech": "verb",
+      "meaning_zh": "发光；闪亮",
+      "kanji_readings": [
+        {
+          "form": "光る",
+          "reading": "ひかる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "夜空で星が光っています。",
+          "zh": "夜空中星星在闪。"
+        },
+        {
+          "ja": "この石は光るときれいです。",
+          "zh": "这块石头发光时很美。"
+        },
+        {
+          "ja": "遠くで信号が光りました。",
+          "zh": "远处的信号灯亮了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-558",
+      "jlpt": "N4",
+      "headword": "引き出し",
+      "source_form": "引き出し",
+      "variants": [
+        "引き出し"
+      ],
+      "reading": "ひきだし",
+      "reading_variants": [
+        "ひきだし"
+      ],
+      "romaji": "hikidashi",
+      "part_of_speech": "noun",
+      "meaning_zh": "抽屉",
+      "kanji_readings": [
+        {
+          "form": "引き出し",
+          "reading": "ひきだし"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "引き出しを見ました。",
+          "zh": "看到了抽屉。"
+        },
+        {
+          "ja": "引き出しを確認しました。",
+          "zh": "确认了抽屉。"
+        },
+        {
+          "ja": "引き出しについて友達と話しました。",
+          "zh": "和朋友谈了关于抽屉的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-559",
+      "jlpt": "N4",
+      "headword": "引き出す",
+      "source_form": "引き出す",
+      "variants": [
+        "引き出す"
+      ],
+      "reading": "ひきだす",
+      "reading_variants": [
+        "ひきだす"
+      ],
+      "romaji": "hikidasu",
+      "part_of_speech": "verb",
+      "meaning_zh": "拉出；取出；引出",
+      "kanji_readings": [
+        {
+          "form": "引き出す",
+          "reading": "ひきだす"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "ATMでお金を引き出しました。",
+          "zh": "在ATM取了钱。"
+        },
+        {
+          "ja": "机の引き出しから手紙を引き出します。",
+          "zh": "从桌子抽屉里拿出信。"
+        },
+        {
+          "ja": "先生は学生の力を引き出します。",
+          "zh": "老师发挥学生的能力。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-560",
+      "jlpt": "N4",
+      "headword": "ひげ",
+      "source_form": "ひげ",
+      "variants": [
+        "ひげ"
+      ],
+      "reading": "ひげ",
+      "reading_variants": [
+        "ひげ"
+      ],
+      "romaji": "hige",
+      "part_of_speech": "noun",
+      "meaning_zh": "胡子；胡须",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "ひげを見ました。",
+          "zh": "看到了胡子。"
+        },
+        {
+          "ja": "ひげを確認しました。",
+          "zh": "确认了胡子。"
+        },
+        {
+          "ja": "ひげについて友達と話しました。",
+          "zh": "和朋友谈了关于胡子的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-561",
+      "jlpt": "N4",
+      "headword": "飛行場",
+      "source_form": "飛行場",
+      "variants": [
+        "飛行場"
+      ],
+      "reading": "ひこうじょう",
+      "reading_variants": [
+        "ひこうじょう"
+      ],
+      "romaji": "hikoujou",
+      "part_of_speech": "noun",
+      "meaning_zh": "机场",
+      "kanji_readings": [
+        {
+          "form": "飛行場",
+          "reading": "ひこうじょう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "飛行場へ行きました。",
+          "zh": "去了机场。"
+        },
+        {
+          "ja": "飛行場は駅の近くにあります。",
+          "zh": "机场在车站附近。"
+        },
+        {
+          "ja": "飛行場で友達に会いました。",
+          "zh": "在机场见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-562",
+      "jlpt": "N4",
+      "headword": "久しぶり",
+      "source_form": "久しぶり",
+      "variants": [
+        "久しぶり"
+      ],
+      "reading": "ひさしぶり",
+      "reading_variants": [
+        "ひさしぶり"
+      ],
+      "romaji": "hisashiburi",
+      "part_of_speech": "na-adjective/noun",
+      "meaning_zh": "好久不见；隔了很久",
+      "kanji_readings": [
+        {
+          "form": "久しぶり",
+          "reading": "ひさしぶり"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "久しぶりに友達に会いました。",
+          "zh": "久违地见到了朋友。"
+        },
+        {
+          "ja": "運動するのは久しぶりです。",
+          "zh": "很久没运动了。"
+        },
+        {
+          "ja": "久しぶりですね。元気でしたか。",
+          "zh": "好久不见。你好吗？"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-563",
+      "jlpt": "N4",
+      "headword": "非常に",
+      "source_form": "非常に",
+      "variants": [
+        "非常に"
+      ],
+      "reading": "ひじょうに",
+      "reading_variants": [
+        "ひじょうに"
+      ],
+      "romaji": "hijouni",
+      "part_of_speech": "adverb",
+      "meaning_zh": "非常；极其",
+      "kanji_readings": [
+        {
+          "form": "非常に",
+          "reading": "ひじょうに"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この問題は非常に大切です。",
+          "zh": "这个问题非常重要。"
+        },
+        {
+          "ja": "今日は非常に暑いです。",
+          "zh": "今天非常热。"
+        },
+        {
+          "ja": "非常に分かりやすい説明でした。",
+          "zh": "是非常容易懂的说明。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-564",
+      "jlpt": "N4",
+      "headword": "引っ越す",
+      "source_form": "引っ越す",
+      "variants": [
+        "引っ越す"
+      ],
+      "reading": "ひっこす",
+      "reading_variants": [
+        "ひっこす"
+      ],
+      "romaji": "hikkosu",
+      "part_of_speech": "verb",
+      "meaning_zh": "搬家",
+      "kanji_readings": [
+        {
+          "form": "引っ越す",
+          "reading": "ひっこす"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "来月、大阪へ引っ越します。",
+          "zh": "下个月搬到大阪。"
+        },
+        {
+          "ja": "駅の近くに引っ越しました。",
+          "zh": "搬到了车站附近。"
+        },
+        {
+          "ja": "引っ越す前に荷物を片付けます。",
+          "zh": "搬家前收拾行李。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-565",
+      "jlpt": "N4",
+      "headword": "必要",
+      "source_form": "必要",
+      "variants": [
+        "必要"
+      ],
+      "reading": "ひつよう",
+      "reading_variants": [
+        "ひつよう"
+      ],
+      "romaji": "hitsuyou",
+      "part_of_speech": "na-adjective/noun",
+      "meaning_zh": "必要；需要",
+      "kanji_readings": [
+        {
+          "form": "必要",
+          "reading": "ひつよう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "予約が必要です。",
+          "zh": "需要预约。"
+        },
+        {
+          "ja": "必要な物を準備しました。",
+          "zh": "准备了必要的东西。"
+        },
+        {
+          "ja": "必要なら手伝います。",
+          "zh": "需要的话我会帮忙。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-566",
+      "jlpt": "N4",
+      "headword": "ひどい",
+      "source_form": "ひどい",
+      "variants": [
+        "ひどい"
+      ],
+      "reading": "ひどい",
+      "reading_variants": [
+        "ひどい"
+      ],
+      "romaji": "hidoi",
+      "part_of_speech": "i-adjective",
+      "meaning_zh": "过分的；糟糕的",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "昨日はひどい雨でした。",
+          "zh": "昨天雨很大/很糟。"
+        },
+        {
+          "ja": "ひどいことを言ってしまいました。",
+          "zh": "不小心说了过分的话。"
+        },
+        {
+          "ja": "風邪がひどくなりました。",
+          "zh": "感冒加重了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-567",
+      "jlpt": "N4",
+      "headword": "冷やす",
+      "source_form": "冷やす",
+      "variants": [
+        "冷やす"
+      ],
+      "reading": "ひやす",
+      "reading_variants": [
+        "ひやす"
+      ],
+      "romaji": "hiyasu",
+      "part_of_speech": "verb",
+      "meaning_zh": "冷却；冰镇",
+      "kanji_readings": [
+        {
+          "form": "冷やす",
+          "reading": "ひやす"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "明日、「冷やす」を使った文を作ります。",
+          "zh": "明天造使用“冷やす”的句子。"
+        },
+        {
+          "ja": "会話で「冷やす」を練習しました。",
+          "zh": "在会话中练习了“冷やす”。"
+        },
+        {
+          "ja": "「冷やす」の形をノートに書きました。",
+          "zh": "把“冷やす”的形式写在了笔记本上。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-568",
+      "jlpt": "N4",
+      "headword": "表示",
+      "source_form": "表示",
+      "variants": [
+        "表示"
+      ],
+      "reading": "ひょうじ",
+      "reading_variants": [
+        "ひょうじ"
+      ],
+      "romaji": "hyouji",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "显示；标示",
+      "kanji_readings": [
+        {
+          "form": "表示",
+          "reading": "ひょうじ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "画面にエラーが表示されました。",
+          "zh": "画面上显示了错误。"
+        },
+        {
+          "ja": "値段を分かりやすく表示してください。",
+          "zh": "请清楚标示价格。"
+        },
+        {
+          "ja": "駅の表示を見て乗り換えます。",
+          "zh": "看车站标识换乘。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-569",
+      "jlpt": "N4",
+      "headword": "開く",
+      "source_form": "開く",
+      "variants": [
+        "開く"
+      ],
+      "reading": "ひらく",
+      "reading_variants": [
+        "ひらく"
+      ],
+      "romaji": "hiraku",
+      "part_of_speech": "verb",
+      "meaning_zh": "打开；开办；举办",
+      "kanji_readings": [
+        {
+          "form": "開く",
+          "reading": "ひらく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "来週、会議を開きます。",
+          "zh": "下周召开会议。"
+        },
+        {
+          "ja": "店は十時に開きます。",
+          "zh": "店十点开门。"
+        },
+        {
+          "ja": "新しい展覧会が開かれています。",
+          "zh": "新展览正在举办。"
+        }
+      ],
+      "note_zh": "读作「ひらく」。"
+    },
+    {
+      "id": "n4-570",
+      "jlpt": "N4",
+      "headword": "昼間",
+      "source_form": "昼間",
+      "variants": [
+        "昼間"
+      ],
+      "reading": "ひるま",
+      "reading_variants": [
+        "ひるま"
+      ],
+      "romaji": "hiruma",
+      "part_of_speech": "noun",
+      "meaning_zh": "白天；昼间",
+      "kanji_readings": [
+        {
+          "form": "昼間",
+          "reading": "ひるま"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "昼間について調べました。",
+          "zh": "查了关于白天的资料。"
+        },
+        {
+          "ja": "昼間に関する文章を読みました。",
+          "zh": "读了关于白天的文章。"
+        },
+        {
+          "ja": "昼間について友達と話しました。",
+          "zh": "和朋友谈了关于白天的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-571",
+      "jlpt": "N4",
+      "headword": "昼休み",
+      "source_form": "昼休み",
+      "variants": [
+        "昼休み"
+      ],
+      "reading": "ひるやすみ",
+      "reading_variants": [
+        "ひるやすみ"
+      ],
+      "romaji": "hiruyasumi",
+      "part_of_speech": "noun",
+      "meaning_zh": "午休",
+      "kanji_readings": [
+        {
+          "form": "昼休み",
+          "reading": "ひるやすみ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "昼休みについて調べました。",
+          "zh": "查了关于午休的资料。"
+        },
+        {
+          "ja": "昼休みに関する文章を読みました。",
+          "zh": "读了关于午休的文章。"
+        },
+        {
+          "ja": "昼休みについて友達と話しました。",
+          "zh": "和朋友谈了关于午休的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-572",
+      "jlpt": "N4",
+      "headword": "拾う",
+      "source_form": "拾う",
+      "variants": [
+        "拾う"
+      ],
+      "reading": "ひろう",
+      "reading_variants": [
+        "ひろう"
+      ],
+      "romaji": "hirou",
+      "part_of_speech": "verb",
+      "meaning_zh": "捡；拾起",
+      "kanji_readings": [
+        {
+          "form": "拾う",
+          "reading": "ひろう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "道で財布を拾いました。",
+          "zh": "在路上捡到了钱包。"
+        },
+        {
+          "ja": "落ちた紙を拾ってください。",
+          "zh": "请捡起掉下的纸。"
+        },
+        {
+          "ja": "海岸で貝を拾いました。",
+          "zh": "在海岸捡了贝壳。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-573",
+      "jlpt": "N4",
+      "headword": "美術館",
+      "source_form": "美術館",
+      "variants": [
+        "美術館"
+      ],
+      "reading": "びじゅつかん",
+      "reading_variants": [
+        "びじゅつかん"
+      ],
+      "romaji": "bijutsukan",
+      "part_of_speech": "noun",
+      "meaning_zh": "美术馆",
+      "kanji_readings": [
+        {
+          "form": "美術館",
+          "reading": "びじゅつかん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "美術館へ行きました。",
+          "zh": "去了美术馆。"
+        },
+        {
+          "ja": "美術館は駅の近くにあります。",
+          "zh": "美术馆在车站附近。"
+        },
+        {
+          "ja": "美術館で友達に会いました。",
+          "zh": "在美术馆见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-574",
+      "jlpt": "N4",
+      "headword": "びっくり",
+      "source_form": "びっくり",
+      "variants": [
+        "びっくり"
+      ],
+      "reading": "びっくり",
+      "reading_variants": [
+        "びっくり"
+      ],
+      "romaji": "bikkuri",
+      "part_of_speech": "suru-verb/adverb",
+      "meaning_zh": "吃惊；吓一跳",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "急な音にびっくりしました。",
+          "zh": "被突然的声音吓了一跳。"
+        },
+        {
+          "ja": "値段を見てびっくりしました。",
+          "zh": "看到价格吓了一跳。"
+        },
+        {
+          "ja": "友達の話にびっくりしました。",
+          "zh": "被朋友的话吓了一跳。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-575",
+      "jlpt": "N4",
+      "headword": "増える",
+      "source_form": "増える",
+      "variants": [
+        "増える"
+      ],
+      "reading": "ふえる",
+      "reading_variants": [
+        "ふえる"
+      ],
+      "romaji": "fueru",
+      "part_of_speech": "verb",
+      "meaning_zh": "增加；增多",
+      "kanji_readings": [
+        {
+          "form": "増える",
+          "reading": "ふえる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "最近、外国人の観光客が増えました。",
+          "zh": "最近外国游客增加了。"
+        },
+        {
+          "ja": "仕事が増えて忙しいです。",
+          "zh": "工作增加了，很忙。"
+        },
+        {
+          "ja": "勉強時間を少し増やします。",
+          "zh": "稍微增加学习时间。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-576",
+      "jlpt": "N4",
+      "headword": "深い",
+      "source_form": "深い",
+      "variants": [
+        "深い"
+      ],
+      "reading": "ふかい",
+      "reading_variants": [
+        "ふかい"
+      ],
+      "romaji": "fukai",
+      "part_of_speech": "i-adjective",
+      "meaning_zh": "深的；深刻的",
+      "kanji_readings": [
+        {
+          "form": "深い",
+          "reading": "ふかい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この川は深いです。",
+          "zh": "这条河很深。"
+        },
+        {
+          "ja": "深い話をしました。",
+          "zh": "进行了深入的谈话。"
+        },
+        {
+          "ja": "夜が深くなってきました。",
+          "zh": "夜渐深了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-577",
+      "jlpt": "N4",
+      "headword": "複雑",
+      "source_form": "複雑",
+      "variants": [
+        "複雑"
+      ],
+      "reading": "ふくざつ",
+      "reading_variants": [
+        "ふくざつ"
+      ],
+      "romaji": "fukuzatsu",
+      "part_of_speech": "na-adjective/noun",
+      "meaning_zh": "复杂",
+      "kanji_readings": [
+        {
+          "form": "複雑",
+          "reading": "ふくざつ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この文法は少し複雑です。",
+          "zh": "这个语法有点复杂。"
+        },
+        {
+          "ja": "駅の乗り換えが複雑です。",
+          "zh": "车站换乘很复杂。"
+        },
+        {
+          "ja": "複雑な問題をゆっくり考えます。",
+          "zh": "慢慢思考复杂问题。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-578",
+      "jlpt": "N4",
+      "headword": "復習",
+      "source_form": "復習",
+      "variants": [
+        "復習"
+      ],
+      "reading": "ふくしゅう",
+      "reading_variants": [
+        "ふくしゅう"
+      ],
+      "romaji": "fukushuu",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "复习",
+      "kanji_readings": [
+        {
+          "form": "復習",
+          "reading": "ふくしゅう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "家で文法を復習しました。",
+          "zh": "在家复习了语法。"
+        },
+        {
+          "ja": "試験の前に復習します。",
+          "zh": "考试前复习。"
+        },
+        {
+          "ja": "今日習った言葉を復習してください。",
+          "zh": "请复习今天学的词。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-579",
+      "jlpt": "N4",
+      "headword": "普通",
+      "source_form": "普通",
+      "variants": [
+        "普通"
+      ],
+      "reading": "ふつう",
+      "reading_variants": [
+        "ふつう"
+      ],
+      "romaji": "futsuu",
+      "part_of_speech": "na-adjective/noun/adverb",
+      "meaning_zh": "普通；一般；通常",
+      "kanji_readings": [
+        {
+          "form": "普通",
+          "reading": "ふつう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "普通は九時に始まります。",
+          "zh": "通常九点开始。"
+        },
+        {
+          "ja": "今日は普通の一日でした。",
+          "zh": "今天是普通的一天。"
+        },
+        {
+          "ja": "普通の速さで話してください。",
+          "zh": "请用普通速度说。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-580",
+      "jlpt": "N4",
+      "headword": "普通列車",
+      "source_form": "普通列車",
+      "variants": [
+        "普通列車"
+      ],
+      "reading": "ふつうれっしゃ",
+      "reading_variants": [
+        "ふつうれっしゃ"
+      ],
+      "romaji": "futsuuressha",
+      "part_of_speech": "noun",
+      "meaning_zh": "普通列车",
+      "kanji_readings": [
+        {
+          "form": "普通列車",
+          "reading": "ふつうれっしゃ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "普通列車について調べました。",
+          "zh": "查了关于普通列车的资料。"
+        },
+        {
+          "ja": "普通列車に関する文章を読みました。",
+          "zh": "读了关于普通列车的文章。"
+        },
+        {
+          "ja": "普通列車について友達と話しました。",
+          "zh": "和朋友谈了关于普通列车的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-581",
+      "jlpt": "N4",
+      "headword": "太る",
+      "source_form": "太る",
+      "variants": [
+        "太る"
+      ],
+      "reading": "ふとる",
+      "reading_variants": [
+        "ふとる"
+      ],
+      "romaji": "futoru",
+      "part_of_speech": "verb",
+      "meaning_zh": "发胖；变胖",
+      "kanji_readings": [
+        {
+          "form": "太る",
+          "reading": "ふとる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "最近少し太りました。",
+          "zh": "最近稍微胖了。"
+        },
+        {
+          "ja": "甘い物を食べすぎると太ります。",
+          "zh": "甜食吃太多会发胖。"
+        },
+        {
+          "ja": "太らないように運動しています。",
+          "zh": "为了不发胖在运动。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-582",
+      "jlpt": "N4",
+      "headword": "布団",
+      "source_form": "布団",
+      "variants": [
+        "布団"
+      ],
+      "reading": "ふとん",
+      "reading_variants": [
+        "ふとん"
+      ],
+      "romaji": "futon",
+      "part_of_speech": "noun",
+      "meaning_zh": "被褥；日式床铺",
+      "kanji_readings": [
+        {
+          "form": "布団",
+          "reading": "ふとん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "布団を見ました。",
+          "zh": "看到了被褥。"
+        },
+        {
+          "ja": "布団を確認しました。",
+          "zh": "确认了被褥。"
+        },
+        {
+          "ja": "布団について友達と話しました。",
+          "zh": "和朋友谈了关于被褥的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-583",
+      "jlpt": "N4",
+      "headword": "舟",
+      "source_form": "舟",
+      "variants": [
+        "舟"
+      ],
+      "reading": "ふね",
+      "reading_variants": [
+        "ふね"
+      ],
+      "romaji": "fune",
+      "part_of_speech": "noun",
+      "meaning_zh": "船；小船",
+      "kanji_readings": [
+        {
+          "form": "舟",
+          "reading": "ふね"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "舟を見ました。",
+          "zh": "看到了船。"
+        },
+        {
+          "ja": "舟を確認しました。",
+          "zh": "确认了船。"
+        },
+        {
+          "ja": "舟について友達と話しました。",
+          "zh": "和朋友谈了关于船的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-584",
+      "jlpt": "N4",
+      "headword": "不便",
+      "source_form": "不便",
+      "variants": [
+        "不便"
+      ],
+      "reading": "ふべん",
+      "reading_variants": [
+        "ふべん"
+      ],
+      "romaji": "fuben",
+      "part_of_speech": "na-adjective/noun",
+      "meaning_zh": "不方便",
+      "kanji_readings": [
+        {
+          "form": "不便",
+          "reading": "ふべん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "駅から遠くて不便です。",
+          "zh": "离车站远，很不方便。"
+        },
+        {
+          "ja": "このアプリは少し不便です。",
+          "zh": "这个应用有点不方便。"
+        },
+        {
+          "ja": "不便な場所に住んでいます。",
+          "zh": "住在不方便的地方。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-585",
+      "jlpt": "N4",
+      "headword": "踏む",
+      "source_form": "踏む",
+      "variants": [
+        "踏む"
+      ],
+      "reading": "ふむ",
+      "reading_variants": [
+        "ふむ"
+      ],
+      "romaji": "fumu",
+      "part_of_speech": "verb",
+      "meaning_zh": "踩；踏",
+      "kanji_readings": [
+        {
+          "form": "踏む",
+          "reading": "ふむ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "人の足を踏んでしまいました。",
+          "zh": "不小心踩到了别人的脚。"
+        },
+        {
+          "ja": "芝生を踏まないでください。",
+          "zh": "请不要踩草坪。"
+        },
+        {
+          "ja": "階段を一段ずつ踏んで上ります。",
+          "zh": "一级一级踩着台阶上去。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-586",
+      "jlpt": "N4",
+      "headword": "増やす",
+      "source_form": "増やす",
+      "variants": [
+        "増やす"
+      ],
+      "reading": "ふやす",
+      "reading_variants": [
+        "ふやす"
+      ],
+      "romaji": "fuyasu",
+      "part_of_speech": "verb",
+      "meaning_zh": "增加；增多",
+      "kanji_readings": [
+        {
+          "form": "増やす",
+          "reading": "ふやす"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "明日、「増やす」を使った文を作ります。",
+          "zh": "明天造使用“増やす”的句子。"
+        },
+        {
+          "ja": "会話で「増やす」を練習しました。",
+          "zh": "在会话中练习了“増やす”。"
+        },
+        {
+          "ja": "「増やす」の形をノートに書きました。",
+          "zh": "把“増やす”的形式写在了笔记本上。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-587",
+      "jlpt": "N4",
+      "headword": "降り出す",
+      "source_form": "降り出す",
+      "variants": [
+        "降り出す"
+      ],
+      "reading": "ふりだす",
+      "reading_variants": [
+        "ふりだす"
+      ],
+      "romaji": "furidasu",
+      "part_of_speech": "verb",
+      "meaning_zh": "开始下雨；突然下起来",
+      "kanji_readings": [
+        {
+          "form": "降り出す",
+          "reading": "ふりだす"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "急に雨が降り出しました。",
+          "zh": "突然开始下雨了。"
+        },
+        {
+          "ja": "雪が降り出す前に帰りましょう。",
+          "zh": "趁下雪前回去吧。"
+        },
+        {
+          "ja": "外へ出たら雨が降り出しました。",
+          "zh": "一出门雨就下起来了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-588",
+      "jlpt": "N4",
+      "headword": "部長",
+      "source_form": "部長",
+      "variants": [
+        "部長"
+      ],
+      "reading": "ぶちょう",
+      "reading_variants": [
+        "ぶちょう"
+      ],
+      "romaji": "buchou",
+      "part_of_speech": "noun",
+      "meaning_zh": "部长；部门负责人",
+      "kanji_readings": [
+        {
+          "form": "部長",
+          "reading": "ぶちょう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "部長に相談しました。",
+          "zh": "和部长商量了。"
+        },
+        {
+          "ja": "部長と少し話しました。",
+          "zh": "和部长稍微聊了一下。"
+        },
+        {
+          "ja": "部長が駅で待っています。",
+          "zh": "部长在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-589",
+      "jlpt": "N4",
+      "headword": "ぶどう",
+      "source_form": "ぶどう",
+      "variants": [
+        "ぶどう"
+      ],
+      "reading": "ぶどう",
+      "reading_variants": [
+        "ぶどう"
+      ],
+      "romaji": "budou",
+      "part_of_speech": "noun",
+      "meaning_zh": "葡萄",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "ぶどうを少し食べました。",
+          "zh": "吃了一点葡萄。"
+        },
+        {
+          "ja": "ぶどうが好きです。",
+          "zh": "喜欢葡萄。"
+        },
+        {
+          "ja": "この店のぶどうは有名です。",
+          "zh": "这家店的葡萄很有名。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-590",
+      "jlpt": "N4",
+      "headword": "文化",
+      "source_form": "文化",
+      "variants": [
+        "文化"
+      ],
+      "reading": "ぶんか",
+      "reading_variants": [
+        "ぶんか"
+      ],
+      "romaji": "bunka",
+      "part_of_speech": "noun",
+      "meaning_zh": "文化",
+      "kanji_readings": [
+        {
+          "form": "文化",
+          "reading": "ぶんか"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "文化について友達と話しました。",
+          "zh": "和朋友谈了关于文化的事。"
+        },
+        {
+          "ja": "文化に関する説明を読みました。",
+          "zh": "读了关于文化的说明。"
+        },
+        {
+          "ja": "文化についてもっと知りたいです。",
+          "zh": "想更多了解文化。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-591",
+      "jlpt": "N4",
+      "headword": "文学",
+      "source_form": "文学",
+      "variants": [
+        "文学"
+      ],
+      "reading": "ぶんがく",
+      "reading_variants": [
+        "ぶんがく"
+      ],
+      "romaji": "bungaku",
+      "part_of_speech": "noun",
+      "meaning_zh": "文学",
+      "kanji_readings": [
+        {
+          "form": "文学",
+          "reading": "ぶんがく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "文学について友達と話しました。",
+          "zh": "和朋友谈了关于文学的事。"
+        },
+        {
+          "ja": "文学に関する説明を読みました。",
+          "zh": "读了关于文学的说明。"
+        },
+        {
+          "ja": "文学についてもっと知りたいです。",
+          "zh": "想更多了解文学。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-592",
+      "jlpt": "N4",
+      "headword": "文法",
+      "source_form": "文法",
+      "variants": [
+        "文法"
+      ],
+      "reading": "ぶんぽう",
+      "reading_variants": [
+        "ぶんぽう"
+      ],
+      "romaji": "bunpou",
+      "part_of_speech": "noun",
+      "meaning_zh": "语法",
+      "kanji_readings": [
+        {
+          "form": "文法",
+          "reading": "ぶんぽう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "文法について友達と話しました。",
+          "zh": "和朋友谈了关于语法的事。"
+        },
+        {
+          "ja": "文法に関する説明を読みました。",
+          "zh": "读了关于语法的说明。"
+        },
+        {
+          "ja": "文法についてもっと知りたいです。",
+          "zh": "想更多了解语法。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-593",
+      "jlpt": "N4",
+      "headword": "部屋代",
+      "source_form": "部屋代",
+      "variants": [
+        "部屋代"
+      ],
+      "reading": "へやだい",
+      "reading_variants": [
+        "へやだい"
+      ],
+      "romaji": "heyadai",
+      "part_of_speech": "noun",
+      "meaning_zh": "房租；房费",
+      "kanji_readings": [
+        {
+          "form": "部屋代",
+          "reading": "へやだい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "部屋代について調べました。",
+          "zh": "查了关于房租的资料。"
+        },
+        {
+          "ja": "部屋代に関する文章を読みました。",
+          "zh": "读了关于房租的文章。"
+        },
+        {
+          "ja": "部屋代について友達と話しました。",
+          "zh": "和朋友谈了关于房租的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-594",
+      "jlpt": "N4",
+      "headword": "変",
+      "source_form": "変",
+      "variants": [
+        "変"
+      ],
+      "reading": "へん",
+      "reading_variants": [
+        "へん"
+      ],
+      "romaji": "hen",
+      "part_of_speech": "na-adjective/noun",
+      "meaning_zh": "奇怪；异常",
+      "kanji_readings": [
+        {
+          "form": "変",
+          "reading": "へん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "変な音が聞こえます。",
+          "zh": "听得到奇怪的声音。"
+        },
+        {
+          "ja": "この文章は少し変です。",
+          "zh": "这篇文章有点奇怪。"
+        },
+        {
+          "ja": "変だと思ったら聞いてください。",
+          "zh": "觉得奇怪的话请问。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-595",
+      "jlpt": "N4",
+      "headword": "返事",
+      "source_form": "返事",
+      "variants": [
+        "返事"
+      ],
+      "reading": "へんじ",
+      "reading_variants": [
+        "へんじ"
+      ],
+      "romaji": "henji",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "回复；回答",
+      "kanji_readings": [
+        {
+          "form": "返事",
+          "reading": "へんじ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "メールの返事を書きました。",
+          "zh": "写了邮件回复。"
+        },
+        {
+          "ja": "返事が遅れてすみません。",
+          "zh": "回复晚了不好意思。"
+        },
+        {
+          "ja": "先生から返事をもらいました。",
+          "zh": "收到了老师的回复。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-596",
+      "jlpt": "N4",
+      "headword": "別",
+      "source_form": "別",
+      "variants": [
+        "別"
+      ],
+      "reading": "べつ",
+      "reading_variants": [
+        "べつ"
+      ],
+      "romaji": "betsu",
+      "part_of_speech": "na-adjective/noun",
+      "meaning_zh": "另外；不同；分别",
+      "kanji_readings": [
+        {
+          "form": "別",
+          "reading": "べつ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "これは別の問題です。",
+          "zh": "这是另一个问题。"
+        },
+        {
+          "ja": "支払いは別々でお願いします。",
+          "zh": "付款请分开。"
+        },
+        {
+          "ja": "別に急いでいません。",
+          "zh": "并不着急。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-597",
+      "jlpt": "N4",
+      "headword": "別々",
+      "source_form": "別々",
+      "variants": [
+        "別々"
+      ],
+      "reading": "べつべつ",
+      "reading_variants": [
+        "べつべつ"
+      ],
+      "romaji": "betsubetsu",
+      "part_of_speech": "na-adjective/adverb",
+      "meaning_zh": "分开；分别",
+      "kanji_readings": [
+        {
+          "form": "別々",
+          "reading": "べつべつ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "二人は別々に帰りました。",
+          "zh": "两个人分别回去了。"
+        },
+        {
+          "ja": "荷物を別々の箱に入れます。",
+          "zh": "把行李分别放进不同箱子。"
+        },
+        {
+          "ja": "会計は別々でお願いします。",
+          "zh": "请分开结账。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-598",
+      "jlpt": "N4",
+      "headword": "方向",
+      "source_form": "方向",
+      "variants": [
+        "方向"
+      ],
+      "reading": "ほうこう",
+      "reading_variants": [
+        "ほうこう"
+      ],
+      "romaji": "houkou",
+      "part_of_speech": "noun",
+      "meaning_zh": "方向",
+      "kanji_readings": [
+        {
+          "form": "方向",
+          "reading": "ほうこう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "方向について友達と話しました。",
+          "zh": "和朋友谈了关于方向的事。"
+        },
+        {
+          "ja": "方向に関する説明を読みました。",
+          "zh": "读了关于方向的说明。"
+        },
+        {
+          "ja": "方向についてもっと知りたいです。",
+          "zh": "想更多了解方向。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-599",
+      "jlpt": "N4",
+      "headword": "報告",
+      "source_form": "報告",
+      "variants": [
+        "報告"
+      ],
+      "reading": "ほうこく",
+      "reading_variants": [
+        "ほうこく"
+      ],
+      "romaji": "houkoku",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "报告；汇报",
+      "kanji_readings": [
+        {
+          "form": "報告",
+          "reading": "ほうこく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "結果を先生に報告しました。",
+          "zh": "向老师报告了结果。"
+        },
+        {
+          "ja": "会議で仕事の報告をします。",
+          "zh": "在会议上汇报工作。"
+        },
+        {
+          "ja": "報告書を明日出します。",
+          "zh": "明天提交报告书。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-600",
+      "jlpt": "N4",
+      "headword": "放送",
+      "source_form": "放送",
+      "variants": [
+        "放送"
+      ],
+      "reading": "ほうそう",
+      "reading_variants": [
+        "ほうそう"
+      ],
+      "romaji": "housou",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "广播；播送",
+      "kanji_readings": [
+        {
+          "form": "放送",
+          "reading": "ほうそう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "駅で案内が放送されました。",
+          "zh": "车站播放了通知。"
+        },
+        {
+          "ja": "テレビでニュースを放送しています。",
+          "zh": "电视上正在播新闻。"
+        },
+        {
+          "ja": "校内放送をよく聞いてください。",
+          "zh": "请仔细听校内广播。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-601",
+      "jlpt": "N4",
+      "headword": "法律",
+      "source_form": "法律",
+      "variants": [
+        "法律"
+      ],
+      "reading": "ほうりつ",
+      "reading_variants": [
+        "ほうりつ"
+      ],
+      "romaji": "houritsu",
+      "part_of_speech": "noun",
+      "meaning_zh": "法律",
+      "kanji_readings": [
+        {
+          "form": "法律",
+          "reading": "ほうりつ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "法律について友達と話しました。",
+          "zh": "和朋友谈了关于法律的事。"
+        },
+        {
+          "ja": "法律に関する説明を読みました。",
+          "zh": "读了关于法律的说明。"
+        },
+        {
+          "ja": "法律についてもっと知りたいです。",
+          "zh": "想更多了解法律。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-602",
+      "jlpt": "N4",
+      "headword": "星",
+      "source_form": "星",
+      "variants": [
+        "星"
+      ],
+      "reading": "ほし",
+      "reading_variants": [
+        "ほし"
+      ],
+      "romaji": "hoshi",
+      "part_of_speech": "noun",
+      "meaning_zh": "星星",
+      "kanji_readings": [
+        {
+          "form": "星",
+          "reading": "ほし"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "星を見ました。",
+          "zh": "看到了星星。"
+        },
+        {
+          "ja": "星を確認しました。",
+          "zh": "确认了星星。"
+        },
+        {
+          "ja": "星について友達と話しました。",
+          "zh": "和朋友谈了关于星星的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-603",
+      "jlpt": "N4",
+      "headword": "ほとんど",
+      "source_form": "ほとんど",
+      "variants": [
+        "ほとんど"
+      ],
+      "reading": "ほとんど",
+      "reading_variants": [
+        "ほとんど"
+      ],
+      "romaji": "hotondo",
+      "part_of_speech": "adverb/noun",
+      "meaning_zh": "几乎；大部分",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "宿題はほとんど終わりました。",
+          "zh": "作业几乎做完了。"
+        },
+        {
+          "ja": "会場にはほとんど人がいませんでした。",
+          "zh": "会场几乎没人。"
+        },
+        {
+          "ja": "日本語はほとんど分かりません。",
+          "zh": "几乎不懂日语。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-604",
+      "jlpt": "N4",
+      "headword": "ほど",
+      "source_form": "ほど",
+      "variants": [
+        "ほど"
+      ],
+      "reading": "ほど",
+      "reading_variants": [
+        "ほど"
+      ],
+      "romaji": "hodo",
+      "part_of_speech": "particle/noun",
+      "meaning_zh": "程度；大约；越……越……",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "駅まで十分ほどかかります。",
+          "zh": "到车站大约要十分钟。"
+        },
+        {
+          "ja": "今日は昨日ほど寒くありません。",
+          "zh": "今天没有昨天那么冷。"
+        },
+        {
+          "ja": "勉強するほど面白くなります。",
+          "zh": "越学越有意思。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-605",
+      "jlpt": "N4",
+      "headword": "ほどほど",
+      "source_form": "ほどほど",
+      "variants": [
+        "ほどほど"
+      ],
+      "reading": "ほどほど",
+      "reading_variants": [
+        "ほどほど"
+      ],
+      "romaji": "hodohodo",
+      "part_of_speech": "adverb/na-adjective",
+      "meaning_zh": "适度；不过分",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "お酒はほどほどにしてください。",
+          "zh": "酒请适量。"
+        },
+        {
+          "ja": "無理をしないで、ほどほどに休みましょう。",
+          "zh": "不要勉强，适度休息吧。"
+        },
+        {
+          "ja": "勉強も遊びもほどほどが大切です。",
+          "zh": "学习和玩都适度很重要。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-606",
+      "jlpt": "N4",
+      "headword": "褒める",
+      "source_form": "褒める",
+      "variants": [
+        "褒める"
+      ],
+      "reading": "ほめる",
+      "reading_variants": [
+        "ほめる"
+      ],
+      "romaji": "homeru",
+      "part_of_speech": "verb",
+      "meaning_zh": "表扬；称赞",
+      "kanji_readings": [
+        {
+          "form": "褒める",
+          "reading": "ほめる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "先生に発音を褒められました。",
+          "zh": "被老师夸了发音。"
+        },
+        {
+          "ja": "子供をたくさん褒めてください。",
+          "zh": "请多表扬孩子。"
+        },
+        {
+          "ja": "友達の料理を褒めました。",
+          "zh": "称赞了朋友做的菜。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-607",
+      "jlpt": "N4",
+      "headword": "翻訳",
+      "source_form": "翻訳",
+      "variants": [
+        "翻訳"
+      ],
+      "reading": "ほんやく",
+      "reading_variants": [
+        "ほんやく"
+      ],
+      "romaji": "honyaku",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "翻译",
+      "kanji_readings": [
+        {
+          "form": "翻訳",
+          "reading": "ほんやく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この文章を中国語に翻訳しました。",
+          "zh": "把这篇文章翻译成了中文。"
+        },
+        {
+          "ja": "翻訳の仕事をしています。",
+          "zh": "从事翻译工作。"
+        },
+        {
+          "ja": "自然な翻訳に直しました。",
+          "zh": "改成了自然的翻译。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-608",
+      "jlpt": "N4",
+      "headword": "貿易",
+      "source_form": "貿易",
+      "variants": [
+        "貿易"
+      ],
+      "reading": "ぼうえき",
+      "reading_variants": [
+        "ぼうえき"
+      ],
+      "romaji": "boueki",
+      "part_of_speech": "noun",
+      "meaning_zh": "贸易",
+      "kanji_readings": [
+        {
+          "form": "貿易",
+          "reading": "ぼうえき"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "貿易があります。",
+          "zh": "有贸易。"
+        },
+        {
+          "ja": "貿易の予定を確認しました。",
+          "zh": "确认了贸易的安排。"
+        },
+        {
+          "ja": "貿易について先生に聞きました。",
+          "zh": "向老师询问了贸易。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-609",
+      "jlpt": "N4",
+      "headword": "僕",
+      "source_form": "僕",
+      "variants": [
+        "僕"
+      ],
+      "reading": "ぼく",
+      "reading_variants": [
+        "ぼく"
+      ],
+      "romaji": "boku",
+      "part_of_speech": "pronoun",
+      "meaning_zh": "我（男性用语）",
+      "kanji_readings": [
+        {
+          "form": "僕",
+          "reading": "ぼく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "僕に相談しました。",
+          "zh": "和我（男性用语）商量了。"
+        },
+        {
+          "ja": "僕と少し話しました。",
+          "zh": "和我（男性用语）稍微聊了一下。"
+        },
+        {
+          "ja": "僕が駅で待っています。",
+          "zh": "我（男性用语）在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-610",
+      "jlpt": "N4",
+      "headword": "参る",
+      "source_form": "参る",
+      "variants": [
+        "参る"
+      ],
+      "reading": "まいる",
+      "reading_variants": [
+        "まいる"
+      ],
+      "romaji": "mairu",
+      "part_of_speech": "verb",
+      "meaning_zh": "去；来（自谦语）；受不了",
+      "kanji_readings": [
+        {
+          "form": "参る",
+          "reading": "まいる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "明日、そちらへ参ります。",
+          "zh": "明天我去您那边。"
+        },
+        {
+          "ja": "暑くて参りました。",
+          "zh": "热得受不了了。"
+        },
+        {
+          "ja": "駅までご一緒に参ります。",
+          "zh": "我陪您一起去车站。"
+        }
+      ],
+      "note_zh": "敬语。"
+    },
+    {
+      "id": "n4-611",
+      "jlpt": "N4",
+      "headword": "負ける",
+      "source_form": "負ける",
+      "variants": [
+        "負ける"
+      ],
+      "reading": "まける",
+      "reading_variants": [
+        "まける"
+      ],
+      "romaji": "makeru",
+      "part_of_speech": "verb",
+      "meaning_zh": "输；败给",
+      "kanji_readings": [
+        {
+          "form": "負ける",
+          "reading": "まける"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "試合に負けました。",
+          "zh": "比赛输了。"
+        },
+        {
+          "ja": "暑さに負けないでください。",
+          "zh": "请不要输给炎热。"
+        },
+        {
+          "ja": "次は負けたくありません。",
+          "zh": "下次不想输。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-612",
+      "jlpt": "N4",
+      "headword": "まじめ",
+      "source_form": "まじめ",
+      "variants": [
+        "まじめ"
+      ],
+      "reading": "まじめ",
+      "reading_variants": [
+        "まじめ"
+      ],
+      "romaji": "majime",
+      "part_of_speech": "na-adjective/noun",
+      "meaning_zh": "认真；老实",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "彼はまじめな学生です。",
+          "zh": "他是认真的学生。"
+        },
+        {
+          "ja": "まじめに勉強しています。",
+          "zh": "正在认真学习。"
+        },
+        {
+          "ja": "まじめな話をしましょう。",
+          "zh": "说点正经话吧。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-613",
+      "jlpt": "N4",
+      "headword": "真面目",
+      "source_form": "真面目",
+      "variants": [
+        "真面目"
+      ],
+      "reading": "まじめ",
+      "reading_variants": [
+        "まじめ"
+      ],
+      "romaji": "majime",
+      "part_of_speech": "na-adjective/noun",
+      "meaning_zh": "认真；正经",
+      "kanji_readings": [
+        {
+          "form": "真面目",
+          "reading": "まじめ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "彼は真面目な学生です。",
+          "zh": "他是认真的学生。"
+        },
+        {
+          "ja": "真面目に仕事をしています。",
+          "zh": "认真地工作。"
+        },
+        {
+          "ja": "真面目な質問をしました。",
+          "zh": "问了一个正经的问题。"
+        }
+      ],
+      "note_zh": "可写汉字。"
+    },
+    {
+      "id": "n4-614",
+      "jlpt": "N4",
+      "headword": "まず",
+      "source_form": "まず",
+      "variants": [
+        "まず"
+      ],
+      "reading": "まず",
+      "reading_variants": [
+        "まず"
+      ],
+      "romaji": "mazu",
+      "part_of_speech": "adverb",
+      "meaning_zh": "首先；暂且",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "まず名前を書いてください。",
+          "zh": "请先写名字。"
+        },
+        {
+          "ja": "まず駅で友達と会います。",
+          "zh": "先在车站和朋友见面。"
+        },
+        {
+          "ja": "分からない時はまず辞書を見ます。",
+          "zh": "不懂时先查词典。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-615",
+      "jlpt": "N4",
+      "headword": "または",
+      "source_form": "または",
+      "variants": [
+        "または"
+      ],
+      "reading": "または",
+      "reading_variants": [
+        "または"
+      ],
+      "romaji": "mataha",
+      "part_of_speech": "conjunction",
+      "meaning_zh": "或者；或是",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "雨が降っています。または、出かけます。",
+          "zh": "在下雨。不过还是出门。"
+        },
+        {
+          "ja": "今日は忙しいです。または、少し勉強します。",
+          "zh": "今天很忙。不过还是稍微学习。"
+        },
+        {
+          "ja": "よく分かりません。または、もう一度聞きます。",
+          "zh": "不太明白。不过会再问一次。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-616",
+      "jlpt": "N4",
+      "headword": "間違い",
+      "source_form": "間違い",
+      "variants": [
+        "間違い"
+      ],
+      "reading": "まちがい",
+      "reading_variants": [
+        "まちがい"
+      ],
+      "romaji": "machigai",
+      "part_of_speech": "noun",
+      "meaning_zh": "错误",
+      "kanji_readings": [
+        {
+          "form": "間違い",
+          "reading": "まちがい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "間違いについて調べました。",
+          "zh": "查了关于错误的资料。"
+        },
+        {
+          "ja": "間違いに関する文章を読みました。",
+          "zh": "读了关于错误的文章。"
+        },
+        {
+          "ja": "間違いについて友達と話しました。",
+          "zh": "和朋友谈了关于错误的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-617",
+      "jlpt": "N4",
+      "headword": "間違える",
+      "source_form": "間違える",
+      "variants": [
+        "間違える"
+      ],
+      "reading": "まちがえる",
+      "reading_variants": [
+        "まちがえる"
+      ],
+      "romaji": "machigaeru",
+      "part_of_speech": "verb",
+      "meaning_zh": "弄错；搞错",
+      "kanji_readings": [
+        {
+          "form": "間違える",
+          "reading": "まちがえる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "駅の名前を間違えました。",
+          "zh": "弄错了车站名。"
+        },
+        {
+          "ja": "答えを一つ間違えました。",
+          "zh": "错了一个答案。"
+        },
+        {
+          "ja": "道を間違えないように地図を見ます。",
+          "zh": "为了不走错路看地图。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-618",
+      "jlpt": "N4",
+      "headword": "間に合う",
+      "source_form": "間に合う",
+      "variants": [
+        "間に合う"
+      ],
+      "reading": "まにあう",
+      "reading_variants": [
+        "まにあう"
+      ],
+      "romaji": "maniau",
+      "part_of_speech": "verb",
+      "meaning_zh": "赶得上；来得及",
+      "kanji_readings": [
+        {
+          "form": "間に合う",
+          "reading": "まにあう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "電車に間に合いました。",
+          "zh": "赶上了电车。"
+        },
+        {
+          "ja": "締め切りに間に合いません。",
+          "zh": "赶不上截止时间。"
+        },
+        {
+          "ja": "急げば授業に間に合います。",
+          "zh": "赶快的话能赶上上课。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-619",
+      "jlpt": "N4",
+      "headword": "周り",
+      "source_form": "周り",
+      "variants": [
+        "周り"
+      ],
+      "reading": "まわり",
+      "reading_variants": [
+        "まわり"
+      ],
+      "romaji": "mawari",
+      "part_of_speech": "noun",
+      "meaning_zh": "周围；附近",
+      "kanji_readings": [
+        {
+          "form": "周り",
+          "reading": "まわり"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "周りについて友達と話しました。",
+          "zh": "和朋友谈了关于周围的事。"
+        },
+        {
+          "ja": "周りに関する説明を読みました。",
+          "zh": "读了关于周围的说明。"
+        },
+        {
+          "ja": "周りについてもっと知りたいです。",
+          "zh": "想更多了解周围。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-620",
+      "jlpt": "N4",
+      "headword": "回る",
+      "source_form": "回る",
+      "variants": [
+        "回る"
+      ],
+      "reading": "まわる",
+      "reading_variants": [
+        "まわる"
+      ],
+      "romaji": "mawaru",
+      "part_of_speech": "verb",
+      "meaning_zh": "转；绕；巡回",
+      "kanji_readings": [
+        {
+          "form": "回る",
+          "reading": "まわる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "店を三つ回りました。",
+          "zh": "逛了三家店。"
+        },
+        {
+          "ja": "地球は太陽の周りを回ります。",
+          "zh": "地球绕着太阳转。"
+        },
+        {
+          "ja": "京都の寺を回りたいです。",
+          "zh": "想游览京都的寺庙。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-621",
+      "jlpt": "N4",
+      "headword": "漫画",
+      "source_form": "漫画",
+      "variants": [
+        "漫画"
+      ],
+      "reading": "まんが",
+      "reading_variants": [
+        "まんが"
+      ],
+      "romaji": "manga",
+      "part_of_speech": "noun",
+      "meaning_zh": "漫画",
+      "kanji_readings": [
+        {
+          "form": "漫画",
+          "reading": "まんが"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "休みの日に漫画を読みます。",
+          "zh": "休息日看漫画。"
+        },
+        {
+          "ja": "この漫画は日本語の勉強になります。",
+          "zh": "这部漫画对日语学习有帮助。"
+        },
+        {
+          "ja": "友達に漫画を借りました。",
+          "zh": "向朋友借了漫画。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-622",
+      "jlpt": "N4",
+      "headword": "真ん中",
+      "source_form": "真ん中; 真中",
+      "variants": [
+        "真ん中",
+        "真中"
+      ],
+      "reading": "まんなか",
+      "reading_variants": [
+        "まんなか"
+      ],
+      "romaji": "mannaka",
+      "part_of_speech": "noun",
+      "meaning_zh": "正中间",
+      "kanji_readings": [
+        {
+          "form": "真ん中",
+          "reading": "まんなか"
+        },
+        {
+          "form": "真中",
+          "reading": "まんなか"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "部屋の真ん中に机があります。",
+          "zh": "房间正中间有桌子。"
+        },
+        {
+          "ja": "写真の真ん中に立ってください。",
+          "zh": "请站在照片中间。"
+        },
+        {
+          "ja": "道の真ん中を歩かないでください。",
+          "zh": "请不要走在路中间。"
+        }
+      ],
+      "note_zh": "现代常写「真ん中」。"
+    },
+    {
+      "id": "n4-623",
+      "jlpt": "N4",
+      "headword": "見える",
+      "source_form": "見える",
+      "variants": [
+        "見える"
+      ],
+      "reading": "みえる",
+      "reading_variants": [
+        "みえる"
+      ],
+      "romaji": "mieru",
+      "part_of_speech": "verb",
+      "meaning_zh": "看得见；似乎",
+      "kanji_readings": [
+        {
+          "form": "見える",
+          "reading": "みえる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "ここから海が見えます。",
+          "zh": "从这里看得见海。"
+        },
+        {
+          "ja": "字が小さくて見えません。",
+          "zh": "字太小，看不见。"
+        },
+        {
+          "ja": "彼は少し疲れて見えます。",
+          "zh": "他看起来有点累。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-624",
+      "jlpt": "N4",
+      "headword": "湖",
+      "source_form": "湖",
+      "variants": [
+        "湖"
+      ],
+      "reading": "みずうみ",
+      "reading_variants": [
+        "みずうみ"
+      ],
+      "romaji": "mizuumi",
+      "part_of_speech": "noun",
+      "meaning_zh": "湖",
+      "kanji_readings": [
+        {
+          "form": "湖",
+          "reading": "みずうみ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "湖を見ました。",
+          "zh": "看到了湖。"
+        },
+        {
+          "ja": "湖を確認しました。",
+          "zh": "确认了湖。"
+        },
+        {
+          "ja": "湖について友達と話しました。",
+          "zh": "和朋友谈了关于湖的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-625",
+      "jlpt": "N4",
+      "headword": "味噌",
+      "source_form": "味噌",
+      "variants": [
+        "味噌"
+      ],
+      "reading": "みそ",
+      "reading_variants": [
+        "みそ"
+      ],
+      "romaji": "miso",
+      "part_of_speech": "noun",
+      "meaning_zh": "味噌；黄酱",
+      "kanji_readings": [
+        {
+          "form": "味噌",
+          "reading": "みそ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "味噌を少し食べました。",
+          "zh": "吃了一点味噌。"
+        },
+        {
+          "ja": "味噌が好きです。",
+          "zh": "喜欢味噌。"
+        },
+        {
+          "ja": "この店の味噌は有名です。",
+          "zh": "这家店的味噌很有名。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-626",
+      "jlpt": "N4",
+      "headword": "見つかる",
+      "source_form": "見つかる",
+      "variants": [
+        "見つかる"
+      ],
+      "reading": "みつかる",
+      "reading_variants": [
+        "みつかる"
+      ],
+      "romaji": "mitsukaru",
+      "part_of_speech": "verb",
+      "meaning_zh": "被找到；找到",
+      "kanji_readings": [
+        {
+          "form": "見つかる",
+          "reading": "みつかる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "なくした鍵が見つかりました。",
+          "zh": "丢失的钥匙找到了。"
+        },
+        {
+          "ja": "いい店が見つかりました。",
+          "zh": "找到了一家好店。"
+        },
+        {
+          "ja": "仕事はまだ見つかっていません。",
+          "zh": "工作还没找到。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-627",
+      "jlpt": "N4",
+      "headword": "見つける",
+      "source_form": "見つける",
+      "variants": [
+        "見つける"
+      ],
+      "reading": "みつける",
+      "reading_variants": [
+        "みつける"
+      ],
+      "romaji": "mitsukeru",
+      "part_of_speech": "verb",
+      "meaning_zh": "找到；发现",
+      "kanji_readings": [
+        {
+          "form": "見つける",
+          "reading": "みつける"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "駅の近くで安い店を見つけました。",
+          "zh": "在车站附近找到了一家便宜的店。"
+        },
+        {
+          "ja": "間違いを見つけてください。",
+          "zh": "请找出错误。"
+        },
+        {
+          "ja": "新しい趣味を見つけたいです。",
+          "zh": "想找到新的爱好。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-628",
+      "jlpt": "N4",
+      "headword": "皆",
+      "source_form": "皆",
+      "variants": [
+        "皆"
+      ],
+      "reading": "みな",
+      "reading_variants": [
+        "みな"
+      ],
+      "romaji": "mina",
+      "part_of_speech": "noun/adverb",
+      "meaning_zh": "大家；全都",
+      "kanji_readings": [
+        {
+          "form": "皆",
+          "reading": "みな"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "皆で写真を撮りましょう。",
+          "zh": "大家一起拍照吧。"
+        },
+        {
+          "ja": "皆、もう集まりましたか。",
+          "zh": "大家都已经集合了吗？"
+        },
+        {
+          "ja": "皆にお土産を買いました。",
+          "zh": "给大家买了伴手礼。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-629",
+      "jlpt": "N4",
+      "headword": "皆さん",
+      "source_form": "皆さん",
+      "variants": [
+        "皆さん"
+      ],
+      "reading": "みなさん",
+      "reading_variants": [
+        "みなさん"
+      ],
+      "romaji": "minasan",
+      "part_of_speech": "noun",
+      "meaning_zh": "大家；各位",
+      "kanji_readings": [
+        {
+          "form": "皆さん",
+          "reading": "みなさん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "皆さんに相談しました。",
+          "zh": "和大家商量了。"
+        },
+        {
+          "ja": "皆さんと少し話しました。",
+          "zh": "和大家稍微聊了一下。"
+        },
+        {
+          "ja": "皆さんが駅で待っています。",
+          "zh": "大家在车站等。"
+        }
+      ],
+      "note_zh": "N5/N4 边界词，扩展保留。"
+    },
+    {
+      "id": "n4-630",
+      "jlpt": "N4",
+      "headword": "港",
+      "source_form": "港",
+      "variants": [
+        "港"
+      ],
+      "reading": "みなと",
+      "reading_variants": [
+        "みなと"
+      ],
+      "romaji": "minato",
+      "part_of_speech": "noun",
+      "meaning_zh": "港口",
+      "kanji_readings": [
+        {
+          "form": "港",
+          "reading": "みなと"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "港へ行きました。",
+          "zh": "去了港口。"
+        },
+        {
+          "ja": "港は駅の近くにあります。",
+          "zh": "港口在车站附近。"
+        },
+        {
+          "ja": "港で友達に会いました。",
+          "zh": "在港口见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-631",
+      "jlpt": "N4",
+      "headword": "向かう",
+      "source_form": "向かう",
+      "variants": [
+        "向かう"
+      ],
+      "reading": "むかう",
+      "reading_variants": [
+        "むかう"
+      ],
+      "romaji": "mukau",
+      "part_of_speech": "verb",
+      "meaning_zh": "面向；前往",
+      "kanji_readings": [
+        {
+          "form": "向かう",
+          "reading": "むかう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "駅に向かっています。",
+          "zh": "正在前往车站。"
+        },
+        {
+          "ja": "机を窓の方に向けました。",
+          "zh": "把桌子朝向窗户。"
+        },
+        {
+          "ja": "問題に正面から向かいます。",
+          "zh": "正面面对问题。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-632",
+      "jlpt": "N4",
+      "headword": "迎える",
+      "source_form": "迎える",
+      "variants": [
+        "迎える"
+      ],
+      "reading": "むかえる",
+      "reading_variants": [
+        "むかえる"
+      ],
+      "romaji": "mukaeru",
+      "part_of_speech": "verb",
+      "meaning_zh": "迎接；迎来",
+      "kanji_readings": [
+        {
+          "form": "迎える",
+          "reading": "むかえる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "空港で友達を迎えます。",
+          "zh": "在机场接朋友。"
+        },
+        {
+          "ja": "新しい年を迎えました。",
+          "zh": "迎来了新年。"
+        },
+        {
+          "ja": "駅まで迎えに来てくれました。",
+          "zh": "来车站接我了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-633",
+      "jlpt": "N4",
+      "headword": "昔",
+      "source_form": "昔",
+      "variants": [
+        "昔"
+      ],
+      "reading": "むかし",
+      "reading_variants": [
+        "むかし"
+      ],
+      "romaji": "mukashi",
+      "part_of_speech": "noun",
+      "meaning_zh": "从前；过去",
+      "kanji_readings": [
+        {
+          "form": "昔",
+          "reading": "むかし"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "昔、この町に住んでいました。",
+          "zh": "以前住在这个城镇。"
+        },
+        {
+          "ja": "昔の写真を見ました。",
+          "zh": "看了以前的照片。"
+        },
+        {
+          "ja": "昔はここに大きな川がありました。",
+          "zh": "以前这里有一条大河。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-634",
+      "jlpt": "N4",
+      "headword": "向こう",
+      "source_form": "向こう",
+      "variants": [
+        "向こう"
+      ],
+      "reading": "むこう",
+      "reading_variants": [
+        "むこう"
+      ],
+      "romaji": "mukou",
+      "part_of_speech": "noun",
+      "meaning_zh": "对面；那边；对方",
+      "kanji_readings": [
+        {
+          "form": "向こう",
+          "reading": "むこう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "向こうについて調べました。",
+          "zh": "查了关于对面的资料。"
+        },
+        {
+          "ja": "向こうに関する文章を読みました。",
+          "zh": "读了关于对面的文章。"
+        },
+        {
+          "ja": "向こうについて友達と話しました。",
+          "zh": "和朋友谈了关于对面的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-635",
+      "jlpt": "N4",
+      "headword": "虫",
+      "source_form": "虫",
+      "variants": [
+        "虫"
+      ],
+      "reading": "むし",
+      "reading_variants": [
+        "むし"
+      ],
+      "romaji": "mushi",
+      "part_of_speech": "noun",
+      "meaning_zh": "虫子",
+      "kanji_readings": [
+        {
+          "form": "虫",
+          "reading": "むし"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "虫を見ました。",
+          "zh": "看到了虫子。"
+        },
+        {
+          "ja": "虫を確認しました。",
+          "zh": "确认了虫子。"
+        },
+        {
+          "ja": "虫について友達と話しました。",
+          "zh": "和朋友谈了关于虫子的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-636",
+      "jlpt": "N4",
+      "headword": "息子",
+      "source_form": "息子",
+      "variants": [
+        "息子"
+      ],
+      "reading": "むすこ",
+      "reading_variants": [
+        "むすこ"
+      ],
+      "romaji": "musuko",
+      "part_of_speech": "noun",
+      "meaning_zh": "儿子（称自己的儿子）",
+      "kanji_readings": [
+        {
+          "form": "息子",
+          "reading": "むすこ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "息子に相談しました。",
+          "zh": "和儿子（称自己的儿子）商量了。"
+        },
+        {
+          "ja": "息子と少し話しました。",
+          "zh": "和儿子（称自己的儿子）稍微聊了一下。"
+        },
+        {
+          "ja": "息子が駅で待っています。",
+          "zh": "儿子（称自己的儿子）在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-637",
+      "jlpt": "N4",
+      "headword": "娘",
+      "source_form": "娘",
+      "variants": [
+        "娘"
+      ],
+      "reading": "むすめ",
+      "reading_variants": [
+        "むすめ"
+      ],
+      "romaji": "musume",
+      "part_of_speech": "noun",
+      "meaning_zh": "女儿（称自己的女儿）",
+      "kanji_readings": [
+        {
+          "form": "娘",
+          "reading": "むすめ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "娘に相談しました。",
+          "zh": "和女儿（称自己的女儿）商量了。"
+        },
+        {
+          "ja": "娘と少し話しました。",
+          "zh": "和女儿（称自己的女儿）稍微聊了一下。"
+        },
+        {
+          "ja": "娘が駅で待っています。",
+          "zh": "女儿（称自己的女儿）在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-638",
+      "jlpt": "N4",
+      "headword": "無理",
+      "source_form": "無理",
+      "variants": [
+        "無理"
+      ],
+      "reading": "むり",
+      "reading_variants": [
+        "むり"
+      ],
+      "romaji": "muri",
+      "part_of_speech": "na-adjective/noun",
+      "meaning_zh": "勉强；不可能；不合理",
+      "kanji_readings": [
+        {
+          "form": "無理",
+          "reading": "むり"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "無理をしないでください。",
+          "zh": "请不要勉强。"
+        },
+        {
+          "ja": "今日中に終わらせるのは無理です。",
+          "zh": "今天之内完成是不可能的。"
+        },
+        {
+          "ja": "無理な予定を立てないようにします。",
+          "zh": "尽量不制定勉强的计划。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-639",
+      "jlpt": "N4",
+      "headword": "無料",
+      "source_form": "無料",
+      "variants": [
+        "無料"
+      ],
+      "reading": "むりょう",
+      "reading_variants": [
+        "むりょう"
+      ],
+      "romaji": "muryou",
+      "part_of_speech": "na-adjective/noun",
+      "meaning_zh": "免费",
+      "kanji_readings": [
+        {
+          "form": "無料",
+          "reading": "むりょう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "このサービスは無料です。",
+          "zh": "这个服务免费。"
+        },
+        {
+          "ja": "入場は無料です。",
+          "zh": "入场免费。"
+        },
+        {
+          "ja": "無料の地図をもらいました。",
+          "zh": "拿到了免费的地图。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-640",
+      "jlpt": "N4",
+      "headword": "召し上がる",
+      "source_form": "召し上がる",
+      "variants": [
+        "召し上がる"
+      ],
+      "reading": "めしあがる",
+      "reading_variants": [
+        "めしあがる"
+      ],
+      "romaji": "meshiagaru",
+      "part_of_speech": "verb",
+      "meaning_zh": "吃；喝（尊敬语）",
+      "kanji_readings": [
+        {
+          "form": "召し上がる",
+          "reading": "めしあがる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "どうぞ召し上がってください。",
+          "zh": "请用餐。"
+        },
+        {
+          "ja": "先生はもう昼ご飯を召し上がりました。",
+          "zh": "老师已经吃过午饭了。"
+        },
+        {
+          "ja": "温かいうちに召し上がってください。",
+          "zh": "请趁热吃。"
+        }
+      ],
+      "note_zh": "敬语。"
+    },
+    {
+      "id": "n4-641",
+      "jlpt": "N4",
+      "headword": "珍しい",
+      "source_form": "珍しい",
+      "variants": [
+        "珍しい"
+      ],
+      "reading": "めずらしい",
+      "reading_variants": [
+        "めずらしい"
+      ],
+      "romaji": "mezurashii",
+      "part_of_speech": "i-adjective",
+      "meaning_zh": "少见的；珍奇的",
+      "kanji_readings": [
+        {
+          "form": "珍しい",
+          "reading": "めずらしい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "珍しい鳥を見ました。",
+          "zh": "看到了少见的鸟。"
+        },
+        {
+          "ja": "この料理は日本では珍しいです。",
+          "zh": "这道菜在日本很少见。"
+        },
+        {
+          "ja": "珍しい経験をしました。",
+          "zh": "有了一次少见的经历。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-642",
+      "jlpt": "N4",
+      "headword": "申し上げる",
+      "source_form": "申し上げる",
+      "variants": [
+        "申し上げる"
+      ],
+      "reading": "もうしあげる",
+      "reading_variants": [
+        "もうしあげる"
+      ],
+      "romaji": "moushiageru",
+      "part_of_speech": "verb",
+      "meaning_zh": "说；讲（自谦语）",
+      "kanji_readings": [
+        {
+          "form": "申し上げる",
+          "reading": "もうしあげる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "心からお礼を申し上げます。",
+          "zh": "由衷表示感谢。"
+        },
+        {
+          "ja": "詳しいことは後ほど申し上げます。",
+          "zh": "详细情况稍后说明。"
+        },
+        {
+          "ja": "失礼を申し上げました。",
+          "zh": "我说了失礼的话。"
+        }
+      ],
+      "note_zh": "敬语。"
+    },
+    {
+      "id": "n4-643",
+      "jlpt": "N4",
+      "headword": "申し込み",
+      "source_form": "申し込み",
+      "variants": [
+        "申し込み"
+      ],
+      "reading": "もうしこみ",
+      "reading_variants": [
+        "もうしこみ"
+      ],
+      "romaji": "moushikomi",
+      "part_of_speech": "noun",
+      "meaning_zh": "申请；报名",
+      "kanji_readings": [
+        {
+          "form": "申し込み",
+          "reading": "もうしこみ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "申し込みについて調べました。",
+          "zh": "查了关于申请的资料。"
+        },
+        {
+          "ja": "申し込みに関する文章を読みました。",
+          "zh": "读了关于申请的文章。"
+        },
+        {
+          "ja": "申し込みについて友達と話しました。",
+          "zh": "和朋友谈了关于申请的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-644",
+      "jlpt": "N4",
+      "headword": "申す",
+      "source_form": "申す",
+      "variants": [
+        "申す"
+      ],
+      "reading": "もうす",
+      "reading_variants": [
+        "もうす"
+      ],
+      "romaji": "mousu",
+      "part_of_speech": "verb",
+      "meaning_zh": "叫做；说（自谦语）",
+      "kanji_readings": [
+        {
+          "form": "申す",
+          "reading": "もうす"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "田中と申します。",
+          "zh": "我叫田中。"
+        },
+        {
+          "ja": "もう一度申します。",
+          "zh": "我再说一遍。"
+        },
+        {
+          "ja": "受付で名前を申しました。",
+          "zh": "在前台报了名字。"
+        }
+      ],
+      "note_zh": "敬语。"
+    },
+    {
+      "id": "n4-645",
+      "jlpt": "N4",
+      "headword": "もうすぐ",
+      "source_form": "もうすぐ",
+      "variants": [
+        "もうすぐ"
+      ],
+      "reading": "もうすぐ",
+      "reading_variants": [
+        "もうすぐ"
+      ],
+      "romaji": "mousugu",
+      "part_of_speech": "adverb",
+      "meaning_zh": "马上；快要",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "もうすぐ電車が来ます。",
+          "zh": "电车马上来了。"
+        },
+        {
+          "ja": "もうすぐ春になります。",
+          "zh": "马上到春天了。"
+        },
+        {
+          "ja": "もうすぐ試験なので緊張しています。",
+          "zh": "马上考试了，所以紧张。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-646",
+      "jlpt": "N4",
+      "headword": "もちろん",
+      "source_form": "もちろん",
+      "variants": [
+        "もちろん"
+      ],
+      "reading": "もちろん",
+      "reading_variants": [
+        "もちろん"
+      ],
+      "romaji": "mochiron",
+      "part_of_speech": "adverb",
+      "meaning_zh": "当然",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "もちろん行きます。",
+          "zh": "当然去。"
+        },
+        {
+          "ja": "手伝ってくれますか。もちろんです。",
+          "zh": "能帮我吗？当然。"
+        },
+        {
+          "ja": "日本語ももちろん勉強しています。",
+          "zh": "日语当然也在学。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-647",
+      "jlpt": "N4",
+      "headword": "もっとも",
+      "source_form": "もっとも",
+      "variants": [
+        "もっとも"
+      ],
+      "reading": "もっとも",
+      "reading_variants": [
+        "もっとも"
+      ],
+      "romaji": "mottomo",
+      "part_of_speech": "adverb/na-adjective",
+      "meaning_zh": "最；非常；合乎道理",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "彼がクラスでもっとも背が高いです。",
+          "zh": "他在班里最高。"
+        },
+        {
+          "ja": "それはもっともな意見です。",
+          "zh": "那是合理的意见。"
+        },
+        {
+          "ja": "今がもっとも忙しい時期です。",
+          "zh": "现在是最忙的时期。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-648",
+      "jlpt": "N4",
+      "headword": "戻る",
+      "source_form": "戻る",
+      "variants": [
+        "戻る"
+      ],
+      "reading": "もどる",
+      "reading_variants": [
+        "もどる"
+      ],
+      "romaji": "modoru",
+      "part_of_speech": "verb",
+      "meaning_zh": "返回；回到",
+      "kanji_readings": [
+        {
+          "form": "戻る",
+          "reading": "もどる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "家に戻ります。",
+          "zh": "回家。"
+        },
+        {
+          "ja": "忘れ物を取りに駅へ戻りました。",
+          "zh": "回车站取忘带的东西。"
+        },
+        {
+          "ja": "話を最初に戻しましょう。",
+          "zh": "把话题回到开头吧。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-649",
+      "jlpt": "N4",
+      "headword": "木綿",
+      "source_form": "木綿",
+      "variants": [
+        "木綿"
+      ],
+      "reading": "もめん",
+      "reading_variants": [
+        "もめん"
+      ],
+      "romaji": "momen",
+      "part_of_speech": "noun",
+      "meaning_zh": "棉；棉布",
+      "kanji_readings": [
+        {
+          "form": "木綿",
+          "reading": "もめん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "木綿を見ました。",
+          "zh": "看到了棉。"
+        },
+        {
+          "ja": "木綿を確認しました。",
+          "zh": "确认了棉。"
+        },
+        {
+          "ja": "木綿について友達と話しました。",
+          "zh": "和朋友谈了关于棉的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-650",
+      "jlpt": "N4",
+      "headword": "もらう",
+      "source_form": "もらう",
+      "variants": [
+        "もらう"
+      ],
+      "reading": "もらう",
+      "reading_variants": [
+        "もらう"
+      ],
+      "romaji": "morau",
+      "part_of_speech": "verb",
+      "meaning_zh": "得到；收到",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "友達から手紙をもらいました。",
+          "zh": "从朋友那里收到了信。"
+        },
+        {
+          "ja": "先生に説明してもらいました。",
+          "zh": "请老师给我说明了。"
+        },
+        {
+          "ja": "プレゼントをもらってうれしいです。",
+          "zh": "收到礼物很开心。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-651",
+      "jlpt": "N4",
+      "headword": "森",
+      "source_form": "森",
+      "variants": [
+        "森"
+      ],
+      "reading": "もり",
+      "reading_variants": [
+        "もり"
+      ],
+      "romaji": "mori",
+      "part_of_speech": "noun",
+      "meaning_zh": "森林",
+      "kanji_readings": [
+        {
+          "form": "森",
+          "reading": "もり"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "森を見ました。",
+          "zh": "看到了森林。"
+        },
+        {
+          "ja": "森を確認しました。",
+          "zh": "确认了森林。"
+        },
+        {
+          "ja": "森について友達と話しました。",
+          "zh": "和朋友谈了关于森林的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-652",
+      "jlpt": "N4",
+      "headword": "役",
+      "source_form": "役",
+      "variants": [
+        "役"
+      ],
+      "reading": "やく",
+      "reading_variants": [
+        "やく"
+      ],
+      "romaji": "yaku",
+      "part_of_speech": "noun",
+      "meaning_zh": "作用；角色；职务",
+      "kanji_readings": [
+        {
+          "form": "役",
+          "reading": "やく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "役について友達と話しました。",
+          "zh": "和朋友谈了关于作用的事。"
+        },
+        {
+          "ja": "役に関する説明を読みました。",
+          "zh": "读了关于作用的说明。"
+        },
+        {
+          "ja": "役についてもっと知りたいです。",
+          "zh": "想更多了解作用。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-653",
+      "jlpt": "N4",
+      "headword": "焼く",
+      "source_form": "焼く",
+      "variants": [
+        "焼く"
+      ],
+      "reading": "やく",
+      "reading_variants": [
+        "やく"
+      ],
+      "romaji": "yaku",
+      "part_of_speech": "verb",
+      "meaning_zh": "烤；烧；煎",
+      "kanji_readings": [
+        {
+          "form": "焼く",
+          "reading": "やく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "魚を焼きます。",
+          "zh": "烤鱼。"
+        },
+        {
+          "ja": "母がケーキを焼きました。",
+          "zh": "妈妈烤了蛋糕。"
+        },
+        {
+          "ja": "肉を焼きすぎないでください。",
+          "zh": "请不要把肉烤过头。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-654",
+      "jlpt": "N4",
+      "headword": "約束",
+      "source_form": "約束",
+      "variants": [
+        "約束"
+      ],
+      "reading": "やくそく",
+      "reading_variants": [
+        "やくそく"
+      ],
+      "romaji": "yakusoku",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "约定；约会；承诺",
+      "kanji_readings": [
+        {
+          "form": "約束",
+          "reading": "やくそく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "友達と会う約束があります。",
+          "zh": "和朋友有见面的约定。"
+        },
+        {
+          "ja": "約束を忘れないでください。",
+          "zh": "请不要忘记约定。"
+        },
+        {
+          "ja": "約束の時間に遅れました。",
+          "zh": "约定时间迟到了。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-655",
+      "jlpt": "N4",
+      "headword": "役に立つ",
+      "source_form": "役に立つ",
+      "variants": [
+        "役に立つ"
+      ],
+      "reading": "やくにたつ",
+      "reading_variants": [
+        "やくにたつ"
+      ],
+      "romaji": "yakunitatsu",
+      "part_of_speech": "expression/verb",
+      "meaning_zh": "有用；起作用",
+      "kanji_readings": [
+        {
+          "form": "役に立つ",
+          "reading": "やくにたつ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この本は勉強に役に立ちます。",
+          "zh": "这本书对学习有用。"
+        },
+        {
+          "ja": "旅行で日本語が役に立ちました。",
+          "zh": "旅行时日语派上了用场。"
+        },
+        {
+          "ja": "人の役に立つ仕事がしたいです。",
+          "zh": "想做对别人有帮助的工作。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-656",
+      "jlpt": "N4",
+      "headword": "焼ける",
+      "source_form": "焼ける",
+      "variants": [
+        "焼ける"
+      ],
+      "reading": "やける",
+      "reading_variants": [
+        "やける"
+      ],
+      "romaji": "yakeru",
+      "part_of_speech": "verb",
+      "meaning_zh": "烧焦；烤好；晒黑",
+      "kanji_readings": [
+        {
+          "form": "焼ける",
+          "reading": "やける"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "パンがきれいに焼けました。",
+          "zh": "面包烤得很好。"
+        },
+        {
+          "ja": "海で肌が焼けました。",
+          "zh": "在海边皮肤晒黑了。"
+        },
+        {
+          "ja": "魚がもう焼けています。",
+          "zh": "鱼已经烤好了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-657",
+      "jlpt": "N4",
+      "headword": "痩せる",
+      "source_form": "痩せる",
+      "variants": [
+        "痩せる"
+      ],
+      "reading": "やせる",
+      "reading_variants": [
+        "やせる"
+      ],
+      "romaji": "yaseru",
+      "part_of_speech": "verb",
+      "meaning_zh": "变瘦",
+      "kanji_readings": [
+        {
+          "form": "痩せる",
+          "reading": "やせる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "運動して少し痩せました。",
+          "zh": "运动后瘦了一点。"
+        },
+        {
+          "ja": "無理に痩せようとしないでください。",
+          "zh": "请不要勉强减肥。"
+        },
+        {
+          "ja": "最近、彼は痩せたようです。",
+          "zh": "最近他好像瘦了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-658",
+      "jlpt": "N4",
+      "headword": "やっと",
+      "source_form": "やっと",
+      "variants": [
+        "やっと"
+      ],
+      "reading": "やっと",
+      "reading_variants": [
+        "やっと"
+      ],
+      "romaji": "yatto",
+      "part_of_speech": "adverb",
+      "meaning_zh": "终于；好不容易",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "やっと宿題が終わりました。",
+          "zh": "终于做完作业了。"
+        },
+        {
+          "ja": "やっと駅に着きました。",
+          "zh": "终于到车站了。"
+        },
+        {
+          "ja": "やっと意味が分かりました。",
+          "zh": "终于明白意思了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-659",
+      "jlpt": "N4",
+      "headword": "やはり",
+      "source_form": "やはり; やっぱり",
+      "variants": [
+        "やはり",
+        "やっぱり"
+      ],
+      "reading": "やはり",
+      "reading_variants": [
+        "やはり"
+      ],
+      "romaji": "yahari",
+      "part_of_speech": "adverb",
+      "meaning_zh": "果然；还是；不出所料",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "やはり日本語は面白いです。",
+          "zh": "日语果然很有意思。"
+        },
+        {
+          "ja": "やはり雨が降りました。",
+          "zh": "果然下雨了。"
+        },
+        {
+          "ja": "考えてみても、やはり行きたいです。",
+          "zh": "想了想，还是想去。"
+        }
+      ],
+      "note_zh": "「やっぱり」更口语。"
+    },
+    {
+      "id": "n4-660",
+      "jlpt": "N4",
+      "headword": "止む",
+      "source_form": "止む",
+      "variants": [
+        "止む"
+      ],
+      "reading": "やむ",
+      "reading_variants": [
+        "やむ"
+      ],
+      "romaji": "yamu",
+      "part_of_speech": "verb",
+      "meaning_zh": "停止（雨、风等）",
+      "kanji_readings": [
+        {
+          "form": "止む",
+          "reading": "やむ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "雨がやみました。",
+          "zh": "雨停了。"
+        },
+        {
+          "ja": "風がやむまで待ちます。",
+          "zh": "等到风停。"
+        },
+        {
+          "ja": "雪は夜にはやむそうです。",
+          "zh": "听说雪晚上会停。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-661",
+      "jlpt": "N4",
+      "headword": "止める",
+      "source_form": "止める",
+      "variants": [
+        "止める"
+      ],
+      "reading": "やめる",
+      "reading_variants": [
+        "やめる"
+      ],
+      "romaji": "yameru",
+      "part_of_speech": "verb",
+      "meaning_zh": "停止；放弃；辞职",
+      "kanji_readings": [
+        {
+          "form": "止める",
+          "reading": "やめる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "会社を辞めるつもりです。",
+          "zh": "打算辞职。"
+        },
+        {
+          "ja": "たばこをやめました。",
+          "zh": "戒烟了。"
+        },
+        {
+          "ja": "無理をするのはやめてください。",
+          "zh": "请不要勉强。"
+        }
+      ],
+      "note_zh": "读作「やめる」。"
+    },
+    {
+      "id": "n4-662",
+      "jlpt": "N4",
+      "headword": "柔らかい",
+      "source_form": "柔らかい",
+      "variants": [
+        "柔らかい"
+      ],
+      "reading": "やわらかい",
+      "reading_variants": [
+        "やわらかい"
+      ],
+      "romaji": "yawarakai",
+      "part_of_speech": "i-adjective",
+      "meaning_zh": "柔软的",
+      "kanji_readings": [
+        {
+          "form": "柔らかい",
+          "reading": "やわらかい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "このパンは柔らかいです。",
+          "zh": "这个面包很软。"
+        },
+        {
+          "ja": "柔らかい布を使います。",
+          "zh": "使用柔软的布。"
+        },
+        {
+          "ja": "彼は柔らかい話し方をします。",
+          "zh": "他说话方式很温和。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-663",
+      "jlpt": "N4",
+      "headword": "柔らかさ",
+      "source_form": "柔らかさ",
+      "variants": [
+        "柔らかさ"
+      ],
+      "reading": "やわらかさ",
+      "reading_variants": [
+        "やわらかさ"
+      ],
+      "romaji": "yawarakasa",
+      "part_of_speech": "noun",
+      "meaning_zh": "柔软度",
+      "kanji_readings": [
+        {
+          "form": "柔らかさ",
+          "reading": "やわらかさ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "柔らかさについて調べました。",
+          "zh": "查了关于柔软度的资料。"
+        },
+        {
+          "ja": "柔らかさに関する文章を読みました。",
+          "zh": "读了关于柔软度的文章。"
+        },
+        {
+          "ja": "柔らかさについて友達と話しました。",
+          "zh": "和朋友谈了关于柔软度的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-664",
+      "jlpt": "N4",
+      "headword": "湯",
+      "source_form": "湯",
+      "variants": [
+        "湯"
+      ],
+      "reading": "ゆ",
+      "reading_variants": [
+        "ゆ"
+      ],
+      "romaji": "yu",
+      "part_of_speech": "noun",
+      "meaning_zh": "热水；洗澡水",
+      "kanji_readings": [
+        {
+          "form": "湯",
+          "reading": "ゆ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "湯を少し食べました。",
+          "zh": "吃了一点热水。"
+        },
+        {
+          "ja": "湯が好きです。",
+          "zh": "喜欢热水。"
+        },
+        {
+          "ja": "この店の湯は有名です。",
+          "zh": "这家店的热水很有名。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-665",
+      "jlpt": "N4",
+      "headword": "輸出",
+      "source_form": "輸出",
+      "variants": [
+        "輸出"
+      ],
+      "reading": "ゆしゅつ",
+      "reading_variants": [
+        "ゆしゅつ"
+      ],
+      "romaji": "yushutsu",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "出口；输出",
+      "kanji_readings": [
+        {
+          "form": "輸出",
+          "reading": "ゆしゅつ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この会社は車を輸出しています。",
+          "zh": "这家公司出口汽车。"
+        },
+        {
+          "ja": "輸出の仕事に興味があります。",
+          "zh": "对出口工作有兴趣。"
+        },
+        {
+          "ja": "米の輸出が増えました。",
+          "zh": "大米出口增加了。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-666",
+      "jlpt": "N4",
+      "headword": "輸入",
+      "source_form": "輸入",
+      "variants": [
+        "輸入"
+      ],
+      "reading": "ゆにゅう",
+      "reading_variants": [
+        "ゆにゅう"
+      ],
+      "romaji": "yunyuu",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "进口；输入",
+      "kanji_readings": [
+        {
+          "form": "輸入",
+          "reading": "ゆにゅう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "日本は多くの食品を輸入しています。",
+          "zh": "日本进口很多食品。"
+        },
+        {
+          "ja": "輸入品の店に行きました。",
+          "zh": "去了进口商品店。"
+        },
+        {
+          "ja": "外国からワインを輸入します。",
+          "zh": "从外国进口葡萄酒。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-667",
+      "jlpt": "N4",
+      "headword": "指",
+      "source_form": "指",
+      "variants": [
+        "指"
+      ],
+      "reading": "ゆび",
+      "reading_variants": [
+        "ゆび"
+      ],
+      "romaji": "yubi",
+      "part_of_speech": "noun",
+      "meaning_zh": "手指；脚趾",
+      "kanji_readings": [
+        {
+          "form": "指",
+          "reading": "ゆび"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "指を見ました。",
+          "zh": "看到了手指。"
+        },
+        {
+          "ja": "指を確認しました。",
+          "zh": "确认了手指。"
+        },
+        {
+          "ja": "指について友達と話しました。",
+          "zh": "和朋友谈了关于手指的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-668",
+      "jlpt": "N4",
+      "headword": "指輪",
+      "source_form": "指輪",
+      "variants": [
+        "指輪"
+      ],
+      "reading": "ゆびわ",
+      "reading_variants": [
+        "ゆびわ"
+      ],
+      "romaji": "yubiwa",
+      "part_of_speech": "noun",
+      "meaning_zh": "戒指",
+      "kanji_readings": [
+        {
+          "form": "指輪",
+          "reading": "ゆびわ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "指輪を見ました。",
+          "zh": "看到了戒指。"
+        },
+        {
+          "ja": "指輪を確認しました。",
+          "zh": "确认了戒指。"
+        },
+        {
+          "ja": "指輪について友達と話しました。",
+          "zh": "和朋友谈了关于戒指的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-669",
+      "jlpt": "N4",
+      "headword": "夢",
+      "source_form": "夢",
+      "variants": [
+        "夢"
+      ],
+      "reading": "ゆめ",
+      "reading_variants": [
+        "ゆめ"
+      ],
+      "romaji": "yume",
+      "part_of_speech": "noun",
+      "meaning_zh": "梦；梦想",
+      "kanji_readings": [
+        {
+          "form": "夢",
+          "reading": "ゆめ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "夢を見ました。",
+          "zh": "看到了梦。"
+        },
+        {
+          "ja": "夢を確認しました。",
+          "zh": "确认了梦。"
+        },
+        {
+          "ja": "夢について友達と話しました。",
+          "zh": "和朋友谈了关于梦的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-670",
+      "jlpt": "N4",
+      "headword": "揺れる",
+      "source_form": "揺れる",
+      "variants": [
+        "揺れる"
+      ],
+      "reading": "ゆれる",
+      "reading_variants": [
+        "ゆれる"
+      ],
+      "romaji": "yureru",
+      "part_of_speech": "verb",
+      "meaning_zh": "摇晃；摇动",
+      "kanji_readings": [
+        {
+          "form": "揺れる",
+          "reading": "ゆれる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "地震で家が揺れました。",
+          "zh": "地震时房子摇晃了。"
+        },
+        {
+          "ja": "電車が大きく揺れています。",
+          "zh": "电车摇晃得很厉害。"
+        },
+        {
+          "ja": "風でカーテンが揺れています。",
+          "zh": "窗帘被风吹得在摇。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-671",
+      "jlpt": "N4",
+      "headword": "用",
+      "source_form": "用",
+      "variants": [
+        "用"
+      ],
+      "reading": "よう",
+      "reading_variants": [
+        "よう"
+      ],
+      "romaji": "you",
+      "part_of_speech": "noun",
+      "meaning_zh": "事情；用途；用事",
+      "kanji_readings": [
+        {
+          "form": "用",
+          "reading": "よう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "用について友達と話しました。",
+          "zh": "和朋友谈了关于事情的事。"
+        },
+        {
+          "ja": "用に関する説明を読みました。",
+          "zh": "读了关于事情的说明。"
+        },
+        {
+          "ja": "用についてもっと知りたいです。",
+          "zh": "想更多了解事情。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-672",
+      "jlpt": "N4",
+      "headword": "用意",
+      "source_form": "用意",
+      "variants": [
+        "用意"
+      ],
+      "reading": "ようい",
+      "reading_variants": [
+        "ようい"
+      ],
+      "romaji": "youi",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "准备",
+      "kanji_readings": [
+        {
+          "form": "用意",
+          "reading": "ようい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "旅行の荷物を用意しました。",
+          "zh": "准备了旅行行李。"
+        },
+        {
+          "ja": "会議の資料を用意してください。",
+          "zh": "请准备会议资料。"
+        },
+        {
+          "ja": "昼ご飯はもう用意してあります。",
+          "zh": "午饭已经准备好了。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-673",
+      "jlpt": "N4",
+      "headword": "用事",
+      "source_form": "用事",
+      "variants": [
+        "用事"
+      ],
+      "reading": "ようじ",
+      "reading_variants": [
+        "ようじ"
+      ],
+      "romaji": "youji",
+      "part_of_speech": "noun",
+      "meaning_zh": "事情；要办的事",
+      "kanji_readings": [
+        {
+          "form": "用事",
+          "reading": "ようじ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "用事について調べました。",
+          "zh": "查了关于事情的资料。"
+        },
+        {
+          "ja": "用事に関する文章を読みました。",
+          "zh": "读了关于事情的文章。"
+        },
+        {
+          "ja": "用事について友達と話しました。",
+          "zh": "和朋友谈了关于事情的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-674",
+      "jlpt": "N4",
+      "headword": "汚れる",
+      "source_form": "汚れる",
+      "variants": [
+        "汚れる"
+      ],
+      "reading": "よごれる",
+      "reading_variants": [
+        "よごれる"
+      ],
+      "romaji": "yogoreru",
+      "part_of_speech": "verb",
+      "meaning_zh": "脏；弄脏",
+      "kanji_readings": [
+        {
+          "form": "汚れる",
+          "reading": "よごれる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "靴が泥で汚れました。",
+          "zh": "鞋被泥弄脏了。"
+        },
+        {
+          "ja": "白い服は汚れやすいです。",
+          "zh": "白衣服容易脏。"
+        },
+        {
+          "ja": "手が汚れたので洗います。",
+          "zh": "手脏了所以洗手。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-675",
+      "jlpt": "N4",
+      "headword": "予習",
+      "source_form": "予習",
+      "variants": [
+        "予習"
+      ],
+      "reading": "よしゅう",
+      "reading_variants": [
+        "よしゅう"
+      ],
+      "romaji": "yoshuu",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "预习",
+      "kanji_readings": [
+        {
+          "form": "予習",
+          "reading": "よしゅう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "明日の授業を予習しました。",
+          "zh": "预习了明天的课。"
+        },
+        {
+          "ja": "予習してから授業を受けます。",
+          "zh": "预习后上课。"
+        },
+        {
+          "ja": "新しい文法を予習しています。",
+          "zh": "正在预习新语法。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-676",
+      "jlpt": "N4",
+      "headword": "予定",
+      "source_form": "予定",
+      "variants": [
+        "予定"
+      ],
+      "reading": "よてい",
+      "reading_variants": [
+        "よてい"
+      ],
+      "romaji": "yotei",
+      "part_of_speech": "noun",
+      "meaning_zh": "计划；预定",
+      "kanji_readings": [
+        {
+          "form": "予定",
+          "reading": "よてい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "予定があります。",
+          "zh": "有计划。"
+        },
+        {
+          "ja": "予定の予定を確認しました。",
+          "zh": "确认了计划的安排。"
+        },
+        {
+          "ja": "予定について先生に聞きました。",
+          "zh": "向老师询问了计划。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-677",
+      "jlpt": "N4",
+      "headword": "予報",
+      "source_form": "予報",
+      "variants": [
+        "予報"
+      ],
+      "reading": "よほう",
+      "reading_variants": [
+        "よほう"
+      ],
+      "romaji": "yohou",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "预报",
+      "kanji_readings": [
+        {
+          "form": "予報",
+          "reading": "よほう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "天気予報を見ました。",
+          "zh": "看了天气预报。"
+        },
+        {
+          "ja": "予報によると、明日は雨です。",
+          "zh": "据预报，明天有雨。"
+        },
+        {
+          "ja": "台風の予報が出ています。",
+          "zh": "发布了台风预报。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-678",
+      "jlpt": "N4",
+      "headword": "予約",
+      "source_form": "予約",
+      "variants": [
+        "予約"
+      ],
+      "reading": "よやく",
+      "reading_variants": [
+        "よやく"
+      ],
+      "romaji": "yoyaku",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "预约；预订",
+      "kanji_readings": [
+        {
+          "form": "予約",
+          "reading": "よやく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "ホテルを予約しました。",
+          "zh": "预约了酒店。"
+        },
+        {
+          "ja": "予約の名前を確認してください。",
+          "zh": "请确认预约名字。"
+        },
+        {
+          "ja": "この店は予約が必要です。",
+          "zh": "这家店需要预约。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-679",
+      "jlpt": "N4",
+      "headword": "予約席",
+      "source_form": "予約席",
+      "variants": [
+        "予約席"
+      ],
+      "reading": "よやくせき",
+      "reading_variants": [
+        "よやくせき"
+      ],
+      "romaji": "yoyakuseki",
+      "part_of_speech": "noun",
+      "meaning_zh": "预约座位；预留座",
+      "kanji_readings": [
+        {
+          "form": "予約席",
+          "reading": "よやくせき"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "予約席を見ました。",
+          "zh": "看到了预约座位。"
+        },
+        {
+          "ja": "予約席を確認しました。",
+          "zh": "确认了预约座位。"
+        },
+        {
+          "ja": "予約席について友達と話しました。",
+          "zh": "和朋友谈了关于预约座位的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-680",
+      "jlpt": "N4",
+      "headword": "寄る",
+      "source_form": "寄る",
+      "variants": [
+        "寄る"
+      ],
+      "reading": "よる",
+      "reading_variants": [
+        "よる"
+      ],
+      "romaji": "yoru",
+      "part_of_speech": "verb",
+      "meaning_zh": "顺路去；靠近",
+      "kanji_readings": [
+        {
+          "form": "寄る",
+          "reading": "よる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "帰りにコンビニに寄ります。",
+          "zh": "回去时顺路去便利店。"
+        },
+        {
+          "ja": "駅の近くに少し寄りました。",
+          "zh": "在车站附近稍微去了一下。"
+        },
+        {
+          "ja": "時間があれば友達の家に寄ります。",
+          "zh": "有时间的话顺路去朋友家。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-681",
+      "jlpt": "N4",
+      "headword": "喜ぶ",
+      "source_form": "喜ぶ",
+      "variants": [
+        "喜ぶ"
+      ],
+      "reading": "よろこぶ",
+      "reading_variants": [
+        "よろこぶ"
+      ],
+      "romaji": "yorokobu",
+      "part_of_speech": "verb",
+      "meaning_zh": "高兴；欢喜",
+      "kanji_readings": [
+        {
+          "form": "喜ぶ",
+          "reading": "よろこぶ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "母がプレゼントを喜びました。",
+          "zh": "母亲很喜欢礼物。"
+        },
+        {
+          "ja": "合格してみんなが喜んでいます。",
+          "zh": "通过考试后大家都很高兴。"
+        },
+        {
+          "ja": "子供が公園に行くと喜びます。",
+          "zh": "孩子去公园会很开心。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-682",
+      "jlpt": "N4",
+      "headword": "よろしい",
+      "source_form": "よろしい",
+      "variants": [
+        "よろしい"
+      ],
+      "reading": "よろしい",
+      "reading_variants": [
+        "よろしい"
+      ],
+      "romaji": "yoroshii",
+      "part_of_speech": "i-adjective/expression",
+      "meaning_zh": "好的；可以的",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "こちらでよろしいですか。",
+          "zh": "这里可以吗？"
+        },
+        {
+          "ja": "お名前をうかがってもよろしいですか。",
+          "zh": "可以请教您的名字吗？"
+        },
+        {
+          "ja": "この時間でよろしいでしょうか。",
+          "zh": "这个时间可以吗？"
+        }
+      ],
+      "note_zh": "「いい」的礼貌说法。"
+    },
+    {
+      "id": "n4-683",
+      "jlpt": "N4",
+      "headword": "理由",
+      "source_form": "理由",
+      "variants": [
+        "理由"
+      ],
+      "reading": "りゆう",
+      "reading_variants": [
+        "りゆう"
+      ],
+      "romaji": "riyuu",
+      "part_of_speech": "noun",
+      "meaning_zh": "理由",
+      "kanji_readings": [
+        {
+          "form": "理由",
+          "reading": "りゆう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "理由について友達と話しました。",
+          "zh": "和朋友谈了关于理由的事。"
+        },
+        {
+          "ja": "理由に関する説明を読みました。",
+          "zh": "读了关于理由的说明。"
+        },
+        {
+          "ja": "理由についてもっと知りたいです。",
+          "zh": "想更多了解理由。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-684",
+      "jlpt": "N4",
+      "headword": "両方",
+      "source_form": "両方",
+      "variants": [
+        "両方"
+      ],
+      "reading": "りょうほう",
+      "reading_variants": [
+        "りょうほう"
+      ],
+      "romaji": "ryouhou",
+      "part_of_speech": "noun",
+      "meaning_zh": "双方；两边；两个都",
+      "kanji_readings": [
+        {
+          "form": "両方",
+          "reading": "りょうほう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "両方について友達と話しました。",
+          "zh": "和朋友谈了关于双方的事。"
+        },
+        {
+          "ja": "両方に関する説明を読みました。",
+          "zh": "读了关于双方的说明。"
+        },
+        {
+          "ja": "両方についてもっと知りたいです。",
+          "zh": "想更多了解双方。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-685",
+      "jlpt": "N4",
+      "headword": "旅館",
+      "source_form": "旅館",
+      "variants": [
+        "旅館"
+      ],
+      "reading": "りょかん",
+      "reading_variants": [
+        "りょかん"
+      ],
+      "romaji": "ryokan",
+      "part_of_speech": "noun",
+      "meaning_zh": "日式旅馆",
+      "kanji_readings": [
+        {
+          "form": "旅館",
+          "reading": "りょかん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "旅館へ行きました。",
+          "zh": "去了日式旅馆。"
+        },
+        {
+          "ja": "旅館は駅の近くにあります。",
+          "zh": "日式旅馆在车站附近。"
+        },
+        {
+          "ja": "旅館で友達に会いました。",
+          "zh": "在日式旅馆见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-686",
+      "jlpt": "N4",
+      "headword": "利用",
+      "source_form": "利用",
+      "variants": [
+        "利用"
+      ],
+      "reading": "りよう",
+      "reading_variants": [
+        "りよう"
+      ],
+      "romaji": "riyou",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "利用；使用",
+      "kanji_readings": [
+        {
+          "form": "利用",
+          "reading": "りよう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "図書館をよく利用します。",
+          "zh": "经常使用图书馆。"
+        },
+        {
+          "ja": "このサービスは無料で利用できます。",
+          "zh": "这个服务可以免费使用。"
+        },
+        {
+          "ja": "駅のロッカーを利用しました。",
+          "zh": "使用了车站的储物柜。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-687",
+      "jlpt": "N4",
+      "headword": "留守",
+      "source_form": "留守",
+      "variants": [
+        "留守"
+      ],
+      "reading": "るす",
+      "reading_variants": [
+        "るす"
+      ],
+      "romaji": "rusu",
+      "part_of_speech": "noun",
+      "meaning_zh": "不在家；看家",
+      "kanji_readings": [
+        {
+          "form": "留守",
+          "reading": "るす"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "留守について友達と話しました。",
+          "zh": "和朋友谈了关于不在家的事。"
+        },
+        {
+          "ja": "留守に関する説明を読みました。",
+          "zh": "读了关于不在家的说明。"
+        },
+        {
+          "ja": "留守についてもっと知りたいです。",
+          "zh": "想更多了解不在家。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-688",
+      "jlpt": "N4",
+      "headword": "留守番",
+      "source_form": "留守番",
+      "variants": [
+        "留守番"
+      ],
+      "reading": "るすばん",
+      "reading_variants": [
+        "るすばん"
+      ],
+      "romaji": "rusuban",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "看家；留守看家的人",
+      "kanji_readings": [
+        {
+          "form": "留守番",
+          "reading": "るすばん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "子供が家で留守番しています。",
+          "zh": "孩子在家看家。"
+        },
+        {
+          "ja": "犬と一緒に留守番しました。",
+          "zh": "和狗一起看家。"
+        },
+        {
+          "ja": "留守番をお願いできますか。",
+          "zh": "可以拜托你看家吗？"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-689",
+      "jlpt": "N4",
+      "headword": "冷房",
+      "source_form": "冷房",
+      "variants": [
+        "冷房"
+      ],
+      "reading": "れいぼう",
+      "reading_variants": [
+        "れいぼう"
+      ],
+      "romaji": "reibou",
+      "part_of_speech": "noun",
+      "meaning_zh": "冷气；空调制冷",
+      "kanji_readings": [
+        {
+          "form": "冷房",
+          "reading": "れいぼう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "冷房について友達と話しました。",
+          "zh": "和朋友谈了关于冷气的事。"
+        },
+        {
+          "ja": "冷房に関する説明を読みました。",
+          "zh": "读了关于冷气的说明。"
+        },
+        {
+          "ja": "冷房についてもっと知りたいです。",
+          "zh": "想更多了解冷气。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-690",
+      "jlpt": "N4",
+      "headword": "歴史",
+      "source_form": "歴史",
+      "variants": [
+        "歴史"
+      ],
+      "reading": "れきし",
+      "reading_variants": [
+        "れきし"
+      ],
+      "romaji": "rekishi",
+      "part_of_speech": "noun",
+      "meaning_zh": "历史",
+      "kanji_readings": [
+        {
+          "form": "歴史",
+          "reading": "れきし"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "歴史について友達と話しました。",
+          "zh": "和朋友谈了关于历史的事。"
+        },
+        {
+          "ja": "歴史に関する説明を読みました。",
+          "zh": "读了关于历史的说明。"
+        },
+        {
+          "ja": "歴史についてもっと知りたいです。",
+          "zh": "想更多了解历史。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-691",
+      "jlpt": "N4",
+      "headword": "連絡",
+      "source_form": "連絡",
+      "variants": [
+        "連絡"
+      ],
+      "reading": "れんらく",
+      "reading_variants": [
+        "れんらく"
+      ],
+      "romaji": "renraku",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "联系；联络",
+      "kanji_readings": [
+        {
+          "form": "連絡",
+          "reading": "れんらく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "着いたら連絡してください。",
+          "zh": "到了请联系。"
+        },
+        {
+          "ja": "先生にメールで連絡しました。",
+          "zh": "用邮件联系了老师。"
+        },
+        {
+          "ja": "連絡がなくて心配しました。",
+          "zh": "没有联系，很担心。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-692",
+      "jlpt": "N4",
+      "headword": "沸かす",
+      "source_form": "沸かす",
+      "variants": [
+        "沸かす"
+      ],
+      "reading": "わかす",
+      "reading_variants": [
+        "わかす"
+      ],
+      "romaji": "wakasu",
+      "part_of_speech": "verb",
+      "meaning_zh": "烧开；加热",
+      "kanji_readings": [
+        {
+          "form": "沸かす",
+          "reading": "わかす"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "お茶のためにお湯を沸かします。",
+          "zh": "为泡茶烧热水。"
+        },
+        {
+          "ja": "風呂を沸かしておきました。",
+          "zh": "已经烧好了洗澡水。"
+        },
+        {
+          "ja": "水を沸かしてから飲んでください。",
+          "zh": "请把水烧开后再喝。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-693",
+      "jlpt": "N4",
+      "headword": "別れる",
+      "source_form": "別れる",
+      "variants": [
+        "別れる"
+      ],
+      "reading": "わかれる",
+      "reading_variants": [
+        "わかれる"
+      ],
+      "romaji": "wakareru",
+      "part_of_speech": "verb",
+      "meaning_zh": "分开；分别；分手",
+      "kanji_readings": [
+        {
+          "form": "別れる",
+          "reading": "わかれる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "駅で友達と別れました。",
+          "zh": "在车站和朋友分别了。"
+        },
+        {
+          "ja": "二人は去年別れました。",
+          "zh": "两个人去年分手了。"
+        },
+        {
+          "ja": "道が二つに別れています。",
+          "zh": "道路分成两条。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-694",
+      "jlpt": "N4",
+      "headword": "沸く",
+      "source_form": "沸く",
+      "variants": [
+        "沸く"
+      ],
+      "reading": "わく",
+      "reading_variants": [
+        "わく"
+      ],
+      "romaji": "waku",
+      "part_of_speech": "verb",
+      "meaning_zh": "沸腾；涌出；兴奋起来",
+      "kanji_readings": [
+        {
+          "form": "沸く",
+          "reading": "わく"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "お湯が沸きました。",
+          "zh": "热水开了。"
+        },
+        {
+          "ja": "会場は拍手で沸きました。",
+          "zh": "会场因掌声沸腾了。"
+        },
+        {
+          "ja": "温泉が山の中に沸いています。",
+          "zh": "温泉从山里涌出。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-695",
+      "jlpt": "N4",
+      "headword": "訳",
+      "source_form": "訳",
+      "variants": [
+        "訳"
+      ],
+      "reading": "わけ",
+      "reading_variants": [
+        "わけ"
+      ],
+      "romaji": "wake",
+      "part_of_speech": "noun",
+      "meaning_zh": "理由；意思；情况",
+      "kanji_readings": [
+        {
+          "form": "訳",
+          "reading": "わけ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "訳について友達と話しました。",
+          "zh": "和朋友谈了关于理由的事。"
+        },
+        {
+          "ja": "訳に関する説明を読みました。",
+          "zh": "读了关于理由的说明。"
+        },
+        {
+          "ja": "訳についてもっと知りたいです。",
+          "zh": "想更多了解理由。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-696",
+      "jlpt": "N4",
+      "headword": "忘れ物",
+      "source_form": "忘れ物",
+      "variants": [
+        "忘れ物"
+      ],
+      "reading": "わすれもの",
+      "reading_variants": [
+        "わすれもの"
+      ],
+      "romaji": "wasuremono",
+      "part_of_speech": "noun",
+      "meaning_zh": "遗忘物；忘带的东西",
+      "kanji_readings": [
+        {
+          "form": "忘れ物",
+          "reading": "わすれもの"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "忘れ物について調べました。",
+          "zh": "查了关于遗忘物的资料。"
+        },
+        {
+          "ja": "忘れ物に関する文章を読みました。",
+          "zh": "读了关于遗忘物的文章。"
+        },
+        {
+          "ja": "忘れ物について友達と話しました。",
+          "zh": "和朋友谈了关于遗忘物的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-697",
+      "jlpt": "N4",
+      "headword": "笑う",
+      "source_form": "笑う",
+      "variants": [
+        "笑う"
+      ],
+      "reading": "わらう",
+      "reading_variants": [
+        "わらう"
+      ],
+      "romaji": "warau",
+      "part_of_speech": "verb",
+      "meaning_zh": "笑",
+      "kanji_readings": [
+        {
+          "form": "笑う",
+          "reading": "わらう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "友達の話を聞いて笑いました。",
+          "zh": "听了朋友的话笑了。"
+        },
+        {
+          "ja": "写真では笑ってください。",
+          "zh": "拍照时请笑一下。"
+        },
+        {
+          "ja": "彼はいつもよく笑います。",
+          "zh": "他总是很爱笑。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-698",
+      "jlpt": "N4",
+      "headword": "割合",
+      "source_form": "割合",
+      "variants": [
+        "割合"
+      ],
+      "reading": "わりあい",
+      "reading_variants": [
+        "わりあい"
+      ],
+      "romaji": "wariai",
+      "part_of_speech": "noun/adverb",
+      "meaning_zh": "比例；比较；相当",
+      "kanji_readings": [
+        {
+          "form": "割合",
+          "reading": "わりあい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この店は割合安いです。",
+          "zh": "这家店比较便宜。"
+        },
+        {
+          "ja": "学生の割合が高いです。",
+          "zh": "学生比例很高。"
+        },
+        {
+          "ja": "仕事は割合早く終わりました。",
+          "zh": "工作比较早就结束了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-699",
+      "jlpt": "N4",
+      "headword": "割合に",
+      "source_form": "割合に",
+      "variants": [
+        "割合に"
+      ],
+      "reading": "わりあいに",
+      "reading_variants": [
+        "わりあいに"
+      ],
+      "romaji": "wariaini",
+      "part_of_speech": "adverb",
+      "meaning_zh": "比较；相当",
+      "kanji_readings": [
+        {
+          "form": "割合に",
+          "reading": "わりあいに"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "今日は割合に暖かいです。",
+          "zh": "今天比较暖和。"
+        },
+        {
+          "ja": "この問題は割合に簡単です。",
+          "zh": "这个问题比较简单。"
+        },
+        {
+          "ja": "駅までは割合に近いです。",
+          "zh": "到车站比较近。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-700",
+      "jlpt": "N4",
+      "headword": "割れる",
+      "source_form": "割れる",
+      "variants": [
+        "割れる"
+      ],
+      "reading": "われる",
+      "reading_variants": [
+        "われる"
+      ],
+      "romaji": "wareru",
+      "part_of_speech": "verb",
+      "meaning_zh": "裂开；破碎",
+      "kanji_readings": [
+        {
+          "form": "割れる",
+          "reading": "われる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "コップが落ちて割れました。",
+          "zh": "杯子掉下来碎了。"
+        },
+        {
+          "ja": "窓ガラスが割れています。",
+          "zh": "窗户玻璃碎了。"
+        },
+        {
+          "ja": "意見が二つに割れました。",
+          "zh": "意见分成了两派。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-701",
+      "jlpt": "N4",
+      "headword": "アクセサリー",
+      "source_form": "アクセサリー",
+      "variants": [
+        "アクセサリー"
+      ],
+      "reading": "アクセサリー",
+      "reading_variants": [
+        "アクセサリー"
+      ],
+      "romaji": "akusesarii",
+      "part_of_speech": "noun",
+      "meaning_zh": "饰品；配饰",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "アクセサリーを見ました。",
+          "zh": "看到了饰品。"
+        },
+        {
+          "ja": "アクセサリーを確認しました。",
+          "zh": "确认了饰品。"
+        },
+        {
+          "ja": "アクセサリーについて友達と話しました。",
+          "zh": "和朋友谈了关于饰品的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-702",
+      "jlpt": "N4",
+      "headword": "アジア",
+      "source_form": "アジア",
+      "variants": [
+        "アジア"
+      ],
+      "reading": "アジア",
+      "reading_variants": [
+        "アジア"
+      ],
+      "romaji": "ajia",
+      "part_of_speech": "noun",
+      "meaning_zh": "亚洲",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "アジアを見ました。",
+          "zh": "看到了亚洲。"
+        },
+        {
+          "ja": "アジアを確認しました。",
+          "zh": "确认了亚洲。"
+        },
+        {
+          "ja": "アジアについて友達と話しました。",
+          "zh": "和朋友谈了关于亚洲的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-703",
+      "jlpt": "N4",
+      "headword": "アナウンサー",
+      "source_form": "アナウンサー",
+      "variants": [
+        "アナウンサー"
+      ],
+      "reading": "アナウンサー",
+      "reading_variants": [
+        "アナウンサー"
+      ],
+      "romaji": "anaunsaa",
+      "part_of_speech": "noun",
+      "meaning_zh": "播音员；主持人",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "アナウンサーに相談しました。",
+          "zh": "和播音员商量了。"
+        },
+        {
+          "ja": "アナウンサーと少し話しました。",
+          "zh": "和播音员稍微聊了一下。"
+        },
+        {
+          "ja": "アナウンサーが駅で待っています。",
+          "zh": "播音员在车站等。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-704",
+      "jlpt": "N4",
+      "headword": "アナウンス",
+      "source_form": "アナウンス",
+      "variants": [
+        "アナウンス"
+      ],
+      "reading": "アナウンス",
+      "reading_variants": [
+        "アナウンス"
+      ],
+      "romaji": "anaunsu",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "广播；通知",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "駅で乗り換えのアナウンスがありました。",
+          "zh": "车站有换乘广播。"
+        },
+        {
+          "ja": "店内アナウンスを聞きました。",
+          "zh": "听到了店内广播。"
+        },
+        {
+          "ja": "出発時間がアナウンスされました。",
+          "zh": "出发时间被广播通知了。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-705",
+      "jlpt": "N4",
+      "headword": "アフリカ",
+      "source_form": "アフリカ",
+      "variants": [
+        "アフリカ"
+      ],
+      "reading": "アフリカ",
+      "reading_variants": [
+        "アフリカ"
+      ],
+      "romaji": "afurika",
+      "part_of_speech": "noun",
+      "meaning_zh": "非洲",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "アフリカへ旅行してみたいです。",
+          "zh": "想去非洲旅行看看。"
+        },
+        {
+          "ja": "アフリカの音楽を聞きました。",
+          "zh": "听了非洲音乐。"
+        },
+        {
+          "ja": "アフリカについて本で読みました。",
+          "zh": "在书里读了关于非洲的内容。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-706",
+      "jlpt": "N4",
+      "headword": "アメリカ",
+      "source_form": "アメリカ",
+      "variants": [
+        "アメリカ"
+      ],
+      "reading": "アメリカ",
+      "reading_variants": [
+        "アメリカ"
+      ],
+      "romaji": "amerika",
+      "part_of_speech": "noun",
+      "meaning_zh": "美国；美洲",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "アメリカを見ました。",
+          "zh": "看到了美国。"
+        },
+        {
+          "ja": "アメリカを確認しました。",
+          "zh": "确认了美国。"
+        },
+        {
+          "ja": "アメリカについて友達と話しました。",
+          "zh": "和朋友谈了关于美国的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-707",
+      "jlpt": "N4",
+      "headword": "アルコール",
+      "source_form": "アルコール",
+      "variants": [
+        "アルコール"
+      ],
+      "reading": "アルコール",
+      "reading_variants": [
+        "アルコール"
+      ],
+      "romaji": "arukooru",
+      "part_of_speech": "noun",
+      "meaning_zh": "酒精；酒类",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "アルコールを少し食べました。",
+          "zh": "吃了一点酒精。"
+        },
+        {
+          "ja": "アルコールが好きです。",
+          "zh": "喜欢酒精。"
+        },
+        {
+          "ja": "この店のアルコールは有名です。",
+          "zh": "这家店的酒精很有名。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-708",
+      "jlpt": "N4",
+      "headword": "アルバイト",
+      "source_form": "アルバイト",
+      "variants": [
+        "アルバイト"
+      ],
+      "reading": "アルバイト",
+      "reading_variants": [
+        "アルバイト"
+      ],
+      "romaji": "arubaito",
+      "part_of_speech": "noun",
+      "meaning_zh": "兼职；打工",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "大学生の時、コンビニでアルバイトをしました。",
+          "zh": "大学生时在便利店打工。"
+        },
+        {
+          "ja": "新しいアルバイトを探しています。",
+          "zh": "正在找新的兼职。"
+        },
+        {
+          "ja": "アルバイト代で旅行に行きました。",
+          "zh": "用兼职工资去旅行了。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-709",
+      "jlpt": "N4",
+      "headword": "エスカレーター",
+      "source_form": "エスカレーター",
+      "variants": [
+        "エスカレーター"
+      ],
+      "reading": "エスカレーター",
+      "reading_variants": [
+        "エスカレーター"
+      ],
+      "romaji": "esukareetaa",
+      "part_of_speech": "noun",
+      "meaning_zh": "自动扶梯",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "エスカレーターを見ました。",
+          "zh": "看到了自动扶梯。"
+        },
+        {
+          "ja": "エスカレーターを確認しました。",
+          "zh": "确认了自动扶梯。"
+        },
+        {
+          "ja": "エスカレーターについて友達と話しました。",
+          "zh": "和朋友谈了关于自动扶梯的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-710",
+      "jlpt": "N4",
+      "headword": "オートバイ",
+      "source_form": "オートバイ",
+      "variants": [
+        "オートバイ"
+      ],
+      "reading": "オートバイ",
+      "reading_variants": [
+        "オートバイ"
+      ],
+      "romaji": "ootobai",
+      "part_of_speech": "noun",
+      "meaning_zh": "摩托车",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "オートバイを見ました。",
+          "zh": "看到了摩托车。"
+        },
+        {
+          "ja": "オートバイを確認しました。",
+          "zh": "确认了摩托车。"
+        },
+        {
+          "ja": "オートバイについて友達と話しました。",
+          "zh": "和朋友谈了关于摩托车的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-711",
+      "jlpt": "N4",
+      "headword": "カーテン",
+      "source_form": "カーテン",
+      "variants": [
+        "カーテン"
+      ],
+      "reading": "カーテン",
+      "reading_variants": [
+        "カーテン"
+      ],
+      "romaji": "kaaten",
+      "part_of_speech": "noun",
+      "meaning_zh": "窗帘",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "カーテンを見ました。",
+          "zh": "看到了窗帘。"
+        },
+        {
+          "ja": "カーテンを確認しました。",
+          "zh": "确认了窗帘。"
+        },
+        {
+          "ja": "カーテンについて友達と話しました。",
+          "zh": "和朋友谈了关于窗帘的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-712",
+      "jlpt": "N4",
+      "headword": "ガス",
+      "source_form": "ガス",
+      "variants": [
+        "ガス"
+      ],
+      "reading": "ガス",
+      "reading_variants": [
+        "ガス"
+      ],
+      "romaji": "gasu",
+      "part_of_speech": "noun",
+      "meaning_zh": "煤气；天然气",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "ガスを見ました。",
+          "zh": "看到了煤气。"
+        },
+        {
+          "ja": "ガスを確認しました。",
+          "zh": "确认了煤气。"
+        },
+        {
+          "ja": "ガスについて友達と話しました。",
+          "zh": "和朋友谈了关于煤气的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-713",
+      "jlpt": "N4",
+      "headword": "ガソリン",
+      "source_form": "ガソリン",
+      "variants": [
+        "ガソリン"
+      ],
+      "reading": "ガソリン",
+      "reading_variants": [
+        "ガソリン"
+      ],
+      "romaji": "gasorin",
+      "part_of_speech": "noun",
+      "meaning_zh": "汽油",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "ガソリンを見ました。",
+          "zh": "看到了汽油。"
+        },
+        {
+          "ja": "ガソリンを確認しました。",
+          "zh": "确认了汽油。"
+        },
+        {
+          "ja": "ガソリンについて友達と話しました。",
+          "zh": "和朋友谈了关于汽油的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-714",
+      "jlpt": "N4",
+      "headword": "ガソリンスタンド",
+      "source_form": "ガソリンスタンド",
+      "variants": [
+        "ガソリンスタンド"
+      ],
+      "reading": "ガソリンスタンド",
+      "reading_variants": [
+        "ガソリンスタンド"
+      ],
+      "romaji": "gasorinsutando",
+      "part_of_speech": "noun",
+      "meaning_zh": "加油站",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "ガソリンスタンドへ行きました。",
+          "zh": "去了加油站。"
+        },
+        {
+          "ja": "ガソリンスタンドは駅の近くにあります。",
+          "zh": "加油站在车站附近。"
+        },
+        {
+          "ja": "ガソリンスタンドで友達に会いました。",
+          "zh": "在加油站见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-715",
+      "jlpt": "N4",
+      "headword": "ガラス",
+      "source_form": "ガラス",
+      "variants": [
+        "ガラス"
+      ],
+      "reading": "ガラス",
+      "reading_variants": [
+        "ガラス"
+      ],
+      "romaji": "garasu",
+      "part_of_speech": "noun",
+      "meaning_zh": "玻璃",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "ガラスを見ました。",
+          "zh": "看到了玻璃。"
+        },
+        {
+          "ja": "ガラスを確認しました。",
+          "zh": "确认了玻璃。"
+        },
+        {
+          "ja": "ガラスについて友達と話しました。",
+          "zh": "和朋友谈了关于玻璃的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-716",
+      "jlpt": "N4",
+      "headword": "クリスマス",
+      "source_form": "クリスマス",
+      "variants": [
+        "クリスマス"
+      ],
+      "reading": "クリスマス",
+      "reading_variants": [
+        "クリスマス"
+      ],
+      "romaji": "kurisumasu",
+      "part_of_speech": "noun",
+      "meaning_zh": "圣诞节",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "クリスマスを見ました。",
+          "zh": "看到了圣诞节。"
+        },
+        {
+          "ja": "クリスマスを確認しました。",
+          "zh": "确认了圣诞节。"
+        },
+        {
+          "ja": "クリスマスについて友達と話しました。",
+          "zh": "和朋友谈了关于圣诞节的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-717",
+      "jlpt": "N4",
+      "headword": "コンサート",
+      "source_form": "コンサート",
+      "variants": [
+        "コンサート"
+      ],
+      "reading": "コンサート",
+      "reading_variants": [
+        "コンサート"
+      ],
+      "romaji": "konsaato",
+      "part_of_speech": "noun",
+      "meaning_zh": "音乐会；演唱会",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "週末にコンサートへ行きます。",
+          "zh": "周末去音乐会。"
+        },
+        {
+          "ja": "コンサートのチケットを買いました。",
+          "zh": "买了音乐会门票。"
+        },
+        {
+          "ja": "昨日のコンサートはすばらしかったです。",
+          "zh": "昨天的音乐会很精彩。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-718",
+      "jlpt": "N4",
+      "headword": "コンピューター",
+      "source_form": "コンピューター; コンピュータ",
+      "variants": [
+        "コンピューター",
+        "コンピュータ"
+      ],
+      "reading": "コンピューター",
+      "reading_variants": [
+        "コンピューター"
+      ],
+      "romaji": "konpyuutaa",
+      "part_of_speech": "noun",
+      "meaning_zh": "电脑",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "コンピューターを見ました。",
+          "zh": "看到了电脑。"
+        },
+        {
+          "ja": "コンピューターを確認しました。",
+          "zh": "确认了电脑。"
+        },
+        {
+          "ja": "コンピューターについて友達と話しました。",
+          "zh": "和朋友谈了关于电脑的事。"
+        }
+      ],
+      "note_zh": "两种写法都常见。"
+    },
+    {
+      "id": "n4-719",
+      "jlpt": "N4",
+      "headword": "サラダ",
+      "source_form": "サラダ",
+      "variants": [
+        "サラダ"
+      ],
+      "reading": "サラダ",
+      "reading_variants": [
+        "サラダ"
+      ],
+      "romaji": "sarada",
+      "part_of_speech": "noun",
+      "meaning_zh": "沙拉",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "サラダを少し食べました。",
+          "zh": "吃了一点沙拉。"
+        },
+        {
+          "ja": "サラダが好きです。",
+          "zh": "喜欢沙拉。"
+        },
+        {
+          "ja": "この店のサラダは有名です。",
+          "zh": "这家店的沙拉很有名。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-720",
+      "jlpt": "N4",
+      "headword": "サンダル",
+      "source_form": "サンダル",
+      "variants": [
+        "サンダル"
+      ],
+      "reading": "サンダル",
+      "reading_variants": [
+        "サンダル"
+      ],
+      "romaji": "sandaru",
+      "part_of_speech": "noun",
+      "meaning_zh": "凉鞋",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "サンダルを見ました。",
+          "zh": "看到了凉鞋。"
+        },
+        {
+          "ja": "サンダルを確認しました。",
+          "zh": "确认了凉鞋。"
+        },
+        {
+          "ja": "サンダルについて友達と話しました。",
+          "zh": "和朋友谈了关于凉鞋的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-721",
+      "jlpt": "N4",
+      "headword": "サンドイッチ",
+      "source_form": "サンドイッチ",
+      "variants": [
+        "サンドイッチ"
+      ],
+      "reading": "サンドイッチ",
+      "reading_variants": [
+        "サンドイッチ"
+      ],
+      "romaji": "sandoicchi",
+      "part_of_speech": "noun",
+      "meaning_zh": "三明治",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "サンドイッチを少し食べました。",
+          "zh": "吃了一点三明治。"
+        },
+        {
+          "ja": "サンドイッチが好きです。",
+          "zh": "喜欢三明治。"
+        },
+        {
+          "ja": "この店のサンドイッチは有名です。",
+          "zh": "这家店的三明治很有名。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-722",
+      "jlpt": "N4",
+      "headword": "サービス",
+      "source_form": "サービス",
+      "variants": [
+        "サービス"
+      ],
+      "reading": "サービス",
+      "reading_variants": [
+        "サービス"
+      ],
+      "romaji": "saabisu",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "服务；赠品；优惠",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "このホテルのサービスはいいです。",
+          "zh": "这家酒店服务很好。"
+        },
+        {
+          "ja": "無料サービスを利用しました。",
+          "zh": "使用了免费服务。"
+        },
+        {
+          "ja": "店員のサービスが丁寧でした。",
+          "zh": "店员服务很周到。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-723",
+      "jlpt": "N4",
+      "headword": "ジャム",
+      "source_form": "ジャム",
+      "variants": [
+        "ジャム"
+      ],
+      "reading": "ジャム",
+      "reading_variants": [
+        "ジャム"
+      ],
+      "romaji": "jamu",
+      "part_of_speech": "noun",
+      "meaning_zh": "果酱",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "ジャムを少し食べました。",
+          "zh": "吃了一点果酱。"
+        },
+        {
+          "ja": "ジャムが好きです。",
+          "zh": "喜欢果酱。"
+        },
+        {
+          "ja": "この店のジャムは有名です。",
+          "zh": "这家店的果酱很有名。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-724",
+      "jlpt": "N4",
+      "headword": "スーツ",
+      "source_form": "スーツ",
+      "variants": [
+        "スーツ"
+      ],
+      "reading": "スーツ",
+      "reading_variants": [
+        "スーツ"
+      ],
+      "romaji": "suutsu",
+      "part_of_speech": "noun",
+      "meaning_zh": "西装；套装",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "スーツを見ました。",
+          "zh": "看到了西装。"
+        },
+        {
+          "ja": "スーツを確認しました。",
+          "zh": "确认了西装。"
+        },
+        {
+          "ja": "スーツについて友達と話しました。",
+          "zh": "和朋友谈了关于西装的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-725",
+      "jlpt": "N4",
+      "headword": "スーツケース",
+      "source_form": "スーツケース",
+      "variants": [
+        "スーツケース"
+      ],
+      "reading": "スーツケース",
+      "reading_variants": [
+        "スーツケース"
+      ],
+      "romaji": "suutsukeesu",
+      "part_of_speech": "noun",
+      "meaning_zh": "行李箱",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "スーツケースを見ました。",
+          "zh": "看到了行李箱。"
+        },
+        {
+          "ja": "スーツケースを確認しました。",
+          "zh": "确认了行李箱。"
+        },
+        {
+          "ja": "スーツケースについて友達と話しました。",
+          "zh": "和朋友谈了关于行李箱的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-726",
+      "jlpt": "N4",
+      "headword": "ソフト",
+      "source_form": "ソフト",
+      "variants": [
+        "ソフト"
+      ],
+      "reading": "ソフト",
+      "reading_variants": [
+        "ソフト"
+      ],
+      "romaji": "sofuto",
+      "part_of_speech": "noun/na-adjective",
+      "meaning_zh": "软件；软的",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "この布はソフトな手触りです。",
+          "zh": "这块布手感柔软。"
+        },
+        {
+          "ja": "新しいソフトをパソコンに入れました。",
+          "zh": "把新软件装进了电脑。"
+        },
+        {
+          "ja": "彼はソフトな話し方をします。",
+          "zh": "他说话方式很柔和。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-727",
+      "jlpt": "N4",
+      "headword": "タイプ",
+      "source_form": "タイプ",
+      "variants": [
+        "タイプ"
+      ],
+      "reading": "タイプ",
+      "reading_variants": [
+        "タイプ"
+      ],
+      "romaji": "taipu",
+      "part_of_speech": "noun",
+      "meaning_zh": "类型；打字",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "タイプを見ました。",
+          "zh": "看到了类型。"
+        },
+        {
+          "ja": "タイプを確認しました。",
+          "zh": "确认了类型。"
+        },
+        {
+          "ja": "タイプについて友達と話しました。",
+          "zh": "和朋友谈了关于类型的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-728",
+      "jlpt": "N4",
+      "headword": "チェック",
+      "source_form": "チェック",
+      "variants": [
+        "チェック"
+      ],
+      "reading": "チェック",
+      "reading_variants": [
+        "チェック"
+      ],
+      "romaji": "chiekku",
+      "part_of_speech": "suru-verb/noun",
+      "meaning_zh": "检查；确认",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "出発前に荷物をチェックします。",
+          "zh": "出发前检查行李。"
+        },
+        {
+          "ja": "名前をリストでチェックしました。",
+          "zh": "用名单确认了名字。"
+        },
+        {
+          "ja": "間違いがないかチェックしてください。",
+          "zh": "请检查是否没有错误。"
+        }
+      ],
+      "note_zh": "常与「する」构成动词。"
+    },
+    {
+      "id": "n4-729",
+      "jlpt": "N4",
+      "headword": "テキスト",
+      "source_form": "テキスト",
+      "variants": [
+        "テキスト"
+      ],
+      "reading": "テキスト",
+      "reading_variants": [
+        "テキスト"
+      ],
+      "romaji": "tekisuto",
+      "part_of_speech": "noun",
+      "meaning_zh": "教材；文本",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "テキストを見ました。",
+          "zh": "看到了教材。"
+        },
+        {
+          "ja": "テキストを確認しました。",
+          "zh": "确认了教材。"
+        },
+        {
+          "ja": "テキストについて友達と話しました。",
+          "zh": "和朋友谈了关于教材的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-730",
+      "jlpt": "N4",
+      "headword": "テニス",
+      "source_form": "テニス",
+      "variants": [
+        "テニス"
+      ],
+      "reading": "テニス",
+      "reading_variants": [
+        "テニス"
+      ],
+      "romaji": "tenisu",
+      "part_of_speech": "noun",
+      "meaning_zh": "网球",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "テニスを見ました。",
+          "zh": "看到了网球。"
+        },
+        {
+          "ja": "テニスを確認しました。",
+          "zh": "确认了网球。"
+        },
+        {
+          "ja": "テニスについて友達と話しました。",
+          "zh": "和朋友谈了关于网球的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-731",
+      "jlpt": "N4",
+      "headword": "ハンドバッグ",
+      "source_form": "ハンドバッグ",
+      "variants": [
+        "ハンドバッグ"
+      ],
+      "reading": "ハンドバッグ",
+      "reading_variants": [
+        "ハンドバッグ"
+      ],
+      "romaji": "handobaggu",
+      "part_of_speech": "noun",
+      "meaning_zh": "手提包；女包",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "ハンドバッグを見ました。",
+          "zh": "看到了手提包。"
+        },
+        {
+          "ja": "ハンドバッグを確認しました。",
+          "zh": "确认了手提包。"
+        },
+        {
+          "ja": "ハンドバッグについて友達と話しました。",
+          "zh": "和朋友谈了关于手提包的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-732",
+      "jlpt": "N4",
+      "headword": "パソコン",
+      "source_form": "パソコン",
+      "variants": [
+        "パソコン"
+      ],
+      "reading": "パソコン",
+      "reading_variants": [
+        "パソコン"
+      ],
+      "romaji": "pasokon",
+      "part_of_speech": "noun",
+      "meaning_zh": "个人电脑",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "パソコンを見ました。",
+          "zh": "看到了个人电脑。"
+        },
+        {
+          "ja": "パソコンを確認しました。",
+          "zh": "确认了个人电脑。"
+        },
+        {
+          "ja": "パソコンについて友達と話しました。",
+          "zh": "和朋友谈了关于个人电脑的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-733",
+      "jlpt": "N4",
+      "headword": "パート",
+      "source_form": "パート",
+      "variants": [
+        "パート"
+      ],
+      "reading": "パート",
+      "reading_variants": [
+        "パート"
+      ],
+      "romaji": "paato",
+      "part_of_speech": "noun",
+      "meaning_zh": "兼职；部分",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "パートを見ました。",
+          "zh": "看到了兼职。"
+        },
+        {
+          "ja": "パートを確認しました。",
+          "zh": "确认了兼职。"
+        },
+        {
+          "ja": "パートについて友達と話しました。",
+          "zh": "和朋友谈了关于兼职的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-734",
+      "jlpt": "N4",
+      "headword": "ビル",
+      "source_form": "ビル",
+      "variants": [
+        "ビル"
+      ],
+      "reading": "ビル",
+      "reading_variants": [
+        "ビル"
+      ],
+      "romaji": "biru",
+      "part_of_speech": "noun",
+      "meaning_zh": "大楼；建筑物",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "ビルへ行きました。",
+          "zh": "去了大楼。"
+        },
+        {
+          "ja": "ビルは駅の近くにあります。",
+          "zh": "大楼在车站附近。"
+        },
+        {
+          "ja": "ビルで友達に会いました。",
+          "zh": "在大楼见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-735",
+      "jlpt": "N4",
+      "headword": "ピアノ",
+      "source_form": "ピアノ",
+      "variants": [
+        "ピアノ"
+      ],
+      "reading": "ピアノ",
+      "reading_variants": [
+        "ピアノ"
+      ],
+      "romaji": "piano",
+      "part_of_speech": "noun",
+      "meaning_zh": "钢琴",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "ピアノを見ました。",
+          "zh": "看到了钢琴。"
+        },
+        {
+          "ja": "ピアノを確認しました。",
+          "zh": "确认了钢琴。"
+        },
+        {
+          "ja": "ピアノについて友達と話しました。",
+          "zh": "和朋友谈了关于钢琴的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-736",
+      "jlpt": "N4",
+      "headword": "ファックス",
+      "source_form": "ファックス",
+      "variants": [
+        "ファックス"
+      ],
+      "reading": "ファックス",
+      "reading_variants": [
+        "ファックス"
+      ],
+      "romaji": "fakkusu",
+      "part_of_speech": "noun",
+      "meaning_zh": "传真",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "ファックスを見ました。",
+          "zh": "看到了传真。"
+        },
+        {
+          "ja": "ファックスを確認しました。",
+          "zh": "确认了传真。"
+        },
+        {
+          "ja": "ファックスについて友達と話しました。",
+          "zh": "和朋友谈了关于传真的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-737",
+      "jlpt": "N4",
+      "headword": "プレゼント",
+      "source_form": "プレゼント",
+      "variants": [
+        "プレゼント"
+      ],
+      "reading": "プレゼント",
+      "reading_variants": [
+        "プレゼント"
+      ],
+      "romaji": "purezento",
+      "part_of_speech": "noun/suru-verb",
+      "meaning_zh": "礼物；赠送",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "友達に花をプレゼントしました。",
+          "zh": "送了花给朋友。"
+        },
+        {
+          "ja": "誕生日にプレゼントをもらいました。",
+          "zh": "生日收到了礼物。"
+        },
+        {
+          "ja": "母へのプレゼントを選んでいます。",
+          "zh": "正在挑给母亲的礼物。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-738",
+      "jlpt": "N4",
+      "headword": "ベル",
+      "source_form": "ベル",
+      "variants": [
+        "ベル"
+      ],
+      "reading": "ベル",
+      "reading_variants": [
+        "ベル"
+      ],
+      "romaji": "beru",
+      "part_of_speech": "noun",
+      "meaning_zh": "铃；铃声",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "ベルを見ました。",
+          "zh": "看到了铃。"
+        },
+        {
+          "ja": "ベルを確認しました。",
+          "zh": "确认了铃。"
+        },
+        {
+          "ja": "ベルについて友達と話しました。",
+          "zh": "和朋友谈了关于铃的事。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-739",
+      "jlpt": "N4",
+      "headword": "レジ",
+      "source_form": "レジ",
+      "variants": [
+        "レジ"
+      ],
+      "reading": "レジ",
+      "reading_variants": [
+        "レジ"
+      ],
+      "romaji": "reji",
+      "part_of_speech": "noun",
+      "meaning_zh": "收银台；收银机",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "レジへ行きました。",
+          "zh": "去了收银台。"
+        },
+        {
+          "ja": "レジは駅の近くにあります。",
+          "zh": "收银台在车站附近。"
+        },
+        {
+          "ja": "レジで友達に会いました。",
+          "zh": "在收银台见了朋友。"
+        }
+      ],
+      "note_zh": ""
+    },
+    {
+      "id": "n4-740",
+      "jlpt": "N4",
+      "headword": "レポート",
+      "source_form": "レポート; リポート",
+      "variants": [
+        "レポート",
+        "リポート"
+      ],
+      "reading": "レポート",
+      "reading_variants": [
+        "レポート"
+      ],
+      "romaji": "repooto",
+      "part_of_speech": "noun",
+      "meaning_zh": "报告；小论文",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "レポートを見ました。",
+          "zh": "看到了报告。"
+        },
+        {
+          "ja": "レポートを確認しました。",
+          "zh": "确认了报告。"
+        },
+        {
+          "ja": "レポートについて友達と話しました。",
+          "zh": "和朋友谈了关于报告的事。"
+        }
+      ],
+      "note_zh": "两种写法都可见。"
+    },
+    {
+      "id": "n4-741",
+      "jlpt": "N4",
+      "headword": "ワープロ",
+      "source_form": "ワープロ",
+      "variants": [
+        "ワープロ"
+      ],
+      "reading": "ワープロ",
+      "reading_variants": [
+        "ワープロ"
+      ],
+      "romaji": "waapuro",
+      "part_of_speech": "noun",
+      "meaning_zh": "文字处理机；文字处理软件",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "ワープロを見ました。",
+          "zh": "看到了文字处理机。"
+        },
+        {
+          "ja": "ワープロを確認しました。",
+          "zh": "确认了文字处理机。"
+        },
+        {
+          "ja": "ワープロについて友達と話しました。",
+          "zh": "和朋友谈了关于文字处理机的事。"
+        }
+      ],
+      "note_zh": "旧称。"
+    },
+    {
+      "id": "n4-742",
+      "jlpt": "N4",
+      "headword": "～員",
+      "source_form": "～員",
+      "variants": [
+        "～員"
+      ],
+      "reading": "～いん",
+      "reading_variants": [
+        "～いん"
+      ],
+      "romaji": "in",
+      "part_of_speech": "suffix",
+      "meaning_zh": "……人员；……员",
+      "kanji_readings": [
+        {
+          "form": "～員",
+          "reading": "～いん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "店員にサイズを聞きました。",
+          "zh": "向店员询问了尺寸。"
+        },
+        {
+          "ja": "会社員として働いています。",
+          "zh": "作为公司职员工作。"
+        },
+        {
+          "ja": "駅員が道を教えてくれました。",
+          "zh": "车站工作人员告诉了路。"
+        }
+      ],
+      "note_zh": "职业、成员后缀。"
+    },
+    {
+      "id": "n4-743",
+      "jlpt": "N4",
+      "headword": "～おき",
+      "source_form": "～おき",
+      "variants": [
+        "～おき"
+      ],
+      "reading": "～おき",
+      "reading_variants": [
+        "～おき"
+      ],
+      "romaji": "oki",
+      "part_of_speech": "suffix/expression",
+      "meaning_zh": "每隔……；每……一次",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "二日おきに運動しています。",
+          "zh": "每隔两天运动。"
+        },
+        {
+          "ja": "一時間おきに薬を飲みます。",
+          "zh": "每隔一小时吃药。"
+        },
+        {
+          "ja": "このバスは十分おきに来ます。",
+          "zh": "这辆公交每十分钟来一班。"
+        }
+      ],
+      "note_zh": "接在时间、数量后。"
+    },
+    {
+      "id": "n4-744",
+      "jlpt": "N4",
+      "headword": "～終わる",
+      "source_form": "～終わる",
+      "variants": [
+        "～終わる"
+      ],
+      "reading": "～おわる",
+      "reading_variants": [
+        "～おわる"
+      ],
+      "romaji": "owaru",
+      "part_of_speech": "suffix/expression",
+      "meaning_zh": "……完",
+      "kanji_readings": [
+        {
+          "form": "～終わる",
+          "reading": "～おわる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "本を読み終わりました。",
+          "zh": "书读完了。"
+        },
+        {
+          "ja": "宿題を書き終わったら休みます。",
+          "zh": "写完作业后休息。"
+        },
+        {
+          "ja": "映画を見終わってから食事しました。",
+          "zh": "看完电影后吃了饭。"
+        }
+      ],
+      "note_zh": "接动词ます形。"
+    },
+    {
+      "id": "n4-745",
+      "jlpt": "N4",
+      "headword": "～家",
+      "source_form": "～家",
+      "variants": [
+        "～家"
+      ],
+      "reading": "～か",
+      "reading_variants": [
+        "～か"
+      ],
+      "romaji": "ka",
+      "part_of_speech": "suffix",
+      "meaning_zh": "……家；……方面的人",
+      "kanji_readings": [
+        {
+          "form": "～家",
+          "reading": "～か"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "彼は有名な作家です。",
+          "zh": "他是有名的作家。"
+        },
+        {
+          "ja": "音楽家になりたいです。",
+          "zh": "想成为音乐家。"
+        },
+        {
+          "ja": "専門家に相談しました。",
+          "zh": "咨询了专家。"
+        }
+      ],
+      "note_zh": "职业、专长后缀。"
+    },
+    {
+      "id": "n4-746",
+      "jlpt": "N4",
+      "headword": "～会",
+      "source_form": "～会",
+      "variants": [
+        "～会"
+      ],
+      "reading": "～かい",
+      "reading_variants": [
+        "～かい"
+      ],
+      "romaji": "kai",
+      "part_of_speech": "suffix",
+      "meaning_zh": "……会；……会议",
+      "kanji_readings": [
+        {
+          "form": "～会",
+          "reading": "～かい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "週末に勉強会があります。",
+          "zh": "周末有学习会。"
+        },
+        {
+          "ja": "歓迎会は六時からです。",
+          "zh": "欢迎会从六点开始。"
+        },
+        {
+          "ja": "説明会で質問しました。",
+          "zh": "在说明会上提了问题。"
+        }
+      ],
+      "note_zh": "接尾语，用在活动、会议、聚会名称后。"
+    },
+    {
+      "id": "n4-747",
+      "jlpt": "N4",
+      "headword": "～学部",
+      "source_form": "～学部",
+      "variants": [
+        "～学部"
+      ],
+      "reading": "～がくぶ",
+      "reading_variants": [
+        "～がくぶ"
+      ],
+      "romaji": "gakubu",
+      "part_of_speech": "suffix",
+      "meaning_zh": "……系；……学院",
+      "kanji_readings": [
+        {
+          "form": "～学部",
+          "reading": "～がくぶ"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "文学部で日本語を勉強しています。",
+          "zh": "在文学部学习日语。"
+        },
+        {
+          "ja": "経済学部の学生です。",
+          "zh": "是经济学部的学生。"
+        },
+        {
+          "ja": "どの学部に入りたいですか。",
+          "zh": "想进哪个学部？"
+        }
+      ],
+      "note_zh": "大学院系名称后缀。"
+    },
+    {
+      "id": "n4-748",
+      "jlpt": "N4",
+      "headword": "～区",
+      "source_form": "～区",
+      "variants": [
+        "～区"
+      ],
+      "reading": "～く",
+      "reading_variants": [
+        "～く"
+      ],
+      "romaji": "ku",
+      "part_of_speech": "suffix",
+      "meaning_zh": "……区；行政区",
+      "kanji_readings": [
+        {
+          "form": "～区",
+          "reading": "～く"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "新宿区に住んでいます。",
+          "zh": "住在新宿区。"
+        },
+        {
+          "ja": "この区は外国人が多いです。",
+          "zh": "这个区外国人很多。"
+        },
+        {
+          "ja": "区役所まで歩いて行きます。",
+          "zh": "走路去区役所。"
+        }
+      ],
+      "note_zh": "接尾语。"
+    },
+    {
+      "id": "n4-749",
+      "jlpt": "N4",
+      "headword": "～軒",
+      "source_form": "～軒",
+      "variants": [
+        "～軒"
+      ],
+      "reading": "～けん",
+      "reading_variants": [
+        "～けん"
+      ],
+      "romaji": "ken",
+      "part_of_speech": "counter/suffix",
+      "meaning_zh": "……栋；……家店",
+      "kanji_readings": [
+        {
+          "form": "～軒",
+          "reading": "～けん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この通りには喫茶店が三軒あります。",
+          "zh": "这条街上有三家咖啡店。"
+        },
+        {
+          "ja": "駅前に新しい店が一軒できました。",
+          "zh": "车站前开了一家新店。"
+        },
+        {
+          "ja": "旅館を二軒予約しました。",
+          "zh": "预约了两家旅馆。"
+        }
+      ],
+      "note_zh": "房屋、店铺等的量词。"
+    },
+    {
+      "id": "n4-750",
+      "jlpt": "N4",
+      "headword": "～式",
+      "source_form": "～式",
+      "variants": [
+        "～式"
+      ],
+      "reading": "～しき",
+      "reading_variants": [
+        "～しき"
+      ],
+      "romaji": "shiki",
+      "part_of_speech": "suffix",
+      "meaning_zh": "……式；……方式",
+      "kanji_readings": [
+        {
+          "form": "～式",
+          "reading": "～しき"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "明日は卒業式があります。",
+          "zh": "明天有毕业典礼。"
+        },
+        {
+          "ja": "日本式の部屋に泊まりました。",
+          "zh": "住了日式房间。"
+        },
+        {
+          "ja": "この機械は古い方式で動きます。",
+          "zh": "这台机器按旧方式运转。"
+        }
+      ],
+      "note_zh": "接尾语。"
+    },
+    {
+      "id": "n4-751",
+      "jlpt": "N4",
+      "headword": "～製",
+      "source_form": "～製",
+      "variants": [
+        "～製"
+      ],
+      "reading": "～せい",
+      "reading_variants": [
+        "～せい"
+      ],
+      "romaji": "sei",
+      "part_of_speech": "suffix",
+      "meaning_zh": "……制造；……制",
+      "kanji_readings": [
+        {
+          "form": "～製",
+          "reading": "～せい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "これは日本製のカメラです。",
+          "zh": "这是日本制造的相机。"
+        },
+        {
+          "ja": "木製の机を買いました。",
+          "zh": "买了木制桌子。"
+        },
+        {
+          "ja": "この服は中国製です。",
+          "zh": "这件衣服是中国制造的。"
+        }
+      ],
+      "note_zh": "接尾语。"
+    },
+    {
+      "id": "n4-752",
+      "jlpt": "N4",
+      "headword": "～ため",
+      "source_form": "～ため",
+      "variants": [
+        "～ため"
+      ],
+      "reading": "～ため",
+      "reading_variants": [
+        "～ため"
+      ],
+      "romaji": "tame",
+      "part_of_speech": "expression",
+      "meaning_zh": "为了……；因为……",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "試験のために早く寝ます。",
+          "zh": "为了考试早点睡。"
+        },
+        {
+          "ja": "雨のため、試合は中止になりました。",
+          "zh": "由于下雨，比赛取消了。"
+        },
+        {
+          "ja": "家族のために働いています。",
+          "zh": "为了家人在工作。"
+        }
+      ],
+      "note_zh": "名词/连体修饰后接。"
+    },
+    {
+      "id": "n4-753",
+      "jlpt": "N4",
+      "headword": "～代",
+      "source_form": "～代",
+      "variants": [
+        "～代"
+      ],
+      "reading": "～だい",
+      "reading_variants": [
+        "～だい"
+      ],
+      "romaji": "dai",
+      "part_of_speech": "suffix",
+      "meaning_zh": "……费；……代；……年代",
+      "kanji_readings": [
+        {
+          "form": "～代",
+          "reading": "～だい"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "電気代を払いました。",
+          "zh": "付了电费。"
+        },
+        {
+          "ja": "バス代はいくらですか。",
+          "zh": "公交费多少钱？"
+        },
+        {
+          "ja": "三十代の人が多いです。",
+          "zh": "三十多岁的人很多。"
+        }
+      ],
+      "note_zh": "接尾语。"
+    },
+    {
+      "id": "n4-754",
+      "jlpt": "N4",
+      "headword": "～出す",
+      "source_form": "～出す",
+      "variants": [
+        "～出す"
+      ],
+      "reading": "～だす",
+      "reading_variants": [
+        "～だす"
+      ],
+      "romaji": "dasu",
+      "part_of_speech": "suffix/expression",
+      "meaning_zh": "开始……；……出来",
+      "kanji_readings": [
+        {
+          "form": "～出す",
+          "reading": "～だす"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "急に雨が降り出しました。",
+          "zh": "突然开始下雨了。"
+        },
+        {
+          "ja": "赤ちゃんが泣き出しました。",
+          "zh": "宝宝开始哭了。"
+        },
+        {
+          "ja": "彼は急に走り出しました。",
+          "zh": "他突然跑了起来。"
+        }
+      ],
+      "note_zh": "接动词ます形。"
+    },
+    {
+      "id": "n4-755",
+      "jlpt": "N4",
+      "headword": "～中",
+      "source_form": "～中",
+      "variants": [
+        "～中"
+      ],
+      "reading": "～ちゅう",
+      "reading_variants": [
+        "～ちゅう"
+      ],
+      "romaji": "chuu",
+      "part_of_speech": "suffix",
+      "meaning_zh": "正在……；……之中",
+      "kanji_readings": [
+        {
+          "form": "～中",
+          "reading": "～ちゅう"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "会議中は電話に出られません。",
+          "zh": "开会中不能接电话。"
+        },
+        {
+          "ja": "夏休み中に旅行します。",
+          "zh": "暑假期间旅行。"
+        },
+        {
+          "ja": "食事中に大きな声で話さないでください。",
+          "zh": "吃饭时不要大声说话。"
+        }
+      ],
+      "note_zh": "接尾语。"
+    },
+    {
+      "id": "n4-756",
+      "jlpt": "N4",
+      "headword": "～月",
+      "source_form": "～月",
+      "variants": [
+        "～月"
+      ],
+      "reading": "～つき",
+      "reading_variants": [
+        "～つき"
+      ],
+      "romaji": "tsuki",
+      "part_of_speech": "suffix",
+      "meaning_zh": "……月；每月",
+      "kanji_readings": [
+        {
+          "form": "～月",
+          "reading": "～つき"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "来月、旅行に行きます。",
+          "zh": "下个月去旅行。"
+        },
+        {
+          "ja": "毎月、家賃を払います。",
+          "zh": "每个月付房租。"
+        },
+        {
+          "ja": "今月の予定を確認しました。",
+          "zh": "确认了这个月的计划。"
+        }
+      ],
+      "note_zh": "接尾语。"
+    },
+    {
+      "id": "n4-757",
+      "jlpt": "N4",
+      "headword": "～てしまう",
+      "source_form": "～てしまう",
+      "variants": [
+        "～てしまう"
+      ],
+      "reading": "～てしまう",
+      "reading_variants": [
+        "～てしまう"
+      ],
+      "romaji": "teshimau",
+      "part_of_speech": "expression",
+      "meaning_zh": "做完；不小心……；遗憾地……",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "財布を忘れてしまいました。",
+          "zh": "把钱包忘了。"
+        },
+        {
+          "ja": "ケーキを全部食べてしまいました。",
+          "zh": "把蛋糕全吃完了。"
+        },
+        {
+          "ja": "電車に遅れてしまいました。",
+          "zh": "误了电车。"
+        }
+      ],
+      "note_zh": "接动词て形。"
+    },
+    {
+      "id": "n4-758",
+      "jlpt": "N4",
+      "headword": "～にくい",
+      "source_form": "～にくい",
+      "variants": [
+        "～にくい"
+      ],
+      "reading": "～にくい",
+      "reading_variants": [
+        "～にくい"
+      ],
+      "romaji": "nikui",
+      "part_of_speech": "suffix/expression",
+      "meaning_zh": "难以……；不好……",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "この漢字は覚えにくいです。",
+          "zh": "这个汉字很难记。"
+        },
+        {
+          "ja": "このペンは書きにくいです。",
+          "zh": "这支笔不好写。"
+        },
+        {
+          "ja": "雨の日は歩きにくいです。",
+          "zh": "下雨天不好走。"
+        }
+      ],
+      "note_zh": "接动词ます形。"
+    },
+    {
+      "id": "n4-759",
+      "jlpt": "N4",
+      "headword": "～について",
+      "source_form": "～について",
+      "variants": [
+        "～について"
+      ],
+      "reading": "～について",
+      "reading_variants": [
+        "～について"
+      ],
+      "romaji": "nitsuite",
+      "part_of_speech": "expression",
+      "meaning_zh": "关于……",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "日本の文化について発表します。",
+          "zh": "发表关于日本文化的内容。"
+        },
+        {
+          "ja": "旅行について相談しました。",
+          "zh": "商量了旅行的事。"
+        },
+        {
+          "ja": "この問題についてどう思いますか。",
+          "zh": "你对这个问题怎么看？"
+        }
+      ],
+      "note_zh": "格助词性表达。"
+    },
+    {
+      "id": "n4-760",
+      "jlpt": "N4",
+      "headword": "～によると",
+      "source_form": "～によると",
+      "variants": [
+        "～によると"
+      ],
+      "reading": "～によると",
+      "reading_variants": [
+        "～によると"
+      ],
+      "romaji": "niyoruto",
+      "part_of_speech": "expression",
+      "meaning_zh": "据……；根据……",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "天気予報によると、明日は雨です。",
+          "zh": "据天气预报，明天有雨。"
+        },
+        {
+          "ja": "先生によると、この漢字はよく使うそうです。",
+          "zh": "据老师说，这个汉字很常用。"
+        },
+        {
+          "ja": "ニュースによると、電車が遅れています。",
+          "zh": "据新闻说，电车晚点了。"
+        }
+      ],
+      "note_zh": "常用于消息、说明来源。"
+    },
+    {
+      "id": "n4-761",
+      "jlpt": "N4",
+      "headword": "～始める",
+      "source_form": "～始める",
+      "variants": [
+        "～始める"
+      ],
+      "reading": "～はじめる",
+      "reading_variants": [
+        "～はじめる"
+      ],
+      "romaji": "hajimeru",
+      "part_of_speech": "suffix/expression",
+      "meaning_zh": "开始……",
+      "kanji_readings": [
+        {
+          "form": "～始める",
+          "reading": "～はじめる"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "日本語を勉強し始めました。",
+          "zh": "开始学习日语了。"
+        },
+        {
+          "ja": "子供が歩き始めました。",
+          "zh": "孩子开始走路了。"
+        },
+        {
+          "ja": "雨が降り始めたので帰ります。",
+          "zh": "因为开始下雨了，所以回去。"
+        }
+      ],
+      "note_zh": "接动词ます形。"
+    },
+    {
+      "id": "n4-762",
+      "jlpt": "N4",
+      "headword": "～ばかり",
+      "source_form": "～ばかり",
+      "variants": [
+        "～ばかり"
+      ],
+      "reading": "～ばかり",
+      "reading_variants": [
+        "～ばかり"
+      ],
+      "romaji": "bakari",
+      "part_of_speech": "suffix/expression",
+      "meaning_zh": "净是……；刚刚……；大约……",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "甘い物ばかり食べています。",
+          "zh": "净吃甜食。"
+        },
+        {
+          "ja": "今帰ってきたばかりです。",
+          "zh": "刚刚回来。"
+        },
+        {
+          "ja": "本を五冊ばかり買いました。",
+          "zh": "买了大约五本书。"
+        }
+      ],
+      "note_zh": "接续助词性表达。"
+    },
+    {
+      "id": "n4-763",
+      "jlpt": "N4",
+      "headword": "～番",
+      "source_form": "～番",
+      "variants": [
+        "～番"
+      ],
+      "reading": "～ばん",
+      "reading_variants": [
+        "～ばん"
+      ],
+      "romaji": "ban",
+      "part_of_speech": "suffix",
+      "meaning_zh": "第……号；……班",
+      "kanji_readings": [
+        {
+          "form": "～番",
+          "reading": "～ばん"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "次は三番のバスに乗ります。",
+          "zh": "接下来坐三号公交。"
+        },
+        {
+          "ja": "番号を間違えないでください。",
+          "zh": "请不要弄错号码。"
+        },
+        {
+          "ja": "一番前の席に座りました。",
+          "zh": "坐在了最前面的座位。"
+        }
+      ],
+      "note_zh": "序号后缀。"
+    },
+    {
+      "id": "n4-764",
+      "jlpt": "N4",
+      "headword": "～町",
+      "source_form": "～町",
+      "variants": [
+        "～町"
+      ],
+      "reading": "～まち",
+      "reading_variants": [
+        "～まち"
+      ],
+      "romaji": "machi",
+      "part_of_speech": "suffix",
+      "meaning_zh": "……町；……镇",
+      "kanji_readings": [
+        {
+          "form": "～町",
+          "reading": "～まち"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "この町は静かで住みやすいです。",
+          "zh": "这个城镇安静、宜居。"
+        },
+        {
+          "ja": "港町を散歩しました。",
+          "zh": "在港口城镇散步了。"
+        },
+        {
+          "ja": "町の中心に駅があります。",
+          "zh": "镇中心有车站。"
+        }
+      ],
+      "note_zh": "地名后缀。"
+    },
+    {
+      "id": "n4-765",
+      "jlpt": "N4",
+      "headword": "～まま",
+      "source_form": "～まま",
+      "variants": [
+        "～まま"
+      ],
+      "reading": "～まま",
+      "reading_variants": [
+        "～まま"
+      ],
+      "romaji": "mama",
+      "part_of_speech": "suffix/expression",
+      "meaning_zh": "保持……状态；就那样",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "窓を開けたまま寝てしまいました。",
+          "zh": "窗户开着就睡着了。"
+        },
+        {
+          "ja": "靴を履いたまま入らないでください。",
+          "zh": "请不要穿着鞋进去。"
+        },
+        {
+          "ja": "電気をつけたまま出かけました。",
+          "zh": "灯开着就出门了。"
+        }
+      ],
+      "note_zh": "接续表达。"
+    },
+    {
+      "id": "n4-766",
+      "jlpt": "N4",
+      "headword": "～目",
+      "source_form": "～目",
+      "variants": [
+        "～目"
+      ],
+      "reading": "～め",
+      "reading_variants": [
+        "～め"
+      ],
+      "romaji": "me",
+      "part_of_speech": "suffix",
+      "meaning_zh": "第……；……眼；……目",
+      "kanji_readings": [
+        {
+          "form": "～目",
+          "reading": "～め"
+        }
+      ],
+      "examples": [
+        {
+          "ja": "二つ目の角を右に曲がってください。",
+          "zh": "请在第二个路口右转。"
+        },
+        {
+          "ja": "三回目で成功しました。",
+          "zh": "第三次成功了。"
+        },
+        {
+          "ja": "一番目の答えを選びました。",
+          "zh": "选择了第一个答案。"
+        }
+      ],
+      "note_zh": "序数后缀。"
+    },
+    {
+      "id": "n4-767",
+      "jlpt": "N4",
+      "headword": "～やすい",
+      "source_form": "～やすい",
+      "variants": [
+        "～やすい"
+      ],
+      "reading": "～やすい",
+      "reading_variants": [
+        "～やすい"
+      ],
+      "romaji": "yasui",
+      "part_of_speech": "suffix/expression",
+      "meaning_zh": "容易……；好……",
+      "kanji_readings": [],
+      "examples": [
+        {
+          "ja": "この辞書は使いやすいです。",
+          "zh": "这本词典很好用。"
+        },
+        {
+          "ja": "この道は歩きやすいです。",
+          "zh": "这条路很好走。"
+        },
+        {
+          "ja": "例文があると覚えやすいです。",
+          "zh": "有例句就容易记。"
+        }
+      ],
+      "note_zh": "接动词ます形。"
+    }
+  ]
+};
+
+window.AYAYA_N4_WORDS = window.AYAYA_N4_CODEX_VOCAB.entries.map((entry) => [entry.headword, entry.reading, entry.meaning_zh, entry.examples[0].ja, entry.examples[0].zh]);
+
+window.AYAYA_N4_TATOEBA_EXAMPLES = Object.fromEntries(window.AYAYA_N4_CODEX_VOCAB.entries.flatMap((entry) => [[entry.headword, entry.examples], [entry.source_form.split(';')[0].trim(), entry.examples]]));

@@ -1,0 +1,20 @@
+{
+  "validated_on": "2026-06-28",
+  "n5_entries": 718,
+  "n4_entries": 767,
+  "grammar_entries": 216,
+  "kana_cards": 251,
+  "vocab_cards": 2970,
+  "grammar_cards": 648,
+  "total_cards_from_api": 3869,
+  "checks": {
+    "n5_js_syntax": "pass",
+    "n4_js_syntax": "pass",
+    "grammar_js_syntax": "pass",
+    "card_data_js_syntax": "pass",
+    "n5_json_parse": "pass",
+    "n4_json_parse": "pass",
+    "duplicate_ids": "none detected in N5/N4 vocabulary",
+    "minimum_examples": "all N5/N4 vocabulary entries contain at least 3 examples"
+  }
+}
