@@ -193,8 +193,8 @@ function checkCardBuilder(vocabDataByLevel, grammarData) {
   if (vocabCards.length !== expectedVocabCards) {
     fail("expected two vocab cards per N4/N5 entry");
   }
-  if (grammarCards.length !== grammarData.entries.length * 3) {
-    fail("expected three grammar cards per grammar entry");
+  if (grammarCards.length !== grammarData.entries.length * 4) {
+    fail("expected four grammar cards per grammar entry");
   }
 
   const deckCounts = vocabCards.reduce((counts, card) => {
@@ -227,6 +227,9 @@ function checkCardBuilder(vocabDataByLevel, grammarData) {
   if (grammarDeckCounts["grammar-n5-pattern-zh"] !== expectedGrammarCounts.N5) {
     fail("expected one N5 grammar pattern card per N5 grammar entry");
   }
+  if (grammarDeckCounts["grammar-n5-choice"] !== expectedGrammarCounts.N5) {
+    fail("expected one N5 grammar choice card per N5 grammar entry");
+  }
   if (grammarDeckCounts["grammar-n4-zh-ja"] !== expectedGrammarCounts.N4) {
     fail("expected one N4 grammar Chinese-to-Japanese card per N4 grammar entry");
   }
@@ -236,6 +239,25 @@ function checkCardBuilder(vocabDataByLevel, grammarData) {
   if (grammarDeckCounts["grammar-n4-pattern-zh"] !== expectedGrammarCounts.N4) {
     fail("expected one N4 grammar pattern card per N4 grammar entry");
   }
+  if (grammarDeckCounts["grammar-n4-choice"] !== expectedGrammarCounts.N4) {
+    fail("expected one N4 grammar choice card per N4 grammar entry");
+  }
+
+  grammarCards
+    .filter((card) => card.isChoice)
+    .forEach((card) => {
+      if (!Array.isArray(card.choices) || card.choices.length !== 4) {
+        fail(`grammar choice card ${card.id} must have exactly four choices`);
+      }
+      if (card.choices.filter((choice) => choice.isCorrect).length !== 1) {
+        fail(`grammar choice card ${card.id} must have exactly one correct choice`);
+      }
+      card.choices.forEach((choice) => {
+        if (!choice.text || !choice.reason) {
+          fail(`grammar choice card ${card.id} has an incomplete choice`);
+        }
+      });
+    });
 }
 
 ["app.js", "card-data.js", "grammar-data.js", ...vocabFiles.map((vocabFile) => vocabFile.jsFile)].forEach(

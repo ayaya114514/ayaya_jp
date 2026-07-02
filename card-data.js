@@ -530,6 +530,7 @@ const n5Entries = window.AYAYA_N5_CODEX_VOCAB?.entries || [];
 const n5Words = n5Entries.map((entry) => [
   entry.headword,
   entry.reading,
+  entry.romaji,
   entry.meaning_zh,
   entry.examples?.[0]?.ja || "",
   entry.examples?.[0]?.zh || "",
@@ -539,6 +540,7 @@ const n4Entries = window.AYAYA_N4_CODEX_VOCAB?.entries || [];
 const n4Words = n4Entries.map((entry) => [
   entry.headword,
   entry.reading,
+  entry.romaji,
   entry.meaning_zh,
   entry.examples?.[0]?.ja || "",
   entry.examples?.[0]?.zh || "",
@@ -2493,6 +2495,168 @@ function makeKanaCards() {
       ...card,
     })),
   ];
+}
+
+function stripSentencePeriods(text = "") {
+  return String(text).trim().replace(/[。．.]+$/g, "");
+}
+
+function kanaSurfaceToHiragana(text) {
+  return text.replace(/[\u30a1-\u30f6]/g, (char) =>
+    String.fromCharCode(char.charCodeAt(0) - 0x60),
+  );
+}
+
+const kanaRomajiRows = kanaRows
+  .flatMap(([hiragana, katakana, romaji]) => [
+    [kanaSurfaceToHiragana(hiragana), romaji],
+    [kanaSurfaceToHiragana(katakana), romaji],
+  ])
+  .sort((left, right) => right[0].length - left[0].length);
+
+const godanIStem = {
+  う: "い",
+  く: "き",
+  ぐ: "ぎ",
+  す: "し",
+  つ: "ち",
+  ぬ: "に",
+  ぶ: "び",
+  む: "み",
+  る: "り",
+};
+
+function addReadingEntry(entries, seen, surface, reading) {
+  const cleanSurface = surface?.trim();
+  const cleanReading = reading?.split(";")[0]?.trim();
+  const key = `${cleanSurface}:${cleanReading}`;
+  if (!cleanSurface || !cleanReading || seen.has(key)) return;
+  seen.add(key);
+  entries.push([cleanSurface, cleanReading]);
+}
+
+function vocabReadingEntries() {
+  const entries = [];
+  const seen = new Set();
+
+  [...n5Entries, ...n4Entries].forEach((entry) => {
+    const surfaces = [entry.headword, entry.source_form, ...(entry.variants || [])];
+    surfaces.forEach((surface) => {
+      addReadingEntry(entries, seen, surface, entry.reading);
+
+      const lastSurfaceChar = surface?.at(-1);
+      const lastReadingChar = entry.reading?.at(-1);
+      if (!lastSurfaceChar || !lastReadingChar || lastSurfaceChar !== lastReadingChar) return;
+
+      if (lastSurfaceChar === "る") {
+        addReadingEntry(entries, seen, surface.slice(0, -1), entry.reading.slice(0, -1));
+      }
+
+      const stemEnding = godanIStem[lastSurfaceChar];
+      if (stemEnding) {
+        addReadingEntry(
+          entries,
+          seen,
+          `${surface.slice(0, -1)}${stemEnding}`,
+          `${entry.reading.slice(0, -1)}${stemEnding}`,
+        );
+      }
+    });
+  });
+
+  return entries;
+}
+
+const furiganaByLength = [...furiganaEntries, ...vocabReadingEntries()].sort(
+  (left, right) => right[0].length - left[0].length,
+);
+
+function applyKnownReadings(text) {
+  let result = "";
+  let index = 0;
+
+  while (index < text.length) {
+    const entry = furiganaByLength.find(([surface]) => text.startsWith(surface, index));
+    if (entry) {
+      result += entry[1];
+      index += entry[0].length;
+    } else {
+      result += text[index];
+      index += 1;
+    }
+  }
+
+  return result;
+}
+
+function lastVowel(text) {
+  const match = text.match(/[aeiou](?!.*[aeiou])/);
+  return match ? match[0] : "";
+}
+
+function firstConsonant(text) {
+  return /^[bcdfghjklmnpqrstvwxyz]/.test(text) ? text[0] : "";
+}
+
+function kanaToRomaji(text) {
+  const kanaText = kanaSurfaceToHiragana(text);
+  let result = "";
+  let index = 0;
+  let shouldDoubleNextConsonant = false;
+
+  while (index < kanaText.length) {
+    const char = kanaText[index];
+
+    if (char === "っ") {
+      shouldDoubleNextConsonant = true;
+      index += 1;
+      continue;
+    }
+
+    if (char === "ー") {
+      result += lastVowel(result);
+      index += 1;
+      continue;
+    }
+
+    if (char === "、") {
+      result += ", ";
+      index += 1;
+      continue;
+    }
+
+    const match = kanaRomajiRows.find(([surface]) => kanaText.startsWith(surface, index));
+    if (match) {
+      const romaji = match[1];
+      result += `${shouldDoubleNextConsonant ? firstConsonant(romaji) : ""}${romaji}`;
+      shouldDoubleNextConsonant = false;
+      index += match[0].length;
+      continue;
+    }
+
+    result += char;
+    shouldDoubleNextConsonant = false;
+    index += 1;
+  }
+
+  return result.trim();
+}
+
+function sentenceToRomaji(text) {
+  return kanaToRomaji(applyKnownReadings(stripSentencePeriods(text)));
+}
+
+function normalizeExamples(examples = []) {
+  return examples.map((example) => {
+    const ja = stripSentencePeriods(example.ja || "");
+    const zh = stripSentencePeriods(example.zh || "");
+    return {
+      ...example,
+      ja,
+      romaji: sentenceToRomaji(ja),
+      zh,
+    };
+  });
 }
 
 function hasRealExample(example) {
@@ -4538,15 +4702,10 @@ function buildGeneratedExamples(word, reading, meaning) {
 
 function buildExamples(word, reading, meaning, example, translation, entryExamples = []) {
   if (entryExamples.length) {
-    return entryExamples.slice(0, 3);
+    return normalizeExamples(entryExamples.slice(0, 3));
   }
 
-  return hasRealExample(example) ? [{ ja: example, zh: translation }] : [];
-}
-
-function buildSentenceMeta(examples) {
-  if (!examples.length) return "";
-  return `句子：${examples[0].ja}`;
+  return hasRealExample(example) ? normalizeExamples([{ ja: example, zh: translation }]) : [];
 }
 
 function makeVocabDeckCards({
@@ -4557,12 +4716,13 @@ function makeVocabDeckCards({
   typePrefix,
   words,
 }) {
-  return words.flatMap(([word, reading, meaning, example, translation, entryExamples], index) => {
+  return words.flatMap(([word, reading, romaji, meaning, example, translation, entryExamples], index) => {
     const shortMeaning = exactMeaning ? meaning : primaryMeaning(word, meaning);
     const examples = buildExamples(word, reading, meaning, example, translation, entryExamples);
     const sentencePrompt = examples[0]?.zh || "";
     const sentenceAnswer = examples[0]?.ja || "";
     const meaningMeta = "";
+    const readingMeta = `读音：${reading}${romaji ? `　罗马音：${romaji}` : ""}${meaningMeta}`;
 
     return [
       {
@@ -4573,7 +4733,7 @@ function makeVocabDeckCards({
         type: `${typePrefix} 日文 → 中文`,
         prompt: word,
         answer: shortMeaning,
-        meta: `读音：${reading}${meaningMeta}`,
+        meta: readingMeta,
         speech: reading,
         examples,
       },
@@ -4586,9 +4746,9 @@ function makeVocabDeckCards({
         prompt: shortMeaning,
         subtle: sentencePrompt,
         answer: word,
-        meta: `读音：${reading}${meaningMeta}${sentenceAnswer ? `　${buildSentenceMeta(examples)}` : ""}`,
+        meta: readingMeta,
         sentenceAnswer,
-        speech: sentenceAnswer || reading,
+        speech: reading,
         examples,
       },
     ];
@@ -4615,12 +4775,103 @@ function makeVocabCards() {
   ];
 }
 
+const grammarChoiceCount = 4;
+
+function grammarChoiceText(entry) {
+  return `意思：${entry.meaningZh}\n接续：${entry.formation}`;
+}
+
+function grammarChoiceKeywords(entry) {
+  return `${entry.pattern} ${entry.meaningZh} ${entry.formation}`
+    .replace(/[〜、。；;：:（）()／/｜|]/g, " ")
+    .split(/\s+/)
+    .filter((item) => item.length >= 2);
+}
+
+function grammarDistractorScore(entry, candidate) {
+  const entryKeywords = new Set(grammarChoiceKeywords(entry));
+  const candidateKeywords = grammarChoiceKeywords(candidate);
+  const sharedKeywordScore = candidateKeywords.filter((item) => entryKeywords.has(item)).length * 4;
+  const sameLevelScore = entry.level === candidate.level ? 8 : 0;
+  const sameFormationHeadScore =
+    entry.formation.slice(0, 2) === candidate.formation.slice(0, 2) ? 4 : 0;
+  const meaningOverlapScore = [...entry.meaningZh].filter((char) =>
+    candidate.meaningZh.includes(char),
+  ).length;
+
+  return sharedKeywordScore + sameLevelScore + sameFormationHeadScore + meaningOverlapScore;
+}
+
+function getGrammarDistractors(entry) {
+  const usedTexts = new Set([grammarChoiceText(entry)]);
+  return grammarEntries
+    .filter((candidate) => candidate.id !== entry.id)
+    .map((candidate) => ({
+      entry: candidate,
+      score: grammarDistractorScore(entry, candidate),
+    }))
+    .sort((left, right) => {
+      if (right.score !== left.score) return right.score - left.score;
+      return left.entry.id.localeCompare(right.entry.id);
+    })
+    .filter(({ entry: candidate }) => {
+      const text = grammarChoiceText(candidate);
+      if (usedTexts.has(text)) return false;
+      usedTexts.add(text);
+      return true;
+    })
+    .slice(0, grammarChoiceCount - 1)
+    .map(({ entry: candidate }) => candidate);
+}
+
+function makeGrammarChoiceCard(entry, examples) {
+  const levelKey = entry.level.toLowerCase();
+  const correctChoiceId = `${entry.id}-correct`;
+  const choices = [
+    {
+      id: correctChoiceId,
+      isCorrect: true,
+      sourcePattern: entry.pattern,
+      text: grammarChoiceText(entry),
+      reason: `正确。${entry.pattern} 表示「${entry.meaningZh}」，接续是「${entry.formation}」。${entry.note ? `记忆点：${entry.note}` : "这个意思和接续都与题干文型一致。"}`,
+    },
+    ...getGrammarDistractors(entry).map((candidate) => ({
+      id: `${entry.id}-distractor-${candidate.id}`,
+      isCorrect: false,
+      sourcePattern: candidate.pattern,
+      text: grammarChoiceText(candidate),
+      reason: `错误。这是「${candidate.pattern}」的意思和接续：${candidate.meaningZh} / ${candidate.formation}；它会把题干「${entry.pattern}」的语义或接续链条带偏。`,
+    })),
+  ];
+
+  return {
+    id: `grammar-${entry.id}-choice`,
+    deck: `grammar-${levelKey}-choice`,
+    isGrammar: true,
+    isChoice: true,
+    grammarKey: entry.id,
+    grammarLevel: entry.level,
+    type: `${entry.level} 语法选择题`,
+    prompt: `选择「${entry.pattern}」的正确意思和接续`,
+    subtle: "",
+    answer: grammarChoiceText(entry),
+    meta: `正确文型：${entry.pattern}${entry.note ? `　提示：${entry.note}` : ""}`,
+    sentenceAnswer: examples[0]?.ja || stripSentencePeriods(entry.answerJa),
+    speech: examples[0]?.ja || stripSentencePeriods(entry.answerJa),
+    choices,
+    correctChoiceId,
+    examples,
+  };
+}
+
 function makeGrammarCards() {
   return grammarEntries.flatMap((entry) => {
     const levelKey = entry.level.toLowerCase();
-    const examples = Array.isArray(entry.examples) ? entry.examples.slice(0, 3) : [];
+    const examples = normalizeExamples(Array.isArray(entry.examples) ? entry.examples.slice(0, 3) : []);
     const baseMeta = `接续：${entry.formation}　意思：${entry.meaningZh}${entry.note ? `　提示：${entry.note}` : ""}`;
-    const firstExample = examples[0] || { ja: entry.answerJa || "", zh: entry.promptZh || "" };
+    const answerJa = stripSentencePeriods(entry.answerJa);
+    const promptZh = stripSentencePeriods(entry.promptZh);
+    const firstExample = examples[0] || { ja: answerJa || "", zh: promptZh || "" };
 
     return [
       {
@@ -4630,12 +4881,12 @@ function makeGrammarCards() {
         grammarKey: entry.id,
         grammarLevel: entry.level,
         type: `${entry.level} 语法 中文 → 日文`,
-        prompt: entry.promptZh,
+        prompt: promptZh,
         subtle: `文型：${entry.pattern}`,
-        answer: entry.answerJa,
+        answer: answerJa,
         meta: baseMeta,
-        sentenceAnswer: entry.answerJa,
-        speech: entry.answerJa,
+        sentenceAnswer: answerJa,
+        speech: answerJa,
         examples,
       },
       {
@@ -4645,12 +4896,12 @@ function makeGrammarCards() {
         grammarKey: entry.id,
         grammarLevel: entry.level,
         type: `${entry.level} 语法 日文 → 中文`,
-        prompt: entry.answerJa,
+        prompt: answerJa,
         subtle: `文型：${entry.pattern}`,
-        answer: entry.promptZh,
+        answer: promptZh,
         meta: baseMeta,
-        sentenceAnswer: entry.promptZh,
-        speech: entry.answerJa,
+        sentenceAnswer: promptZh,
+        speech: answerJa,
         examples,
       },
       {
@@ -4668,6 +4919,7 @@ function makeGrammarCards() {
         speech: firstExample.ja,
         examples,
       },
+      makeGrammarChoiceCard(entry, examples),
     ];
   });
 }

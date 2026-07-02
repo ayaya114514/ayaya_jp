@@ -18,112 +18,132 @@
           </button>
         </div>
         <section class="deck-tabs" aria-label="牌组">
-          <div class="deck-group" aria-label="基础">
-            <div class="deck-group-title">基础</div>
-            <button class="tab-button active" type="button" data-deck="hiragana">
-              <span class="deck-label">平假名</span>
-              <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
+          <div class="deck-group" data-group="base" aria-label="基础">
+            <button class="deck-group-toggle" type="button" aria-expanded="true" aria-controls="base-decks">
+              <span class="deck-group-title">基础</span>
             </button>
-            <button class="tab-button" type="button" data-deck="katakana">
-              <span class="deck-label">片假名</span>
-              <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
-            </button>
-            <button class="tab-button" type="button" data-deck="romaji">
-              <span class="deck-label">罗马音</span>
-              <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
-            </button>
-            <button class="tab-button" type="button" data-deck="special">
-              <span class="deck-label">变体音</span>
-              <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
-            </button>
-          </div>
-          <div class="deck-group" aria-label="词汇">
-            <div class="deck-group-title">词汇</div>
-            <div class="deck-level" data-level="n5">
-              <button class="deck-level-toggle" type="button" aria-expanded="true" aria-controls="vocab-n5-decks">
-                <span class="deck-level-title">N5</span>
+            <div class="deck-group-items" id="base-decks">
+              <button class="tab-button active" type="button" data-deck="hiragana">
+                <span class="deck-label">平假名</span>
+                <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
               </button>
-              <div class="deck-level-items" id="vocab-n5-decks">
-                <button class="tab-button vocab-tab" type="button" data-deck="vocab-ja-zh">
-                  <span class="deck-label">日→中</span>
-                  <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
-                </button>
-                <button class="tab-button vocab-tab" type="button" data-deck="vocab-zh-ja">
-                  <span class="deck-label">中→日</span>
-                  <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
-                </button>
-                <button class="tab-button vocab-tab" type="button" data-deck="vocab-mistakes">
-                  <span class="deck-label">错题集</span>
-                  <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
-                </button>
-              </div>
-            </div>
-            <div class="deck-level" data-level="n4">
-              <button class="deck-level-toggle" type="button" aria-expanded="true" aria-controls="vocab-n4-decks">
-                <span class="deck-level-title">N4</span>
+              <button class="tab-button" type="button" data-deck="katakana">
+                <span class="deck-label">片假名</span>
+                <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
               </button>
-              <div class="deck-level-items" id="vocab-n4-decks">
-                <button class="tab-button vocab-tab" type="button" data-deck="vocab-n4-ja-zh">
-                  <span class="deck-label">日→中</span>
-                  <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
-                </button>
-                <button class="tab-button vocab-tab" type="button" data-deck="vocab-n4-zh-ja">
-                  <span class="deck-label">中→日</span>
-                  <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
-                </button>
-                <button class="tab-button vocab-tab" type="button" data-deck="vocab-n4-mistakes">
-                  <span class="deck-label">错题集</span>
-                  <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
-                </button>
-              </div>
+              <button class="tab-button" type="button" data-deck="romaji">
+                <span class="deck-label">罗马音</span>
+                <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
+              </button>
+              <button class="tab-button" type="button" data-deck="special">
+                <span class="deck-label">变体音</span>
+                <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
+              </button>
             </div>
           </div>
-          <div class="deck-group" aria-label="语法">
-            <div class="deck-group-title">语法</div>
-            <div class="deck-level" data-level="grammar-n5">
-              <button class="deck-level-toggle" type="button" aria-expanded="true" aria-controls="grammar-n5-decks">
-                <span class="deck-level-title">N5</span>
-              </button>
-              <div class="deck-level-items" id="grammar-n5-decks">
-                <button class="tab-button grammar-tab" type="button" data-deck="grammar-n5-zh-ja">
-                  <span class="deck-label">中→日</span>
-                  <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
-                </button>
-                <button class="tab-button grammar-tab" type="button" data-deck="grammar-n5-ja-zh">
-                  <span class="deck-label">日→中</span>
-                  <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
-                </button>
-                <button class="tab-button grammar-tab" type="button" data-deck="grammar-n5-pattern-zh">
-                  <span class="deck-label">文型</span>
-                  <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
-                </button>
-                <button class="tab-button grammar-tab" type="button" data-deck="grammar-n5-mistakes">
-                  <span class="deck-label">错题集</span>
-                  <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
-                </button>
+          <div class="deck-group" data-group="vocab" aria-label="词汇">
+            <button class="deck-group-toggle" type="button" aria-expanded="true" aria-controls="vocab-decks">
+              <span class="deck-group-title">词汇</span>
+            </button>
+            <div class="deck-group-items" id="vocab-decks">
+              <div class="deck-level" data-level="n5">
+                <div class="deck-level-heading">
+                  <span class="deck-level-title">N5</span>
+                </div>
+                <div class="deck-level-items" id="vocab-n5-decks">
+                  <button class="tab-button vocab-tab" type="button" data-deck="vocab-ja-zh">
+                    <span class="deck-label">日→中</span>
+                    <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
+                  </button>
+                  <button class="tab-button vocab-tab" type="button" data-deck="vocab-zh-ja">
+                    <span class="deck-label">中→日</span>
+                    <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
+                  </button>
+                  <button class="tab-button vocab-tab" type="button" data-deck="vocab-mistakes">
+                    <span class="deck-label">错题集</span>
+                    <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
+                  </button>
+                </div>
+              </div>
+              <div class="deck-level" data-level="n4">
+                <div class="deck-level-heading">
+                  <span class="deck-level-title">N4</span>
+                </div>
+                <div class="deck-level-items" id="vocab-n4-decks">
+                  <button class="tab-button vocab-tab" type="button" data-deck="vocab-n4-ja-zh">
+                    <span class="deck-label">日→中</span>
+                    <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
+                  </button>
+                  <button class="tab-button vocab-tab" type="button" data-deck="vocab-n4-zh-ja">
+                    <span class="deck-label">中→日</span>
+                    <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
+                  </button>
+                  <button class="tab-button vocab-tab" type="button" data-deck="vocab-n4-mistakes">
+                    <span class="deck-label">错题集</span>
+                    <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
+                  </button>
+                </div>
               </div>
             </div>
-            <div class="deck-level" data-level="grammar-n4">
-              <button class="deck-level-toggle" type="button" aria-expanded="true" aria-controls="grammar-n4-decks">
-                <span class="deck-level-title">N4</span>
-              </button>
-              <div class="deck-level-items" id="grammar-n4-decks">
-                <button class="tab-button grammar-tab" type="button" data-deck="grammar-n4-zh-ja">
-                  <span class="deck-label">中→日</span>
-                  <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
-                </button>
-                <button class="tab-button grammar-tab" type="button" data-deck="grammar-n4-ja-zh">
-                  <span class="deck-label">日→中</span>
-                  <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
-                </button>
-                <button class="tab-button grammar-tab" type="button" data-deck="grammar-n4-pattern-zh">
-                  <span class="deck-label">文型</span>
-                  <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
-                </button>
-                <button class="tab-button grammar-tab" type="button" data-deck="grammar-n4-mistakes">
-                  <span class="deck-label">错题集</span>
-                  <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
-                </button>
+          </div>
+          <div class="deck-group" data-group="grammar" aria-label="语法">
+            <button class="deck-group-toggle" type="button" aria-expanded="true" aria-controls="grammar-decks">
+              <span class="deck-group-title">语法</span>
+            </button>
+            <div class="deck-group-items" id="grammar-decks">
+              <div class="deck-level" data-level="grammar-n5">
+                <div class="deck-level-heading">
+                  <span class="deck-level-title">N5</span>
+                </div>
+                <div class="deck-level-items" id="grammar-n5-decks">
+                  <button class="tab-button grammar-tab" type="button" data-deck="grammar-n5-zh-ja">
+                    <span class="deck-label">中→日</span>
+                    <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
+                  </button>
+                  <button class="tab-button grammar-tab" type="button" data-deck="grammar-n5-ja-zh">
+                    <span class="deck-label">日→中</span>
+                    <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
+                  </button>
+                  <button class="tab-button grammar-tab" type="button" data-deck="grammar-n5-pattern-zh">
+                    <span class="deck-label">文型</span>
+                    <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
+                  </button>
+                  <button class="tab-button grammar-tab" type="button" data-deck="grammar-n5-choice">
+                    <span class="deck-label">选择题</span>
+                    <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
+                  </button>
+                  <button class="tab-button grammar-tab" type="button" data-deck="grammar-n5-mistakes">
+                    <span class="deck-label">错题集</span>
+                    <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
+                  </button>
+                </div>
+              </div>
+              <div class="deck-level" data-level="grammar-n4">
+                <div class="deck-level-heading">
+                  <span class="deck-level-title">N4</span>
+                </div>
+                <div class="deck-level-items" id="grammar-n4-decks">
+                  <button class="tab-button grammar-tab" type="button" data-deck="grammar-n4-zh-ja">
+                    <span class="deck-label">中→日</span>
+                    <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
+                  </button>
+                  <button class="tab-button grammar-tab" type="button" data-deck="grammar-n4-ja-zh">
+                    <span class="deck-label">日→中</span>
+                    <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
+                  </button>
+                  <button class="tab-button grammar-tab" type="button" data-deck="grammar-n4-pattern-zh">
+                    <span class="deck-label">文型</span>
+                    <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
+                  </button>
+                  <button class="tab-button grammar-tab" type="button" data-deck="grammar-n4-choice">
+                    <span class="deck-label">选择题</span>
+                    <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
+                  </button>
+                  <button class="tab-button grammar-tab" type="button" data-deck="grammar-n4-mistakes">
+                    <span class="deck-label">错题集</span>
+                    <span class="deck-round-count" aria-label="已完成 0 轮">0轮</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -141,51 +161,50 @@
               <span class="stat-label">待练</span>
             </div>
             <div class="stat">
-              <span class="stat-value" id="newCount">0</span>
-              <span class="stat-label">新卡</span>
-            </div>
-            <div class="stat">
               <span class="stat-value" id="reviewedCount">0</span>
               <span class="stat-label">已练</span>
             </div>
             <button class="icon-button stat-action undo-button" id="undoRating" type="button" title="撤回上次评分" aria-label="撤回上次评分" disabled>
               ↶
             </button>
-            <button class="icon-button stat-action theme-button" id="themeToggle" type="button" title="切换暗色模式" aria-label="切换暗色模式" aria-pressed="false">
-              ◐
-            </button>
           </section>
 
           <div class="load-error-banner" id="loadErrorBanner" role="status" hidden></div>
 
-          <button class="card" id="flashcard" type="button">
-            <span class="card-prompt" id="cardPrompt"></span>
-            <span class="card-subtle" id="cardSubtle"></span>
-          </button>
-
-          <div class="answer-panel" id="answerPanel" aria-hidden="true">
-            <div class="answer-actions">
-              <button class="icon-button" id="speakWord" type="button" title="播放读音" aria-label="播放读音">
+          <div class="card" id="flashcard" role="button" tabindex="0">
+            <span class="card-line">
+              <span class="card-prompt" id="cardPrompt"></span>
+              <button class="icon-button prompt-speak" id="speakWord" type="button" title="播放读音" aria-label="播放读音">
                 ▶
               </button>
+            </span>
+            <span class="card-subtle" id="cardSubtle"></span>
+          </div>
+
+          <div class="answer-panel" id="answerPanel" aria-hidden="true">
+            <div class="choice-block" id="choiceBlock" hidden>
+              <div class="choice-list" id="choiceList"></div>
+              <div class="choice-feedback" id="choiceFeedback" hidden></div>
             </div>
             <div class="answer-main" id="answerMain"></div>
             <div class="answer-meta" id="answerMeta"></div>
             <div class="example-block" id="exampleBlock" hidden>
               <div class="examples-list" id="examplesList"></div>
             </div>
-            <div class="memory-chain" id="memoryChain" hidden aria-label="记忆链条"></div>
             <div class="feedback-row">
               <button class="feedback clear" type="button" data-rating="clear">清楚</button>
               <button class="feedback unsure" type="button" data-rating="unsure">不确定</button>
               <button class="feedback forgot" type="button" data-rating="forgot">遗忘</button>
             </div>
+            <button class="primary-button choice-next" id="choiceNext" type="button" hidden>下一题</button>
           </div>
+          <div class="memory-chain" id="memoryChain" aria-label="记忆链条"></div>
         </div>
 
         <div class="empty-state" id="emptyState" hidden>
           <h2>当前模块完成</h2>
           <p id="roundStatusText"></p>
+          <button class="primary-button empty-menu-button" id="emptyDeckMenuButton" type="button">切换模块</button>
           <button class="primary-button restart-button" id="studyAnyWay" type="button">重新开始</button>
         </div>
       </section>

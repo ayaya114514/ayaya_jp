@@ -1,12 +1,12 @@
 {
-  "validated_on": "2026-06-28",
+  "validated_on": "2026-06-30",
   "n5_entries": 718,
   "n4_entries": 767,
   "grammar_entries": 216,
   "kana_cards": 251,
   "vocab_cards": 2970,
-  "grammar_cards": 648,
-  "total_cards_from_api": 3869,
+  "grammar_cards": 864,
+  "total_cards_from_api": 4085,
   "checks": {
     "n5_js_syntax": "pass",
     "n4_js_syntax": "pass",

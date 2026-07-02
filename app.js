@@ -1,6 +1,5 @@
 const STORAGE_KEY = "ayaya-jp-srs-v1";
 const ROUND_STATE_KEY = "__rounds";
-const THEME_KEY = "ayaya-jp-theme";
 const SIDEBAR_STATE_KEY = "ayaya-jp-sidebar-v1";
 
 const cardData = window.AYAYA_JP_CARD_DATA;
@@ -25,8 +24,14 @@ const elements = {
   answerPanel: document.querySelector("#answerPanel"),
   cardPrompt: document.querySelector("#cardPrompt"),
   cardSubtle: document.querySelector("#cardSubtle"),
+  choiceBlock: document.querySelector("#choiceBlock"),
+  choiceFeedback: document.querySelector("#choiceFeedback"),
+  choiceList: document.querySelector("#choiceList"),
+  choiceNext: document.querySelector("#choiceNext"),
+  deckGroupToggles: document.querySelectorAll(".deck-group-toggle"),
   deckLevelToggles: document.querySelectorAll(".deck-level-toggle"),
   dueCount: document.querySelector("#dueCount"),
+  emptyDeckMenuButton: document.querySelector("#emptyDeckMenuButton"),
   emptyState: document.querySelector("#emptyState"),
   exampleBlock: document.querySelector("#exampleBlock"),
   examplesList: document.querySelector("#examplesList"),
@@ -36,7 +41,6 @@ const elements = {
   deckSidebar: document.querySelector("#deckSidebar"),
   loadErrorBanner: document.querySelector("#loadErrorBanner"),
   memoryChain: document.querySelector("#memoryChain"),
-  newCount: document.querySelector("#newCount"),
   roundStatusText: document.querySelector("#roundStatusText"),
   reviewedCount: document.querySelector("#reviewedCount"),
   sidebarBackdrop: document.querySelector("#sidebarBackdrop"),
@@ -44,8 +48,8 @@ const elements = {
   studyAnyWay: document.querySelector("#studyAnyWay"),
   studyCard: document.querySelector("#studyCard"),
   tabs: document.querySelectorAll(".tab-button"),
-  themeToggle: document.querySelector("#themeToggle"),
   undoRating: document.querySelector("#undoRating"),
+  feedbackRow: document.querySelector(".feedback-row"),
 };
 
 let store = loadStore();
@@ -53,12 +57,14 @@ let activeDeck = "hiragana";
 let currentCard = null;
 let isRevealed = false;
 let reviewQueue = [];
+let currentChoiceOptions = [];
+let selectedChoiceId = null;
 const sessionQueues = {};
 const sessionCompleted = {};
 const sessionRoundCounts = {};
 let lastReview = null;
-let currentTheme = loadThemePreference();
 let collapsedDeckLevels = loadCollapsedDeckLevels();
+let collapsedDeckGroups = loadCollapsedDeckGroups();
 
 function loadStore() {
   try {
@@ -73,22 +79,6 @@ function saveStore() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
 }
 
-function loadThemePreference() {
-  try {
-    return localStorage.getItem(THEME_KEY) === "dark" ? "dark" : "light";
-  } catch {
-    return "light";
-  }
-}
-
-function saveThemePreference(theme) {
-  try {
-    localStorage.setItem(THEME_KEY, theme);
-  } catch {
-    // Theme persistence is optional; the UI can still switch for this session.
-  }
-}
-
 function loadCollapsedDeckLevels() {
   try {
     const parsed = JSON.parse(localStorage.getItem(SIDEBAR_STATE_KEY));
@@ -98,15 +88,53 @@ function loadCollapsedDeckLevels() {
   }
 }
 
-function saveCollapsedDeckLevels() {
+function loadCollapsedDeckGroups() {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(SIDEBAR_STATE_KEY));
+    return new Set(Array.isArray(parsed?.collapsedGroups) ? parsed.collapsedGroups : []);
+  } catch {
+    return new Set();
+  }
+}
+
+function saveSidebarState() {
   try {
     localStorage.setItem(
       SIDEBAR_STATE_KEY,
-      JSON.stringify({ collapsedLevels: [...collapsedDeckLevels] }),
+      JSON.stringify({
+        collapsedGroups: [...collapsedDeckGroups],
+        collapsedLevels: [...collapsedDeckLevels],
+      }),
     );
   } catch {
     // Sidebar state persistence is optional.
   }
+}
+
+function setDeckGroupExpanded(group, isExpanded, options = {}) {
+  const shouldSave = options.save !== false;
+  const groupName = group?.dataset.group;
+  const toggle = group?.querySelector(".deck-group-toggle");
+  const items = group?.querySelector(".deck-group-items");
+  if (!groupName || !toggle || !items) return;
+
+  toggle.setAttribute("aria-expanded", String(isExpanded));
+  items.hidden = !isExpanded;
+  group.classList.toggle("is-collapsed", !isExpanded);
+
+  if (isExpanded) {
+    collapsedDeckGroups.delete(groupName);
+  } else {
+    collapsedDeckGroups.add(groupName);
+  }
+  if (shouldSave) saveSidebarState();
+}
+
+function applyDeckGroupState() {
+  elements.deckGroupToggles.forEach((toggle) => {
+    const group = toggle.closest(".deck-group");
+    setDeckGroupExpanded(group, !collapsedDeckGroups.has(group?.dataset.group), { save: false });
+  });
 }
 
 function setDeckLevelExpanded(level, isExpanded, options = {}) {
@@ -125,7 +153,7 @@ function setDeckLevelExpanded(level, isExpanded, options = {}) {
   } else {
     collapsedDeckLevels.add(levelName);
   }
-  if (shouldSave) saveCollapsedDeckLevels();
+  if (shouldSave) saveSidebarState();
 }
 
 function applyDeckLevelState() {
@@ -142,24 +170,16 @@ function expandDeckLevelForDeck(deck) {
   if (level) setDeckLevelExpanded(level, true);
 }
 
-function renderThemeToggle() {
-  const isDark = currentTheme === "dark";
-  elements.themeToggle.setAttribute("aria-pressed", String(isDark));
-  elements.themeToggle.title = isDark ? "切换浅色模式" : "切换暗色模式";
-  elements.themeToggle.setAttribute("aria-label", elements.themeToggle.title);
-  elements.themeToggle.textContent = isDark ? "☀" : "◐";
+function expandDeckGroupForDeck(deck) {
+  const group = [...document.querySelectorAll(".deck-group")].find((item) =>
+    [...item.querySelectorAll(".tab-button")].some((tab) => tab.dataset.deck === deck),
+  );
+  if (group) setDeckGroupExpanded(group, true);
 }
 
-function applyTheme(theme) {
-  currentTheme = theme === "dark" ? "dark" : "light";
-  document.documentElement.dataset.theme = currentTheme;
-  renderThemeToggle();
-}
-
-function toggleTheme() {
-  const nextTheme = currentTheme === "dark" ? "light" : "dark";
-  applyTheme(nextTheme);
-  saveThemePreference(nextTheme);
+function expandSidebarForDeck(deck) {
+  expandDeckGroupForDeck(deck);
+  expandDeckLevelForDeck(deck);
 }
 
 function arraysEqual(left, right) {
@@ -270,6 +290,7 @@ function saveRoundState() {
 
 function defaultState() {
   return {
+    lastChoiceCorrectIndex: null,
     lastRating: null,
     lastRatedAt: null,
     ratingHistory: [],
@@ -315,7 +336,7 @@ function isN4MistakeCard(card) {
 }
 
 function isGrammarMistakeCard(card) {
-  return card.isGrammar && hasMistakeRating(card);
+  return card.isGrammar && !card.isChoice && hasMistakeRating(card);
 }
 
 function isN5GrammarMistakeCard(card) {
@@ -346,10 +367,38 @@ function getDeckCards(deck = activeDeck) {
   return cards.filter((card) => card.deck === deck);
 }
 
-function shuffleCards(deckCards) {
-  return [...deckCards]
-    .sort(() => Math.random() - 0.5)
-    .map((card) => card.id);
+function shuffleList(items) {
+  return [...items].sort(() => Math.random() - 0.5);
+}
+
+function avoidSameOrder(order, previousOrder) {
+  if (order.length > 1 && Array.isArray(previousOrder) && arraysEqual(order, previousOrder)) {
+    return [...order.slice(1), order[0]];
+  }
+  return order;
+}
+
+function shuffleCards(deckCards, previousOrder = []) {
+  const shuffledIds = shuffleList(deckCards).map((card) => card.id);
+  return avoidSameOrder(shuffledIds, previousOrder);
+}
+
+function buildChoiceOptions(card) {
+  if (!Array.isArray(card.choices)) return [];
+
+  const state = getState(card.id);
+  const options = shuffleList(card.choices);
+  const correctIndex = options.findIndex((choice) => choice.isCorrect);
+
+  if (
+    options.length > 1 &&
+    Number.isInteger(state.lastChoiceCorrectIndex) &&
+    correctIndex === state.lastChoiceCorrectIndex
+  ) {
+    return [...options.slice(1), options[0]];
+  }
+
+  return options;
 }
 
 function buildQueue() {
@@ -384,6 +433,8 @@ function buildQueue() {
 function nextCard() {
   buildQueue();
   currentCard = reviewQueue[0] || null;
+  currentChoiceOptions = currentCard?.isChoice ? buildChoiceOptions(currentCard) : [];
+  selectedChoiceId = null;
   isRevealed = false;
   render();
 }
@@ -391,11 +442,14 @@ function nextCard() {
 function render() {
   const deckCards = getDeckCards();
   const dueCount = reviewQueue.length;
-  const newCount = deckCards.filter((card) => getState(card.id).reviews === 0).length;
-  const reviewedCount = deckCards.reduce((sum, card) => sum + getState(card.id).reviews, 0);
+  const completedIds = sessionCompleted[activeDeck] || new Set();
+  const reviewCountForCard = (card) => Math.max(
+    getState(card.id).reviews,
+    completedIds.has(card.id) ? 1 : 0,
+  );
+  const reviewedCount = deckCards.reduce((sum, card) => sum + reviewCountForCard(card), 0);
 
   elements.dueCount.textContent = dueCount;
-  elements.newCount.textContent = newCount;
   elements.reviewedCount.textContent = reviewedCount;
   updateUndoButton();
 
@@ -413,8 +467,10 @@ function render() {
   elements.flashcard.hidden = false;
   elements.emptyState.hidden = true;
   elements.studyCard.classList.toggle("is-answering", isRevealed);
+  elements.studyCard.classList.toggle("is-choosing", Boolean(currentCard.isChoice && !isRevealed));
   elements.flashcard.classList.toggle("is-vocab", Boolean(currentCard.isVocab));
   elements.flashcard.classList.toggle("is-grammar", Boolean(currentCard.isGrammar));
+  elements.flashcard.classList.toggle("is-choice", Boolean(currentCard.isChoice));
   elements.flashcard.classList.toggle(
     "is-zh-prompt",
     ["vocab-zh-ja", "vocab-n4-zh-ja", "grammar-n5-zh-ja", "grammar-n4-zh-ja"].includes(
@@ -423,8 +479,14 @@ function render() {
   );
   elements.cardPrompt.textContent = currentCard.prompt;
   elements.cardSubtle.textContent = currentCard.subtle || "";
-  elements.answerPanel.classList.toggle("is-revealed", isRevealed);
-  elements.answerPanel.setAttribute("aria-hidden", String(!isRevealed));
+  elements.answerPanel.classList.toggle("is-revealed", isRevealed || currentCard.isChoice);
+  elements.answerPanel.setAttribute("aria-hidden", String(!isRevealed && !currentCard.isChoice));
+  renderMemoryChain(currentCard);
+
+  if (currentCard.isChoice) {
+    renderChoiceCard(currentCard);
+    return;
+  }
 
   if (!isRevealed) {
     clearAnswer();
@@ -433,7 +495,6 @@ function render() {
 
   elements.answerMain.textContent = currentCard.answer;
   elements.answerMeta.textContent = currentCard.meta;
-  renderMemoryChain(currentCard);
   const hasExample = Boolean(currentCard.examples?.length);
   elements.exampleBlock.hidden = !hasExample;
   if (hasExample) {
@@ -492,6 +553,10 @@ function renderExamples(examples) {
     ja.className = "example-ja";
     renderFurigana(ja, example.ja);
 
+    const romaji = document.createElement("p");
+    romaji.className = "example-romaji";
+    romaji.textContent = example.romaji || "";
+
     const zh = document.createElement("p");
     zh.className = "example-zh";
     zh.textContent = example.zh;
@@ -507,32 +572,111 @@ function renderExamples(examples) {
       speak(example.ja);
     });
 
-    text.append(ja, zh);
+    text.append(ja, romaji, zh);
     body.append(text, button);
     item.append(number, body);
     elements.examplesList.append(item);
   });
 }
 
+function renderChoiceCard(card) {
+  const selectedChoice = currentChoiceOptions.find((choice) => choice.id === selectedChoiceId);
+
+  elements.choiceBlock.hidden = false;
+  elements.feedbackRow.hidden = true;
+  elements.choiceNext.hidden = !isRevealed;
+  renderChoiceOptions();
+
+  if (!isRevealed) {
+    elements.answerMain.textContent = "";
+    elements.answerMeta.textContent = "";
+    elements.exampleBlock.hidden = true;
+    elements.examplesList.replaceChildren();
+    elements.choiceFeedback.hidden = true;
+    elements.choiceFeedback.replaceChildren();
+    return;
+  }
+
+  elements.answerMain.textContent = selectedChoice?.isCorrect ? "回答正确" : "回答错误";
+  elements.answerMeta.textContent = card.meta;
+  renderChoiceFeedback();
+  const hasExample = Boolean(card.examples?.length);
+  elements.exampleBlock.hidden = !hasExample;
+  if (hasExample) {
+    renderExamples(card.examples);
+  }
+}
+
+function renderChoiceOptions() {
+  elements.choiceList.replaceChildren();
+
+  currentChoiceOptions.forEach((choice, index) => {
+    const button = document.createElement("button");
+    button.className = "choice-option";
+    button.type = "button";
+    button.disabled = isRevealed;
+    button.dataset.choiceId = choice.id;
+    button.classList.toggle("is-selected", choice.id === selectedChoiceId);
+    button.classList.toggle("is-correct", isRevealed && choice.isCorrect);
+    button.classList.toggle("is-wrong", isRevealed && choice.id === selectedChoiceId && !choice.isCorrect);
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      selectChoice(choice.id);
+    });
+
+    const marker = document.createElement("span");
+    marker.className = "choice-marker";
+    marker.textContent = String.fromCharCode(65 + index);
+
+    const text = document.createElement("span");
+    text.className = "choice-text";
+    text.textContent = choice.text;
+
+    button.append(marker, text);
+    elements.choiceList.append(button);
+  });
+}
+
+function renderChoiceFeedback() {
+  elements.choiceFeedback.hidden = false;
+  elements.choiceFeedback.replaceChildren();
+
+  currentChoiceOptions.forEach((choice, index) => {
+    const item = document.createElement("div");
+    item.className = "choice-reason";
+    item.classList.toggle("is-correct", choice.isCorrect);
+    item.classList.toggle("is-selected", choice.id === selectedChoiceId);
+
+    const title = document.createElement("strong");
+    title.textContent = `${String.fromCharCode(65 + index)} · ${
+      choice.isCorrect ? "正确项" : "干扰项"
+    }${choice.id === selectedChoiceId ? " · 你的选择" : ""}`;
+
+    const body = document.createElement("span");
+    body.textContent = choice.reason;
+
+    item.append(title, body);
+    elements.choiceFeedback.append(item);
+  });
+}
+
 function clearAnswer() {
   elements.answerMain.textContent = "";
   elements.answerMeta.textContent = "";
+  elements.choiceBlock.hidden = true;
+  elements.choiceFeedback.hidden = true;
+  elements.choiceFeedback.replaceChildren();
+  elements.choiceList.replaceChildren();
+  elements.choiceNext.hidden = true;
+  elements.feedbackRow.hidden = false;
   elements.exampleBlock.hidden = true;
   elements.examplesList.replaceChildren();
-  elements.memoryChain.hidden = true;
-  elements.memoryChain.replaceChildren();
 }
 
 function renderMemoryChain(card) {
-  const history = getState(card.id).ratingHistory.slice(-12);
+  const history = card ? getState(card.id).ratingHistory : [];
   elements.memoryChain.replaceChildren();
-  elements.memoryChain.hidden = history.length === 0;
   if (!history.length) return;
-
-  const label = document.createElement("span");
-  label.className = "memory-chain-label";
-  label.textContent = "记忆链条";
-  elements.memoryChain.append(label);
 
   history.forEach((item) => {
     const chip = document.createElement("span");
@@ -544,22 +688,31 @@ function renderMemoryChain(card) {
 }
 
 function ratingShortLabel(rating) {
-  return { clear: "清", forgot: "忘", unsure: "疑" }[rating] || "?";
+  return { clear: "清", correct: "正", forgot: "忘", unsure: "疑", wrong: "错" }[rating] || "?";
 }
 
 function ratingFullLabel(rating) {
-  return { clear: "清楚", forgot: "遗忘", unsure: "不确定" }[rating] || "未知";
+  return {
+    clear: "清楚",
+    correct: "选择正确",
+    forgot: "遗忘",
+    unsure: "不确定",
+    wrong: "选择错误",
+  }[rating] || "未知";
 }
 
 function renderEmpty(deckCards) {
   updateUndoButton();
   elements.studyCard.hidden = true;
   elements.studyCard.classList.remove("is-answering");
+  elements.studyCard.classList.remove("is-choosing");
   elements.flashcard.hidden = true;
+  elements.flashcard.classList.remove("is-choice");
   elements.answerPanel.classList.remove("is-revealed");
   elements.answerPanel.setAttribute("aria-hidden", "true");
   clearAnswer();
   elements.emptyState.hidden = false;
+  elements.studyAnyWay.hidden = deckCards.length === 0;
   if (activeDeck === "vocab-mistakes" && !deckCards.length) {
     elements.roundStatusText.textContent = "暂无错题，去 N5 模块里练几张吧。";
     return;
@@ -581,33 +734,43 @@ function renderEmpty(deckCards) {
 }
 
 function revealCard() {
-  if (!currentCard || isRevealed) return;
+  if (!currentCard || isRevealed || currentCard.isChoice) return;
   isRevealed = true;
   render();
   speakForReveal();
 }
 
-function rateCurrentCard(rating) {
-  if (!currentCard || !isRevealed) return;
-
+function captureReviewSnapshot() {
   const state = getState(currentCard.id);
-  lastReview = {
+  return {
     cardId: currentCard.id,
     deck: activeDeck,
+    previousChoiceCorrectIndex: state.lastChoiceCorrectIndex,
     previousCompleted: new Set(sessionCompleted[activeDeck] || []),
     previousQueue: [...(sessionQueues[activeDeck] || [])],
     previousRoundCount: getRoundCount(activeDeck),
     previousState: { ...state, ratingHistory: [...state.ratingHistory] },
   };
+}
+
+function applyRating(rating, details = {}) {
+  const state = getState(currentCard.id);
+  lastReview = captureReviewSnapshot();
 
   state.reviews += 1;
   state.lastRating = rating;
   state.lastRatedAt = Date.now();
-  state.ratingHistory.push({ rating, at: state.lastRatedAt });
+  state.ratingHistory.push({ rating, at: state.lastRatedAt, ...details });
   state.shuffleOrder = Math.random();
+}
+
+function completeCurrentCard(options = {}) {
+  const shouldAdvance = options.advance !== false;
+
   sessionQueues[activeDeck] = (sessionQueues[activeDeck] || []).filter(
     (cardId) => cardId !== currentCard.id,
   );
+  reviewQueue = reviewQueue.filter((card) => card.id !== currentCard.id);
   if (!sessionCompleted[activeDeck]) {
     sessionCompleted[activeDeck] = new Set();
   }
@@ -616,7 +779,34 @@ function rateCurrentCard(rating) {
     sessionRoundCounts[activeDeck] = getRoundCount(activeDeck) + 1;
   }
   saveRoundState();
-  nextCard();
+  if (shouldAdvance) nextCard();
+}
+
+function rateCurrentCard(rating) {
+  if (!currentCard || !isRevealed || currentCard.isChoice) return;
+
+  applyRating(rating);
+  completeCurrentCard();
+}
+
+function selectChoice(choiceId) {
+  if (!currentCard?.isChoice || isRevealed || selectedChoiceId) return;
+
+  const choice = currentChoiceOptions.find((item) => item.id === choiceId);
+  if (!choice) return;
+
+  const correctIndex = currentChoiceOptions.findIndex((item) => item.isCorrect);
+  selectedChoiceId = choice.id;
+  isRevealed = true;
+  const rating = choice.isCorrect ? "correct" : "wrong";
+  applyRating(rating, {
+    choiceId: choice.id,
+    correctChoiceId: currentCard.correctChoiceId,
+  });
+  getState(currentCard.id).lastChoiceCorrectIndex = correctIndex;
+  completeCurrentCard({ advance: false });
+  render();
+  speakForReveal();
 }
 
 function updateUndoButton() {
@@ -635,9 +825,12 @@ function undoLastReview() {
   sessionRoundCounts[activeDeck] = lastReview.previousRoundCount;
   store[lastReview.cardId] = { ...lastReview.previousState };
   saveRoundState();
+  buildQueue();
 
   currentCard = card;
-  isRevealed = true;
+  currentChoiceOptions = card.isChoice ? buildChoiceOptions(card) : [];
+  selectedChoiceId = null;
+  isRevealed = !card.isChoice;
   lastReview = null;
   render();
 }
@@ -692,13 +885,25 @@ function speakForReveal() {
 }
 
 function restartDeckRound() {
+  const deckCards = getDeckCards();
+  if (!deckCards.length) {
+    renderEmpty(deckCards);
+    return;
+  }
+  const completedOrder = [...(sessionCompleted[activeDeck] || [])];
+  const previousOrder =
+    completedOrder.length === deckCards.length ? completedOrder : sessionQueues[activeDeck];
   sessionCompleted[activeDeck] = new Set();
-  sessionQueues[activeDeck] = shuffleCards(getDeckCards());
+  sessionQueues[activeDeck] = shuffleCards(deckCards, previousOrder);
   saveRoundState();
   nextCard();
 }
 
 elements.studyCard.addEventListener("click", revealCard);
+
+elements.memoryChain.addEventListener("click", (event) => {
+  event.stopPropagation();
+});
 
 document.querySelectorAll(".feedback").forEach((button) => {
   button.addEventListener("click", (event) => {
@@ -710,10 +915,18 @@ document.querySelectorAll(".feedback").forEach((button) => {
 elements.tabs.forEach((tab) => {
   tab.addEventListener("click", () => {
     activeDeck = tab.dataset.deck;
-    expandDeckLevelForDeck(activeDeck);
+    expandSidebarForDeck(activeDeck);
     saveRoundState();
     setSidebarOpen(false);
     nextCard();
+  });
+});
+
+elements.deckGroupToggles.forEach((toggle) => {
+  toggle.addEventListener("click", (event) => {
+    event.stopPropagation();
+    const group = toggle.closest(".deck-group");
+    setDeckGroupExpanded(group, toggle.getAttribute("aria-expanded") !== "true");
   });
 });
 
@@ -735,13 +948,17 @@ elements.undoRating.addEventListener("click", (event) => {
   undoLastReview();
 });
 
-elements.themeToggle.addEventListener("click", (event) => {
+elements.choiceNext.addEventListener("click", (event) => {
   event.stopPropagation();
-  toggleTheme();
+  nextCard();
 });
 
 elements.studyAnyWay.addEventListener("click", () => {
   restartDeckRound();
+});
+
+elements.emptyDeckMenuButton.addEventListener("click", () => {
+  setSidebarOpen(true);
 });
 
 elements.deckMenuButton.addEventListener("click", (event) => {
@@ -761,8 +978,8 @@ loadRoundState();
 if (isDeckDataMissing(activeDeck)) {
   activeDeck = "hiragana";
 }
-applyTheme(currentTheme);
+applyDeckGroupState();
 applyDeckLevelState();
-expandDeckLevelForDeck(activeDeck);
+expandSidebarForDeck(activeDeck);
 renderLoadStatus();
 nextCard();
