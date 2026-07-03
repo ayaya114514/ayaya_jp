@@ -493,6 +493,7 @@ function render() {
     return;
   }
 
+  elements.feedbackRow.hidden = false;
   elements.answerMain.textContent = currentCard.answer;
   elements.answerMeta.textContent = currentCard.meta;
   const hasExample = Boolean(currentCard.examples?.length);
@@ -668,7 +669,7 @@ function clearAnswer() {
   elements.choiceFeedback.replaceChildren();
   elements.choiceList.replaceChildren();
   elements.choiceNext.hidden = true;
-  elements.feedbackRow.hidden = false;
+  elements.feedbackRow.hidden = true;
   elements.exampleBlock.hidden = true;
   elements.examplesList.replaceChildren();
 }
