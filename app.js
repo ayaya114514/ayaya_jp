@@ -873,6 +873,11 @@ function speakForReveal() {
     return;
   }
 
+  if (currentCard?.isVocab && currentCard?.sentenceAnswer) {
+    speakCurrentCard();
+    return;
+  }
+
   if (currentCard?.sentenceAnswer) {
     speak(currentCard.sentenceAnswer);
     return;
