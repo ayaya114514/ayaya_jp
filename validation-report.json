@@ -1,20 +1,48 @@
 {
-  "validated_on": "2026-06-30",
-  "n5_entries": 718,
-  "n4_entries": 767,
-  "grammar_entries": 216,
-  "kana_cards": 251,
-  "vocab_cards": 2970,
-  "grammar_cards": 864,
-  "total_cards_from_api": 4085,
-  "checks": {
-    "n5_js_syntax": "pass",
-    "n4_js_syntax": "pass",
-    "grammar_js_syntax": "pass",
-    "card_data_js_syntax": "pass",
-    "n5_json_parse": "pass",
-    "n4_json_parse": "pass",
-    "duplicate_ids": "none detected in N5/N4 vocabulary",
-    "minimum_examples": "all N5/N4 vocabulary entries contain at least 3 examples"
-  }
+  "schema_version": 3,
+  "artifact_type": "validation-baseline",
+  "purpose": "Committed source fingerprint and expected counts; this manifest is not a record that checks passed.",
+  "verification_command": "npm run check",
+  "minimum_node_major": 20,
+  "preferred_node_major": 22,
+  "source_fingerprint_files": [
+    "app.js",
+    "ayaya-n4-codex-vocab.js",
+    "ayaya-n4-codex-vocab.json",
+    "card-data.js",
+    "grammar-data.js",
+    "index.html",
+    "n5-codex-vocab.js",
+    "n5-codex-vocab.json",
+    "styles.css"
+  ],
+  "source_fingerprint": "sha256:761a155e092b69bfc2ed657e7977133690590d421a945a80d2c08b15b417ee8a",
+  "expected_counts": {
+    "n5_entries": 717,
+    "n4_entries": 767,
+    "grammar_entries": 216,
+    "kana_cards": 251,
+    "vocab_cards": 2968,
+    "grammar_cards": 864,
+    "total_cards_from_api": 4083
+  },
+  "required_contracts": [
+    "source-js-json-sync",
+    "generated-card-schema",
+    "stable-source-derived-vocab-ids",
+    "semantic-duplicate-signatures",
+    "display-romaji-script-safety",
+    "prompt-collision-disambiguation",
+    "same-level-grammar-distractors",
+    "dom-selector-and-aria-controls",
+    "dark-only-readme",
+    "app-regressions",
+    "lazy-level-builder-parity",
+    "production-legacy-id-migration-map",
+    "html-structure-and-script-order",
+    "strict-language-tags",
+    "dark-only-runtime",
+    "validation-source-fingerprint",
+    "preferred-homograph-readings"
+  ]
 }

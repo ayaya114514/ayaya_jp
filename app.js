@@ -1,6 +1,10 @@
 const STORAGE_KEY = "ayaya-jp-srs-v1";
 const ROUND_STATE_KEY = "__rounds";
 const SIDEBAR_STATE_KEY = "ayaya-jp-sidebar-v1";
+const STORE_META_KEY = "__meta";
+const STORE_SCHEMA_VERSION = 2;
+const MAX_RATING_HISTORY = 12;
+const VALID_RATINGS = new Set(["clear", "unsure", "forgot", "correct", "wrong"]);
 
 const cardData = window.AYAYA_JP_CARD_DATA;
 const isCardDataMissing = !cardData;
@@ -13,15 +17,47 @@ const isN4VocabDataMissing =
 const isGrammarDataMissing =
   !Array.isArray(window.AYAYA_GRAMMAR_DATA?.entries) ||
   window.AYAYA_GRAMMAR_DATA.entries.length === 0;
-const cards = cardData
-  ? [...cardData.makeKanaCards(), ...cardData.makeVocabCards(), ...cardData.makeGrammarCards()]
-  : [];
 const furiganaEntries = cardData?.furiganaEntries || [];
+const cardFamilyCache = new Map();
+
+function cardFamilyForDeck(deck) {
+  if (["hiragana", "katakana", "romaji", "special"].includes(deck)) return "kana";
+  if (["vocab-ja-zh", "vocab-zh-ja", "vocab-mistakes"].includes(deck)) return "vocab-n5";
+  if (["vocab-n4-ja-zh", "vocab-n4-zh-ja", "vocab-n4-mistakes"].includes(deck)) {
+    return "vocab-n4";
+  }
+  if (deck.startsWith("grammar-n5-")) return "grammar-n5";
+  if (deck.startsWith("grammar-n4-")) return "grammar-n4";
+  return null;
+}
+
+function buildCardFamily(family) {
+  if (!cardData) return [];
+  if (family === "kana") return cardData.makeKanaCards();
+  if (family === "vocab-n5") return cardData.makeVocabCards("N5");
+  if (family === "vocab-n4") return cardData.makeVocabCards("N4");
+  if (family === "grammar-n5") return cardData.makeGrammarCards("N5");
+  if (family === "grammar-n4") return cardData.makeGrammarCards("N4");
+  return [];
+}
+
+function getFamilyCards(deck) {
+  const family = cardFamilyForDeck(deck);
+  if (!family) return [];
+  if (!cardFamilyCache.has(family)) {
+    const familyCards = buildCardFamily(family);
+    cardFamilyCache.set(family, familyCards);
+    migrateLegacyCardState(familyCards);
+  }
+  return cardFamilyCache.get(family);
+}
 
 const elements = {
   answerMain: document.querySelector("#answerMain"),
   answerMeta: document.querySelector("#answerMeta"),
   answerPanel: document.querySelector("#answerPanel"),
+  appStatus: document.querySelector("#appStatus"),
+  cardReveal: document.querySelector("#cardReveal"),
   cardPrompt: document.querySelector("#cardPrompt"),
   cardSubtle: document.querySelector("#cardSubtle"),
   choiceBlock: document.querySelector("#choiceBlock"),
@@ -35,6 +71,7 @@ const elements = {
   emptyState: document.querySelector("#emptyState"),
   exampleBlock: document.querySelector("#exampleBlock"),
   examplesList: document.querySelector("#examplesList"),
+  fatalErrorBanner: document.querySelector("#fatalErrorBanner"),
   flashcard: document.querySelector("#flashcard"),
   closeDeckMenu: document.querySelector("#closeDeckMenu"),
   deckMenuButton: document.querySelector("#deckMenuButton"),
@@ -46,12 +83,14 @@ const elements = {
   sidebarBackdrop: document.querySelector("#sidebarBackdrop"),
   speakWord: document.querySelector("#speakWord"),
   studyAnyWay: document.querySelector("#studyAnyWay"),
+  studyArea: document.querySelector(".study-area"),
   studyCard: document.querySelector("#studyCard"),
   tabs: document.querySelectorAll(".tab-button"),
   undoRating: document.querySelector("#undoRating"),
   feedbackRow: document.querySelector(".feedback-row"),
 };
 
+let persistenceError = null;
 let store = loadStore();
 let activeDeck = "hiragana";
 let currentCard = null;
@@ -59,6 +98,9 @@ let isRevealed = false;
 let reviewQueue = [];
 let currentChoiceOptions = [];
 let selectedChoiceId = null;
+let speechGeneration = 0;
+let sidebarReturnFocus = null;
+let readyStatusTimer = null;
 const sessionQueues = {};
 const sessionCompleted = {};
 const sessionRoundCounts = {};
@@ -68,15 +110,42 @@ let collapsedDeckGroups = loadCollapsedDeckGroups();
 
 function loadStore() {
   try {
-    const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    return parsed && typeof parsed === "object" ? parsed : {};
-  } catch {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+      persistenceError = "已忽略格式无效的旧学习进度。";
+      return {};
+    }
+    return parsed;
+  } catch (error) {
+    persistenceError = `浏览器无法读取学习进度，本次将使用临时内存模式（${error.name || "storage error"}）。`;
     return {};
   }
 }
 
 function saveStore() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+  store[STORE_META_KEY] = {
+    ...(store[STORE_META_KEY] && typeof store[STORE_META_KEY] === "object"
+      ? store[STORE_META_KEY]
+      : {}),
+    schemaVersion: STORE_SCHEMA_VERSION,
+    savedAt: Date.now(),
+  };
+
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+    if (
+      persistenceError?.startsWith("浏览器无法") ||
+      persistenceError?.startsWith("学习进度无法写入")
+    ) {
+      persistenceError = null;
+    }
+  } catch (error) {
+    persistenceError = `学习进度无法写入浏览器，本次操作仍会保留到页面关闭（${error.name || "storage error"}）。`;
+  }
+
+  if (elements.loadErrorBanner) renderLoadStatus();
 }
 
 function loadCollapsedDeckLevels() {
@@ -242,6 +311,9 @@ function renderLoadStatus() {
   if (!isCardDataMissing && isGrammarDataMissing) {
     messages.push("语法数据加载失败，请确认 grammar-data.js 已正确加载。其他模块仍可使用。");
   }
+  if (persistenceError) {
+    messages.push(persistenceError);
+  }
 
   elements.loadErrorBanner.hidden = messages.length === 0;
   elements.loadErrorBanner.textContent = messages.join(" ");
@@ -288,6 +360,99 @@ function saveRoundState() {
   saveStore();
 }
 
+function normalizedHistory(state) {
+  const history = Array.isArray(state?.ratingHistory) ? [...state.ratingHistory] : [];
+  const normalized = history
+    .filter((item) => item && VALID_RATINGS.has(item.rating))
+    .sort((left, right) => (left.at || 0) - (right.at || 0));
+  if (normalized.length) return normalized;
+  return VALID_RATINGS.has(state?.lastRating)
+    ? [{ rating: state.lastRating, at: state.lastRatedAt || null }]
+    : [];
+}
+
+function mergeCardStates(states) {
+  const validStates = states.filter((state) => state && typeof state === "object" && !Array.isArray(state));
+  if (!validStates.length) return null;
+
+  const latest = validStates.reduce((currentLatest, state) =>
+    (state.lastRatedAt || 0) >= (currentLatest.lastRatedAt || 0) ? state : currentLatest,
+  );
+  const seenHistory = new Set();
+  const ratingHistory = validStates
+    .flatMap(normalizedHistory)
+    .filter((item) => {
+      const key = `${item.at || ""}:${item.rating}:${item.choiceId || ""}`;
+      if (seenHistory.has(key)) return false;
+      seenHistory.add(key);
+      return true;
+    })
+    .sort((left, right) => (left.at || 0) - (right.at || 0))
+    .slice(-MAX_RATING_HISTORY);
+
+  return {
+    ...defaultState(),
+    ...latest,
+    lastRating: ratingHistory.at(-1)?.rating || latest.lastRating || null,
+    lastRatedAt: ratingHistory.at(-1)?.at || latest.lastRatedAt || null,
+    ratingHistory,
+    reviews: validStates.reduce(
+      (total, state) => total + (Number.isInteger(state.reviews) ? Math.max(0, state.reviews) : 0),
+      0,
+    ),
+  };
+}
+
+function migrateLegacyCardState(familyCards) {
+  const aliasMap = new Map();
+  familyCards.forEach((card) => {
+    (card.legacyIds || []).forEach((legacyId) => aliasMap.set(legacyId, card.id));
+  });
+  if (!aliasMap.size) return;
+
+  let changed = false;
+  const targetIds = new Set(aliasMap.values());
+  targetIds.forEach((targetId) => {
+    const legacyIds = [...aliasMap.entries()]
+      .filter(([, mappedId]) => mappedId === targetId)
+      .map(([legacyId]) => legacyId);
+    const states = [store[targetId], ...legacyIds.map((legacyId) => store[legacyId])];
+    const merged = mergeCardStates(states);
+    if (merged && legacyIds.some((legacyId) => store[legacyId])) {
+      store[targetId] = merged;
+      changed = true;
+    }
+    legacyIds.forEach((legacyId) => {
+      if (legacyId in store) {
+        delete store[legacyId];
+        changed = true;
+      }
+    });
+  });
+
+  const remapIds = (ids) => [
+    ...new Set((Array.isArray(ids) ? ids : []).map((id) => aliasMap.get(id) || id)),
+  ];
+
+  Object.keys(sessionQueues).forEach((deck) => {
+    const nextQueue = remapIds(sessionQueues[deck]);
+    if (!arraysEqual(sessionQueues[deck], nextQueue)) {
+      sessionQueues[deck] = nextQueue;
+      changed = true;
+    }
+  });
+  Object.keys(sessionCompleted).forEach((deck) => {
+    const previous = [...sessionCompleted[deck]];
+    const next = remapIds(previous);
+    if (!arraysEqual(previous, next)) {
+      sessionCompleted[deck] = new Set(next);
+      changed = true;
+    }
+  });
+
+  if (changed) saveRoundState();
+}
+
 function defaultState() {
   return {
     lastChoiceCorrectIndex: null,
@@ -295,25 +460,28 @@ function defaultState() {
     lastRatedAt: null,
     ratingHistory: [],
     reviews: 0,
-    shuffleOrder: Math.random(),
   };
 }
 
 function getState(cardId) {
-  if (!store[cardId]) {
+  if (!store[cardId] || typeof store[cardId] !== "object" || Array.isArray(store[cardId])) {
     store[cardId] = defaultState();
   } else {
     store[cardId] = { ...defaultState(), ...store[cardId] };
-    ["dueAt", "ease", "interval", "lapses"].forEach((key) => {
+    ["dueAt", "ease", "interval", "lapses", "shuffleOrder"].forEach((key) => {
       delete store[cardId][key];
     });
-    if (typeof store[cardId].shuffleOrder !== "number") {
-      store[cardId].shuffleOrder = Math.random();
-    }
     if (!Array.isArray(store[cardId].ratingHistory)) {
       store[cardId].ratingHistory = store[cardId].lastRating
         ? [{ rating: store[cardId].lastRating, at: store[cardId].lastRatedAt || null }]
         : [];
+    }
+    store[cardId].ratingHistory = normalizedHistory(store[cardId]).slice(-MAX_RATING_HISTORY);
+    const latestRating = store[cardId].ratingHistory.at(-1);
+    store[cardId].lastRating = latestRating?.rating || null;
+    store[cardId].lastRatedAt = latestRating?.at || null;
+    if (!Number.isInteger(store[cardId].reviews) || store[cardId].reviews < 0) {
+      store[cardId].reviews = store[cardId].ratingHistory.length;
     }
   }
   return store[cardId];
@@ -348,27 +516,33 @@ function isN4GrammarMistakeCard(card) {
 }
 
 function getDeckCards(deck = activeDeck) {
+  const familyCards = getFamilyCards(deck);
   if (deck === "vocab-mistakes") {
-    return cards.filter(isN5MistakeCard);
+    return familyCards.filter(isN5MistakeCard);
   }
 
   if (deck === "vocab-n4-mistakes") {
-    return cards.filter(isN4MistakeCard);
+    return familyCards.filter(isN4MistakeCard);
   }
 
   if (deck === "grammar-n5-mistakes") {
-    return cards.filter(isN5GrammarMistakeCard);
+    return familyCards.filter(isN5GrammarMistakeCard);
   }
 
   if (deck === "grammar-n4-mistakes") {
-    return cards.filter(isN4GrammarMistakeCard);
+    return familyCards.filter(isN4GrammarMistakeCard);
   }
 
-  return cards.filter((card) => card.deck === deck);
+  return familyCards.filter((card) => card.deck === deck);
 }
 
 function shuffleList(items) {
-  return [...items].sort(() => Math.random() - 0.5);
+  const shuffled = [...items];
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[index]];
+  }
+  return shuffled;
 }
 
 function avoidSameOrder(order, previousOrder) {
@@ -409,7 +583,11 @@ function buildQueue() {
   const hadCompleted = sessionCompleted[activeDeck] instanceof Set;
   const completedIds = hadCompleted
     ? sessionCompleted[activeDeck]
-    : new Set(deckCards.filter((card) => getState(card.id).reviews > 0).map((card) => card.id));
+    : new Set(
+        activeDeck.endsWith("-mistakes")
+          ? []
+          : deckCards.filter((card) => getState(card.id).reviews > 0).map((card) => card.id),
+      );
   const queuedIds = hadQueue
     ? sessionQueues[activeDeck]
     : shuffleCards(deckCards.filter((card) => !completedIds.has(card.id)));
@@ -431,6 +609,7 @@ function buildQueue() {
 }
 
 function nextCard() {
+  cancelSpeech();
   buildQueue();
   currentCard = reviewQueue[0] || null;
   currentChoiceOptions = currentCard?.isChoice ? buildChoiceOptions(currentCard) : [];
@@ -443,18 +622,17 @@ function render() {
   const deckCards = getDeckCards();
   const dueCount = reviewQueue.length;
   const completedIds = sessionCompleted[activeDeck] || new Set();
-  const reviewCountForCard = (card) => Math.max(
-    getState(card.id).reviews,
-    completedIds.has(card.id) ? 1 : 0,
-  );
-  const reviewedCount = deckCards.reduce((sum, card) => sum + reviewCountForCard(card), 0);
+  const deckIds = new Set(deckCards.map((card) => card.id));
+  const reviewedCount = [...completedIds].filter((cardId) => deckIds.has(cardId)).length;
 
   elements.dueCount.textContent = dueCount;
   elements.reviewedCount.textContent = reviewedCount;
   updateUndoButton();
 
   elements.tabs.forEach((tab) => {
-    tab.classList.toggle("active", tab.dataset.deck === activeDeck);
+    const isActive = tab.dataset.deck === activeDeck;
+    tab.classList.toggle("active", isActive);
+    tab.setAttribute("aria-pressed", String(isActive));
   });
   renderDeckRoundCounts();
 
@@ -478,7 +656,23 @@ function render() {
     ),
   );
   elements.cardPrompt.textContent = currentCard.prompt;
+  elements.cardPrompt.lang = currentCard.promptLang || "";
   elements.cardSubtle.textContent = currentCard.subtle || "";
+  elements.cardSubtle.lang = currentCard.subtleLang || "";
+  elements.cardReveal.disabled = Boolean(currentCard.isChoice || isRevealed);
+  elements.cardReveal.setAttribute(
+    "aria-expanded",
+    String(Boolean(isRevealed || currentCard.isChoice)),
+  );
+  elements.cardReveal.setAttribute(
+    "aria-label",
+    currentCard.isChoice ? "选择下方答案" : isRevealed ? "答案已显示" : "显示答案",
+  );
+  const canSpeak = Boolean(isRevealed ? primarySpeech(currentCard) : currentCard.frontSpeech);
+  elements.speakWord.hidden = !canSpeak;
+  elements.speakWord.disabled = !canSpeak;
+  elements.speakWord.setAttribute("aria-label", isRevealed ? "重播答案读音" : "播放题面读音");
+  elements.speakWord.title = elements.speakWord.getAttribute("aria-label");
   elements.answerPanel.classList.toggle("is-revealed", isRevealed || currentCard.isChoice);
   elements.answerPanel.setAttribute("aria-hidden", String(!isRevealed && !currentCard.isChoice));
   renderMemoryChain(currentCard);
@@ -495,6 +689,7 @@ function render() {
 
   elements.feedbackRow.hidden = false;
   elements.answerMain.textContent = currentCard.answer;
+  elements.answerMain.lang = currentCard.answerLang || "";
   elements.answerMeta.textContent = currentCard.meta;
   const hasExample = Boolean(currentCard.examples?.length);
   elements.exampleBlock.hidden = !hasExample;
@@ -516,12 +711,20 @@ function appendRuby(parent, text, reading) {
   parent.append(ruby);
 }
 
-function renderFurigana(parent, text) {
+function renderFurigana(parent, text, preferredReadings = []) {
   parent.replaceChildren();
+  const readingEntries = [];
+  const seenSurfaces = new Set();
+  [...preferredReadings, ...furiganaEntries].forEach(([surface, reading]) => {
+    if (!surface || !reading || seenSurfaces.has(surface)) return;
+    seenSurfaces.add(surface);
+    readingEntries.push([surface, reading]);
+  });
+  readingEntries.sort((left, right) => right[0].length - left[0].length);
   let index = 0;
 
   while (index < text.length) {
-    const entry = furiganaEntries.find(([surface]) => text.startsWith(surface, index));
+    const entry = readingEntries.find(([surface]) => text.startsWith(surface, index));
 
     if (entry && containsKanji(entry[0])) {
       appendRuby(parent, entry[0], entry[1]);
@@ -552,15 +755,19 @@ function renderExamples(examples) {
 
     const ja = document.createElement("p");
     ja.className = "example-ja";
-    renderFurigana(ja, example.ja);
+    ja.lang = "ja";
+    renderFurigana(ja, example.ja, example.furiganaEntries || []);
 
     const romaji = document.createElement("p");
     romaji.className = "example-romaji";
     romaji.textContent = example.romaji || "";
+    romaji.lang = "en";
+    romaji.hidden = !example.romaji;
 
     const zh = document.createElement("p");
     zh.className = "example-zh";
     zh.textContent = example.zh;
+    zh.lang = "zh-CN";
 
     const button = document.createElement("button");
     button.className = "icon-button example-speak";
@@ -570,7 +777,7 @@ function renderExamples(examples) {
     button.textContent = "▶";
     button.addEventListener("click", (event) => {
       event.stopPropagation();
-      speak(example.ja);
+      runSafely(() => speak(example.ja));
     });
 
     text.append(ja, romaji, zh);
@@ -590,6 +797,7 @@ function renderChoiceCard(card) {
 
   if (!isRevealed) {
     elements.answerMain.textContent = "";
+    elements.answerMain.removeAttribute("lang");
     elements.answerMeta.textContent = "";
     elements.exampleBlock.hidden = true;
     elements.examplesList.replaceChildren();
@@ -599,6 +807,7 @@ function renderChoiceCard(card) {
   }
 
   elements.answerMain.textContent = selectedChoice?.isCorrect ? "回答正确" : "回答错误";
+  elements.answerMain.lang = "zh-CN";
   elements.answerMeta.textContent = card.meta;
   renderChoiceFeedback();
   const hasExample = Boolean(card.examples?.length);
@@ -622,7 +831,7 @@ function renderChoiceOptions() {
     button.classList.toggle("is-wrong", isRevealed && choice.id === selectedChoiceId && !choice.isCorrect);
     button.addEventListener("click", (event) => {
       event.stopPropagation();
-      selectChoice(choice.id);
+      runSafely(() => selectChoice(choice.id));
     });
 
     const marker = document.createElement("span");
@@ -632,6 +841,7 @@ function renderChoiceOptions() {
     const text = document.createElement("span");
     text.className = "choice-text";
     text.textContent = choice.text;
+    text.lang = "zh-CN";
 
     button.append(marker, text);
     elements.choiceList.append(button);
@@ -663,6 +873,7 @@ function renderChoiceFeedback() {
 
 function clearAnswer() {
   elements.answerMain.textContent = "";
+  elements.answerMain.removeAttribute("lang");
   elements.answerMeta.textContent = "";
   elements.choiceBlock.hidden = true;
   elements.choiceFeedback.hidden = true;
@@ -675,7 +886,7 @@ function clearAnswer() {
 }
 
 function renderMemoryChain(card) {
-  const history = card ? getState(card.id).ratingHistory : [];
+  const history = card ? getState(card.id).ratingHistory.slice(-MAX_RATING_HISTORY) : [];
   elements.memoryChain.replaceChildren();
   if (!history.length) return;
 
@@ -735,10 +946,12 @@ function renderEmpty(deckCards) {
 }
 
 function revealCard() {
-  if (!currentCard || isRevealed || currentCard.isChoice) return;
-  isRevealed = true;
-  render();
-  speakForReveal();
+  runSafely(() => {
+    if (!currentCard || isRevealed || currentCard.isChoice) return;
+    isRevealed = true;
+    render();
+    speakForReveal();
+  });
 }
 
 function captureReviewSnapshot() {
@@ -755,14 +968,14 @@ function captureReviewSnapshot() {
 }
 
 function applyRating(rating, details = {}) {
-  const state = getState(currentCard.id);
   lastReview = captureReviewSnapshot();
+  const state = getState(currentCard.id);
 
   state.reviews += 1;
   state.lastRating = rating;
   state.lastRatedAt = Date.now();
   state.ratingHistory.push({ rating, at: state.lastRatedAt, ...details });
-  state.shuffleOrder = Math.random();
+  state.ratingHistory = state.ratingHistory.slice(-MAX_RATING_HISTORY);
 }
 
 function completeCurrentCard(options = {}) {
@@ -817,7 +1030,8 @@ function updateUndoButton() {
 function undoLastReview() {
   if (!lastReview) return;
 
-  const card = cards.find((item) => item.id === lastReview.cardId);
+  cancelSpeech();
+  const card = getFamilyCards(lastReview.deck).find((item) => item.id === lastReview.cardId);
   if (!card) return;
 
   activeDeck = lastReview.deck;
@@ -836,57 +1050,117 @@ function undoLastReview() {
   render();
 }
 
-function setSidebarOpen(isOpen) {
+function sidebarFocusableElements() {
+  return [...elements.deckSidebar.querySelectorAll("button:not(:disabled), [href], [tabindex]")].filter(
+    (element) => element.tabIndex >= 0 && !element.closest("[hidden]"),
+  );
+}
+
+function setSidebarOpen(isOpen, options = {}) {
+  const wasOpen = elements.deckSidebar.classList.contains("is-open");
+  const shouldRestoreFocus = options.restoreFocus !== false;
+
+  if (isOpen && !wasOpen) {
+    sidebarReturnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+  }
+
   elements.deckSidebar.classList.toggle("is-open", isOpen);
   elements.deckSidebar.setAttribute("aria-hidden", String(!isOpen));
   elements.deckMenuButton.setAttribute("aria-expanded", String(isOpen));
   elements.sidebarBackdrop.hidden = !isOpen;
+  elements.deckSidebar.inert = !isOpen;
+  elements.studyArea.inert = isOpen;
+
+  if (isOpen) {
+    window.requestAnimationFrame(() => elements.closeDeckMenu.focus());
+    return;
+  }
+
+  if (wasOpen && shouldRestoreFocus && sidebarReturnFocus?.isConnected) {
+    sidebarReturnFocus.focus();
+  }
+  sidebarReturnFocus = null;
+}
+
+function handleSidebarKeydown(event) {
+  if (!elements.deckSidebar.classList.contains("is-open")) return;
+
+  if (event.key === "Escape") {
+    event.preventDefault();
+    setSidebarOpen(false);
+    return;
+  }
+
+  if (event.key !== "Tab") return;
+  const focusable = sidebarFocusableElements();
+  if (!focusable.length) return;
+  const first = focusable[0];
+  const last = focusable.at(-1);
+
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  }
 }
 
 function speak(text, options = {}) {
   if (!("speechSynthesis" in window) || !text) return;
-  window.speechSynthesis.cancel();
+  cancelSpeech();
+  const generation = speechGeneration;
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = "ja-JP";
   utterance.rate = 0.82;
   if (options.onEnd) {
-    utterance.addEventListener("end", options.onEnd, { once: true });
+    utterance.addEventListener(
+      "end",
+      () => {
+        if (generation === speechGeneration) options.onEnd();
+      },
+      { once: true },
+    );
   }
   window.speechSynthesis.speak(utterance);
 }
 
-function primarySpeech() {
-  return currentCard?.speech || currentCard?.sentenceAnswer || currentCard?.answer;
+function cancelSpeech() {
+  speechGeneration += 1;
+  if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+}
+
+function primarySpeech(card = currentCard) {
+  return card?.speech || card?.sentenceAnswer || card?.answer;
 }
 
 function speakCurrentCard() {
-  speak(primarySpeech());
+  const text = isRevealed ? primarySpeech(currentCard) : currentCard?.frontSpeech;
+  speak(text);
 }
 
-function speakFirstExample() {
-  speak(currentCard?.examples?.[0]?.ja);
-}
-
-function speakForReveal() {
-  if (currentCard?.isGrammar) {
-    speakCurrentCard();
+function speakForReveal(card = currentCard) {
+  if (!card) return;
+  if (card.isGrammar) {
+    speak(primarySpeech(card));
     return;
   }
 
-  if (currentCard?.isVocab && currentCard?.sentenceAnswer) {
-    speakCurrentCard();
+  if (card.isVocab && card.sentenceAnswer) {
+    speak(primarySpeech(card));
     return;
   }
 
-  if (currentCard?.sentenceAnswer) {
-    speak(currentCard.sentenceAnswer);
+  if (card.sentenceAnswer) {
+    speak(card.sentenceAnswer);
     return;
   }
 
-  if (currentCard?.examples?.length) {
-    speak(currentCard.speech, { onEnd: speakFirstExample });
+  const firstExample = card.examples?.[0]?.ja;
+  if (firstExample) {
+    speak(card.speech, { onEnd: () => speak(firstExample) });
   } else {
-    speakCurrentCard();
+    speak(primarySpeech(card));
   }
 }
 
@@ -905,87 +1179,161 @@ function restartDeckRound() {
   nextCard();
 }
 
-elements.studyCard.addEventListener("click", revealCard);
-
-elements.memoryChain.addEventListener("click", (event) => {
-  event.stopPropagation();
-});
-
-document.querySelectorAll(".feedback").forEach((button) => {
-  button.addEventListener("click", (event) => {
-    event.stopPropagation();
-    rateCurrentCard(button.dataset.rating);
-  });
-});
-
-elements.tabs.forEach((tab) => {
-  tab.addEventListener("click", () => {
-    activeDeck = tab.dataset.deck;
-    expandSidebarForDeck(activeDeck);
-    saveRoundState();
-    setSidebarOpen(false);
-    nextCard();
-  });
-});
-
-elements.deckGroupToggles.forEach((toggle) => {
-  toggle.addEventListener("click", (event) => {
-    event.stopPropagation();
-    const group = toggle.closest(".deck-group");
-    setDeckGroupExpanded(group, toggle.getAttribute("aria-expanded") !== "true");
-  });
-});
-
-elements.deckLevelToggles.forEach((toggle) => {
-  toggle.addEventListener("click", (event) => {
-    event.stopPropagation();
-    const level = toggle.closest(".deck-level");
-    setDeckLevelExpanded(level, toggle.getAttribute("aria-expanded") !== "true");
-  });
-});
-
-elements.speakWord.addEventListener("click", (event) => {
-  event.stopPropagation();
-  speakCurrentCard();
-});
-
-elements.undoRating.addEventListener("click", (event) => {
-  event.stopPropagation();
-  undoLastReview();
-});
-
-elements.choiceNext.addEventListener("click", (event) => {
-  event.stopPropagation();
-  nextCard();
-});
-
-elements.studyAnyWay.addEventListener("click", () => {
-  restartDeckRound();
-});
-
-elements.emptyDeckMenuButton.addEventListener("click", () => {
-  setSidebarOpen(true);
-});
-
-elements.deckMenuButton.addEventListener("click", (event) => {
-  event.stopPropagation();
-  setSidebarOpen(!elements.deckSidebar.classList.contains("is-open"));
-});
-
-elements.closeDeckMenu.addEventListener("click", () => {
-  setSidebarOpen(false);
-});
-
-elements.sidebarBackdrop.addEventListener("click", () => {
-  setSidebarOpen(false);
-});
-
-loadRoundState();
-if (isDeckDataMissing(activeDeck)) {
-  activeDeck = "hiragana";
+function assertRequiredElements() {
+  const missing = Object.entries(elements)
+    .filter(([, value]) => !value)
+    .map(([name]) => name);
+  if (missing.length) {
+    throw new Error(`Required UI elements are missing: ${missing.join(", ")}`);
+  }
 }
-applyDeckGroupState();
-applyDeckLevelState();
-expandSidebarForDeck(activeDeck);
-renderLoadStatus();
-nextCard();
+
+function finishLoadingStatus() {
+  elements.studyArea.setAttribute("aria-busy", "false");
+  elements.appStatus.textContent = "应用已就绪。";
+  window.clearTimeout(readyStatusTimer);
+  readyStatusTimer = window.setTimeout(() => {
+    elements.appStatus.hidden = true;
+  }, 800);
+}
+
+function showFatalError(error) {
+  console.error("Failed to initialize ayaya日语:", error);
+  window.clearTimeout(readyStatusTimer);
+  elements.studyArea?.setAttribute("aria-busy", "false");
+  if (elements.studyArea) elements.studyArea.inert = false;
+  if (elements.deckSidebar) {
+    elements.deckSidebar.classList.remove("is-open");
+    elements.deckSidebar.inert = true;
+    elements.deckSidebar.setAttribute("aria-hidden", "true");
+  }
+  if (elements.deckMenuButton) elements.deckMenuButton.setAttribute("aria-expanded", "false");
+  if (elements.sidebarBackdrop) elements.sidebarBackdrop.hidden = true;
+  if (elements.studyCard) elements.studyCard.hidden = false;
+  if (elements.emptyState) elements.emptyState.hidden = true;
+  if (elements.appStatus) elements.appStatus.hidden = true;
+
+  let fatalBanner = elements.fatalErrorBanner;
+  if (!fatalBanner) {
+    fatalBanner = document.createElement("div");
+    fatalBanner.className = "fatal-error-banner";
+    fatalBanner.setAttribute("role", "alert");
+    fatalBanner.tabIndex = -1;
+    document.body.prepend(fatalBanner);
+  }
+  fatalBanner.hidden = false;
+  fatalBanner.textContent =
+    "应用未能启动。请刷新页面；如果问题持续，请确认所有本地资源都能正常加载。";
+  fatalBanner.focus();
+}
+
+function runSafely(action) {
+  try {
+    return action();
+  } catch (error) {
+    showFatalError(error);
+    return undefined;
+  }
+}
+
+function bindInteractions() {
+  elements.cardReveal.addEventListener("click", revealCard);
+
+  document.querySelectorAll(".feedback").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      runSafely(() => rateCurrentCard(button.dataset.rating));
+    });
+  });
+
+  elements.tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      runSafely(() => {
+        activeDeck = tab.dataset.deck;
+        expandSidebarForDeck(activeDeck);
+        saveRoundState();
+        setSidebarOpen(false, { restoreFocus: false });
+        nextCard();
+        elements.deckMenuButton.focus();
+      });
+    });
+  });
+
+  elements.deckGroupToggles.forEach((toggle) => {
+    toggle.addEventListener("click", (event) => {
+      event.stopPropagation();
+      runSafely(() => {
+        const group = toggle.closest(".deck-group");
+        setDeckGroupExpanded(group, toggle.getAttribute("aria-expanded") !== "true");
+      });
+    });
+  });
+
+  elements.deckLevelToggles.forEach((toggle) => {
+    toggle.addEventListener("click", (event) => {
+      event.stopPropagation();
+      runSafely(() => {
+        const level = toggle.closest(".deck-level");
+        setDeckLevelExpanded(level, toggle.getAttribute("aria-expanded") !== "true");
+      });
+    });
+  });
+
+  elements.speakWord.addEventListener("click", (event) => {
+    event.stopPropagation();
+    runSafely(speakCurrentCard);
+  });
+
+  elements.undoRating.addEventListener("click", (event) => {
+    event.stopPropagation();
+    runSafely(undoLastReview);
+  });
+
+  elements.choiceNext.addEventListener("click", (event) => {
+    event.stopPropagation();
+    runSafely(nextCard);
+  });
+
+  elements.studyAnyWay.addEventListener("click", () => {
+    runSafely(restartDeckRound);
+  });
+
+  elements.emptyDeckMenuButton.addEventListener("click", () => {
+    runSafely(() => setSidebarOpen(true));
+  });
+
+  elements.deckMenuButton.addEventListener("click", (event) => {
+    event.stopPropagation();
+    runSafely(() => setSidebarOpen(!elements.deckSidebar.classList.contains("is-open")));
+  });
+
+  elements.closeDeckMenu.addEventListener("click", () => {
+    runSafely(() => setSidebarOpen(false));
+  });
+
+  elements.sidebarBackdrop.addEventListener("click", () => {
+    runSafely(() => setSidebarOpen(false));
+  });
+
+  elements.deckSidebar.addEventListener("keydown", (event) =>
+    runSafely(() => handleSidebarKeydown(event)),
+  );
+}
+
+function initializeApp() {
+  assertRequiredElements();
+  bindInteractions();
+  loadRoundState();
+  if (isDeckDataMissing(activeDeck)) {
+    activeDeck = "hiragana";
+  }
+  applyDeckGroupState();
+  applyDeckLevelState();
+  expandSidebarForDeck(activeDeck);
+  setSidebarOpen(false, { restoreFocus: false });
+  renderLoadStatus();
+  nextCard();
+  finishLoadingStatus();
+}
+
+runSafely(initializeApp);

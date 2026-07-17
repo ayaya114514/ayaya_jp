@@ -2,6 +2,8 @@
 const sourceNotes = {
   jlpt: "JLPT 官方不发布固定的词汇/汉字/语法项目清单；本项目的语法覆盖按官方等级说明、题型说明、样题/官方问题集说明，以及常见 N5/N4 教学清单整理。",
   kana: "假名、长音、促音、拨音、外来语小写假名和罗马音按现代常用学习写法整理；罗马音以护照/学习场景常见 Hepburn 风格为主。",
+  vocabulary: "N5/N4 标签是项目维护的教学分级，不是官方固定词表。规范词形、原始词形、变体和人工校订说明保存在随项目版本控制的数据文件中。",
+  examples: "词汇例句是为本项目编写和校订的短学习句，不作为语料库引文；无法可靠生成纯拉丁字母罗马音时，界面会明确隐藏该行而不显示混合脚本结果。",
 };
 const kanaRows = [
   [
@@ -528,6 +530,7 @@ const kanaRows = [
 
 const n5Entries = window.AYAYA_N5_CODEX_VOCAB?.entries || [];
 const n5Words = n5Entries.map((entry) => [
+  entry.id,
   entry.headword,
   entry.reading,
   entry.romaji,
@@ -535,9 +538,11 @@ const n5Words = n5Entries.map((entry) => [
   entry.examples?.[0]?.ja || "",
   entry.examples?.[0]?.zh || "",
   entry.examples || [],
+  entry,
 ]);
 const n4Entries = window.AYAYA_N4_CODEX_VOCAB?.entries || [];
 const n4Words = n4Entries.map((entry) => [
+  entry.id,
   entry.headword,
   entry.reading,
   entry.romaji,
@@ -545,43 +550,9 @@ const n4Words = n4Entries.map((entry) => [
   entry.examples?.[0]?.ja || "",
   entry.examples?.[0]?.zh || "",
   entry.examples || [],
+  entry,
 ]);
 const grammarEntries = window.AYAYA_GRAMMAR_DATA?.entries || [];
-
-const politeForms = {
-  行く: "行きます",
-  来る: "来ます",
-  帰る: "帰ります",
-  食べる: "食べます",
-  飲む: "飲みます",
-  見る: "見ます",
-  聞く: "聞きます",
-  読む: "読みます",
-  書く: "書きます",
-  話す: "話します",
-  買う: "買います",
-  会う: "会います",
-  寝る: "寝ます",
-  起きる: "起きます",
-  勉強する: "勉強します",
-};
-
-const iAdjectives = new Set([
-  "大きい",
-  "小さい",
-  "新しい",
-  "古い",
-  "高い",
-  "安い",
-  "暑い",
-  "寒い",
-  "良い",
-  "悪い",
-  "楽しい",
-  "難しい",
-]);
-
-const naAdjectives = new Set(["簡単", "静か", "好き", "嫌い"]);
 
 const specialRows = [
   [
@@ -2440,7 +2411,7 @@ function makeKanaCards() {
   );
   const comboRows = kanaRows.filter(([hiragana]) => hiragana.length > 1);
 
-  return [
+  const cards = [
     ...coreRows.map(([hiragana, katakana, romaji], index) => ({
       id: `hiragana-${index}`,
       deck: "hiragana",
@@ -2495,6 +2466,13 @@ function makeKanaCards() {
       ...card,
     })),
   ];
+
+  return cards.map((card) => ({
+    ...card,
+    promptLang: card.deck === "romaji" ? "en" : "ja",
+    answerLang: "ja",
+    frontSpeech: card.deck === "romaji" ? "" : card.speech,
+  }));
 }
 
 function stripSentencePeriods(text = "") {
@@ -2535,48 +2513,104 @@ function addReadingEntry(entries, seen, surface, reading) {
   entries.push([cleanSurface, cleanReading]);
 }
 
-function vocabReadingEntries() {
+function readingEntriesForVocabEntry(entry) {
   const entries = [];
   const seen = new Set();
 
-  [...n5Entries, ...n4Entries].forEach((entry) => {
-    const surfaces = [entry.headword, entry.source_form, ...(entry.variants || [])];
-    surfaces.forEach((surface) => {
-      addReadingEntry(entries, seen, surface, entry.reading);
+  const formReadings = new Map(
+    (entry?.kanji_readings || []).map(({ form, reading }) => [form?.trim(), reading?.trim()]),
+  );
+  const surfaces = [entry?.headword, ...(entry?.variants || [])];
 
-      const lastSurfaceChar = surface?.at(-1);
-      const lastReadingChar = entry.reading?.at(-1);
-      if (!lastSurfaceChar || !lastReadingChar || lastSurfaceChar !== lastReadingChar) return;
+  surfaces.forEach((surface) => {
+    const cleanSurface = surface?.trim();
+    if (!cleanSurface || !/[\u3400-\u9fff]/.test(cleanSurface)) return;
 
-      if (lastSurfaceChar === "る") {
-        addReadingEntry(entries, seen, surface.slice(0, -1), entry.reading.slice(0, -1));
-      }
+    const reading = formReadings.get(cleanSurface) || entry?.reading;
+    addReadingEntry(entries, seen, cleanSurface, reading);
 
-      const stemEnding = godanIStem[lastSurfaceChar];
-      if (stemEnding) {
-        addReadingEntry(
-          entries,
-          seen,
-          `${surface.slice(0, -1)}${stemEnding}`,
-          `${entry.reading.slice(0, -1)}${stemEnding}`,
-        );
-      }
+    const firstKanjiIndex = cleanSurface.search(/[\u3400-\u9fff]/);
+    let lastKanjiIndex = -1;
+    [...cleanSurface].forEach((char, index) => {
+      if (/[\u3400-\u9fff]/.test(char)) lastKanjiIndex = index;
     });
+    const kanaPrefix = cleanSurface.slice(0, firstKanjiIndex);
+    const kanaSuffix = cleanSurface.slice(lastKanjiIndex + 1);
+    if (!reading?.startsWith(kanaPrefix) || !reading.endsWith(kanaSuffix)) return;
+
+    const readingEnd = kanaSuffix ? -kanaSuffix.length : undefined;
+    const coreSurface = cleanSurface.slice(firstKanjiIndex, lastKanjiIndex + 1);
+    const coreReading = reading.slice(kanaPrefix.length, readingEnd);
+    addReadingEntry(entries, seen, coreSurface, coreReading);
+
+    const lastSurfaceChar = cleanSurface.at(-1);
+    const lastReadingChar = reading.at(-1);
+    if (!lastSurfaceChar || !lastReadingChar || lastSurfaceChar !== lastReadingChar) return;
+
+    if (lastSurfaceChar === "る") {
+      addReadingEntry(entries, seen, cleanSurface.slice(0, -1), reading.slice(0, -1));
+    }
+
+    const stemEnding = godanIStem[lastSurfaceChar];
+    if (stemEnding) {
+      addReadingEntry(
+        entries,
+        seen,
+        `${cleanSurface.slice(0, -1)}${stemEnding}`,
+        `${reading.slice(0, -1)}${stemEnding}`,
+      );
+    }
   });
 
-  return entries;
+  return entries.sort((left, right) => right[0].length - left[0].length);
 }
 
-const furiganaByLength = [...furiganaEntries, ...vocabReadingEntries()].sort(
-  (left, right) => right[0].length - left[0].length,
-);
+const contextSpecificReadings = [
+  ["九時", "くじ"],
+  ["九月", "くがつ"],
+];
 
-function applyKnownReadings(text) {
+const allVocabReadingEntries = [...n5Entries, ...n4Entries].flatMap((entry) =>
+  readingEntriesForVocabEntry(entry),
+);
+const globalReadingCandidates = [...furiganaEntries, ...allVocabReadingEntries];
+const readingsBySurface = new Map();
+globalReadingCandidates.forEach(([surface, reading]) => {
+  if (!readingsBySurface.has(surface)) readingsBySurface.set(surface, new Set());
+  readingsBySurface.get(surface).add(reading);
+});
+const ambiguousReadingSurfaces = new Set(
+  [...readingsBySurface]
+    .filter(([, readings]) => readings.size > 1)
+    .map(([surface]) => surface),
+);
+const furiganaByLength = [];
+const globalReadingKeys = new Set();
+[...contextSpecificReadings, ...globalReadingCandidates]
+  .filter(([surface], index) =>
+    index < contextSpecificReadings.length || !ambiguousReadingSurfaces.has(surface),
+  )
+  .forEach(([surface, reading]) => addReadingEntry(furiganaByLength, globalReadingKeys, surface, reading));
+furiganaByLength.sort((left, right) => right[0].length - left[0].length);
+
+function readingEntriesForText(preferredReadings = []) {
+  const entries = [];
+  const seenSurfaces = new Set();
+  [...preferredReadings, ...furiganaByLength].forEach(([surface, reading]) => {
+    if (!surface || !reading || seenSurfaces.has(surface)) return;
+    seenSurfaces.add(surface);
+    entries.push([surface, reading]);
+  });
+  return entries.sort((left, right) => right[0].length - left[0].length);
+}
+
+function applyKnownReadings(text, preferredReadings = []) {
+  const readingEntries = readingEntriesForText(preferredReadings);
   let result = "";
   let index = 0;
 
   while (index < text.length) {
-    const entry = furiganaByLength.find(([surface]) => text.startsWith(surface, index));
+    const entry = readingEntries.find(([surface]) => text.startsWith(surface, index));
     if (entry) {
       result += entry[1];
       index += entry[0].length;
@@ -2642,18 +2676,35 @@ function kanaToRomaji(text) {
   return result.trim();
 }
 
-function sentenceToRomaji(text) {
-  return kanaToRomaji(applyKnownReadings(stripSentencePeriods(text)));
+function sentenceToRomaji(text, preferredReadings = []) {
+  const normalizedPunctuation = stripSentencePeriods(text)
+    .replace(/[。．]/g, ". ")
+    .replace(/、/g, ", ")
+    .replace(/[！？]/g, (mark) => (mark === "！" ? "!" : "?"))
+    .replace(/[：；]/g, (mark) => (mark === "：" ? ":" : ";"))
+    .replace(/[「」『』]/g, "")
+    .replace(/[〜～・]/g, " ");
+  return kanaToRomaji(applyKnownReadings(normalizedPunctuation, preferredReadings))
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
-function normalizeExamples(examples = []) {
+function isSafeRomaji(text) {
+  return /^[A-Za-z0-9\s,.'!?/:;()\-]+$/.test(text);
+}
+
+function normalizeExamples(examples = [], preferredReadings = []) {
   return examples.map((example) => {
     const ja = stripSentencePeriods(example.ja || "");
     const zh = stripSentencePeriods(example.zh || "");
+    const generatedRomaji = sentenceToRomaji(ja, preferredReadings);
+    const hasSafeRomaji = isSafeRomaji(generatedRomaji);
     return {
       ...example,
       ja,
-      romaji: sentenceToRomaji(ja),
+      romaji: hasSafeRomaji ? generatedRomaji : "",
+      romajiStatus: hasSafeRomaji ? "available" : "unavailable",
+      furiganaEntries: preferredReadings,
       zh,
     };
   });
@@ -2663,2116 +2714,130 @@ function hasRealExample(example) {
   return Boolean(example) && !example.includes("N5の単語です");
 }
 
-function displayWord(word) {
-  return word.split(";")[0].trim();
-}
-
-const vocabOverrides = {
-  開く: {
-    meaning: "开；打开",
-    examples: [
-      { ja: "ドアが開いています。", zh: "门开着。" },
-      { ja: "店は九時に開きます。", zh: "店九点开门。" },
-      { ja: "窓が少し開いています。", zh: "窗户开着一点。" },
-    ],
-  },
-  開ける: {
-    meaning: "打开",
-    examples: [
-      { ja: "窓を開けてください。", zh: "请打开窗户。" },
-      { ja: "朝、店を開けます。", zh: "早上开店。" },
-      { ja: "箱を開けました。", zh: "打开了盒子。" },
-    ],
-  },
-  遊ぶ: {
-    meaning: "玩",
-    examples: [
-      { ja: "公園で子供が遊んでいます。", zh: "孩子在公园玩。" },
-      { ja: "日曜日に友達と遊びます。", zh: "星期天和朋友玩。" },
-      { ja: "外で遊びましょう。", zh: "在外面玩吧。" },
-    ],
-  },
-  浴びる: {
-    meaning: "淋浴；冲澡",
-    examples: [
-      { ja: "朝、シャワーを浴びます。", zh: "早上冲澡。" },
-      { ja: "運動の後でシャワーを浴びました。", zh: "运动后冲了澡。" },
-      { ja: "暑いので、水を浴びたいです。", zh: "因为很热，想冲水。" },
-    ],
-  },
-  入れる: {
-    meaning: "放入",
-    examples: [
-      { ja: "かばんに本を入れます。", zh: "把书放进包里。" },
-      { ja: "コーヒーに砂糖を入れます。", zh: "往咖啡里放糖。" },
-      { ja: "名前をここに入れてください。", zh: "请把名字填在这里。" },
-    ],
-  },
-  起きる: {
-    meaning: "起床；发生",
-    examples: [
-      { ja: "毎朝七時に起きます。", zh: "每天早上七点起床。" },
-      { ja: "昨日は遅く起きました。", zh: "昨天起得晚。" },
-      { ja: "早く起きてください。", zh: "请早点起床。" },
-    ],
-  },
-  置く: {
-    meaning: "放置",
-    examples: [
-      { ja: "本を机の上に置きます。", zh: "把书放在桌子上。" },
-      { ja: "ここに荷物を置いてください。", zh: "请把行李放在这里。" },
-      { ja: "傘を入口に置きました。", zh: "把伞放在入口处了。" },
-    ],
-  },
-  押す: {
-    meaning: "按；推",
-    examples: [
-      { ja: "このボタンを押してください。", zh: "请按这个按钮。" },
-      { ja: "ドアを押します。", zh: "推门。" },
-      { ja: "強く押さないでください。", zh: "请不要用力按。" },
-    ],
-  },
-  覚える: {
-    meaning: "记住",
-    examples: [
-      { ja: "新しい言葉を覚えます。", zh: "记新单词。" },
-      { ja: "名前を覚えました。", zh: "记住了名字。" },
-      { ja: "漢字を少しずつ覚えます。", zh: "一点点记汉字。" },
-    ],
-  },
-  降りる: {
-    meaning: "下车",
-    examples: [
-      { ja: "次の駅で降ります。", zh: "在下一站下车。" },
-      { ja: "バスを降りました。", zh: "下了公交车。" },
-      { ja: "ここで降りてください。", zh: "请在这里下车。" },
-    ],
-  },
-  終る: {
-    meaning: "结束",
-    examples: [
-      { ja: "授業は三時に終わります。", zh: "课三点结束。" },
-      { ja: "仕事が終わりました。", zh: "工作结束了。" },
-      { ja: "映画はもう終わりました。", zh: "电影已经结束了。" },
-    ],
-  },
-  返す: {
-    meaning: "归还",
-    examples: [
-      { ja: "本を図書館に返します。", zh: "把书还给图书馆。" },
-      { ja: "友達にお金を返しました。", zh: "把钱还给了朋友。" },
-      { ja: "明日、これを返してください。", zh: "请明天把这个还回来。" },
-    ],
-  },
-  貸す: {
-    meaning: "借出",
-    examples: [
-      { ja: "友達に本を貸します。", zh: "把书借给朋友。" },
-      { ja: "ペンを貸してください。", zh: "请借我一支笔。" },
-      { ja: "兄に自転車を貸しました。", zh: "把自行车借给了哥哥。" },
-    ],
-  },
-  借りる: {
-    meaning: "借入",
-    examples: [
-      { ja: "図書館で本を借ります。", zh: "在图书馆借书。" },
-      { ja: "友達に傘を借りました。", zh: "向朋友借了伞。" },
-      { ja: "ノートを借りてもいいですか。", zh: "可以借笔记本吗？" },
-    ],
-  },
-  消える: {
-    meaning: "消失；熄灭",
-    examples: [
-      { ja: "電気が消えました。", zh: "灯灭了。" },
-      { ja: "文字が消えています。", zh: "字消失了。" },
-      { ja: "音がすぐ消えました。", zh: "声音很快消失了。" },
-    ],
-  },
-  切る: {
-    meaning: "切；挂断",
-    examples: [
-      { ja: "紙をはさみで切ります。", zh: "用剪刀剪纸。" },
-      { ja: "野菜を小さく切ります。", zh: "把蔬菜切小。" },
-      { ja: "電話を切りました。", zh: "挂了电话。" },
-    ],
-  },
-  着る: {
-    meaning: "穿",
-    examples: [
-      { ja: "白いシャツを着ます。", zh: "穿白衬衫。" },
-      { ja: "今日はコートを着ています。", zh: "今天穿着外套。" },
-      { ja: "新しい服を着ました。", zh: "穿了新衣服。" },
-    ],
-  },
-  消す: {
-    meaning: "关掉；擦掉",
-    examples: [
-      { ja: "電気を消してください。", zh: "请关灯。" },
-      { ja: "黒板の字を消します。", zh: "擦掉黑板上的字。" },
-      { ja: "テレビを消しました。", zh: "关掉了电视。" },
-    ],
-  },
-  結婚: {
-    meaning: "结婚",
-    examples: [
-      { ja: "姉は来年結婚します。", zh: "姐姐明年结婚。" },
-      { ja: "友達が結婚しました。", zh: "朋友结婚了。" },
-      { ja: "結婚して十年です。", zh: "结婚十年了。" },
-    ],
-  },
-  困る: {
-    meaning: "为难；困扰",
-    examples: [
-      { ja: "道が分からなくて困っています。", zh: "因为不认识路，很为难。" },
-      { ja: "お金がなくて困りました。", zh: "因为没钱而犯难了。" },
-      { ja: "困った時は先生に聞きます。", zh: "遇到困难时问老师。" },
-    ],
-  },
-  閉まる: {
-    meaning: "关闭",
-    examples: [
-      { ja: "店は七時に閉まります。", zh: "店七点关门。" },
-      { ja: "ドアが閉まっています。", zh: "门关着。" },
-      { ja: "駅の窓口はもう閉まりました。", zh: "车站窗口已经关了。" },
-    ],
-  },
-  閉める: {
-    meaning: "关上",
-    examples: [
-      { ja: "窓を閉めてください。", zh: "请关窗。" },
-      { ja: "寒いのでドアを閉めます。", zh: "因为冷，所以关门。" },
-      { ja: "店を早く閉めました。", zh: "早早关了店。" },
-    ],
-  },
-  住む: {
-    meaning: "居住",
-    examples: [
-      { ja: "東京に住んでいます。", zh: "住在东京。" },
-      { ja: "駅の近くに住みたいです。", zh: "想住在车站附近。" },
-      { ja: "家族と一緒に住んでいます。", zh: "和家人一起住。" },
-    ],
-  },
-  座る: {
-    meaning: "坐",
-    examples: [
-      { ja: "ここに座ってください。", zh: "请坐在这里。" },
-      { ja: "椅子に座ります。", zh: "坐在椅子上。" },
-      { ja: "友達の隣に座りました。", zh: "坐在朋友旁边。" },
-    ],
-  },
-  掃除: {
-    meaning: "打扫",
-    examples: [
-      { ja: "部屋を掃除します。", zh: "打扫房间。" },
-      { ja: "日曜日に家を掃除しました。", zh: "星期天打扫了家。" },
-      { ja: "教室をきれいに掃除します。", zh: "把教室打扫干净。" },
-    ],
-  },
-  出す: {
-    meaning: "拿出；提交",
-    examples: [
-      { ja: "かばんから本を出します。", zh: "从包里拿出书。" },
-      { ja: "宿題を先生に出しました。", zh: "把作业交给了老师。" },
-      { ja: "手紙を出します。", zh: "寄信。" },
-    ],
-  },
-  頼む: {
-    meaning: "请求；拜托",
-    examples: [
-      { ja: "友達に手伝いを頼みます。", zh: "拜托朋友帮忙。" },
-      { ja: "店でコーヒーを頼みました。", zh: "在店里点了咖啡。" },
-      { ja: "先生にもう一度頼みます。", zh: "再拜托老师一次。" },
-    ],
-  },
-  使う: {
-    meaning: "使用",
-    examples: [
-      { ja: "このペンを使います。", zh: "使用这支笔。" },
-      { ja: "毎日、日本語を使います。", zh: "每天使用日语。" },
-      { ja: "パソコンを使って勉強します。", zh: "用电脑学习。" },
-    ],
-  },
-  作る: {
-    meaning: "制作",
-    examples: [
-      { ja: "母が晩ご飯を作ります。", zh: "妈妈做晚饭。" },
-      { ja: "友達にケーキを作りました。", zh: "给朋友做了蛋糕。" },
-      { ja: "家で朝ご飯を作ります。", zh: "在家做早饭。" },
-    ],
-  },
-  出かける: {
-    meaning: "出门",
-    examples: [
-      { ja: "午後、買い物に出かけます。", zh: "下午出门买东西。" },
-      { ja: "家族と出かけました。", zh: "和家人出门了。" },
-      { ja: "雨の日はあまり出かけません。", zh: "下雨天不太出门。" },
-    ],
-  },
-  飛ぶ: {
-    meaning: "飞；跳",
-    examples: [
-      { ja: "鳥が空を飛んでいます。", zh: "鸟在天空飞。" },
-      { ja: "飛行機が東京へ飛びます。", zh: "飞机飞往东京。" },
-      { ja: "子供が高く飛びました。", zh: "孩子跳得很高。" },
-    ],
-  },
-  止まる: {
-    meaning: "停止",
-    examples: [
-      { ja: "バスが駅で止まります。", zh: "公交车在车站停。" },
-      { ja: "時計が止まりました。", zh: "钟停了。" },
-      { ja: "赤信号で車が止まります。", zh: "红灯时车停下。" },
-    ],
-  },
-  取る: {
-    meaning: "拿；取得",
-    examples: [
-      { ja: "机の上の本を取ります。", zh: "拿桌子上的书。" },
-      { ja: "棚からかばんを取りました。", zh: "从架子上拿了包。" },
-      { ja: "いい点を取りました。", zh: "取得了好分数。" },
-    ],
-  },
-  撮る: {
-    meaning: "拍摄",
-    examples: [
-      { ja: "写真を撮ります。", zh: "拍照片。" },
-      { ja: "友達と写真を撮りました。", zh: "和朋友拍了照片。" },
-      { ja: "ここで映画を撮っています。", zh: "正在这里拍电影。" },
-    ],
-  },
-  脱ぐ: {
-    meaning: "脱",
-    examples: [
-      { ja: "靴を脱いでください。", zh: "请脱鞋。" },
-      { ja: "コートを脱ぎました。", zh: "脱了外套。" },
-      { ja: "暑いので上着を脱ぎます。", zh: "因为热，所以脱外套。" },
-    ],
-  },
-  乗る: {
-    meaning: "乘坐",
-    examples: [
-      { ja: "駅で電車に乗ります。", zh: "在车站坐电车。" },
-      { ja: "バスに乗りました。", zh: "坐了公交车。" },
-      { ja: "自転車に乗れます。", zh: "会骑自行车。" },
-    ],
-  },
-  入る: {
-    meaning: "进入",
-    examples: [
-      { ja: "教室に入ります。", zh: "进入教室。" },
-      { ja: "お風呂に入りました。", zh: "洗了澡。" },
-      { ja: "箱の中に本が入っています。", zh: "盒子里放着书。" },
-    ],
-  },
-  はく: {
-    meaning: "穿",
-    examples: [
-      { ja: "靴をはきます。", zh: "穿鞋。" },
-      { ja: "黒いズボンをはいています。", zh: "穿着黑裤子。" },
-      { ja: "朝、靴下をはきました。", zh: "早上穿了袜子。" },
-    ],
-  },
-  始まる: {
-    meaning: "开始",
-    examples: [
-      { ja: "授業は九時に始まります。", zh: "课九点开始。" },
-      { ja: "映画が始まりました。", zh: "电影开始了。" },
-      { ja: "新しい生活が始まります。", zh: "新的生活开始了。" },
-    ],
-  },
-  走る: {
-    meaning: "跑",
-    examples: [
-      { ja: "公園を走ります。", zh: "在公园跑步。" },
-      { ja: "駅まで走りました。", zh: "跑到了车站。" },
-      { ja: "朝、三十分走ります。", zh: "早上跑三十分钟。" },
-    ],
-  },
-  働く: {
-    meaning: "工作",
-    examples: [
-      { ja: "父は会社で働いています。", zh: "父亲在公司工作。" },
-      { ja: "毎日八時間働きます。", zh: "每天工作八小时。" },
-      { ja: "日本で働きたいです。", zh: "想在日本工作。" },
-    ],
-  },
-  貼る: {
-    meaning: "贴",
-    examples: [
-      { ja: "壁に写真を貼ります。", zh: "把照片贴在墙上。" },
-      { ja: "封筒に切手を貼りました。", zh: "在信封上贴了邮票。" },
-      { ja: "ここに紙を貼ってください。", zh: "请把纸贴在这里。" },
-    ],
-  },
-  晴れる: {
-    meaning: "放晴",
-    examples: [
-      { ja: "明日は晴れます。", zh: "明天会放晴。" },
-      { ja: "午後から空が晴れました。", zh: "下午开始天放晴了。" },
-      { ja: "晴れた日に散歩します。", zh: "晴天散步。" },
-    ],
-  },
-  引く: {
-    meaning: "拉；减去",
-    examples: [
-      { ja: "ドアを引いてください。", zh: "请拉门。" },
-      { ja: "辞書で言葉を引きます。", zh: "用词典查词。" },
-      { ja: "十から三を引きます。", zh: "十减三。" },
-    ],
-  },
-  弾く: {
-    meaning: "弹奏",
-    examples: [
-      { ja: "ピアノを弾きます。", zh: "弹钢琴。" },
-      { ja: "姉はギターを弾けます。", zh: "姐姐会弹吉他。" },
-      { ja: "毎日少しピアノを弾きます。", zh: "每天弹一点钢琴。" },
-    ],
-  },
-  吹く: {
-    meaning: "吹",
-    examples: [
-      { ja: "風が強く吹いています。", zh: "风吹得很大。" },
-      { ja: "口でふうっと吹きます。", zh: "用嘴呼地吹。" },
-      { ja: "春に暖かい風が吹きます。", zh: "春天吹来温暖的风。" },
-    ],
-  },
-  降る: {
-    meaning: "下雨；下雪",
-    examples: [
-      { ja: "雨が降っています。", zh: "正在下雨。" },
-      { ja: "明日は雪が降ります。", zh: "明天会下雪。" },
-      { ja: "昨日、たくさん雨が降りました。", zh: "昨天下了很多雨。" },
-    ],
-  },
-  曲る: {
-    meaning: "转弯",
-    examples: [
-      { ja: "次の角を右に曲がります。", zh: "在下一个路口右转。" },
-      { ja: "駅の前で左に曲がってください。", zh: "请在车站前左转。" },
-      { ja: "道が少し曲がっています。", zh: "路有点弯。" },
-    ],
-  },
-  待つ: {
-    meaning: "等待",
-    examples: [
-      { ja: "駅で友達を待ちます。", zh: "在车站等朋友。" },
-      { ja: "少し待ってください。", zh: "请等一下。" },
-      { ja: "バスを十分待ちました。", zh: "等了十分钟公交车。" },
-    ],
-  },
-  磨く: {
-    meaning: "刷；擦亮",
-    examples: [
-      { ja: "朝、歯を磨きます。", zh: "早上刷牙。" },
-      { ja: "靴をきれいに磨きました。", zh: "把鞋擦干净了。" },
-      { ja: "寝る前に歯を磨いてください。", zh: "睡前请刷牙。" },
-    ],
-  },
-  見せる: {
-    meaning: "给看；展示",
-    examples: [
-      { ja: "写真を見せてください。", zh: "请给我看照片。" },
-      { ja: "先生に宿題を見せます。", zh: "给老师看作业。" },
-      { ja: "新しい服を友達に見せました。", zh: "给朋友看了新衣服。" },
-    ],
-  },
-  持つ: {
-    meaning: "拿；持有",
-    examples: [
-      { ja: "かばんを持っています。", zh: "拿着包。" },
-      { ja: "傘を持って行きます。", zh: "带伞去。" },
-      { ja: "重い荷物を持ちました。", zh: "拿了重行李。" },
-    ],
-  },
-  呼ぶ: {
-    meaning: "叫；邀请",
-    examples: [
-      { ja: "友達を家に呼びます。", zh: "邀请朋友来家里。" },
-      { ja: "先生を呼んでください。", zh: "请叫老师。" },
-      { ja: "私を名前で呼んでください。", zh: "请叫我的名字。" },
-    ],
-  },
-  渡す: {
-    meaning: "交给",
-    examples: [
-      { ja: "先生に手紙を渡します。", zh: "把信交给老师。" },
-      { ja: "友達にプレゼントを渡しました。", zh: "把礼物交给了朋友。" },
-      { ja: "これを母に渡してください。", zh: "请把这个交给妈妈。" },
-    ],
-  },
-  渡る: {
-    meaning: "过；渡过",
-    examples: [
-      { ja: "橋を渡ります。", zh: "过桥。" },
-      { ja: "道を渡ってください。", zh: "请过马路。" },
-      { ja: "川を渡りました。", zh: "过了河。" },
-    ],
-  },
-  横: {
-    meaning: "旁边；横向",
-    examples: [
-      { ja: "銀行は駅の横にあります。", zh: "银行在车站旁边。" },
-      { ja: "横に座ってください。", zh: "请坐在旁边。" },
-      { ja: "紙を横にしてください。", zh: "请把纸横过来。" },
-    ],
-  },
-  参加: {
-    meaning: "参加",
-    examples: [
-      { ja: "授業に参加します。", zh: "参加课程。" },
-      { ja: "会議に参加しました。", zh: "参加了会议。" },
-      { ja: "友達とイベントに参加します。", zh: "和朋友参加活动。" },
-    ],
-  },
-  得る: {
-    meaning: "得到",
-    examples: [
-      { ja: "いい結果を得ました。", zh: "得到了好结果。" },
-      { ja: "新しい知識を得ます。", zh: "获得新知识。" },
-      { ja: "経験を得ました。", zh: "获得了经验。" },
-    ],
-  },
-  頭: {
-    meaning: "头",
-    examples: [
-      { ja: "頭が痛いです。", zh: "头疼。" },
-      { ja: "頭に帽子をかぶります。", zh: "头上戴帽子。" },
-      { ja: "朝、頭を洗いました。", zh: "早上洗了头。" },
-    ],
-  },
-  顔: {
-    meaning: "脸",
-    examples: [
-      { ja: "朝、顔を洗います。", zh: "早上洗脸。" },
-      { ja: "顔が赤くなりました。", zh: "脸变红了。" },
-      { ja: "友達の顔を見ました。", zh: "看到了朋友的脸。" },
-    ],
-  },
-  口: {
-    meaning: "嘴",
-    examples: [
-      { ja: "口を開けてください。", zh: "请张开嘴。" },
-      { ja: "口が痛いです。", zh: "嘴疼。" },
-      { ja: "口で言ってください。", zh: "请用嘴说。" },
-    ],
-  },
-  鼻: {
-    meaning: "鼻子",
-    examples: [
-      { ja: "鼻が痛いです。", zh: "鼻子疼。" },
-      { ja: "鼻をかみます。", zh: "擤鼻子。" },
-      { ja: "鼻に水が入りました。", zh: "鼻子里进水了。" },
-    ],
-  },
-  歯: {
-    meaning: "牙齿",
-    examples: [
-      { ja: "毎朝、歯を磨きます。", zh: "每天早上刷牙。" },
-      { ja: "歯が痛いです。", zh: "牙疼。" },
-      { ja: "白い歯ですね。", zh: "牙齿很白呢。" },
-    ],
-  },
-  体: {
-    meaning: "身体",
-    examples: [
-      { ja: "体を大切にしてください。", zh: "请保重身体。" },
-      { ja: "運動して体を強くします。", zh: "运动让身体变强。" },
-      { ja: "体の調子がいいです。", zh: "身体状态很好。" },
-    ],
-  },
-  お腹: {
-    meaning: "肚子",
-    examples: [
-      { ja: "お腹が痛いです。", zh: "肚子疼。" },
-      { ja: "お腹がすきました。", zh: "肚子饿了。" },
-      { ja: "もうお腹がいっぱいです。", zh: "肚子已经饱了。" },
-    ],
-  },
-  背: {
-    meaning: "身高；背",
-    examples: [
-      { ja: "兄は背が高いです。", zh: "哥哥个子高。" },
-      { ja: "私は背が低いです。", zh: "我个子矮。" },
-      { ja: "背をまっすぐにしてください。", zh: "请把背挺直。" },
-    ],
-  },
-  トイレ: {
-    meaning: "厕所",
-    examples: [
-      { ja: "トイレはどこですか。", zh: "厕所在哪里？" },
-      { ja: "トイレへ行きます。", zh: "去厕所。" },
-      { ja: "トイレを借りてもいいですか。", zh: "可以借用厕所吗？" },
-    ],
-  },
-  お手洗い: {
-    meaning: "厕所",
-    examples: [
-      { ja: "お手洗いはどこですか。", zh: "厕所在哪里？" },
-      { ja: "お手洗いへ行きます。", zh: "去厕所。" },
-      { ja: "お手洗いを借りてもいいですか。", zh: "可以借用厕所吗？" },
-    ],
-  },
-  生徒: {
-    meaning: "学生",
-    examples: [
-      { ja: "生徒が教室にいます。", zh: "学生在教室里。" },
-      { ja: "先生は生徒に日本語を教えます。", zh: "老师教学生日语。" },
-      { ja: "生徒は宿題を出しました。", zh: "学生交了作业。" },
-    ],
-  },
-  薬: {
-    meaning: "药",
-    examples: [
-      { ja: "薬を飲みます。", zh: "吃药。" },
-      { ja: "この薬は一日三回飲みます。", zh: "这个药一天吃三次。" },
-      { ja: "病院で薬をもらいました。", zh: "在医院拿了药。" },
-    ],
-  },
-  鳥: {
-    meaning: "鸟",
-    examples: [
-      { ja: "鳥が空を飛んでいます。", zh: "鸟在天上飞。" },
-      { ja: "朝、鳥の声を聞きます。", zh: "早上听到鸟叫声。" },
-      { ja: "公園に鳥がいます。", zh: "公园里有鸟。" },
-    ],
-  },
-  写真: {
-    meaning: "照片",
-    examples: [
-      { ja: "写真を撮ります。", zh: "拍照片。" },
-      { ja: "この写真を見てください。", zh: "请看这张照片。" },
-      { ja: "友達に写真を見せました。", zh: "给朋友看了照片。" },
-    ],
-  },
-  テーブル: {
-    meaning: "桌子",
-    examples: [
-      { ja: "テーブルの上に本があります。", zh: "桌子上有书。" },
-      { ja: "テーブルをきれいにします。", zh: "把桌子擦干净。" },
-      { ja: "テーブルでご飯を食べます。", zh: "在桌子旁吃饭。" },
-    ],
-  },
-  ポスト: {
-    meaning: "邮筒",
-    examples: [
-      { ja: "手紙をポストに入れます。", zh: "把信放进邮筒。" },
-      { ja: "駅の前にポストがあります。", zh: "车站前有邮筒。" },
-      { ja: "ポストはどこですか。", zh: "邮筒在哪里？" },
-    ],
-  },
-  問題: {
-    meaning: "问题",
-    examples: [
-      { ja: "この問題は難しいです。", zh: "这个问题很难。" },
-      { ja: "問題に答えます。", zh: "回答问题。" },
-      { ja: "問題が分かりません。", zh: "不懂这个问题。" },
-    ],
-  },
-  質問: {
-    meaning: "问题；提问",
-    examples: [
-      { ja: "先生に質問します。", zh: "向老师提问。" },
-      { ja: "質問があります。", zh: "我有问题。" },
-      { ja: "この質問に答えてください。", zh: "请回答这个问题。" },
-    ],
-  },
-  レコード: {
-    meaning: "唱片",
-    examples: [
-      { ja: "父は古いレコードを聞きます。", zh: "父亲听旧唱片。" },
-      { ja: "店でレコードを買いました。", zh: "在店里买了唱片。" },
-      { ja: "このレコードは有名です。", zh: "这张唱片很有名。" },
-    ],
-  },
-  マッチ: {
-    meaning: "火柴",
-    examples: [
-      { ja: "マッチで火をつけます。", zh: "用火柴点火。" },
-      { ja: "マッチを使わないでください。", zh: "请不要使用火柴。" },
-      { ja: "箱の中にマッチがあります。", zh: "盒子里有火柴。" },
-    ],
-  },
-  嫌い: {
-    meaning: "不喜欢",
-    examples: [
-      { ja: "私はたばこが嫌いです。", zh: "我不喜欢烟。" },
-      { ja: "弟は野菜が嫌いです。", zh: "弟弟不喜欢蔬菜。" },
-      { ja: "嫌いな食べ物はありません。", zh: "没有不喜欢的食物。" },
-    ],
-  },
-  下さい: {
-    meaning: "请给我；请做",
-    examples: [
-      { ja: "水を下さい。", zh: "请给我水。" },
-      { ja: "少し待って下さい。", zh: "请稍等一下。" },
-      { ja: "もう一度言って下さい。", zh: "请再说一次。" },
-    ],
-  },
-  はい: {
-    meaning: "是；好的",
-    examples: [
-      { ja: "はい、分かりました。", zh: "好的，我明白了。" },
-      { ja: "はい、そうです。", zh: "是的，是这样。" },
-      { ja: "はい、お願いします。", zh: "好的，拜托了。" },
-    ],
-  },
-  ない: {
-    meaning: "没有；不",
-    examples: [
-      { ja: "時間がないです。", zh: "没有时间。" },
-      { ja: "お金がありません。", zh: "没有钱。" },
-      { ja: "今日は行かないです。", zh: "今天不去。" },
-    ],
-  },
-  "～がる": {
-    meaning: "显得；想要",
-    examples: [
-      { ja: "子供が寒がっています。", zh: "孩子觉得冷。" },
-      { ja: "弟はお菓子を欲しがっています。", zh: "弟弟想要点心。" },
-      { ja: "犬が外へ出たがっています。", zh: "狗想出去。" },
-    ],
-  },
-  映画: {
-    meaning: "电影",
-    examples: [
-      { ja: "週末に映画を見ます。", zh: "周末看电影。" },
-      { ja: "友達と映画に行きました。", zh: "和朋友去看了电影。" },
-      { ja: "この映画はおもしろいです。", zh: "这部电影很有趣。" },
-    ],
-  },
-  映画館: {
-    meaning: "电影院",
-    examples: [
-      { ja: "映画館で映画を見ます。", zh: "在电影院看电影。" },
-      { ja: "映画館は駅の近くです。", zh: "电影院在车站附近。" },
-      { ja: "友達と映画館へ行きます。", zh: "和朋友去电影院。" },
-    ],
-  },
-  "～円": {
-    meaning: "日元",
-    examples: [
-      { ja: "この本は千円です。", zh: "这本书是一千日元。" },
-      { ja: "切符は二百円でした。", zh: "票是二百日元。" },
-      { ja: "五百円あります。", zh: "有五百日元。" },
-    ],
-  },
-  "お～": {
-    meaning: "敬语前缀",
-    examples: [
-      { ja: "お名前を教えてください。", zh: "请告诉我您的名字。" },
-      { ja: "お茶をどうぞ。", zh: "请喝茶。" },
-      { ja: "お元気ですか。", zh: "您好吗？" },
-    ],
-  },
-  "～回": {
-    meaning: "次数",
-    examples: [
-      { ja: "日本へ一回行きました。", zh: "去过一次日本。" },
-      { ja: "もう一回言ってください。", zh: "请再说一次。" },
-      { ja: "この映画を三回見ました。", zh: "这部电影看了三次。" },
-    ],
-  },
-  "～階": {
-    meaning: "楼层",
-    examples: [
-      { ja: "教室は二階にあります。", zh: "教室在二楼。" },
-      { ja: "三階へ行きます。", zh: "去三楼。" },
-      { ja: "一階で待っています。", zh: "在一楼等着。" },
-    ],
-  },
-  "～か月": {
-    meaning: "个月",
-    examples: [
-      { ja: "日本語を三か月勉強しました。", zh: "学了三个月日语。" },
-      { ja: "一か月に一回帰ります。", zh: "一个月回去一次。" },
-      { ja: "二か月前に来ました。", zh: "两个月前来了。" },
-    ],
-  },
-  "～月": {
-    meaning: "月份",
-    examples: [
-      { ja: "四月に学校が始まります。", zh: "四月开学。" },
-      { ja: "八月は暑いです。", zh: "八月很热。" },
-      { ja: "十二月に旅行します。", zh: "十二月去旅行。" },
-    ],
-  },
-  "～側": {
-    meaning: "一侧",
-    examples: [
-      { ja: "駅の右側に銀行があります。", zh: "车站右侧有银行。" },
-      { ja: "道の左側を歩きます。", zh: "走在路的左侧。" },
-      { ja: "川の向こう側に家があります。", zh: "河对岸有房子。" },
-    ],
-  },
-  "～くらい": {
-    meaning: "大约",
-    examples: [
-      { ja: "三十分くらい待ちました。", zh: "等了大约三十分钟。" },
-      { ja: "駅まで十分ぐらいです。", zh: "到车站大约十分钟。" },
-      { ja: "五人くらい来ます。", zh: "大约五个人会来。" },
-    ],
-  },
-  "～個": {
-    meaning: "个",
-    examples: [
-      { ja: "りんごを三個買いました。", zh: "买了三个苹果。" },
-      { ja: "卵を二個使います。", zh: "用两个鸡蛋。" },
-      { ja: "コップが一個あります。", zh: "有一个杯子。" },
-    ],
-  },
-  "～語": {
-    meaning: "语言",
-    examples: [
-      { ja: "日本語を勉強しています。", zh: "正在学习日语。" },
-      { ja: "英語を少し話します。", zh: "会说一点英语。" },
-      { ja: "これは何語ですか。", zh: "这是什么语言？" },
-    ],
-  },
-  "～ころ": {
-    meaning: "大约时候",
-    examples: [
-      { ja: "七時ごろ起きます。", zh: "七点左右起床。" },
-      { ja: "昼ごろ電話します。", zh: "中午左右打电话。" },
-      { ja: "子供のころ、よく泳ぎました。", zh: "小时候经常游泳。" },
-    ],
-  },
-  "～歳": {
-    meaning: "岁",
-    examples: [
-      { ja: "妹は十歳です。", zh: "妹妹十岁。" },
-      { ja: "何歳ですか。", zh: "几岁？" },
-      { ja: "父は五十歳です。", zh: "父亲五十岁。" },
-    ],
-  },
-  "～冊": {
-    meaning: "本；册",
-    examples: [
-      { ja: "本を三冊買いました。", zh: "买了三本书。" },
-      { ja: "ノートが二冊あります。", zh: "有两本笔记本。" },
-      { ja: "一週間に一冊読みます。", zh: "一周读一本。" },
-    ],
-  },
-  "～さん": {
-    meaning: "先生；女士",
-    examples: [
-      { ja: "田中さんは先生です。", zh: "田中先生是老师。" },
-      { ja: "山田さんに会いました。", zh: "见到了山田先生。" },
-      { ja: "お母さんは元気です。", zh: "妈妈很好。" },
-    ],
-  },
-  "～時": {
-    meaning: "点；时候",
-    examples: [
-      { ja: "七時に起きます。", zh: "七点起床。" },
-      { ja: "暇な時、本を読みます。", zh: "有空的时候读书。" },
-      { ja: "子供の時、ここに住んでいました。", zh: "小时候住在这里。" },
-    ],
-  },
-  "～時間": {
-    meaning: "小时",
-    examples: [
-      { ja: "毎日一時間勉強します。", zh: "每天学习一小时。" },
-      { ja: "三時間かかりました。", zh: "花了三个小时。" },
-      { ja: "二時間ぐらい寝ました。", zh: "睡了大约两小时。" },
-    ],
-  },
-  "～中": {
-    meaning: "中；期间",
-    examples: [
-      { ja: "授業中は静かにしてください。", zh: "上课中请安静。" },
-      { ja: "旅行中に写真を撮りました。", zh: "旅行中拍了照片。" },
-      { ja: "一日中雨が降りました。", zh: "下了一整天雨。" },
-    ],
-  },
-  "～週間": {
-    meaning: "周",
-    examples: [
-      { ja: "二週間日本にいました。", zh: "在日本待了两周。" },
-      { ja: "一週間に三回走ります。", zh: "一周跑三次。" },
-      { ja: "来週まで一週間あります。", zh: "到下周还有一周。" },
-    ],
-  },
-  "～人": {
-    meaning: "人；人数",
-    examples: [
-      { ja: "教室に学生が二十人います。", zh: "教室里有二十名学生。" },
-      { ja: "三人で映画を見ます。", zh: "三个人看电影。" },
-      { ja: "あの人は日本人です。", zh: "那个人是日本人。" },
-    ],
-  },
-  "～すぎ": {
-    meaning: "过于；经过",
-    examples: [
-      { ja: "食べすぎました。", zh: "吃太多了。" },
-      { ja: "この服は大きすぎます。", zh: "这件衣服太大了。" },
-      { ja: "三時すぎに来ます。", zh: "三点多来。" },
-    ],
-  },
-  "～ずつ": {
-    meaning: "每次；各",
-    examples: [
-      { ja: "一つずつ取ってください。", zh: "请一个一个拿。" },
-      { ja: "二人ずつ入ります。", zh: "每次两个人进去。" },
-      { ja: "少しずつ覚えます。", zh: "一点一点记住。" },
-    ],
-  },
-  "～台": {
-    meaning: "台；辆",
-    examples: [
-      { ja: "車が三台あります。", zh: "有三辆车。" },
-      { ja: "パソコンを一台買いました。", zh: "买了一台电脑。" },
-      { ja: "自転車が二台止まっています。", zh: "停着两辆自行车。" },
-    ],
-  },
-  "～だけ": {
-    meaning: "只；仅",
-    examples: [
-      { ja: "水だけ飲みます。", zh: "只喝水。" },
-      { ja: "少しだけ待ってください。", zh: "请只等一下。" },
-      { ja: "今日は一人だけ来ました。", zh: "今天只来了一个人。" },
-    ],
-  },
-  "～たち": {
-    meaning: "们",
-    examples: [
-      { ja: "子供たちが公園で遊んでいます。", zh: "孩子们在公园玩。" },
-      { ja: "私たちは学生です。", zh: "我们是学生。" },
-      { ja: "友達たちと旅行します。", zh: "和朋友们去旅行。" },
-    ],
-  },
-  "～度": {
-    meaning: "度；次",
-    examples: [
-      { ja: "今日は二十度です。", zh: "今天二十度。" },
-      { ja: "もう一度言ってください。", zh: "请再说一次。" },
-      { ja: "三度目に分かりました。", zh: "第三次明白了。" },
-    ],
-  },
-  "～とき": {
-    meaning: "时候",
-    examples: [
-      { ja: "暇なとき、本を読みます。", zh: "有空的时候读书。" },
-      { ja: "子供のとき、よく遊びました。", zh: "小时候经常玩。" },
-      { ja: "困ったとき、先生に聞きます。", zh: "遇到困难时问老师。" },
-    ],
-  },
-  "～など": {
-    meaning: "等等",
-    examples: [
-      { ja: "本や雑誌などを読みます。", zh: "读书、杂志等等。" },
-      { ja: "りんごやバナナなどを買いました。", zh: "买了苹果、香蕉等等。" },
-      { ja: "学校で日本語などを勉強します。", zh: "在学校学习日语等等。" },
-    ],
-  },
-  "何～": {
-    meaning: "什么",
-    examples: [
-      { ja: "何時に来ますか。", zh: "几点来？" },
-      { ja: "何人いますか。", zh: "有几个人？" },
-      { ja: "何曜日が休みですか。", zh: "星期几休息？" },
-    ],
-  },
-  "～日": {
-    meaning: "日；天",
-    examples: [
-      { ja: "今日は六月一日です。", zh: "今天是六月一日。" },
-      { ja: "日本に三日いました。", zh: "在日本待了三天。" },
-      { ja: "日曜日に休みます。", zh: "星期天休息。" },
-    ],
-  },
-  "～年": {
-    meaning: "年",
-    examples: [
-      { ja: "来年日本へ行きます。", zh: "明年去日本。" },
-      { ja: "日本語を一年勉強しました。", zh: "学了一年日语。" },
-      { ja: "今年は忙しいです。", zh: "今年很忙。" },
-    ],
-  },
-  "～杯": {
-    meaning: "杯",
-    examples: [
-      { ja: "水を一杯飲みます。", zh: "喝一杯水。" },
-      { ja: "コーヒーを二杯ください。", zh: "请给我两杯咖啡。" },
-      { ja: "お茶を三杯入れました。", zh: "倒了三杯茶。" },
-    ],
-  },
-  "～番": {
-    meaning: "第；号码",
-    examples: [
-      { ja: "一番前に座ります。", zh: "坐在最前面。" },
-      { ja: "電話番号を教えてください。", zh: "请告诉我电话号码。" },
-      { ja: "二番のバスに乗ります。", zh: "坐二号公交车。" },
-    ],
-  },
-  "～匹": {
-    meaning: "只",
-    examples: [
-      { ja: "犬が一匹います。", zh: "有一只狗。" },
-      { ja: "猫を二匹飼っています。", zh: "养了两只猫。" },
-      { ja: "魚を三匹見ました。", zh: "看到了三条鱼。" },
-    ],
-  },
-  "～分": {
-    meaning: "分钟",
-    examples: [
-      { ja: "十分待ってください。", zh: "请等十分钟。" },
-      { ja: "三十分勉強します。", zh: "学习三十分钟。" },
-      { ja: "駅まで五分です。", zh: "到车站五分钟。" },
-    ],
-  },
-  "～本": {
-    meaning: "根；条；瓶",
-    examples: [
-      { ja: "ペンが三本あります。", zh: "有三支笔。" },
-      { ja: "水を一本ください。", zh: "请给我一瓶水。" },
-      { ja: "映画を二本見ました。", zh: "看了两部电影。" },
-    ],
-  },
-  "～枚": {
-    meaning: "张；件",
-    examples: [
-      { ja: "紙を三枚ください。", zh: "请给我三张纸。" },
-      { ja: "切手を二枚買いました。", zh: "买了两张邮票。" },
-      { ja: "シャツを一枚着ます。", zh: "穿一件衬衫。" },
-    ],
-  },
-  "～前": {
-    meaning: "以前；前面",
-    examples: [
-      { ja: "三年前に日本へ行きました。", zh: "三年前去了日本。" },
-      { ja: "駅の前で待っています。", zh: "在车站前等着。" },
-      { ja: "寝る前に歯を磨きます。", zh: "睡前刷牙。" },
-    ],
-  },
-  "～屋": {
-    meaning: "店",
-    examples: [
-      { ja: "本屋で本を買います。", zh: "在书店买书。" },
-      { ja: "花屋は駅の近くです。", zh: "花店在车站附近。" },
-      { ja: "肉屋へ行きました。", zh: "去了肉店。" },
-    ],
-  },
-};
-
-function meaningParts(meaning) {
-  const cleaned = meaning
-    .replace(/（[^）]*）|\([^)]*\)/g, "")
-    .replace(/--[^;；,，、。]*/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
-  return cleaned
-    .split(/[;,，、；]/)
-    .map((part) => part.replace(/[（）()]/g, "").trim())
-    .filter(Boolean);
-}
-
-function primaryMeaning(word, meaning) {
-  return meaning;
-}
-
-function toMasuForm(word, reading = "") {
-  const surface = displayWord(word);
-  const cleanReading = reading.split(";")[0].replace(/\s*\(する\)/, "").trim();
-
-  if (reading.includes("(する)") || surface.endsWith("する")) {
-    return `${surface.replace(/する$/, "")}します`;
-  }
-
-  if (surface === "来る") return "来ます";
-  if (surface === "行く") return "行きます";
-  if (surface === "居る") return "います";
-  if (surface === "有る" || surface === "在る") return "あります";
-
-  const last = surface.at(-1);
-  if (!"うくぐすつぬぶむる".includes(last)) return surface;
-
-  if (last === "る") {
-    const beforeRu = cleanReading.at(-2);
-    if ("いきしちにひみりえけせてねへめれ".includes(beforeRu)) {
-      return `${surface.slice(0, -1)}ます`;
-    }
-  }
-
-  const endings = {
-    う: "います",
-    く: "きます",
-    ぐ: "ぎます",
-    す: "します",
-    つ: "ちます",
-    ぬ: "にます",
-    ぶ: "びます",
-    む: "みます",
-    る: "ります",
-  };
-  return `${surface.slice(0, -1)}${endings[last]}`;
-}
-
-function toPastMasu(masu) {
-  return masu.endsWith("ます") ? `${masu.slice(0, -2)}ました` : masu;
-}
-
-function isLikelyVerb(word, reading = "") {
-  const surface = displayWord(word);
-  return reading.includes("(する)") || /[うくぐすつぬぶむる]$/.test(surface);
-}
-
-function isLikelyIAdjective(word) {
-  const surface = displayWord(word);
-  return surface.endsWith("い") && !["いい", "きれい", "お手洗い", "嫌い", "下さい", "はい"].includes(surface);
-}
-
-function includesAny(text, words) {
-  return words.some((word) => text.includes(word));
-}
-
-function equalsAny(text, words) {
-  return words.includes(text);
-}
-
-function cleanMeaningForSentence(meaning) {
-  return meaning
-    .replace(/（[^）]*）|\([^)]*\)/g, "")
-    .replace(/[;；,，、].*$/, "")
-    .replace(/的$/, "")
-    .trim();
-}
-
-function buildIAdjectiveExamples(surface, shortMeaning) {
-  const zh = cleanMeaningForSentence(shortMeaning);
-  const colorMeanings = {
-    青い: "蓝色",
-    赤い: "红色",
-    黄色い: "黄色",
-    黒い: "黑色",
-    白い: "白色",
-  };
-
-  if (colorMeanings[surface]) {
-    const color = colorMeanings[surface];
-    return [
-      { ja: `${surface}花があります。`, zh: `有${color}的花。` },
-      { ja: `${surface}服を着ています。`, zh: `穿着${color}的衣服。` },
-      { ja: `${surface}車を見ました。`, zh: `看到了${color}的车。` },
-    ];
-  }
-
-  if (includesAny(surface, ["暑い", "寒い", "暖かい", "涼しい"])) {
-    return [
-      { ja: `今日は${surface}です。`, zh: `今天很${zh}。` },
-      { ja: `${surface}日が続きます。`, zh: `${zh}的日子会持续。` },
-      { ja: `${surface}ので、家にいます。`, zh: `因为很${zh}，所以在家。` },
-    ];
-  }
-
-  if (includesAny(surface, ["熱い", "冷たい", "温い"])) {
-    return [
-      { ja: `このお茶は${surface}です。`, zh: `这杯茶很${zh}。` },
-      { ja: `${surface}水を飲みます。`, zh: `喝${zh}的水。` },
-      { ja: `手が${surface}です。`, zh: `手很${zh}。` },
-    ];
-  }
-
-  if (includesAny(surface, ["大きい", "小さい", "長い", "短い", "広い", "狭い", "高い", "低い", "太い", "細い", "厚い", "薄い"])) {
-    return [
-      { ja: `この部屋は${surface}です。`, zh: `这个房间很${zh}。` },
-      { ja: `${surface}本を読みます。`, zh: `读${zh}的书。` },
-      { ja: `もう少し${surface}ほうがいいです。`, zh: `再${zh}一点比较好。` },
-    ];
-  }
-
-  if (includesAny(surface, ["新しい", "古い"])) {
-    return [
-      { ja: `${surface}靴を買いました。`, zh: `买了${zh}的鞋。` },
-      { ja: `この家は${surface}です。`, zh: `这栋房子很${zh}。` },
-      { ja: `${surface}本を読みます。`, zh: `读${zh}的书。` },
-    ];
-  }
-
-  if (includesAny(surface, ["美味しい", "甘い", "辛い", "まずい"])) {
-    return [
-      { ja: `この料理は${surface}です。`, zh: `这道菜很${zh}。` },
-      { ja: `${surface}お菓子を食べます。`, zh: `吃${zh}的点心。` },
-      { ja: `とても${surface}ですね。`, zh: `真${zh}啊。` },
-    ];
-  }
-
-  if (surface === "欲しい") {
-    return [
-      { ja: "新しいかばんが欲しいです。", zh: "想要一个新包。" },
-      { ja: "水が欲しいです。", zh: "想要水。" },
-      { ja: "時間がもう少し欲しいです。", zh: "想再多一点时间。" },
-    ];
-  }
-
-  if (surface === "痛い") {
-    return [
-      { ja: "頭が痛いです。", zh: "头疼。" },
-      { ja: "歯が痛いので、病院へ行きます。", zh: "因为牙疼，所以去医院。" },
-      { ja: "足が少し痛いです。", zh: "脚有点疼。" },
-    ];
-  }
-
-  if (surface === "危ない") {
-    return [
-      { ja: "この道は危ないです。", zh: "这条路很危险。" },
-      { ja: "危ないですから、気をつけてください。", zh: "很危险，请小心。" },
-      { ja: "夜の川は危ないです。", zh: "晚上的河边很危险。" },
-    ];
-  }
-
-  if (surface === "悪い") {
-    return [
-      { ja: "今日は天気が悪いです。", zh: "今天天气不好。" },
-      { ja: "気分が悪いです。", zh: "身体不舒服。" },
-      { ja: "悪いことをしてはいけません。", zh: "不可以做坏事。" },
-    ];
-  }
-
-  if (includesAny(surface, ["多い", "少ない"])) {
-    const amount = surface === "多い" ? "多" : "少";
-    return [
-      { ja: `今日は人が${surface}です。`, zh: `今天人很${amount}。` },
-      { ja: `${surface}時は早く帰ります。`, zh: `人${amount}的时候早点回去。` },
-      { ja: `この町は車が${surface}です。`, zh: `这个城市车很${amount}。` },
-    ];
-  }
-
-  if (includesAny(surface, ["強い", "弱い"])) {
-    if (surface === "弱い") {
-      return [
-        { ja: "今日は風が弱いです。", zh: "今天风很弱。" },
-        { ja: "体が弱いので、よく休みます。", zh: "因为身体弱，所以经常休息。" },
-        { ja: "この薬は少し弱いです。", zh: "这个药有点弱。" },
-      ];
-    }
-    return [
-      { ja: "今日は風が強いです。", zh: "今天风很强。" },
-      { ja: "強い人になりたいです。", zh: "想成为强大的人。" },
-      { ja: "この薬は少し強いです。", zh: "这个药有点强。" },
-    ];
-  }
-
-  if (surface === "若い") {
-    return [
-      { ja: "若い先生が来ました。", zh: "年轻的老师来了。" },
-      { ja: "父はまだ若いです。", zh: "父亲还年轻。" },
-      { ja: "若い人が多いです。", zh: "年轻人很多。" },
-    ];
-  }
-
-  if (surface === "可愛い") {
-    return [
-      { ja: "可愛い猫がいます。", zh: "有一只可爱的猫。" },
-      { ja: "妹は可愛い服を着ています。", zh: "妹妹穿着可爱的衣服。" },
-      { ja: "この犬はとても可愛いです。", zh: "这只狗非常可爱。" },
-    ];
-  }
-
-  if (surface === "汚い") {
-    return [
-      { ja: "部屋が汚いです。", zh: "房间很脏。" },
-      { ja: "汚い手を洗ってください。", zh: "请把脏手洗干净。" },
-      { ja: "机の上が少し汚いです。", zh: "桌子上有点脏。" },
-    ];
-  }
-
-  if (surface === "うるさい") {
-    return [
-      { ja: "外がうるさいです。", zh: "外面很吵。" },
-      { ja: "うるさいので、窓を閉めます。", zh: "因为很吵，所以关窗。" },
-      { ja: "この部屋は少しうるさいです。", zh: "这个房间有点吵。" },
-    ];
-  }
-
-  if (surface === "明るい") {
-    return [
-      { ja: "この部屋は明るいです。", zh: "这个房间很明亮。" },
-      { ja: "明るい人ですね。", zh: "真是开朗的人呢。" },
-      { ja: "朝、空が明るくなります。", zh: "早上天空会变亮。" },
-    ];
-  }
-
-  if (includesAny(surface, ["暗い"])) {
-    return [
-      { ja: "部屋が暗いです。", zh: "房间很暗。" },
-      { ja: "暗い道を歩きます。", zh: "走在昏暗的路上。" },
-      { ja: "外はもう暗いです。", zh: "外面已经很暗了。" },
-    ];
-  }
-
-  if (includesAny(surface, ["忙しい", "楽しい", "面白い", "つまらない", "難しい", "易しい"])) {
-    return [
-      { ja: `今日は${surface}です。`, zh: `今天很${zh}。` },
-      { ja: `この本は${surface}です。`, zh: `这本书很${zh}。` },
-      { ja: `とても${surface}ですね。`, zh: `真${zh}啊。` },
-    ];
-  }
-
-  if (includesAny(surface, ["早い", "速い", "遅い"])) {
-    if (surface === "速い") {
-      return [
-        { ja: "この電車は速いです。", zh: "这辆电车很快。" },
-        { ja: "速い車を見ました。", zh: "看到了很快的车。" },
-        { ja: "兄は走るのが速いです。", zh: "哥哥跑得很快。" },
-      ];
-    }
-    if (surface === "早い") {
-      return [
-        { ja: "朝早く起きます。", zh: "早上早起。" },
-        { ja: "今日は学校へ行くのが早いです。", zh: "今天去学校很早。" },
-        { ja: "早い時間に帰ります。", zh: "在较早的时间回去。" },
-      ];
-    }
-    return [
-      { ja: `朝早く起きます。`, zh: `早上早起。` },
-      { ja: `この電車は${surface}です。`, zh: `这辆电车很${zh}。` },
-      { ja: `今日は少し${surface}です。`, zh: `今天有点${zh}。` },
-    ];
-  }
-
-  if (includesAny(surface, ["重い", "軽い", "丸い"])) {
-    return [
-      { ja: `このかばんは${surface}です。`, zh: `这个包很${zh}。` },
-      { ja: `${surface}物があります。`, zh: `有${zh}的东西。` },
-      { ja: `少し${surface}ですね。`, zh: `有点${zh}呢。` },
-    ];
-  }
-
-  return [
-    { ja: `この本は${surface}です。`, zh: `这本书很${zh}。` },
-    { ja: `${surface}日ですね。`, zh: `真是${zh}的一天呢。` },
-    { ja: `少し${surface}です。`, zh: `有点${zh}。` },
-  ];
-}
-
-function buildNumberExamples(surface, shortMeaning) {
-  return [
-    { ja: `数字の${surface}を書きます。`, zh: `写数字${shortMeaning}。` },
-    { ja: `${surface}から数えます。`, zh: `从${shortMeaning}开始数。` },
-    { ja: `${surface}を読んでください。`, zh: `请读${shortMeaning}。` },
-  ];
-}
-
-function buildNounExamples(surface, shortMeaning) {
-  if (
-    equalsAny(surface, [
-      "頭",
-      "顔",
-      "目",
-      "耳",
-      "口",
-      "鼻",
-      "歯",
-      "手",
-      "足",
-      "体",
-      "お腹",
-      "背",
-    ])
-  ) {
-    return [
-      { ja: `${surface}が痛いです。`, zh: `${shortMeaning}疼。` },
-      { ja: `${surface}を洗います。`, zh: `洗${shortMeaning}。` },
-      { ja: `${surface}を見てください。`, zh: `请看${shortMeaning}。` },
-    ];
-  }
-
-  if (surface === "お手洗い" || surface === "トイレ") {
-    return [
-      { ja: `${surface}はどこですか。`, zh: `${shortMeaning}在哪里？` },
-      { ja: `${surface}へ行きます。`, zh: `去${shortMeaning}。` },
-      { ja: `${surface}を借りてもいいですか。`, zh: `可以借用${shortMeaning}吗？` },
-    ];
-  }
-
-  if (
-    includesAny(surface, [
-      "一",
-      "二",
-      "三",
-      "四",
-      "五",
-      "六",
-      "七",
-      "八",
-      "九",
-      "十",
-      "百",
-      "千",
-      "万",
-      "零",
-      "ゼロ",
-      "一つ",
-      "二つ",
-      "三つ",
-      "四つ",
-      "五つ",
-      "六つ",
-      "七つ",
-      "八つ",
-      "九つ",
-    ])
-  ) {
-    return buildNumberExamples(surface, shortMeaning);
-  }
-
-  if (includesAny(surface, ["青", "赤", "黄色", "黒", "白", "茶色", "緑"])) {
-    const color = cleanMeaningForSentence(shortMeaning);
-    return [
-      { ja: `${surface}の服を着ています。`, zh: `穿着${color}的衣服。` },
-      { ja: `${surface}の花があります。`, zh: `有${color}的花。` },
-      { ja: `${surface}が好きです。`, zh: `喜欢${color}。` },
-    ];
-  }
-
-  if (
-    includesAny(surface, [
-      "学校",
-      "駅",
-      "病院",
-      "銀行",
-      "郵便局",
-      "図書館",
-      "映画館",
-      "店",
-      "会社",
-      "部屋",
-      "家",
-      "教室",
-      "お手洗い",
-      "トイレ",
-      "公園",
-      "喫茶店",
-      "食堂",
-      "大使館",
-      "デパート",
-      "ホテル",
-      "レストラン",
-    ])
-  ) {
-    return [
-      { ja: `${surface}へ行きます。`, zh: `去${shortMeaning}。` },
-      { ja: `${surface}は駅の近くです。`, zh: `${shortMeaning}在车站附近。` },
-      { ja: `${surface}で友達に会います。`, zh: `在${shortMeaning}见朋友。` },
-    ];
-  }
-
-  if (
-    includesAny(surface, [
-      "水",
-      "お茶",
-      "肉",
-      "魚",
-      "野菜",
-      "果物",
-      "ご飯",
-      "御飯",
-      "パン",
-      "牛乳",
-      "コーヒー",
-      "卵",
-      "お菓子",
-    ])
-  ) {
-    const action = includesAny(surface, ["水", "お茶", "牛乳", "コーヒー"]) ? "飲みます" : "食べます";
-    return [
-      { ja: `${surface}を${action}。`, zh: `${action === "飲みます" ? "喝" : "吃"}${shortMeaning}。` },
-      { ja: `${surface}が好きです。`, zh: `喜欢${shortMeaning}。` },
-      { ja: `${surface}をください。`, zh: `请给我${shortMeaning}。` },
-    ];
-  }
-
-  if (
-    includesAny(surface, [
-      "本",
-      "新聞",
-      "雑誌",
-      "手紙",
-      "写真",
-      "映画",
-      "テレビ",
-      "ラジオ",
-      "音楽",
-      "漢字",
-    ])
-  ) {
-    if (surface === "手紙") {
-      return [
-        { ja: "母に手紙を書きます。", zh: "给妈妈写信。" },
-        { ja: "友達から手紙が来ました。", zh: "朋友寄来了信。" },
-        { ja: "手紙を読みました。", zh: "读了信。" },
-      ];
-    }
-    if (surface === "漢字") {
-      return [
-        { ja: "漢字を書きます。", zh: "写汉字。" },
-        { ja: "この漢字を読めますか。", zh: "你会读这个汉字吗？" },
-        { ja: "毎日、漢字を覚えます。", zh: "每天记汉字。" },
-      ];
-    }
-    if (surface === "写真") {
-      return [
-        { ja: "写真を撮ります。", zh: "拍照片。" },
-        { ja: "この写真を見てください。", zh: "请看这张照片。" },
-        { ja: "友達に写真を見せました。", zh: "给朋友看了照片。" },
-      ];
-    }
-    if (surface === "音楽" || surface === "ラジオ") {
-      return [
-        { ja: `${surface}を聞きます。`, zh: `听${shortMeaning}。` },
-        { ja: `毎日、${surface}を聞いています。`, zh: `每天听${shortMeaning}。` },
-        { ja: `${surface}が好きです。`, zh: `喜欢${shortMeaning}。` },
-      ];
-    }
-    if (surface === "テレビ" || surface === "映画") {
-      return [
-        { ja: `${surface}を見ます。`, zh: `看${shortMeaning}。` },
-        { ja: `友達と${surface}を見ました。`, zh: `和朋友看了${shortMeaning}。` },
-        { ja: `${surface}が好きです。`, zh: `喜欢${shortMeaning}。` },
-      ];
-    }
-    const action = "読みます";
-    return [
-      { ja: `${surface}を${action}。`, zh: `读${shortMeaning}。` },
-      { ja: `${surface}が好きです。`, zh: `喜欢${shortMeaning}。` },
-      { ja: `朝、${surface}を読みました。`, zh: `早上读了${shortMeaning}。` },
-    ];
-  }
-
-  if (
-    includesAny(surface, [
-      "机",
-      "椅子",
-      "かばん",
-      "靴",
-      "服",
-      "帽子",
-      "時計",
-      "鉛筆",
-      "ペン",
-      "傘",
-      "車",
-      "自転車",
-      "電車",
-      "電話",
-      "コップ",
-      "カップ",
-      "ノート",
-      "テーブル",
-      "ボールペン",
-      "ナイフ",
-      "フォーク",
-      "スプーン",
-      "カメラ",
-      "テープ",
-      "ボタン",
-      "ポケット",
-      "冷蔵庫",
-      "ストーブ",
-      "鍵",
-      "切符",
-      "切手",
-      "財布",
-      "葉書",
-      "封筒",
-      "箱",
-      "皿",
-      "お皿",
-      "茶碗",
-      "灰皿",
-      "眼鏡",
-      "本棚",
-      "門",
-      "窓",
-      "戸",
-      "ドア",
-    ])
-  ) {
-    return [
-      { ja: `${surface}を使います。`, zh: `使用${shortMeaning}。` },
-      { ja: `${surface}を買いました。`, zh: `买了${shortMeaning}。` },
-      { ja: `${surface}は机の上にあります。`, zh: `${shortMeaning}在桌子上。` },
-    ];
-  }
-
-  if (
-    includesAny(surface, [
-      "今日",
-      "明日",
-      "昨日",
-      "朝",
-      "昼",
-      "夜",
-      "毎日",
-      "毎朝",
-      "毎晩",
-      "来週",
-      "来月",
-      "来年",
-      "時間",
-      "夕方",
-      "今晩",
-      "今朝",
-      "今週",
-      "今月",
-      "今年",
-      "先週",
-      "先月",
-      "去年",
-      "来週",
-      "来月",
-      "来年",
-    ])
-  ) {
-    return [
-      { ja: `${surface}は忙しいです。`, zh: `${shortMeaning}很忙。` },
-      { ja: `${surface}、学校へ行きます。`, zh: `${shortMeaning}去学校。` },
-      { ja: `${surface}、友達に会います。`, zh: `${shortMeaning}见朋友。` },
-    ];
-  }
-
-  if (
-    includesAny(surface, [
-      "先生",
-      "学生",
-      "友達",
-      "家族",
-      "父",
-      "母",
-      "兄",
-      "姉",
-      "弟",
-      "妹",
-      "人",
-      "子供",
-      "男",
-      "女",
-    ])
-  ) {
-    return [
-      { ja: `${surface}に会います。`, zh: `见${shortMeaning}。` },
-      { ja: `${surface}と話します。`, zh: `和${shortMeaning}说话。` },
-      { ja: `${surface}は元気です。`, zh: `${shortMeaning}很有精神。` },
-    ];
-  }
-
-  return [
-    { ja: `これは${surface}です。`, zh: `这是${shortMeaning}。` },
-    { ja: `${surface}があります。`, zh: `有${shortMeaning}。` },
-    { ja: `${surface}を見ます。`, zh: `看${shortMeaning}。` },
-  ];
-}
-
-function buildGeneratedExamples(word, reading, meaning) {
-  const surface = displayWord(word);
-  const shortMeaning = primaryMeaning(word, meaning);
-  const override = vocabOverrides[surface];
-  if (override?.examples) {
-    return override.examples;
-  }
-
-  if (surface.includes("～")) {
-    return [
-      { ja: `三人ぐらい来ます。`, zh: `大约三个人会来。` },
-      { ja: `一つずつ取ってください。`, zh: `请一个一个拿。` },
-      { ja: `日本語らしい言い方です。`, zh: `这是很像日语的说法。` },
-    ];
-  }
-
-  const examplesByWord = {
-    会う: [
-      { ja: "駅で友達に会います。", zh: "在车站见朋友。" },
-      { ja: "明日、先生に会います。", zh: "明天见老师。" },
-      { ja: "また会いましょう。", zh: "下次再见吧。" },
-    ],
-    居る: [
-      { ja: "部屋に人がいます。", zh: "房间里有人。" },
-      { ja: "公園に子供がいます。", zh: "公园里有孩子。" },
-      { ja: "先生は教室にいます。", zh: "老师在教室里。" },
-    ],
-    有る: [
-      { ja: "机の上に本があります。", zh: "桌子上有书。" },
-      { ja: "時間があります。", zh: "有时间。" },
-      { ja: "駅の近くに店があります。", zh: "车站附近有商店。" },
-    ],
-    在る: [
-      { ja: "机の上に本があります。", zh: "桌子上有书。" },
-      { ja: "時間があります。", zh: "有时间。" },
-      { ja: "駅の近くに店があります。", zh: "车站附近有商店。" },
-    ],
-    行く: [
-      { ja: "明日、学校へ行きます。", zh: "明天去学校。" },
-      { ja: "駅まで歩いて行きます。", zh: "走路去车站。" },
-      { ja: "友達と日本へ行きます。", zh: "和朋友去日本。" },
-    ],
-    来る: [
-      { ja: "友達が家に来ます。", zh: "朋友来我家。" },
-      { ja: "明日、先生が来ます。", zh: "明天老师会来。" },
-      { ja: "ここへ来てください。", zh: "请来这里。" },
-    ],
-    食べる: [
-      { ja: "朝ご飯を食べます。", zh: "吃早饭。" },
-      { ja: "魚を食べました。", zh: "吃了鱼。" },
-      { ja: "いっしょに食べましょう。", zh: "一起吃吧。" },
-    ],
-    飲む: [
-      { ja: "水を飲みます。", zh: "喝水。" },
-      { ja: "お茶を飲みました。", zh: "喝了茶。" },
-      { ja: "暑いので、水を飲みます。", zh: "因为很热，所以喝水。" },
-    ],
-    見る: [
-      { ja: "映画を見ます。", zh: "看电影。" },
-      { ja: "テレビを見ました。", zh: "看了电视。" },
-      { ja: "この写真を見てください。", zh: "请看这张照片。" },
-    ],
-    聞く: [
-      { ja: "音楽を聞きます。", zh: "听音乐。" },
-      { ja: "先生に聞きます。", zh: "问老师。" },
-      { ja: "もう一度聞いてください。", zh: "请再听一遍。" },
-    ],
-    読む: [
-      { ja: "本を読みます。", zh: "读书。" },
-      { ja: "新聞を読みました。", zh: "读了报纸。" },
-      { ja: "毎日、日本語を読みます。", zh: "每天读日语。" },
-    ],
-    書く: [
-      { ja: "手紙を書きます。", zh: "写信。" },
-      { ja: "名前を書いてください。", zh: "请写名字。" },
-      { ja: "ノートに漢字を書きます。", zh: "在笔记本上写汉字。" },
-    ],
-    買う: [
-      { ja: "駅で切符を買います。", zh: "在车站买票。" },
-      { ja: "新しい靴を買いました。", zh: "买了新鞋。" },
-      { ja: "スーパーで野菜を買います。", zh: "在超市买蔬菜。" },
-    ],
-    話す: [
-      { ja: "日本語を話します。", zh: "说日语。" },
-      { ja: "友達と話しました。", zh: "和朋友说了话。" },
-      { ja: "ゆっくり話してください。", zh: "请慢慢说。" },
-    ],
-    勉強: [
-      { ja: "図書館で勉強します。", zh: "在图书馆学习。" },
-      { ja: "毎日、日本語を勉強します。", zh: "每天学习日语。" },
-      { ja: "一時間ぐらい勉強しました。", zh: "学习了大约一个小时。" },
-    ],
-    目: [
-      { ja: "目が痛いです。", zh: "眼睛疼。" },
-      { ja: "目を閉じてください。", zh: "请闭上眼睛。" },
-      { ja: "大きい目ですね。", zh: "眼睛真大呢。" },
-    ],
-    耳: [
-      { ja: "耳が痛いです。", zh: "耳朵疼。" },
-      { ja: "耳で音を聞きます。", zh: "用耳朵听声音。" },
-      { ja: "耳をきれいにします。", zh: "清洁耳朵。" },
-    ],
-    手: [
-      { ja: "手を洗います。", zh: "洗手。" },
-      { ja: "手を上げてください。", zh: "请举手。" },
-      { ja: "手が冷たいです。", zh: "手很凉。" },
-    ],
-    足: [
-      { ja: "足が痛いです。", zh: "脚疼。" },
-      { ja: "足で歩きます。", zh: "用脚走路。" },
-      { ja: "足を洗います。", zh: "洗脚。" },
-    ],
-  };
-
-  const supplementalExamples = {
-    ああ: [
-      { ja: "ああ、分かりました。", zh: "啊，我明白了。" },
-      { ja: "ああ、いい天気ですね。", zh: "啊，天气真好。" },
-      { ja: "ああ、そうですか。", zh: "哦，是这样啊。" },
-    ],
-    上げる: [
-      { ja: "手を上げてください。", zh: "请举手。" },
-      { ja: "音を少し上げました。", zh: "把声音调高了一点。" },
-      { ja: "母にプレゼントを上げます。", zh: "送礼物给妈妈。" },
-    ],
-    洗う: [
-      { ja: "手を洗います。", zh: "洗手。" },
-      { ja: "朝、顔を洗います。", zh: "早上洗脸。" },
-      { ja: "皿をきれいに洗いました。", zh: "把盘子洗干净了。" },
-    ],
-    歩く: [
-      { ja: "駅まで歩きます。", zh: "走路去车站。" },
-      { ja: "公園をゆっくり歩きました。", zh: "在公园慢慢走了走。" },
-      { ja: "毎朝三十分歩きます。", zh: "每天早上走三十分钟。" },
-    ],
-    言う: [
-      { ja: "もう一度言ってください。", zh: "请再说一次。" },
-      { ja: "友達にありがとうと言いました。", zh: "对朋友说了谢谢。" },
-      { ja: "先生はだめだと言いました。", zh: "老师说不行。" },
-    ],
-    要る: [
-      { ja: "水が要ります。", zh: "需要水。" },
-      { ja: "新しいノートが要ります。", zh: "需要新的笔记本。" },
-      { ja: "お金はあまり要りません。", zh: "不太需要钱。" },
-    ],
-    歌う: [
-      { ja: "友達と歌を歌います。", zh: "和朋友唱歌。" },
-      { ja: "カラオケで歌いました。", zh: "在卡拉OK唱了歌。" },
-      { ja: "大きな声で歌ってください。", zh: "请大声唱。" },
-    ],
-    生まれる: [
-      { ja: "私は東京で生まれました。", zh: "我出生在东京。" },
-      { ja: "妹は五月に生まれました。", zh: "妹妹五月出生。" },
-      { ja: "赤ちゃんが生まれました。", zh: "宝宝出生了。" },
-    ],
-    売る: [
-      { ja: "店で野菜を売っています。", zh: "店里卖蔬菜。" },
-      { ja: "古い本を売りました。", zh: "卖了旧书。" },
-      { ja: "駅の前で新聞を売っています。", zh: "车站前在卖报纸。" },
-    ],
-    教える: [
-      { ja: "先生が日本語を教えます。", zh: "老师教日语。" },
-      { ja: "道を教えてください。", zh: "请告诉我路。" },
-      { ja: "友達に漢字を教えました。", zh: "教朋友汉字了。" },
-    ],
-    泳ぐ: [
-      { ja: "夏にプールで泳ぎます。", zh: "夏天在游泳池游泳。" },
-      { ja: "海で泳ぎました。", zh: "在海里游泳了。" },
-      { ja: "私は少し泳げます。", zh: "我会游一点泳。" },
-    ],
-    帰る: [
-      { ja: "夜、家に帰ります。", zh: "晚上回家。" },
-      { ja: "昨日、国へ帰りました。", zh: "昨天回国了。" },
-      { ja: "早く帰ってください。", zh: "请早点回去。" },
-    ],
-    かかる: [
-      { ja: "駅まで十分かかります。", zh: "到车站要十分钟。" },
-      { ja: "この仕事は時間がかかります。", zh: "这项工作花时间。" },
-      { ja: "病院でお金がかかりました。", zh: "在医院花了钱。" },
-    ],
-    掛ける: [
-      { ja: "壁に時計を掛けます。", zh: "把钟挂在墙上。" },
-      { ja: "眼鏡を掛けています。", zh: "戴着眼镜。" },
-      { ja: "コートを椅子に掛けました。", zh: "把外套挂在椅子上了。" },
-    ],
-    かける: [
-      { ja: "友達に電話をかけます。", zh: "给朋友打电话。" },
-      { ja: "椅子に腰をかけてください。", zh: "请坐在椅子上。" },
-      { ja: "夜、母に電話をかけました。", zh: "晚上给妈妈打了电话。" },
-    ],
-    かぶる: [
-      { ja: "帽子をかぶります。", zh: "戴帽子。" },
-      { ja: "赤い帽子をかぶっています。", zh: "戴着红帽子。" },
-      { ja: "雨の日に帽子をかぶりました。", zh: "下雨天戴了帽子。" },
-    ],
-    曇る: [
-      { ja: "今日は空が曇っています。", zh: "今天阴天。" },
-      { ja: "午後から曇りました。", zh: "下午开始阴了。" },
-      { ja: "明日は曇ると思います。", zh: "我觉得明天会阴。" },
-    ],
-    答える: [
-      { ja: "質問に答えます。", zh: "回答问题。" },
-      { ja: "先生に大きな声で答えました。", zh: "大声回答了老师。" },
-      { ja: "名前を答えてください。", zh: "请回答名字。" },
-    ],
-    咲く: [
-      { ja: "春に花が咲きます。", zh: "春天花开。" },
-      { ja: "公園で桜が咲いています。", zh: "公园里的樱花开着。" },
-      { ja: "庭に赤い花が咲きました。", zh: "院子里开了红花。" },
-    ],
-    知る: [
-      { ja: "その人を知っています。", zh: "认识那个人。" },
-      { ja: "答えを知りません。", zh: "不知道答案。" },
-      { ja: "新しい言葉を知りました。", zh: "知道了新词。" },
-    ],
-    吸う: [
-      { ja: "ここでたばこを吸わないでください。", zh: "请不要在这里吸烟。" },
-      { ja: "きれいな空気を吸います。", zh: "呼吸新鲜空气。" },
-      { ja: "父はたばこを吸いません。", zh: "父亲不吸烟。" },
-    ],
-    立つ: [
-      { ja: "ここに立ってください。", zh: "请站在这里。" },
-      { ja: "駅の前に人が立っています。", zh: "车站前站着人。" },
-      { ja: "授業の後で立ちました。", zh: "课后站起来了。" },
-    ],
-    違う: [
-      { ja: "答えが違います。", zh: "答案不一样。" },
-      { ja: "これは私のかばんと違います。", zh: "这个和我的包不一样。" },
-      { ja: "道が違いました。", zh: "路走错了。" },
-    ],
-    疲れる: [
-      { ja: "今日はとても疲れました。", zh: "今天很累。" },
-      { ja: "たくさん歩いて疲れました。", zh: "走了很多路，累了。" },
-      { ja: "仕事の後で疲れています。", zh: "工作后很累。" },
-    ],
-    着く: [
-      { ja: "駅に着きました。", zh: "到车站了。" },
-      { ja: "学校に八時に着きます。", zh: "八点到学校。" },
-      { ja: "もう家に着きましたか。", zh: "已经到家了吗？" },
-    ],
-    つける: [
-      { ja: "電気をつけます。", zh: "开灯。" },
-      { ja: "テレビをつけてください。", zh: "请打开电视。" },
-      { ja: "ノートに名前をつけました。", zh: "在笔记本上写上了名字。" },
-    ],
-    勤める: [
-      { ja: "父は銀行に勤めています。", zh: "父亲在银行工作。" },
-      { ja: "会社に十年勤めました。", zh: "在公司工作了十年。" },
-      { ja: "兄は病院に勤めています。", zh: "哥哥在医院工作。" },
-    ],
-    できる: [
-      { ja: "日本語が少しできます。", zh: "会一点日语。" },
-      { ja: "宿題ができました。", zh: "作业做完了。" },
-      { ja: "明日、来ることができます。", zh: "明天能来。" },
-    ],
-    出る: [
-      { ja: "朝八時に家を出ます。", zh: "早上八点出门。" },
-      { ja: "駅の出口から出てください。", zh: "请从车站出口出去。" },
-      { ja: "授業に出ました。", zh: "上课了。" },
-    ],
-    鳴く: [
-      { ja: "犬が大きな声で鳴いています。", zh: "狗在大声叫。" },
-      { ja: "鳥が朝から鳴いています。", zh: "鸟从早上就在叫。" },
-      { ja: "猫が夜に鳴きました。", zh: "猫晚上叫了。" },
-    ],
-    無くす: [
-      { ja: "財布を無くしました。", zh: "把钱包弄丢了。" },
-      { ja: "鍵を無くさないでください。", zh: "请不要弄丢钥匙。" },
-      { ja: "大切な手紙を無くしました。", zh: "弄丢了重要的信。" },
-    ],
-    習う: [
-      { ja: "先生に日本語を習います。", zh: "跟老师学日语。" },
-      { ja: "子供の時、ピアノを習いました。", zh: "小时候学过钢琴。" },
-      { ja: "毎週、漢字を習います。", zh: "每周学汉字。" },
-    ],
-    並ぶ: [
-      { ja: "店の前に人が並んでいます。", zh: "店前有人在排队。" },
-      { ja: "バスを待って並びます。", zh: "排队等公交车。" },
-      { ja: "ここに並んでください。", zh: "请在这里排队。" },
-    ],
-    並べる: [
-      { ja: "机の上に本を並べます。", zh: "把书摆在桌子上。" },
-      { ja: "椅子をきれいに並べました。", zh: "把椅子摆整齐了。" },
-      { ja: "皿をテーブルに並べてください。", zh: "请把盘子摆在桌上。" },
-    ],
-    なる: [
-      { ja: "先生になりたいです。", zh: "想成为老师。" },
-      { ja: "春になりました。", zh: "到了春天。" },
-      { ja: "部屋が明るくなりました。", zh: "房间变亮了。" },
-    ],
-    寝る: [
-      { ja: "毎晩十一時に寝ます。", zh: "每晚十一点睡觉。" },
-      { ja: "昨日は早く寝ました。", zh: "昨天睡得早。" },
-      { ja: "もう寝てもいいですか。", zh: "可以睡了吗？" },
-    ],
-    登る: [
-      { ja: "山に登ります。", zh: "爬山。" },
-      { ja: "階段を登ってください。", zh: "请上楼梯。" },
-      { ja: "友達と富士山に登りました。", zh: "和朋友爬了富士山。" },
-    ],
-    休む: [
-      { ja: "今日は学校を休みます。", zh: "今天不去学校。" },
-      { ja: "少し休んでください。", zh: "请休息一下。" },
-      { ja: "日曜日にゆっくり休みました。", zh: "星期天好好休息了。" },
-    ],
-    やる: [
-      { ja: "宿題をやります。", zh: "做作业。" },
-      { ja: "犬に水をやります。", zh: "给狗喂水。" },
-      { ja: "明日またやりましょう。", zh: "明天再做吧。" },
-    ],
-    分かる: [
-      { ja: "日本語が少し分かります。", zh: "懂一点日语。" },
-      { ja: "この問題は分かりません。", zh: "这个问题不懂。" },
-      { ja: "先生の話がよく分かりました。", zh: "很好地理解了老师的话。" },
-    ],
-    忘れる: [
-      { ja: "宿題を忘れました。", zh: "忘了作业。" },
-      { ja: "名前を忘れないでください。", zh: "请不要忘记名字。" },
-      { ja: "傘を電車に忘れました。", zh: "把伞忘在电车上了。" },
-    ],
-    それでは: [
-      { ja: "それでは、始めましょう。", zh: "那么，开始吧。" },
-      { ja: "それでは、また明日。", zh: "那么，明天见。" },
-      { ja: "それでは、失礼します。", zh: "那么，我先告辞了。" },
-    ],
-    しかし: [
-      { ja: "雨です。しかし、出かけます。", zh: "下雨了。但是，我要出门。" },
-      { ja: "安いです。しかし、少し古いです。", zh: "很便宜。但是有点旧。" },
-      { ja: "難しいです。しかし、おもしろいです。", zh: "很难。但是很有趣。" },
-    ],
-    でも: [
-      { ja: "行きたいです。でも、時間がありません。", zh: "想去。但是没有时间。" },
-      { ja: "高いです。でも、買います。", zh: "很贵。但是要买。" },
-      { ja: "寒いです。でも、散歩します。", zh: "很冷。但是去散步。" },
-    ],
-    どうぞ: [
-      { ja: "どうぞ入ってください。", zh: "请进。" },
-      { ja: "お茶をどうぞ。", zh: "请喝茶。" },
-      { ja: "どうぞよろしくお願いします。", zh: "请多关照。" },
-    ],
-    どうも: [
-      { ja: "どうもありがとうございます。", zh: "非常感谢。" },
-      { ja: "どうもすみません。", zh: "非常抱歉。" },
-      { ja: "どうも変ですね。", zh: "总觉得很奇怪呢。" },
-    ],
-    色々: [
-      { ja: "店に色々な物があります。", zh: "店里有各种东西。" },
-      { ja: "週末に色々な所へ行きました。", zh: "周末去了各种地方。" },
-      { ja: "色々教えてください。", zh: "请教我各种东西。" },
-    ],
-    一緒: [
-      { ja: "一緒に勉強しましょう。", zh: "一起学习吧。" },
-      { ja: "友達と一緒に帰ります。", zh: "和朋友一起回去。" },
-      { ja: "一緒に写真を撮りました。", zh: "一起拍了照片。" },
-    ],
-    もう: [
-      { ja: "宿題はもう終わりました。", zh: "作业已经做完了。" },
-      { ja: "もう一度言ってください。", zh: "请再说一次。" },
-      { ja: "もう少し待ってください。", zh: "请再等一下。" },
-    ],
-    まだ: [
-      { ja: "宿題はまだ終わっていません。", zh: "作业还没有做完。" },
-      { ja: "まだ時間があります。", zh: "还有时间。" },
-      { ja: "まだ帰りません。", zh: "还不回去。" },
-    ],
-    また: [
-      { ja: "また明日会いましょう。", zh: "明天再见吧。" },
-      { ja: "また日本へ行きたいです。", zh: "还想再去日本。" },
-      { ja: "また雨が降りました。", zh: "又下雨了。" },
-    ],
-    ちょっと: [
-      { ja: "ちょっと待ってください。", zh: "请稍等一下。" },
-      { ja: "これはちょっと高いです。", zh: "这个有点贵。" },
-      { ja: "ちょっと聞いてもいいですか。", zh: "可以稍微问一下吗？" },
-    ],
-    すぐに: [
-      { ja: "すぐに行きます。", zh: "马上去。" },
-      { ja: "すぐに帰ってください。", zh: "请马上回去。" },
-      { ja: "先生はすぐに来ました。", zh: "老师马上来了。" },
-    ],
-    だんだん: [
-      { ja: "だんだん寒くなりました。", zh: "渐渐变冷了。" },
-      { ja: "日本語がだんだん分かります。", zh: "渐渐懂日语了。" },
-      { ja: "空がだんだん明るくなります。", zh: "天空渐渐变亮。" },
-    ],
-    たぶん: [
-      { ja: "明日はたぶん雨です。", zh: "明天大概下雨。" },
-      { ja: "彼はたぶん来ません。", zh: "他大概不会来。" },
-      { ja: "たぶん大丈夫です。", zh: "大概没问题。" },
-    ],
-    とても: [
-      { ja: "今日はとても暑いです。", zh: "今天非常热。" },
-      { ja: "この映画はとてもおもしろいです。", zh: "这部电影非常有趣。" },
-      { ja: "先生はとても親切です。", zh: "老师非常亲切。" },
-    ],
-    時々: [
-      { ja: "時々映画を見ます。", zh: "有时看电影。" },
-      { ja: "時々友達に電話します。", zh: "有时给朋友打电话。" },
-      { ja: "日曜日は時々出かけます。", zh: "星期天有时出门。" },
-    ],
-    まっすぐ: [
-      { ja: "この道をまっすぐ行ってください。", zh: "请沿这条路直走。" },
-      { ja: "駅までまっすぐ歩きます。", zh: "一直走到车站。" },
-      { ja: "線をまっすぐ書きます。", zh: "把线画直。" },
-    ],
-    ゆっくりと: [
-      { ja: "ゆっくりと話してください。", zh: "请慢慢说。" },
-      { ja: "日曜日はゆっくりと休みます。", zh: "星期天慢慢休息。" },
-      { ja: "道をゆっくりと歩きました。", zh: "慢慢走了路。" },
-    ],
-  };
-
-  if (examplesByWord[surface]) {
-    return examplesByWord[surface];
-  }
-
-  if (supplementalExamples[surface]) {
-    return supplementalExamples[surface];
-  }
-
-  if (isLikelyVerb(word, reading)) {
-    const masu = toMasuForm(word, reading);
-    const past = toPastMasu(masu);
-    return [
-      { ja: `今から${masu}。`, zh: `现在开始${shortMeaning}。` },
-      { ja: `よく${masu}。`, zh: `经常${shortMeaning}。` },
-      { ja: `もう${past}。`, zh: `已经${shortMeaning}了。` },
-    ];
-  }
-
-  if (isLikelyIAdjective(word)) {
-    return buildIAdjectiveExamples(surface, shortMeaning);
-  }
-
-  return buildNounExamples(surface, shortMeaning);
-}
-
-function buildExamples(word, reading, meaning, example, translation, entryExamples = []) {
+function buildExamples(
+  word,
+  reading,
+  meaning,
+  example,
+  translation,
+  entryExamples = [],
+  sourceEntry = null,
+) {
+  const preferredReadings = sourceEntry ? readingEntriesForVocabEntry(sourceEntry) : [];
   if (entryExamples.length) {
-    return normalizeExamples(entryExamples.slice(0, 3));
+    return normalizeExamples(entryExamples.slice(0, 3), preferredReadings);
   }
 
-  return hasRealExample(example) ? normalizeExamples([{ ja: example, zh: translation }]) : [];
+  return hasRealExample(example)
+    ? normalizeExamples([{ ja: example, zh: translation }], preferredReadings)
+    : [];
 }
 
 function makeVocabDeckCards({
   deckJaZh,
   deckZhJa,
-  exactMeaning = false,
   idPrefix,
   typePrefix,
   words,
 }) {
-  return words.flatMap(([word, reading, romaji, meaning, example, translation, entryExamples], index) => {
-    const shortMeaning = exactMeaning ? meaning : primaryMeaning(word, meaning);
-    const examples = buildExamples(word, reading, meaning, example, translation, entryExamples);
+  return words.flatMap(([
+    sourceId,
+    word,
+    reading,
+    romaji,
+    meaning,
+    example,
+    translation,
+    entryExamples,
+    sourceEntry,
+  ], index) => {
+    const shortMeaning = meaning;
+    const examples = buildExamples(
+      word,
+      reading,
+      meaning,
+      example,
+      translation,
+      entryExamples,
+      sourceEntry,
+    );
     const sentencePrompt = examples[0]?.zh || "";
     const sentenceAnswer = examples[0]?.ja || "";
     const meaningMeta = "";
     const readingMeta = `读音：${reading}${romaji ? `　罗马音：${romaji}` : ""}${meaningMeta}`;
+    // Keep stable IDs in a namespace that can never collide with the old
+    // array-index IDs (for example, old `vocab-n4-100-ja`).
+    const cardBaseId = `vocab-entry-${sourceId}`;
+    const sourceNumber = Number.parseInt(String(sourceId).split("-").at(-1), 10);
+    const legacyIndexes = Number.isInteger(sourceNumber) ? [sourceNumber - 1] : [index];
+    if (sourceId === "n5-040") legacyIndexes.push(40);
+    const uniqueLegacyIndexes = [...new Set(legacyIndexes.filter((value) => value >= 0))];
 
     return [
       {
-        id: `${idPrefix}-${index}-ja`,
+        id: `${cardBaseId}-ja`,
         deck: deckJaZh,
+        sourceId,
         isVocab: true,
-        wordKey: `${idPrefix}-${index}`,
+        wordKey: cardBaseId,
+        legacyIds: uniqueLegacyIndexes.map((legacyIndex) => `${idPrefix}-${legacyIndex}-ja`),
         type: `${typePrefix} 日文 → 中文`,
         prompt: word,
+        promptLang: "ja",
+        subtle: `读音：${reading}`,
+        subtleLang: "zh-CN",
         answer: shortMeaning,
+        answerLang: "zh-CN",
         meta: readingMeta,
         speech: reading,
+        frontSpeech: reading,
         examples,
       },
       {
-        id: `${idPrefix}-${index}-zh`,
+        id: `${cardBaseId}-zh`,
         deck: deckZhJa,
+        sourceId,
         isVocab: true,
-        wordKey: `${idPrefix}-${index}`,
+        wordKey: cardBaseId,
+        legacyIds: uniqueLegacyIndexes.map((legacyIndex) => `${idPrefix}-${legacyIndex}-zh`),
         type: `${typePrefix} 中文 → 日文`,
         prompt: shortMeaning,
+        promptLang: "zh-CN",
         subtle: sentencePrompt,
+        subtleLang: "zh-CN",
         answer: word,
+        answerLang: "ja",
         meta: readingMeta,
         sentenceAnswer,
         speech: reading,
+        frontSpeech: "",
         examples,
       },
     ];
   });
 }
 
-function makeVocabCards() {
-  return [
-    ...makeVocabDeckCards({
+function makeVocabCards(level) {
+  const n5Cards = () =>
+    makeVocabDeckCards({
       deckJaZh: "vocab-ja-zh",
       deckZhJa: "vocab-zh-ja",
       idPrefix: "vocab",
       typePrefix: "N5",
       words: n5Words,
-    }),
-    ...makeVocabDeckCards({
+    });
+  const n4Cards = () =>
+    makeVocabDeckCards({
       deckJaZh: "vocab-n4-ja-zh",
       deckZhJa: "vocab-n4-zh-ja",
-      exactMeaning: true,
       idPrefix: "vocab-n4",
       typePrefix: "N4",
       words: n4Words,
-    }),
-  ];
+    });
+
+  if (level === "N5") return n5Cards();
+  if (level === "N4") return n4Cards();
+  return [...n5Cards(), ...n4Cards()];
 }
 
 const grammarChoiceCount = 4;
@@ -4792,20 +2857,19 @@ function grammarDistractorScore(entry, candidate) {
   const entryKeywords = new Set(grammarChoiceKeywords(entry));
   const candidateKeywords = grammarChoiceKeywords(candidate);
   const sharedKeywordScore = candidateKeywords.filter((item) => entryKeywords.has(item)).length * 4;
-  const sameLevelScore = entry.level === candidate.level ? 8 : 0;
   const sameFormationHeadScore =
     entry.formation.slice(0, 2) === candidate.formation.slice(0, 2) ? 4 : 0;
   const meaningOverlapScore = [...entry.meaningZh].filter((char) =>
     candidate.meaningZh.includes(char),
   ).length;
 
-  return sharedKeywordScore + sameLevelScore + sameFormationHeadScore + meaningOverlapScore;
+  return sharedKeywordScore + sameFormationHeadScore + meaningOverlapScore;
 }
 
 function getGrammarDistractors(entry) {
   const usedTexts = new Set([grammarChoiceText(entry)]);
   return grammarEntries
-    .filter((candidate) => candidate.id !== entry.id)
+    .filter((candidate) => candidate.id !== entry.id && candidate.level === entry.level)
     .map((candidate) => ({
       entry: candidate,
       score: grammarDistractorScore(entry, candidate),
@@ -4853,19 +2917,23 @@ function makeGrammarChoiceCard(entry, examples) {
     grammarLevel: entry.level,
     type: `${entry.level} 语法选择题`,
     prompt: `选择「${entry.pattern}」的正确意思和接续`,
-    subtle: "",
+    promptLang: "zh-CN",
+    subtle: examples[0]?.ja || "",
+    subtleLang: "ja",
     answer: grammarChoiceText(entry),
+    answerLang: "zh-CN",
     meta: `正确文型：${entry.pattern}${entry.note ? `　提示：${entry.note}` : ""}`,
     sentenceAnswer: examples[0]?.ja || stripSentencePeriods(entry.answerJa),
     speech: examples[0]?.ja || stripSentencePeriods(entry.answerJa),
+    frontSpeech: "",
     choices,
     correctChoiceId,
     examples,
   };
 }
 
-function makeGrammarCards() {
-  return grammarEntries.flatMap((entry) => {
+function makeGrammarCards(level) {
+  return grammarEntries.filter((entry) => !level || entry.level === level).flatMap((entry) => {
     const levelKey = entry.level.toLowerCase();
     const examples = normalizeExamples(Array.isArray(entry.examples) ? entry.examples.slice(0, 3) : []);
     const baseMeta = `接续：${entry.formation}　意思：${entry.meaningZh}${entry.note ? `　提示：${entry.note}` : ""}`;
@@ -4882,11 +2950,15 @@ function makeGrammarCards() {
         grammarLevel: entry.level,
         type: `${entry.level} 语法 中文 → 日文`,
         prompt: promptZh,
+        promptLang: "zh-CN",
         subtle: `文型：${entry.pattern}`,
+        subtleLang: "zh-CN",
         answer: answerJa,
+        answerLang: "ja",
         meta: baseMeta,
         sentenceAnswer: answerJa,
         speech: answerJa,
+        frontSpeech: "",
         examples,
       },
       {
@@ -4897,11 +2969,15 @@ function makeGrammarCards() {
         grammarLevel: entry.level,
         type: `${entry.level} 语法 日文 → 中文`,
         prompt: answerJa,
+        promptLang: "ja",
         subtle: `文型：${entry.pattern}`,
+        subtleLang: "zh-CN",
         answer: promptZh,
+        answerLang: "zh-CN",
         meta: baseMeta,
         sentenceAnswer: promptZh,
         speech: answerJa,
+        frontSpeech: answerJa,
         examples,
       },
       {
@@ -4912,11 +2988,15 @@ function makeGrammarCards() {
         grammarLevel: entry.level,
         type: `${entry.level} 文型 → 含义/接续`,
         prompt: entry.pattern,
+        promptLang: "ja",
         subtle: firstExample.ja,
+        subtleLang: "ja",
         answer: `${entry.meaningZh}｜${entry.formation}`,
+        answerLang: "zh-CN",
         meta: entry.note ? `提示：${entry.note}` : "",
         sentenceAnswer: firstExample.zh,
         speech: firstExample.ja,
+        frontSpeech: "",
         examples,
       },
       makeGrammarChoiceCard(entry, examples),
@@ -4926,7 +3006,7 @@ function makeGrammarCards() {
 
 window.AYAYA_JP_CARD_DATA = {
   sourceNotes,
-  furiganaEntries,
+  furiganaEntries: furiganaByLength,
   makeGrammarCards,
   makeKanaCards,
   makeVocabCards,

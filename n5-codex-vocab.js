@@ -25,7 +25,10 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "AYAYA_N5_WORDS": "[headword, reading, meaning_zh, first_example_ja, first_example_zh]",
       "AYAYA_N5_TATOEBA_EXAMPLES": "同名变量被设置为本文件的精选例句对象，便于现有 app.js 的 buildExamples 优先读取。"
     },
-    "entry_count": 718
+    "source_notes": [
+      "The duplicate 在る / 有る records were merged under the modern kana headword ある while preserving both orthographic variants."
+    ],
+    "entry_count": 717
   },
   "entries": [
     {
@@ -1445,9 +1448,11 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "id": "n5-040",
       "jlpt": "N5",
       "headword": "ある",
-      "source_form": "在る",
+      "source_form": "在る; 有る",
       "variants": [
-        "ある"
+        "ある",
+        "在る",
+        "有る"
       ],
       "reading": "ある",
       "reading_variants": [
@@ -1455,8 +1460,17 @@ window.AYAYA_N5_CODEX_VOCAB = {
       ],
       "romaji": "aru",
       "part_of_speech": "verb",
-      "meaning_zh": "有；存在（无生命物，常写作かな：ある）",
-      "kanji_readings": [],
+      "meaning_zh": "有；存在（无生命物，常写作假名：ある）",
+      "kanji_readings": [
+        {
+          "form": "在る",
+          "reading": "ある"
+        },
+        {
+          "form": "有る",
+          "reading": "ある"
+        }
+      ],
       "examples": [
         {
           "ja": "机の上に本があります。",
@@ -1471,39 +1485,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
           "zh": "车站附近有商店。"
         }
       ],
-      "note_zh": "已把旧写法/不常用写法规范为现代常用写法；原始写法保留在 source_form。"
-    },
-    {
-      "id": "n5-041",
-      "jlpt": "N5",
-      "headword": "ある",
-      "source_form": "有る",
-      "variants": [
-        "ある"
-      ],
-      "reading": "ある",
-      "reading_variants": [
-        "ある"
-      ],
-      "romaji": "aru",
-      "part_of_speech": "verb",
-      "meaning_zh": "有；存在（无生命物，常写作かな：ある）",
-      "kanji_readings": [],
-      "examples": [
-        {
-          "ja": "机の上に本があります。",
-          "zh": "桌子上有书。"
-        },
-        {
-          "ja": "時間があります。",
-          "zh": "有时间。"
-        },
-        {
-          "ja": "駅の近くに店があります。",
-          "zh": "车站附近有商店。"
-        }
-      ],
-      "note_zh": "已把旧写法/不常用写法规范为现代常用写法；原始写法保留在 source_form。"
+      "note_zh": "现代通常写作假名「ある」；旧写法「在る」「有る」保留为正字法变体。"
     },
     {
       "id": "n5-042",
@@ -2555,7 +2537,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       ],
       "romaji": "iru",
       "part_of_speech": "verb",
-      "meaning_zh": "有；在（有生命物，常写作かな：いる）",
+      "meaning_zh": "有；在（有生命物，常写作假名：いる）",
       "kanji_readings": [],
       "examples": [
         {
@@ -3374,7 +3356,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～えん"
       ],
-      "romaji": "～en",
+      "romaji": "~en",
       "part_of_speech": "counter/suffix",
       "meaning_zh": "日元；……日元",
       "kanji_readings": [
@@ -3448,7 +3430,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "お～"
       ],
-      "romaji": "o～",
+      "romaji": "o~",
       "part_of_speech": "noun",
       "meaning_zh": "礼貌前缀；尊敬前缀",
       "kanji_readings": [],
@@ -5137,7 +5119,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～かい"
       ],
-      "romaji": "～kai",
+      "romaji": "~kai",
       "part_of_speech": "counter/suffix",
       "meaning_zh": "……次",
       "kanji_readings": [
@@ -5174,7 +5156,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～かい"
       ],
-      "romaji": "～kai",
+      "romaji": "~kai",
       "part_of_speech": "counter/suffix",
       "meaning_zh": "……层；……楼",
       "kanji_readings": [
@@ -5687,7 +5669,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～かげつ"
       ],
-      "romaji": "～kagetsu",
+      "romaji": "~kagetsu",
       "part_of_speech": "counter/suffix",
       "meaning_zh": "……个月",
       "kanji_readings": [
@@ -6047,7 +6029,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～がつ"
       ],
-      "romaji": "～gatsu",
+      "romaji": "~gatsu",
       "part_of_speech": "counter/suffix",
       "meaning_zh": "……月（月份）",
       "kanji_readings": [
@@ -6545,7 +6527,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～がる"
       ],
-      "romaji": "～garu",
+      "romaji": "~garu",
       "part_of_speech": "suffix/pattern",
       "meaning_zh": "显得……；表现出……",
       "kanji_readings": [],
@@ -6720,7 +6702,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～がわ"
       ],
-      "romaji": "～gawa",
+      "romaji": "~gawa",
       "part_of_speech": "suffix/pattern",
       "meaning_zh": "……侧；……边",
       "kanji_readings": [
@@ -7820,16 +7802,16 @@ window.AYAYA_N5_CODEX_VOCAB = {
       ],
       "examples": [
         {
-          "ja": "数字の九を書きます。",
-          "zh": "写数字九。"
+          "ja": "学校は九時に始まります。",
+          "zh": "学校九点开始上课。"
         },
         {
-          "ja": "九ページを読んでください。",
-          "zh": "请读第九页。"
+          "ja": "九月に日本へ行きます。",
+          "zh": "九月去日本。"
         },
         {
-          "ja": "九まで数えます。",
-          "zh": "数到九。"
+          "ja": "今は九時です。",
+          "zh": "现在是九点。"
         }
       ],
       "note_zh": ""
@@ -8213,7 +8195,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
         "～くらい",
         "ぐらい"
       ],
-      "romaji": "～kurai",
+      "romaji": "~kurai",
       "part_of_speech": "suffix/pattern",
       "meaning_zh": "大约；左右",
       "kanji_readings": [],
@@ -8753,7 +8735,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～こ"
       ],
-      "romaji": "～ko",
+      "romaji": "~ko",
       "part_of_speech": "counter/suffix",
       "meaning_zh": "……个（小物品计数）",
       "kanji_readings": [
@@ -8827,7 +8809,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～ご"
       ],
-      "romaji": "～go",
+      "romaji": "~go",
       "part_of_speech": "suffix/pattern",
       "meaning_zh": "……语；……语言",
       "kanji_readings": [
@@ -9709,7 +9691,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
         "～ころ",
         "～ごろ"
       ],
-      "romaji": "～koro",
+      "romaji": "~koro",
       "part_of_speech": "suffix/pattern",
       "meaning_zh": "……左右（时间）",
       "kanji_readings": [],
@@ -9916,7 +9898,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～さい"
       ],
-      "romaji": "～sai",
+      "romaji": "~sai",
       "part_of_speech": "counter/suffix",
       "meaning_zh": "……岁",
       "kanji_readings": [
@@ -10175,7 +10157,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～さつ"
       ],
-      "romaji": "～satsu",
+      "romaji": "~satsu",
       "part_of_speech": "counter/suffix",
       "meaning_zh": "……册；……本（书本计数）",
       "kanji_readings": [
@@ -10360,7 +10342,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～さん"
       ],
-      "romaji": "～san",
+      "romaji": "~san",
       "part_of_speech": "suffix/pattern",
       "meaning_zh": "……先生；……女士；……桑",
       "kanji_readings": [],
@@ -10503,7 +10485,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～じ"
       ],
-      "romaji": "～ji",
+      "romaji": "~ji",
       "part_of_speech": "counter/suffix",
       "meaning_zh": "……点（时间）",
       "kanji_readings": [
@@ -10646,7 +10628,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～じかん"
       ],
-      "romaji": "～jikan",
+      "romaji": "~jikan",
       "part_of_speech": "counter/suffix",
       "meaning_zh": "……小时",
       "kanji_readings": [
@@ -11373,7 +11355,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～じゅう"
       ],
-      "romaji": "～juu",
+      "romaji": "~juu",
       "part_of_speech": "suffix/pattern",
       "meaning_zh": "整个……；……期间",
       "kanji_readings": [
@@ -11410,7 +11392,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～しゅうかん"
       ],
-      "romaji": "～shuukan",
+      "romaji": "~shuukan",
       "part_of_speech": "counter/suffix",
       "meaning_zh": "……周；……星期",
       "kanji_readings": [
@@ -11780,7 +11762,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～じん"
       ],
-      "romaji": "～jin",
+      "romaji": "~jin",
       "part_of_speech": "counter/suffix",
       "meaning_zh": "……人（国籍、身份）",
       "kanji_readings": [
@@ -11997,7 +11979,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～すぎ"
       ],
-      "romaji": "～sugi",
+      "romaji": "~sugi",
       "part_of_speech": "suffix/pattern",
       "meaning_zh": "过于……；超过……",
       "kanji_readings": [],
@@ -12172,7 +12154,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～ずつ"
       ],
-      "romaji": "～zutsu",
+      "romaji": "~zutsu",
       "part_of_speech": "suffix/pattern",
       "meaning_zh": "每……；各……；一点点地",
       "kanji_readings": [],
@@ -12661,16 +12643,16 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "kanji_readings": [],
       "examples": [
         {
-          "ja": "数字のゼロを書きます。",
-          "zh": "写数字零。"
+          "ja": "試合はゼロ対ゼロです。",
+          "zh": "比赛比分是零比零。"
         },
         {
-          "ja": "ゼロページを読んでください。",
-          "zh": "请读第零页。"
+          "ja": "残り時間はゼロです。",
+          "zh": "剩余时间是零。"
         },
         {
-          "ja": "ゼロまで数えます。",
-          "zh": "数到零。"
+          "ja": "ゼロから日本語を勉強します。",
+          "zh": "从零开始学习日语。"
         }
       ],
       "note_zh": ""
@@ -13344,7 +13326,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～だい"
       ],
-      "romaji": "～dai",
+      "romaji": "~dai",
       "part_of_speech": "counter/suffix",
       "meaning_zh": "……台；……辆",
       "kanji_readings": [
@@ -13677,7 +13659,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～だけ"
       ],
-      "romaji": "～dake",
+      "romaji": "~dake",
       "part_of_speech": "suffix/pattern",
       "meaning_zh": "只；仅",
       "kanji_readings": [],
@@ -13810,7 +13792,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～たち"
       ],
-      "romaji": "～tachi",
+      "romaji": "~tachi",
       "part_of_speech": "suffix/pattern",
       "meaning_zh": "……们",
       "kanji_readings": [],
@@ -14710,7 +14692,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～ちゅう"
       ],
-      "romaji": "～chuu",
+      "romaji": "~chuu",
       "part_of_speech": "suffix/pattern",
       "meaning_zh": "正在……；……中",
       "kanji_readings": [
@@ -15903,7 +15885,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～ど"
       ],
-      "romaji": "～do",
+      "romaji": "~do",
       "part_of_speech": "counter/suffix",
       "meaning_zh": "……度；……次",
       "kanji_readings": [
@@ -16280,7 +16262,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～とき"
       ],
-      "romaji": "～toki",
+      "romaji": "~toki",
       "part_of_speech": "counter/suffix",
       "meaning_zh": "……的时候",
       "kanji_readings": [
@@ -17409,7 +17391,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～など"
       ],
-      "romaji": "～nado",
+      "romaji": "~nado",
       "part_of_speech": "suffix/pattern",
       "meaning_zh": "……等等",
       "kanji_readings": [],
@@ -17733,7 +17715,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "なん～"
       ],
-      "romaji": "nan～",
+      "romaji": "nan~",
       "part_of_speech": "pronoun/demonstrative",
       "meaning_zh": "什么……；几……",
       "kanji_readings": [
@@ -17913,7 +17895,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～にち"
       ],
-      "romaji": "～nichi",
+      "romaji": "~nichi",
       "part_of_speech": "counter/suffix",
       "meaning_zh": "……日；……天",
       "kanji_readings": [
@@ -18093,7 +18075,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～にん"
       ],
-      "romaji": "～nin",
+      "romaji": "~nin",
       "part_of_speech": "counter/suffix",
       "meaning_zh": "……个人",
       "kanji_readings": [
@@ -18310,7 +18292,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～ねん"
       ],
-      "romaji": "～nen",
+      "romaji": "~nen",
       "part_of_speech": "counter/suffix",
       "meaning_zh": "……年",
       "kanji_readings": [
@@ -18564,7 +18546,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "パーティー"
       ],
-      "romaji": "paateぃぃ",
+      "romaji": "paatii",
       "part_of_speech": "noun",
       "meaning_zh": "派对；聚会",
       "kanji_readings": [],
@@ -18628,7 +18610,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～はい"
       ],
-      "romaji": "～hai",
+      "romaji": "~hai",
       "part_of_speech": "counter/suffix",
       "meaning_zh": "……杯",
       "kanji_readings": [
@@ -19765,7 +19747,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～ばん"
       ],
-      "romaji": "～ban",
+      "romaji": "~ban",
       "part_of_speech": "suffix/pattern",
       "meaning_zh": "第……；……号",
       "kanji_readings": [
@@ -19914,16 +19896,16 @@ window.AYAYA_N5_CODEX_VOCAB = {
       ],
       "examples": [
         {
-          "ja": "晩ご飯を食べます。",
-          "zh": "吃晚饭。"
+          "ja": "家族と一緒に晩ご飯を食べます。",
+          "zh": "和家人一起吃晚饭。"
         },
         {
-          "ja": "晩ご飯が好きです。",
-          "zh": "喜欢晚饭。"
+          "ja": "今日の晩ご飯はカレーです。",
+          "zh": "今天的晚饭是咖喱。"
         },
         {
-          "ja": "晩ご飯をください。",
-          "zh": "请给我晚饭。"
+          "ja": "晩ご飯の後で宿題をします。",
+          "zh": "晚饭后做作业。"
         }
       ],
       "note_zh": "已把旧写法/不常用写法规范为现代常用写法；原始写法保留在 source_form。"
@@ -20014,7 +19996,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～ひき"
       ],
-      "romaji": "～hiki",
+      "romaji": "~hiki",
       "part_of_speech": "counter/suffix",
       "meaning_zh": "……只（小动物计数）",
       "kanji_readings": [
@@ -20675,7 +20657,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "フィルム"
       ],
-      "romaji": "fuぃrumu",
+      "romaji": "firumu",
       "part_of_speech": "noun",
       "meaning_zh": "胶卷；胶片",
       "kanji_readings": [],
@@ -20776,7 +20758,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "フォーク"
       ],
-      "romaji": "fuぉぉku",
+      "romaji": "fooku",
       "part_of_speech": "noun",
       "meaning_zh": "叉子",
       "kanji_readings": [],
@@ -21178,7 +21160,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～ふん"
       ],
-      "romaji": "～fun",
+      "romaji": "~fun",
       "part_of_speech": "counter/suffix",
       "meaning_zh": "……分钟",
       "kanji_readings": [
@@ -21911,7 +21893,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～ほん"
       ],
-      "romaji": "～hon",
+      "romaji": "~hon",
       "part_of_speech": "counter/suffix",
       "meaning_zh": "……根；……瓶；……条（细长物计数）",
       "kanji_readings": [
@@ -22022,7 +22004,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～まい"
       ],
-      "romaji": "～mai",
+      "romaji": "~mai",
       "part_of_speech": "counter/suffix",
       "meaning_zh": "……张；……件（薄平物计数）",
       "kanji_readings": [
@@ -22320,7 +22302,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～まえ"
       ],
-      "romaji": "～mae",
+      "romaji": "~mae",
       "part_of_speech": "suffix/pattern",
       "meaning_zh": "……之前；……前面",
       "kanji_readings": [
@@ -23903,7 +23885,7 @@ window.AYAYA_N5_CODEX_VOCAB = {
       "reading_variants": [
         "～や"
       ],
-      "romaji": "～ya",
+      "romaji": "~ya",
       "part_of_speech": "suffix/pattern",
       "meaning_zh": "……店；……店铺",
       "kanji_readings": [
@@ -24316,16 +24298,16 @@ window.AYAYA_N5_CODEX_VOCAB = {
       ],
       "examples": [
         {
-          "ja": "夕飯を食べます。",
-          "zh": "吃晚饭。"
+          "ja": "仕事の帰りに夕飯の材料を買いました。",
+          "zh": "下班回家时买了晚饭的食材。"
         },
         {
           "ja": "夕飯は七時です。",
           "zh": "晚饭是七点。"
         },
         {
-          "ja": "母が夕飯を作ります。",
-          "zh": "母亲做晚饭。"
+          "ja": "今夜は私が夕飯を作ります。",
+          "zh": "今晚由我做晚饭。"
         }
       ],
       "note_zh": ""
@@ -25253,16 +25235,16 @@ window.AYAYA_N5_CODEX_VOCAB = {
       ],
       "examples": [
         {
-          "ja": "数字の零を書きます。",
-          "zh": "写数字零。"
+          "ja": "気温は零度まで下がりました。",
+          "zh": "气温降到了零度。"
         },
         {
-          "ja": "零ページを読んでください。",
-          "zh": "请读第零页。"
+          "ja": "午前零時に新しい日が始まります。",
+          "zh": "午夜零点新的一天开始。"
         },
         {
-          "ja": "零まで数えます。",
-          "zh": "数到零。"
+          "ja": "テストで零点を取りました。",
+          "zh": "考试得了零分。"
         }
       ],
       "note_zh": ""

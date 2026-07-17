@@ -1,9 +1,9 @@
 # ayaya日语
 
 一个本地运行的日语 flashcard 程序，包含假名互记、N5/N4 单词双向记忆、N5/N4 语法练习，以及对应错题集。点击卡片翻面时会自动播放读音，答案区也可以手动重播。
-右上角的主题按钮可以切换浅色 / 暗色模式，选择会保存在浏览器 `localStorage` 中。
+界面目前固定使用深色模式，没有浅色 / 深色切换按钮。
 
-在线网址：https://ayaya114514.github.io/ayaya_jp/
+在线网址：[https://ayaya114514.github.io/ayaya_jp/](https://ayaya114514.github.io/ayaya_jp/)
 
 ## 使用
 
@@ -15,15 +15,27 @@ python3 -m http.server 5173
 
 然后访问 `http://localhost:5173`。
 
+可以使用 `Tab` 在操作项之间移动；聚焦卡片后按 `Enter` 或 `Space` 显示答案。首次加载时页面会显示准备状态，资源加载失败时会给出可见提示。
+
 ## 检查
 
+Validation 需要 Node.js 20 或更新版本；推荐使用 `.nvmrc` 指定的 Node 22：
+
 ```bash
-npm run validate
-npm run validate:bundle
+nvm use
+npm run check
 ```
 
-这个检查会验证 JS 语法、HTML 引用的本地资源、N5/N4 JS/JSON 数据一致性、词库和语法字段完整性，以及 card builder 是否能生成假名、N5/N4 词汇和 N5/N4 语法卡片。
-`validate:bundle` 会复跑压缩包自带的计数检查。
+`npm run check` 会依次运行 source/runtime/DOM validation、bundle baseline validation 和 app regression tests。它会检查 JS 语法、HTML 结构与本地资源、脚本依赖顺序、N5/N4 JS/JSON 数据一致性、词库和语法字段完整性、lazy card builders、stable/legacy IDs，以及 app 的 storage、TTS、sidebar 等关键 contracts。
+
+`validation-report.json` 是 committed baseline manifest，只记录受检 source fingerprint、预期计数和必须执行的 contracts；它不是“检查已经通过”的结果报告。只有在有意修改受检 source 或计数后才更新它：
+
+```bash
+npm run update:manifest
+npm run check
+```
+
+Updater 是 deterministic 的，并会在 N5/N4 JS/JSON 未同步时拒绝改写 manifest。
 
 ## 练习逻辑
 
@@ -38,12 +50,20 @@ npm run validate:bundle
 
 ## 词库数据来源
 
-当前项目完全使用 `n5-codex-vocab.js` / `n5-codex-vocab.json` 作为 N5 数据源，共 718 条。
+当前项目完全使用 `n5-codex-vocab.js` / `n5-codex-vocab.json` 作为 N5 数据源，共 717 条。
 当前项目完全使用 `ayaya-n4-codex-vocab.js` / `ayaya-n4-codex-vocab.json` 作为 N4 数据源，共 767 条。
 
 数据字段包括规范词形、原始词形、变体、读音、罗马音、词性、简体中文释义、整词 furigana 信息，以及每个词 3 条日语例句和简体中文翻译。
 
 前端实际加载 `n5-codex-vocab.js` 和 `ayaya-n4-codex-vocab.js`。对应 `.json` 文件保留为同源的可读/可校对数据文件。
+
+### 数据范围与 provenance
+
+- JLPT 官方不发布固定的词汇、汉字或语法项目清单；这里的 N5/N4 是本项目维护的教学分级，不应当视为官方考试词表。
+- 词条以仓库内的 JSON 为 canonical source，`source_form`、`variants` 与 `note_zh` 保留规范化和人工校订线索；对应 JS 必须由同一份内容同步生成，并由 validation 阻止两者漂移。
+- 例句是为本项目编写和校订的短学习句，不是外部语料库引文。N4 允许保留教学上必要的 N5 overlap，但每个 level 使用独立 ID 与进度记录。
+- 罗马音只在能够完整转换为 Latin script 时显示；转换结果仍含假名或汉字时会标记为 unavailable 并隐藏，避免把不可靠的混合脚本当成正确读音。
+- 这套数据仍可能存在用法或分级争议；修改词义、读音或例句时应同时更新 JSON/JS，并运行完整 `npm run check`。
 
 ## 语法数据
 
@@ -52,9 +72,9 @@ npm run validate:bundle
 `card-data.js` 会为每条语法生成 4 张卡：`中→日`、`日→中`、`文型`、`选择题`。当前完整数据包计数为：
 
 - 假名 / 音变卡片：251
-- 词汇卡片：2,970
+- 词汇卡片：2,968
 - 语法卡片：864
-- 总卡片：4,085
+- 总卡片：4,083
 
 ## 文件结构
 
@@ -63,5 +83,7 @@ npm run validate:bundle
 - `card-data.js`：假名、N5/N4 数据转换、例句和卡片构建逻辑。
 - `grammar-data.js`：N5/N4 语法练习数据。
 - `app.js`：学习状态、渲染、交互和语音播放逻辑。
-- `scripts/validate.js`：本地无依赖 validation。
-- `validate-bundle.js` / `validation-report.json`：压缩包自带的 bundle validation 和计数报告。
+- `scripts/validate.js`：本地 zero-dependency source/runtime/DOM validation。
+- `scripts/test-app-contracts.js`：zero-dependency app regression tests。
+- `scripts/update-validation-manifest.js`：deterministic baseline manifest updater。
+- `validate-bundle.js` / `validation-report.json`：bundle baseline checker 与 committed manifest（不是通过结果报告）。
