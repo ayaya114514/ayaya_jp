@@ -52,6 +52,7 @@ const requiredContracts = [
   "dark-only-runtime",
   "validation-source-fingerprint",
   "preferred-homograph-readings",
+  "full-card-reveal-target",
 ];
 
 function read(relativePath) {

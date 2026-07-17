@@ -1195,6 +1195,22 @@ function checkDarkOnlyRuntime(tags, appSource, stylesSource) {
   );
 }
 
+function checkFullCardRevealTarget(stylesSource) {
+  const cardRule = stylesSource.match(/(?:^|\n)\.card\s*\{([^}]*)\}/u)?.[1] || "";
+  const revealRule = stylesSource.match(/(?:^|\n)\.card-reveal\s*\{([^}]*)\}/u)?.[1] || "";
+  const speakerRule = stylesSource.match(/(?:^|\n)\.prompt-speak\s*\{([^}]*)\}/u)?.[1] || "";
+
+  check(/position:\s*relative\s*;/u.test(cardRule), ".card must anchor the full reveal target");
+  check(
+    /position:\s*absolute\s*;/u.test(revealRule) && /inset:\s*0\s*;/u.test(revealRule),
+    ".card-reveal must cover the entire flashcard area",
+  );
+  check(
+    /position:\s*relative\s*;/u.test(speakerRule) && /z-index:\s*[1-9]\d*\s*;/u.test(speakerRule),
+    ".prompt-speak must stay above the full-card reveal target",
+  );
+}
+
 function checkPackageContract(packageJson) {
   check(packageJson?.engines?.node === ">=20", "package.json engines.node must declare >=20");
   check(
@@ -1244,7 +1260,9 @@ function main() {
     "app.js must pass per-example preferred furigana into renderFurigana",
   );
   checkReadmeDarkOnly(read("README.md"));
-  checkDarkOnlyRuntime(tags, appSource, read("styles.css"));
+  const stylesSource = read("styles.css");
+  checkDarkOnlyRuntime(tags, appSource, stylesSource);
+  checkFullCardRevealTarget(stylesSource);
 
   const n5Json = capture("could not parse n5-codex-vocab.json", () =>
     readJson("n5-codex-vocab.json"),

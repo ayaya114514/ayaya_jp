@@ -16,7 +16,7 @@
     "n5-codex-vocab.json",
     "styles.css"
   ],
-  "source_fingerprint": "sha256:761a155e092b69bfc2ed657e7977133690590d421a945a80d2c08b15b417ee8a",
+  "source_fingerprint": "sha256:b63d1ca96d63ed835f5d8bc1627af1c2c36542f95382838040316b825f15b40c",
   "expected_counts": {
     "n5_entries": 717,
     "n4_entries": 767,
@@ -43,6 +43,7 @@
     "strict-language-tags",
     "dark-only-runtime",
     "validation-source-fingerprint",
-    "preferred-homograph-readings"
+    "preferred-homograph-readings",
+    "full-card-reveal-target"
   ]
 }
