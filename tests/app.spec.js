@@ -23,6 +23,7 @@ function progressFixture({ deck, queue, completed = [], rounds = 0, cards = {} }
       decks: {
         [deck]: {
           queue,
+          queueOrderVersion: 1,
           completed,
           rounds,
         },
@@ -42,9 +43,10 @@ function isolatedHiraganaFixture(queue, cards = {}) {
 
 async function openWithStore(page, state, options = {}) {
   await page.addInitScript(
-    ({ storageKey, storedState, ignoreStorageEvents }) => {
+    ({ storageKey, storedState, ignoreStorageEvents, fixedRandom }) => {
       localStorage.clear();
       localStorage.setItem(storageKey, JSON.stringify(storedState));
+      if (typeof fixedRandom === "number") Math.random = () => fixedRandom;
 
       if (ignoreStorageEvents) {
         const nativeAddEventListener = window.addEventListener;
@@ -58,6 +60,7 @@ async function openWithStore(page, state, options = {}) {
       storageKey: STORAGE_KEY,
       storedState: state,
       ignoreStorageEvents: options.ignoreStorageEvents === true,
+      fixedRandom: options.fixedRandom,
     },
   );
   await page.goto("/");
@@ -156,6 +159,58 @@ test("whole study surface reveals while interactive controls do not leak clicks"
 
   await page.locator("#memoryChain").click();
   await expectAnswerRevealed(page);
+});
+
+test("Japanese-to-Chinese vocab hides reading until the answer is revealed", async ({ page }) => {
+  await openWithStore(
+    page,
+    progressFixture({
+      deck: "vocab-ja-zh",
+      queue: ["vocab-entry-n5-002-ja"],
+    }),
+  );
+
+  await expect(page.locator("#cardPrompt")).toHaveText("会う");
+  await expect(page.locator("#cardSubtle")).toBeHidden();
+  await expect(page.locator("#cardSubtle")).toHaveText("");
+  await expect(page.locator("#cardReveal")).not.toHaveAttribute(
+    "aria-describedby",
+    /cardSubtle/,
+  );
+  await expect(page.locator("#answerMeta")).toHaveText("");
+  await expect(page.locator("#flashcard")).not.toContainText("あう");
+
+  await page.locator("#cardReveal").click();
+  await expectAnswerRevealed(page);
+  await expect(page.locator("#answerMain")).toHaveText("见面；遇见");
+  await expect(page.locator("#answerMeta")).toContainText("读音：あう");
+  await expect(page.locator("#answerMeta")).toContainText("罗马音：au");
+  await expect(page.locator("#cardSubtle")).toBeHidden();
+});
+
+test("legacy fixed kana order reshuffles once and remains stable on reload", async ({
+  page,
+  context,
+}) => {
+  const legacyQueue = ["hiragana-0", "hiragana-1", "hiragana-2", "hiragana-3"];
+  const legacyState = isolatedHiraganaFixture(legacyQueue);
+  delete legacyState.__rounds.decks.hiragana.queueOrderVersion;
+
+  await openWithStore(page, legacyState, { fixedRandom: 0 });
+  const firstQueue = await page.evaluate(
+    (storageKey) => JSON.parse(localStorage.getItem(storageKey)).__rounds.decks.hiragana.queue,
+    STORAGE_KEY,
+  );
+  expect(firstQueue).toEqual(["hiragana-1", "hiragana-2", "hiragana-3", "hiragana-0"]);
+
+  const reloadPage = await context.newPage();
+  await reloadPage.goto("/");
+  await waitForApp(reloadPage);
+  const reloadedQueue = await reloadPage.evaluate(
+    (storageKey) => JSON.parse(localStorage.getItem(storageKey)).__rounds.decks.hiragana.queue,
+    STORAGE_KEY,
+  );
+  expect(reloadedQueue).toEqual(firstQueue);
 });
 
 test("long mobile cards stay contained and never overlap the answer", async ({ page }, testInfo) => {

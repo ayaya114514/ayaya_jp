@@ -3,6 +3,7 @@ const ROUND_STATE_KEY = "__rounds";
 const SIDEBAR_STATE_KEY = "ayaya-jp-sidebar-v1";
 const STORE_META_KEY = "__meta";
 const STORE_SCHEMA_VERSION = 3;
+const ROUND_QUEUE_ORDER_VERSION = 1;
 const MAX_RATING_HISTORY = 12;
 const VALID_RATINGS = new Set(["clear", "unsure", "forgot", "correct", "wrong"]);
 
@@ -117,6 +118,7 @@ const sessionRoundCompletionEvents = {};
 const sessionRoundGenerations = {};
 const sessionRoundIds = {};
 const sessionRoundCounts = {};
+const sessionQueueOrderVersions = {};
 let lastReview = null;
 let collapsedDeckLevels = loadCollapsedDeckLevels();
 let collapsedDeckGroups = loadCollapsedDeckGroups();
@@ -304,6 +306,58 @@ function normalizedCompletionEventIds(value) {
   return [...new Set(eventIds.filter((eventId) => typeof eventId === "string" && eventId))].sort();
 }
 
+function queueOrderVersionForState(round) {
+  return Number.isInteger(round?.queueOrderVersion)
+    ? Math.max(0, round.queueOrderVersion)
+    : 0;
+}
+
+function pendingQueueForRound(round, completed) {
+  return [...new Set(Array.isArray(round?.queue) ? round.queue : [])].filter(
+    (cardId) => !completed.has(cardId),
+  );
+}
+
+function mergePendingQueueOrder(baseRound, localRound, remoteRound, completed) {
+  const candidates = [
+    { kind: "base", round: baseRound },
+    { kind: "branch", round: localRound },
+    { kind: "branch", round: remoteRound },
+  ].map((candidate) => ({
+    ...candidate,
+    order: pendingQueueForRound(candidate.round, completed),
+    version: queueOrderVersionForState(candidate.round),
+  }));
+  const queueOrderVersion = Math.max(...candidates.map((candidate) => candidate.version));
+  const currentCandidates = candidates.filter(
+    (candidate) => candidate.version === queueOrderVersion && candidate.order.length > 0,
+  );
+  const baseCandidate = currentCandidates.find((candidate) => candidate.kind === "base");
+  const branchCandidates = currentCandidates
+    .filter((candidate) => candidate !== baseCandidate)
+    .sort((left, right) => {
+      const leftKey = JSON.stringify(left.order);
+      const rightKey = JSON.stringify(right.order);
+      if (leftKey === rightKey) return 0;
+      return leftKey < rightKey ? -1 : 1;
+    });
+  const orderedCandidates = baseCandidate
+    ? [baseCandidate, ...branchCandidates]
+    : branchCandidates;
+  const queue = [];
+  const seen = new Set();
+
+  orderedCandidates.forEach(({ order }) => {
+    order.forEach((cardId) => {
+      if (seen.has(cardId)) return;
+      seen.add(cardId);
+      queue.push(cardId);
+    });
+  });
+
+  return { queue, queueOrderVersion };
+}
+
 function roundGenerationForState(round) {
   if (Number.isInteger(round?.roundGeneration)) return Math.max(0, round.roundGeneration);
   const completedRounds = Number.isInteger(round?.rounds) ? Math.max(0, round.rounds) : 0;
@@ -379,6 +433,7 @@ function normalizeDeckRound(round, cardStates, tombstonedEventIds = new Set(), d
 
   return {
     ...cloneStore(round),
+    queueOrderVersion: queueOrderVersionForState(round),
     roundGeneration: roundGenerationForState(round),
     roundId: roundIdForState(round, deck),
     queue: queue.filter((cardId) => !completed.has(cardId)),
@@ -403,12 +458,7 @@ function mergeCompletionEvents(completed, localRound, remoteRound, cardStates) {
   const completionEvents = {};
 
   completed.forEach((cardId) => {
-    const candidates = [
-      ...new Set([
-        ...normalizedCompletionEventIds(remoteEvents[cardId]),
-        ...normalizedCompletionEventIds(localEvents[cardId]),
-      ]),
-    ].sort();
+    const candidates = mergedCompletionEventIds(localEvents, remoteEvents, cardId);
     if (!candidates.length) return;
     const validCandidates = candidates.filter(
       (eventId) => !isRatingEventTombstoned(cardStates, cardId, eventId),
@@ -416,6 +466,15 @@ function mergeCompletionEvents(completed, localRound, remoteRound, cardStates) {
     completionEvents[cardId] = validCandidates.length ? validCandidates : candidates;
   });
   return completionEvents;
+}
+
+function mergedCompletionEventIds(localEvents, remoteEvents, cardId) {
+  return [
+    ...new Set([
+      ...normalizedCompletionEventIds(remoteEvents?.[cardId]),
+      ...normalizedCompletionEventIds(localEvents?.[cardId]),
+    ]),
+  ].sort();
 }
 
 function mergeConcurrentDeckRound(
@@ -429,16 +488,35 @@ function mergeConcurrentDeckRound(
   if (!isStoreObject(localRound)) return cloneStore(remoteRound);
   if (!isStoreObject(remoteRound)) return cloneStore(localRound);
 
-  const completed = new Set([
+  const completedCandidates = new Set([
     ...(Array.isArray(localRound.completed) ? localRound.completed : []),
     ...(Array.isArray(remoteRound.completed) ? remoteRound.completed : []),
   ]);
-  const queue = [
-    ...(Array.isArray(localRound.queue) ? localRound.queue : []),
-    ...(Array.isArray(remoteRound.queue) ? remoteRound.queue : []),
-  ]
-    .filter((cardId, index, ids) => !completed.has(cardId) && ids.indexOf(cardId) === index)
-    .sort();
+  const localCompletionEvents = isStoreObject(localRound.completionEvents)
+    ? localRound.completionEvents
+    : {};
+  const remoteCompletionEvents = isStoreObject(remoteRound.completionEvents)
+    ? remoteRound.completionEvents
+    : {};
+  const reopenedCompletedIds = [];
+  const completed = new Set(
+    [...completedCandidates].sort().filter((cardId) => {
+      const eventIds = mergedCompletionEventIds(
+        localCompletionEvents,
+        remoteCompletionEvents,
+        cardId,
+      );
+      const remainsCompleted =
+        eventIds.length === 0 ||
+        eventIds.some((eventId) => !isRatingEventTombstoned(cardStates, cardId, eventId));
+      if (!remainsCompleted) reopenedCompletedIds.push(cardId);
+      return remainsCompleted;
+    }),
+  );
+  const mergedQueue = mergePendingQueueOrder(baseRound, localRound, remoteRound, completed);
+  reopenedCompletedIds.forEach((cardId) => {
+    if (!mergedQueue.queue.includes(cardId)) mergedQueue.queue.push(cardId);
+  });
 
   const completionEvents = mergeCompletionEvents(completed, localRound, remoteRound, cardStates);
   const roundCompletionEvents = [
@@ -452,7 +530,8 @@ function mergeConcurrentDeckRound(
     ...cloneStore(baseRound),
     ...cloneStore(remoteRound),
     ...cloneStore(localRound),
-    queue,
+    queue: mergedQueue.queue,
+    queueOrderVersion: mergedQueue.queueOrderVersion,
     completed: [...completed].sort(),
     completionEvents,
     roundCompletionEvents,
@@ -826,6 +905,7 @@ function syncSessionRoundState(options = {}) {
   clearRecord(sessionRoundGenerations);
   clearRecord(sessionRoundIds);
   clearRecord(sessionRoundCounts);
+  clearRecord(sessionQueueOrderVersions);
   if (!roundState || typeof roundState !== "object") return;
 
   const deckNames = knownDecks();
@@ -846,6 +926,7 @@ function syncSessionRoundState(options = {}) {
     sessionRoundGenerations[deck] = roundGenerationForState(state);
     sessionRoundIds[deck] = roundIdForState(state, deck);
     sessionRoundCounts[deck] = Number.isInteger(state.rounds) ? Math.max(0, state.rounds) : 0;
+    sessionQueueOrderVersions[deck] = queueOrderVersionForState(state);
   });
 }
 
@@ -863,6 +944,7 @@ function saveRoundState() {
     ...Object.keys(sessionRoundGenerations),
     ...Object.keys(sessionRoundIds),
     ...Object.keys(sessionRoundCounts),
+    ...Object.keys(sessionQueueOrderVersions),
   ]);
 
   deckNames.forEach((deck) => {
@@ -871,6 +953,7 @@ function saveRoundState() {
       queue: [...(sessionQueues[deck] || [])],
       completed: [...(sessionCompleted[deck] || new Set())],
       completionEvents: { ...(sessionCompletionEvents[deck] || {}) },
+      queueOrderVersion: sessionQueueOrderVersions[deck] || 0,
       roundCompletionEvents: [...(sessionRoundCompletionEvents[deck] || [])],
       roundGeneration: sessionRoundGenerations[deck],
       roundId: sessionRoundIds[deck],
@@ -1132,6 +1215,9 @@ function buildQueue() {
   const cardById = new Map(deckCards.map((card) => [card.id, card]));
   const hadQueue = Array.isArray(sessionQueues[activeDeck]);
   const hadCompleted = sessionCompleted[activeDeck] instanceof Set;
+  const previousQueueOrderVersion = sessionQueueOrderVersions[activeDeck] || 0;
+  const needsQueueOrderMigration =
+    hadQueue && previousQueueOrderVersion < ROUND_QUEUE_ORDER_VERSION;
   const completedIds = hadCompleted
     ? sessionCompleted[activeDeck]
     : new Set(
@@ -1147,12 +1233,23 @@ function buildQueue() {
   const missingCards = deckCards.filter(
     (card) => !queuedIdSet.has(card.id) && !completedIds.has(card.id),
   );
-  const nextQueue = [...knownQueuedIds, ...shuffleCards(missingCards)];
+  let nextQueue = [...knownQueuedIds, ...shuffleCards(missingCards)];
+  if (needsQueueOrderMigration) {
+    nextQueue = avoidSameOrder(shuffleList(nextQueue), nextQueue);
+  }
+  const nextQueueOrderVersion = Math.max(
+    previousQueueOrderVersion,
+    ROUND_QUEUE_ORDER_VERSION,
+  );
   const shouldSave =
-    !hadQueue || !hadCompleted || !arraysEqual(sessionQueues[activeDeck], nextQueue);
+    !hadQueue ||
+    !hadCompleted ||
+    previousQueueOrderVersion !== nextQueueOrderVersion ||
+    !arraysEqual(sessionQueues[activeDeck], nextQueue);
 
   sessionCompleted[activeDeck] = completedIds;
   sessionQueues[activeDeck] = nextQueue;
+  sessionQueueOrderVersions[activeDeck] = nextQueueOrderVersion;
   reviewQueue = sessionQueues[activeDeck].map((id) => cardById.get(id)).filter(Boolean);
   if (shouldSave) {
     saveRoundState();
@@ -1249,8 +1346,13 @@ function render() {
   );
   elements.cardPrompt.textContent = currentCard.prompt;
   elements.cardPrompt.lang = currentCard.promptLang || "";
-  elements.cardSubtle.textContent = currentCard.subtle || "";
-  elements.cardSubtle.lang = currentCard.subtleLang || "";
+  const hidesPromptReading =
+    currentCard.isVocab &&
+    ["vocab-ja-zh", "vocab-n4-ja-zh"].includes(currentCard.deck);
+  const showsCardSubtle = Boolean(currentCard.subtle) && !hidesPromptReading;
+  elements.cardSubtle.textContent = showsCardSubtle ? currentCard.subtle : "";
+  elements.cardSubtle.lang = showsCardSubtle ? currentCard.subtleLang || "" : "";
+  elements.cardSubtle.hidden = !showsCardSubtle;
   elements.cardReveal.disabled = Boolean(currentCard.isChoice || isRevealed);
   elements.cardReveal.setAttribute(
     "aria-expanded",
@@ -1260,12 +1362,12 @@ function render() {
     "aria-label",
     currentCard.isChoice ? "选择下方答案" : isRevealed ? "答案已显示" : "显示答案",
   );
-  elements.cardReveal.setAttribute(
-    "aria-describedby",
-    isRevealed || currentCard.isChoice
-      ? "cardPrompt cardSubtle"
-      : "cardPrompt cardSubtle cardRevealHint",
-  );
+  const revealDescriptionIds = [
+    "cardPrompt",
+    showsCardSubtle ? "cardSubtle" : "",
+    !isRevealed && !currentCard.isChoice ? "cardRevealHint" : "",
+  ].filter(Boolean);
+  elements.cardReveal.setAttribute("aria-describedby", revealDescriptionIds.join(" "));
   const canSpeak = Boolean(isRevealed ? primarySpeech(currentCard) : currentCard.frontSpeech);
   elements.speakWord.hidden = !canSpeak;
   elements.speakWord.disabled = !canSpeak;
@@ -1863,6 +1965,7 @@ function restartDeckRound() {
   sessionCompletionEvents[activeDeck] = {};
   sessionRoundCompletionEvents[activeDeck] = [];
   sessionQueues[activeDeck] = shuffleCards(deckCards, previousOrder);
+  sessionQueueOrderVersions[activeDeck] = ROUND_QUEUE_ORDER_VERSION;
   saveRoundState();
   nextCard();
   focusPrimaryStudyAction();

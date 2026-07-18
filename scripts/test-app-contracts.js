@@ -324,6 +324,7 @@ function createHarness({
   grammarCards = [],
   initialStore,
   kanaCards = [baseCard()],
+  random = Math.random,
   sharedStorage = null,
   storageWriteError = null,
   tabDecks = ["hiragana"],
@@ -393,6 +394,7 @@ function createHarness({
   };
   const context = {
     HTMLElement: FakeElement,
+    Math: Object.assign(Object.create(Math), { random }),
     SpeechSynthesisUtterance: FakeUtterance,
     clearTimeout,
     console,
@@ -1335,6 +1337,7 @@ function testUndoAgainstOtherCardCompletionReopensOnlyUndoneCard() {
           completed: [],
           completionEvents: {},
           queue: [cardA.id, cardB.id],
+          queueOrderVersion: 1,
           roundCompletionEvents: [],
           rounds: 0,
         },
@@ -1414,6 +1417,7 @@ function testDistributedLastCardCompletionIncrementsRoundOnce() {
           completed: [],
           completionEvents: {},
           queue: [cardA.id, cardB.id],
+          queueOrderVersion: 1,
           roundCompletionEvents: [],
           rounds: 0,
         },
@@ -1552,6 +1556,207 @@ function testReadyStatusDoesNotFlash() {
   );
 }
 
+function testFreshRoundStartsInRandomOrder() {
+  const cards = ["a", "b", "c", "d"].map((id) => baseCard({ id: `card-${id}` }));
+  const sourceOrder = cards.map((card) => card.id);
+  const harness = createHarness({ kanaCards: cards, random: () => 0 });
+  const round = JSON.parse(harness.storage.get("ayaya-jp-srs-v1")).__rounds.decks.hiragana;
+
+  assert(
+    JSON.stringify(round.queue) === JSON.stringify(["card-b", "card-c", "card-d", "card-a"]),
+    "fresh round did not use the Fisher-Yates result",
+  );
+  assert(
+    JSON.stringify(round.queue) !== JSON.stringify(sourceOrder),
+    "fresh round retained the source data order",
+  );
+  assert(round.queueOrderVersion === 1, "fresh round did not persist its queue order version");
+}
+
+function testLegacyQueueOrderMigratesOnlyOnce() {
+  const cards = ["a", "b", "c", "d", "done"].map((id) =>
+    baseCard({ id: `card-${id}` }),
+  );
+  const legacyQueue = cards.slice(0, 4).map((card) => card.id);
+  const initialStore = JSON.stringify({
+    __rounds: {
+      activeDeck: "hiragana",
+      decks: {
+        hiragana: {
+          completed: ["card-done"],
+          queue: legacyQueue,
+          roundGeneration: 3,
+          roundId: "round:hiragana:3",
+          rounds: 3,
+        },
+      },
+    },
+  });
+  const firstLoad = createHarness({ initialStore, kanaCards: cards, random: () => 0 });
+  const firstSaved = JSON.parse(firstLoad.storage.get("ayaya-jp-srs-v1"));
+  const firstRound = firstSaved.__rounds.decks.hiragana;
+
+  assert(
+    JSON.stringify(firstRound.queue) !== JSON.stringify(legacyQueue),
+    "legacy fixed queue was not reshuffled",
+  );
+  assert(
+    JSON.stringify([...firstRound.queue].sort()) === JSON.stringify([...legacyQueue].sort()),
+    "legacy queue migration lost or duplicated pending cards",
+  );
+  assert(
+    JSON.stringify(firstRound.completed) === JSON.stringify(["card-done"]),
+    "legacy queue migration changed completed progress",
+  );
+  assert(
+    firstRound.rounds === 3 &&
+      firstRound.roundGeneration === 3 &&
+      firstRound.roundId === "round:hiragana:3",
+    "legacy queue migration changed the round epoch",
+  );
+  assert(firstRound.queueOrderVersion === 1, "legacy queue migration was not marked complete");
+
+  const secondLoad = createHarness({
+    initialStore: JSON.stringify(firstSaved),
+    kanaCards: cards,
+    random: () => 0.75,
+  });
+  const secondRound = JSON.parse(secondLoad.storage.get("ayaya-jp-srs-v1")).__rounds.decks.hiragana;
+  assert(
+    JSON.stringify(secondRound.queue) === JSON.stringify(firstRound.queue),
+    "current round reshuffled again on reload",
+  );
+}
+
+function testConcurrentQueueMergePreservesCanonicalRandomOrder() {
+  const cards = ["a", "b", "c"].map((id) => baseCard({ id: `card-${id}` }));
+  const harness = createHarness({ kanaCards: cards, random: () => 0 });
+  const baseRound = {
+    completed: [],
+    queue: [],
+    queueOrderVersion: 1,
+    roundGeneration: 0,
+    roundId: "round:hiragana:0",
+    rounds: 0,
+  };
+  const localRound = { ...baseRound, queue: ["card-c", "card-a", "card-b"] };
+  const remoteRound = { ...baseRound, queue: ["card-b", "card-c", "card-a"] };
+  const merge = (left, right) =>
+    harness.context.mergeConcurrentDeckRound(
+      "hiragana",
+      baseRound,
+      left,
+      right,
+      {},
+      new Set(),
+    ).queue;
+  const leftFirst = merge(localRound, remoteRound);
+  const rightFirst = merge(remoteRound, localRound);
+
+  assert(
+    JSON.stringify(leftFirst) === JSON.stringify(rightFirst),
+    "concurrent queue merge depends on local/remote argument order",
+  );
+  assert(
+    JSON.stringify(leftFirst) !== JSON.stringify(["card-a", "card-b", "card-c"]),
+    "concurrent queue merge sorted cards back into ID order",
+  );
+}
+
+function testConcurrentUndosReopenCardsInCanonicalOrder() {
+  const cards = ["a", "b", "c"].map((id) => baseCard({ id: `card-${id}` }));
+  const harness = createHarness({ kanaCards: cards, random: () => 0 });
+  const baseRound = {
+    completed: ["card-a", "card-b"],
+    completionEvents: {
+      "card-a": ["event-a"],
+      "card-b": ["event-b"],
+    },
+    queue: ["card-c"],
+    queueOrderVersion: 1,
+    roundGeneration: 0,
+    roundId: "round:hiragana:0",
+    rounds: 0,
+  };
+  const leftRound = {
+    ...baseRound,
+    completed: ["card-b"],
+    completionEvents: { "card-b": ["event-b"] },
+    queue: ["card-a", "card-c"],
+  };
+  const rightRound = {
+    ...baseRound,
+    completed: ["card-a"],
+    completionEvents: { "card-a": ["event-a"] },
+    queue: ["card-b", "card-c"],
+  };
+  const cardStates = {
+    "card-a": { ratingTombstones: ["event-a"] },
+    "card-b": { ratingTombstones: ["event-b"] },
+  };
+  const merge = (left, right) =>
+    harness.context.mergeConcurrentDeckRound(
+      "hiragana",
+      baseRound,
+      left,
+      right,
+      cardStates,
+      new Set(["event-a", "event-b"]),
+    ).queue;
+  const leftFirst = merge(leftRound, rightRound);
+  const rightFirst = merge(rightRound, leftRound);
+
+  assert(
+    JSON.stringify(leftFirst) === JSON.stringify(rightFirst),
+    "simultaneous Undo queue depends on local/remote argument order",
+  );
+  assert(
+    JSON.stringify(leftFirst) === JSON.stringify(["card-c", "card-a", "card-b"]),
+    "simultaneous Undo did not preserve the canonical pending-card order",
+  );
+}
+
+function testJapaneseToChineseVocabHidesReadingUntilReveal() {
+  ["vocab-ja-zh", "vocab-n4-ja-zh"].forEach((deck) => {
+    const card = baseCard({
+      answer: "见面；遇见",
+      answerLang: "zh-CN",
+      deck,
+      id: `${deck}-fixture`,
+      isVocab: true,
+      meta: "读音：あう　罗马音：au",
+      prompt: "会う",
+      subtle: "读音：あう",
+      subtleLang: "zh-CN",
+    });
+    const harness = createHarness({
+      tabDecks: ["hiragana", deck],
+      vocabCards: [card],
+    });
+    harness.tabs[1].dispatch("click");
+
+    assert(harness.element("cardPrompt").textContent === "会う", `${deck} lost its word prompt`);
+    assert(harness.element("cardSubtle").hidden, `${deck} front reading remains visible`);
+    assert(harness.element("cardSubtle").textContent === "", `${deck} front reading remains in DOM text`);
+    assert(
+      !harness.element("cardReveal").getAttribute("aria-describedby").includes("cardSubtle"),
+      `${deck} front reading remains in the accessible description`,
+    );
+    assert(harness.element("answerMeta").textContent === "", `${deck} answer leaked before reveal`);
+
+    harness.element("cardReveal").dispatch("click");
+    assert(
+      harness.element("answerMain").textContent === "见面；遇见",
+      `${deck} did not reveal the Chinese meaning`,
+    );
+    assert(
+      harness.element("answerMeta").textContent === "读音：あう　罗马音：au",
+      `${deck} did not restore the reading after reveal`,
+    );
+    assert(harness.element("cardSubtle").hidden, `${deck} front reading reappeared after reveal`);
+  });
+}
+
 function testChinesePromptDoesNotSpeakHiddenAnswer() {
   const hiddenAnswer = baseCard({
     answer: "会う",
@@ -1648,6 +1853,11 @@ const tests = [
   ["distributed last-card completion counts once", testDistributedLastCardCompletionIncrementsRoundOnce],
   ["more than 64 Undo tombstones remain durable", testMoreThanSixtyFourUndoTombstonesCannotResurrect],
   ["ready status does not flash", testReadyStatusDoesNotFlash],
+  ["fresh rounds start in random order", testFreshRoundStartsInRandomOrder],
+  ["legacy fixed queues migrate only once", testLegacyQueueOrderMigratesOnlyOnce],
+  ["concurrent queue merge preserves random order", testConcurrentQueueMergePreservesCanonicalRandomOrder],
+  ["concurrent Undo reopens cards canonically", testConcurrentUndosReopenCardsInCanonicalOrder],
+  ["Japanese-to-Chinese vocab hides reading until reveal", testJapaneseToChineseVocabHidesReadingUntilReveal],
   ["Chinese prompts do not speak hidden answers", testChinesePromptDoesNotSpeakHiddenAnswer],
   ["stale TTS callbacks are ignored", testStaleSpeechCallbackCannotUseNextCard],
   ["shuffle avoids random sort", testShuffleDoesNotUseRandomSort],
