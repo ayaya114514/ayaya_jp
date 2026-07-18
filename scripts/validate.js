@@ -34,6 +34,7 @@ const expectedDependencyScripts = [
   "card-data.js",
   "app.js",
 ];
+const minimumReviewedRomajiCoverage = 0.7;
 
 function addError(message) {
   validationErrors.push(message);
@@ -249,7 +250,9 @@ function checkHtmlAndDomContracts(html, appSource) {
   });
 
   const scriptTags = tags.filter((tag) => tag.tag === "script");
-  const scriptSources = scriptTags.map((tag) => normalizedScriptSource(tag.attributes.src));
+  const scriptSources = scriptTags
+    .filter((tag) => tag.attributes.src)
+    .map((tag) => normalizedScriptSource(tag.attributes.src));
   check(
     JSON.stringify(scriptSources) === JSON.stringify(expectedDependencyScripts),
     `HTML dependency scripts must appear exactly in this order: ${expectedDependencyScripts.join(" -> ")}; received ${scriptSources.join(" -> ")}`,
@@ -257,6 +260,14 @@ function checkHtmlAndDomContracts(html, appSource) {
   scriptTags.forEach((tag) => {
     check(!Object.hasOwn(tag.attributes, "async"), `${tagLabel(tag)} must not use async`);
   });
+  scriptTags
+    .filter((tag) => tag.attributes.src)
+    .forEach((tag) => {
+      check(
+        Object.hasOwn(tag.attributes, "defer"),
+        `${tagLabel(tag)} must use defer so dependency order is preserved without blocking parsing`,
+      );
+    });
 
   const queriedIds = [...appSource.matchAll(/querySelector\(\s*["']#([^"']+)["']\s*\)/gu)].map(
     (match) => match[1],
@@ -352,6 +363,85 @@ const knownN4TemplateFamilies = [
   ["{term}に相談しました", "{term}と少し話しました", "{term}が駅で待っています"],
   ["{term}へ行きました", "{term}は駅の近くにあります", "{term}で友達に会いました"],
 ].map((examples) => examples.map(compactText).sort().join("|"));
+
+const knownN5ForbiddenTemplateFamilies = [
+  ["{term}を使います", "{term}を買いました", "{term}は机の上にあります"],
+  ["数字の{term}を書きます", "{term}ページを読んでください", "{term}まで数えます"],
+  ["{term}に会います", "{term}と話します", "{term}は元気です"],
+  ["{term}にあります", "{term}を見てください", "{term}で待ちます"],
+].map((examples) => examples.map(compactText).sort().join("|"));
+
+const forbiddenN5Examples = [
+  "駅は駅の近くです",
+  "一昨日、学校へ行きます",
+  "一昨日は忙しいです",
+  "昨日、学校へ行きます",
+  "昨日は忙しいです",
+  "風を見ます",
+  "風がきれいです",
+  "毎日、死にます",
+  "いっしょに死にます",
+  "ページを読みます",
+  "ページが好きです",
+  "千ページを読んでください",
+  "万ページを読んでください",
+  "食べ物を食べます",
+  "飲み物を飲みます",
+  "外国人は元気です",
+  "雪があります",
+  "空があります",
+  "机は机の上にあります",
+  "エレベーターを買いました",
+  "電車を買いました",
+  "ポケットを買いました",
+  "靴を使います",
+  "シャツを使います",
+  "スカートを使います",
+  "ズボンを使います",
+  "セーターを使います",
+  "背広を使います",
+  "服を使います",
+  "ワイシャツを使います",
+  "ネクタイを使います",
+  "戸を使います",
+  "戸を買いました",
+  "ドアを使います",
+  "ドアを買いました",
+  "窓を使います",
+  "窓を買いました",
+  "門を使います",
+  "門を買いました",
+  "葉書を使います",
+  "封筒を使います",
+  "ボタンを使います",
+  "砂糖を食べます",
+  "塩を食べます",
+  "醤油を食べます",
+  "バターを食べます",
+].map(compactText);
+
+const requiredN5ContentFixtures = new Map([
+  ["n5-093", "エレベーターは一階に止まっています"],
+  ["n5-092", "駅は学校の近くです"],
+  ["n5-121", "一昨日、学校へ行きました"],
+  ["n5-162", "今日は風が強いです"],
+  ["n5-200", "昨日、学校へ行きました"],
+  ["n5-304", "飼っていた魚が昨日死にました"],
+  ["n5-284", "このケーキには砂糖が入っています"],
+  ["n5-292", "スープに塩を入れすぎました"],
+  ["n5-321", "刺身に醤油をつけます"],
+  ["n5-352", "この本は千円です"],
+  ["n5-367", "空に鳥が飛んでいます"],
+  ["n5-392", "机の上に食べ物があります"],
+  ["n5-417", "部屋に新しい机を置きました"],
+  ["n5-440", "毎朝、電車で学校へ行きます"],
+  ["n5-514", "冷たい飲み物を買いました"],
+  ["n5-533", "パンにバターを塗ります"],
+  ["n5-592", "教科書を一ページずつ読みます"],
+  ["n5-604", "この服には大きなポケットがあります"],
+  ["n5-633", "この時計は一万円です"],
+  ["n5-681", "昨夜、雪が降りました"],
+]);
 
 function entryTemplateSignature(entry) {
   if (!entry || typeof entry !== "object" || !Array.isArray(entry.examples) || entry.examples.length !== 3) {
@@ -466,7 +556,68 @@ function validateVocabSource(label, data, expectedCount) {
     );
   }
 
+  if (label === "N5") {
+    const forbiddenTemplates = data.entries.filter((entry) =>
+      knownN5ForbiddenTemplateFamilies.includes(entryTemplateSignature(entry)),
+    );
+    if (forbiddenTemplates.length) {
+      addError(
+        `N5 still contains ${forbiddenTemplates.length} entries from confirmed unsafe template families: ${sample(
+          forbiddenTemplates.map((entry) => entry.id),
+          12,
+        )}`,
+      );
+    }
+
+    const remainingForbiddenExamples = [];
+    data.entries.forEach((entry) => {
+      (entry.examples || []).forEach((example) => {
+        if (forbiddenN5Examples.includes(compactText(example?.ja))) {
+          remainingForbiddenExamples.push(`${entry.id}: ${example.ja}`);
+        }
+      });
+    });
+    if (remainingForbiddenExamples.length) {
+      addError(
+        `N5 still contains confirmed unnatural or temporally invalid examples: ${sample(
+          remainingForbiddenExamples,
+          12,
+        )}`,
+      );
+    }
+
+    requiredN5ContentFixtures.forEach((expectedExample, id) => {
+      const entry = data.entries.find((candidate) => candidate.id === id);
+      check(Boolean(entry), `N5 content fixture ${id} is missing`);
+      check(
+        (entry?.examples || []).some(
+          (example) => compactText(example?.ja) === compactText(expectedExample),
+        ),
+        `N5 ${id} must retain the reviewed example ${expectedExample}`,
+      );
+    });
+  }
+
   if (label === "N4") {
+    const administrativeCapital = data.entries.find((entry) => entry.id === "n4-465");
+    const reviewedCapitalExamples = [
+      "日本の都道府県では、都は東京都だけです",
+      "東京都の都庁は新宿にあります",
+    ].map(compactText);
+    check(Boolean(administrativeCapital), "N4 content fixture n4-465 is missing");
+    check(
+      administrativeCapital?.reading === "と" && administrativeCapital?.romaji === "to",
+      "N4 n4-465 都 must retain the administrative reading と / to",
+    );
+    reviewedCapitalExamples.forEach((expectedExample) => {
+      check(
+        (administrativeCapital?.examples || []).some(
+          (example) => compactText(example?.ja) === expectedExample,
+        ),
+        `N4 n4-465 must retain reviewed administrative example ${expectedExample}`,
+      );
+    });
+
     const templatedEntries = data.entries.filter((entry) =>
       knownN4TemplateFamilies.includes(entryTemplateSignature(entry)),
     );
@@ -554,6 +705,14 @@ function validateGrammarSource(grammarData, expectedCount) {
       )}`,
     );
   }
+
+  const visibleAdjective = grammarData.entries.find((entry) => entry.id === "n4-grammar-058");
+  check(Boolean(visibleAdjective), "grammar fixture n4-grammar-058 is missing");
+  check(
+    visibleAdjective?.formation.includes("い形語幹 + く見える") &&
+      !visibleAdjective?.formation.includes("い形 + に見える"),
+    "n4-grammar-058 must model い-adjectives as い形語幹 + く見える",
+  );
 }
 
 function validateCardSchema(cards, tabDecks) {
@@ -696,6 +855,48 @@ function validateDisplayedRomaji(cards) {
       `romaji values conflict with unavailable markers: ${sample(contradictoryMarkers, 8)}`,
     );
   }
+}
+
+function validateRomajiCoverage(cards) {
+  const uniqueExamples = new Map();
+  cards.forEach((card) => {
+    (Array.isArray(card.examples) ? card.examples : []).forEach((example) => {
+      if (!example || typeof example !== "object" || Array.isArray(example)) return;
+      const key = JSON.stringify([compactText(example.ja), compactText(example.zh)]);
+      if (!uniqueExamples.has(key)) uniqueExamples.set(key, example);
+    });
+  });
+
+  const examples = [...uniqueExamples.values()];
+  const available = examples.filter(
+    (example) => example.romajiStatus === "available" && compactText(example.romaji),
+  ).length;
+  const coverage = examples.length ? available / examples.length : 0;
+  check(
+    coverage >= minimumReviewedRomajiCoverage,
+    `displayed romaji coverage fell to ${(coverage * 100).toFixed(1)}% (${available}/${examples.length}); expected at least ${(minimumReviewedRomajiCoverage * 100).toFixed(0)}%`,
+  );
+}
+
+function validateKanaMarkClassification(kanaCards) {
+  const markedCards = kanaCards.filter((card) => card.id?.startsWith("special-marked-"));
+  const byPrompt = new Map(markedCards.map((card) => [card.prompt, card]));
+  const handakuten = ["ぱ", "ぴ", "ぷ", "ぺ", "ぽ"];
+  const dakuten = [
+    "が", "ぎ", "ぐ", "げ", "ご",
+    "ざ", "じ", "ず", "ぜ", "ぞ",
+    "だ", "ぢ", "づ", "で", "ど",
+    "ば", "び", "ぶ", "べ", "ぼ",
+  ];
+
+  handakuten.forEach((kana) => {
+    check(Boolean(byPrompt.get(kana)), `kana fixture ${kana} is missing`);
+    check(byPrompt.get(kana)?.type === "半浊音", `${kana} must be classified as 半浊音`);
+  });
+  dakuten.forEach((kana) => {
+    check(Boolean(byPrompt.get(kana)), `kana fixture ${kana} is missing`);
+    check(byPrompt.get(kana)?.type === "浊音", `${kana} must be classified as 浊音`);
+  });
 }
 
 function validatePromptDisambiguation(cards) {
@@ -1096,6 +1297,47 @@ function validatePreferredReadingRegressions(runtime) {
       `ambiguous surface ${surface} must not use global fallback reading ${unsafeGlobal?.[1]}`,
     );
   });
+
+  check(
+    !runtime.cardData.furiganaEntries.some(([surface]) => /[~〜～]/u.test(surface)),
+    "global fallback must not expose prefix/suffix notation as a lexical surface",
+  );
+
+  const reviewedRomajiFixtures = new Map([
+    ["ここへ来てください", "kokohekitekudasai"],
+    ["あの人は外国人です", "anohitohagaikokujindesu"],
+    ["思い出は心に残ります", "omoidehakokoroninokorimasu"],
+    ["体の調子がいいです", "karadanochoushigaiidesu"],
+    ["気温が急に下がりました", "kiongakyuunisagarimashita"],
+    ["木で小さな小屋を建てました", "kidechiisanakoyawotatemashita"],
+    ["温かいうちに召し上がってください", "atatakaiuchinimeshiagattekudasai"],
+    ["区役所まで歩いて行きます", "kuyakushomadearuiteikimasu"],
+    ["木製の机を買いました", "mokuseinotsukuewokaimashita"],
+    ["物語の終わりは少し悲しかったです", "monogatarinoowarihasukoshikanashikattadesu"],
+    ["温かい家庭を作りたいです", "atatakaikateiwotsukuritaidesu"],
+    ["自分の気持ちを正直に話しました", "jibunnokimochiwoshoujikinihanashimashita"],
+    ["あの子は近所の小学生です", "anokohakinjonoshougakuseidesu"],
+    ["市役所は市民の意見を聞きました", "shiyakushohashiminnoikenwokikimashita"],
+    ["この建物は明治時代に建てられました", "konotatemonohameijijidainitateraremashita"],
+    ["乗り換えの時間は十分間です", "norikaenojikanhajuppunkandesu"],
+    ["集合場所は駅の南口です", "shuugoubashohaekinominamiguchidesu"],
+    ["日本の食文化に興味があります", "nihonnoshokubunkanikyoumigaarimasu"],
+    ["この仕事は速さと正確さの両方が必要です", "konoshigotohahayasatoseikakusanoryouhougahitsuyoudesu"],
+    ["日本の都道府県では、都は東京都だけです", "nihonnotodoufukendeha, tohatoukyoutodakedesu"],
+    ["東京都の都庁は新宿にあります", "toukyoutonotochouhashinjukuniarimasu"],
+  ]);
+  const vocabExamples = runtime.vocabCards.flatMap((vocabCard) => vocabCard.examples || []);
+  reviewedRomajiFixtures.forEach((expectedRomaji, japanese) => {
+    const reviewedExample = vocabExamples.find(
+      (candidate) => compactText(candidate?.ja) === compactText(japanese),
+    );
+    check(Boolean(reviewedExample), `reviewed romaji fixture is missing: ${japanese}`);
+    check(
+      reviewedExample?.romajiStatus === "available" &&
+        canonicalText(reviewedExample?.romaji) === canonicalText(expectedRomaji),
+      `${japanese} romaji expected ${expectedRomaji}, received ${reviewedExample?.romaji || "(blank)"} / ${reviewedExample?.romajiStatus || "(missing status)"}`,
+    );
+  });
 }
 
 function validateGrammarChoices(grammarCards, grammarData) {
@@ -1195,20 +1437,36 @@ function checkDarkOnlyRuntime(tags, appSource, stylesSource) {
   );
 }
 
-function checkFullCardRevealTarget(stylesSource) {
+function checkFullStudyRevealTarget(stylesSource, appSource) {
+  const studyRule = stylesSource.match(/(?:^|\n)\.study-card\s*\{([^}]*)\}/u)?.[1] || "";
   const cardRule = stylesSource.match(/(?:^|\n)\.card\s*\{([^}]*)\}/u)?.[1] || "";
   const revealRule = stylesSource.match(/(?:^|\n)\.card-reveal\s*\{([^}]*)\}/u)?.[1] || "";
   const speakerRule = stylesSource.match(/(?:^|\n)\.prompt-speak\s*\{([^}]*)\}/u)?.[1] || "";
 
+  check(/cursor:\s*pointer\s*;/u.test(studyRule), ".study-card must advertise its reveal target");
   check(/position:\s*relative\s*;/u.test(cardRule), ".card must anchor the full reveal target");
   check(
-    /position:\s*absolute\s*;/u.test(revealRule) && /inset:\s*0\s*;/u.test(revealRule),
-    ".card-reveal must cover the entire flashcard area",
+    !/position:\s*absolute\s*;/u.test(revealRule),
+    ".card-reveal must remain in flow so long prompts contribute to intrinsic card height",
   );
   check(
-    /position:\s*relative\s*;/u.test(speakerRule) && /z-index:\s*[1-9]\d*\s*;/u.test(speakerRule),
+    /width:\s*100%\s*;/u.test(revealRule) &&
+      /max-width:\s*100%\s*;/u.test(revealRule) &&
+      /min-height:\s*100%\s*;/u.test(revealRule) &&
+      /align-self:\s*stretch\s*;/u.test(revealRule),
+    ".card-reveal must stretch across the full in-flow card surface",
+  );
+  check(
+    /position:\s*absolute\s*;/u.test(speakerRule) && /z-index:\s*[1-9]\d*\s*;/u.test(speakerRule),
     ".prompt-speak must stay above the full-card reveal target",
   );
+  check(
+    /elements\.studyCard\.addEventListener\(\s*["']click["']\s*,\s*revealFromStudySurface/u.test(
+      appSource,
+    ),
+    "app.js must reveal from non-control clicks across #studyCard",
+  );
+  check(!appSource.includes("应用已就绪。"), "app.js must not flash a ready-status message");
 }
 
 function checkPackageContract(packageJson) {
@@ -1262,7 +1520,7 @@ function main() {
   checkReadmeDarkOnly(read("README.md"));
   const stylesSource = read("styles.css");
   checkDarkOnlyRuntime(tags, appSource, stylesSource);
-  checkFullCardRevealTarget(stylesSource);
+  checkFullStudyRevealTarget(stylesSource, appSource);
 
   const n5Json = capture("could not parse n5-codex-vocab.json", () =>
     readJson("n5-codex-vocab.json"),
@@ -1306,9 +1564,11 @@ function main() {
     );
     const cards = [...runtime.kanaCards, ...runtime.vocabCards, ...runtime.grammarCards];
     validateLevelSpecificBuilders(runtime);
+    validateKanaMarkClassification(runtime.kanaCards);
     validateCardSchema(cards, tabDecks);
     validateDeckCoverage(cards, tabDecks, runtime.data);
     validateDisplayedRomaji(cards);
+    validateRomajiCoverage(cards);
     validatePromptDisambiguation(cards);
     capture("stable vocab id regression check failed", () => validateStableVocabIds(runtime));
     validateProductionLegacyVocabIds(runtime);

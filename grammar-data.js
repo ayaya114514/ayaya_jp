@@ -3390,8 +3390,8 @@ window.AYAYA_GRAMMAR_DATA = {
       "level": "N4",
       "pattern": "〜に見える",
       "meaningZh": "看起来……",
-      "formation": "N / な形語幹 / い形 + に見える",
-      "note": "根据外观判断。い形常直接接そうだ，に見える多接名词化/状态词。",
+      "formation": "N / な形語幹 + に見える；い形語幹 + く見える",
+      "note": "根据外观判断。名词和な形容词接「に見える」；い形容词去「い」后接「く見える」。",
       "promptZh": "田中先生看起来年轻。",
       "answerJa": "田中さんは若く見えます。",
       "examples": [

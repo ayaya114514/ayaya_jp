@@ -2410,6 +2410,7 @@ function makeKanaCards() {
     ([hiragana]) => hiragana.length === 1 && !pureGojuon.has(hiragana),
   );
   const comboRows = kanaRows.filter(([hiragana]) => hiragana.length > 1);
+  const handakutenRows = new Set(["ぱ", "ぴ", "ぷ", "ぺ", "ぽ"]);
 
   const cards = [
     ...coreRows.map(([hiragana, katakana, romaji], index) => ({
@@ -2440,7 +2441,7 @@ function makeKanaCards() {
       speech: hiragana,
     })),
     ...markedRows.map(([hiragana, katakana, romaji], index) => {
-      const type = hiragana.charCodeAt(0) >= "ぱ".charCodeAt(0) ? "半浊音" : "浊音";
+      const type = handakutenRows.has(hiragana) ? "半浊音" : "浊音";
       return {
         id: `special-marked-${index}`,
         deck: "special",
@@ -2504,6 +2505,13 @@ const godanIStem = {
   る: "り",
 };
 
+const kanjiCharacterPattern = /[\u3400-\u9fff]/u;
+const affixMarkerPattern = /[~〜～]/u;
+
+function isKanjiCharacter(character = "") {
+  return kanjiCharacterPattern.test(character);
+}
+
 function addReadingEntry(entries, seen, surface, reading) {
   const cleanSurface = surface?.trim();
   const cleanReading = reading?.split(";")[0]?.trim();
@@ -2524,15 +2532,39 @@ function readingEntriesForVocabEntry(entry) {
 
   surfaces.forEach((surface) => {
     const cleanSurface = surface?.trim();
-    if (!cleanSurface || !/[\u3400-\u9fff]/.test(cleanSurface)) return;
+    if (!cleanSurface || !kanjiCharacterPattern.test(cleanSurface)) return;
 
     const reading = formReadings.get(cleanSurface) || entry?.reading;
     addReadingEntry(entries, seen, cleanSurface, reading);
 
-    const firstKanjiIndex = cleanSurface.search(/[\u3400-\u9fff]/);
+    // Prefix/suffix notation such as 「～人」 is not a word boundary. Deriving
+    // 「人 → じん」 from it would also rewrite the standalone noun 人（ひと）.
+    if (affixMarkerPattern.test(cleanSurface)) return;
+
+    // 来る is irregular: its inflected forms alternate between き-, こ- and
+    // く-. A generic "remove る" rule produces the incorrect 来て → くて.
+    if (cleanSurface === "来る" && reading === "くる") {
+      [
+        ["来ます", "きます"],
+        ["来ました", "きました"],
+        ["来ません", "きません"],
+        ["来て", "きて"],
+        ["来た", "きた"],
+        ["来ない", "こない"],
+        ["来なかった", "こなかった"],
+        ["来られ", "こられ"],
+        ["来れば", "くれば"],
+        ["来よう", "こよう"],
+      ].forEach(([inflectedSurface, inflectedReading]) =>
+        addReadingEntry(entries, seen, inflectedSurface, inflectedReading),
+      );
+      return;
+    }
+
+    const firstKanjiIndex = cleanSurface.search(kanjiCharacterPattern);
     let lastKanjiIndex = -1;
     [...cleanSurface].forEach((char, index) => {
-      if (/[\u3400-\u9fff]/.test(char)) lastKanjiIndex = index;
+      if (kanjiCharacterPattern.test(char)) lastKanjiIndex = index;
     });
     const kanaPrefix = cleanSurface.slice(0, firstKanjiIndex);
     const kanaSuffix = cleanSurface.slice(lastKanjiIndex + 1);
@@ -2568,12 +2600,80 @@ function readingEntriesForVocabEntry(entry) {
 const contextSpecificReadings = [
   ["九時", "くじ"],
   ["九月", "くがつ"],
+  ["日本人", "にほんじん"],
+  ["中国人", "ちゅうごくじん"],
+  ["あの人", "あのひと"],
+  ["思い出は", "おもいでは"],
+  ["調子", "ちょうし"],
+  ["気温", "きおん"],
+  ["小屋", "こや"],
+  ["温かい", "あたたかい"],
+  ["区役所", "くやくしょ"],
+  ["市役所", "しやくしょ"],
+  ["木製", "もくせい"],
+  ["物語", "ものがたり"],
+  ["正直", "しょうじき"],
+  ["小学生", "しょうがくせい"],
+  ["明治", "めいじ"],
+  ["明治時代", "めいじじだい"],
+  ["十分間", "じゅっぷんかん"],
+  ["集合場所", "しゅうごうばしょ"],
+  ["食文化", "しょくぶんか"],
+  ["正確さ", "せいかくさ"],
+  ["東京都", "とうきょうと"],
+  ["都道府県", "とどうふけん"],
+  ["都庁", "とちょう"],
+  ["新宿", "しんじゅく"],
+  ["降り出しました", "ふりだしました"],
+  ["話しました", "はなしました"],
+  ["悲しかった", "かなしかった"],
+  ["作りたい", "つくりたい"],
+  ["聞きました", "ききました"],
+  ["建物", "たてもの"],
+  ["時代", "じだい"],
+  ["建てられました", "たてられました"],
+  ["駅", "えき"],
+  ["店", "みせ"],
+  ["雨", "あめ"],
+  ["急に", "きゅうに"],
+  ["南口", "みなみぐち"],
+  ["日本", "にほん"],
+  ["興味", "きょうみ"],
+  ["速さ", "はやさ"],
+  ["必要", "ひつよう"],
+  ["仕事", "しごと"],
+  ["両方", "りょうほう"],
+  ["歩いて", "あるいて"],
+  ["行きます", "いきます"],
+  ["机", "つくえ"],
+  ["木", "き"],
+  ["心", "こころ"],
+  ["買いました", "かいました"],
+  ["市民", "しみん"],
+  ["意見", "いけん"],
 ];
 
 const allVocabReadingEntries = [...n5Entries, ...n4Entries].flatMap((entry) =>
   readingEntriesForVocabEntry(entry),
 );
-const globalReadingCandidates = [...furiganaEntries, ...allVocabReadingEntries];
+// Keep broad coverage without allowing readings that are known to change by
+// grammatical role or suffix. Longer lexical/inflected forms are considered
+// before shorter ones, ambiguous readings are rejected below, and the tokenizer
+// also refuses to match a Kanji surface from inside a larger Kanji compound.
+const unsafeGlobalReadingSurfaces = new Set([
+  "後",
+  "降り",
+  "人",
+  "着",
+  "中",
+  "話",
+  "背",
+  "来",
+]);
+const globalReadingCandidates = [...allVocabReadingEntries, ...furiganaEntries].filter(
+  ([surface]) =>
+    !affixMarkerPattern.test(surface) && !unsafeGlobalReadingSurfaces.has(surface),
+);
 const readingsBySurface = new Map();
 globalReadingCandidates.forEach(([surface, reading]) => {
   if (!readingsBySurface.has(surface)) readingsBySurface.set(surface, new Set());
@@ -2610,7 +2710,16 @@ function applyKnownReadings(text, preferredReadings = []) {
   let index = 0;
 
   while (index < text.length) {
-    const entry = readingEntries.find(([surface]) => text.startsWith(surface, index));
+    const entry = readingEntries.find(([surface]) => {
+      if (!text.startsWith(surface, index)) return false;
+      const previousCharacter = text[index - 1] || "";
+      const nextCharacter = text[index + surface.length] || "";
+      const startsInsideCompound =
+        isKanjiCharacter(surface[0]) && isKanjiCharacter(previousCharacter);
+      const endsInsideCompound =
+        isKanjiCharacter(surface.at(-1)) && isKanjiCharacter(nextCharacter);
+      return !startsInsideCompound && !endsInsideCompound;
+    });
     if (entry) {
       result += entry[1];
       index += entry[0].length;

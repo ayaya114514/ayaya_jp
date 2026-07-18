@@ -52,7 +52,12 @@ const requiredContracts = [
   "dark-only-runtime",
   "validation-source-fingerprint",
   "preferred-homograph-readings",
-  "full-card-reveal-target",
+  "reviewed-romaji-fixtures",
+  "romaji-coverage-regression",
+  "kana-mark-classification",
+  "n5-content-regressions",
+  "grammar-formation-regressions",
+  "full-study-reveal-target",
 ];
 
 function read(relativePath) {

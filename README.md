@@ -15,7 +15,7 @@ python3 -m http.server 5173
 
 然后访问 `http://localhost:5173`。
 
-可以使用 `Tab` 在操作项之间移动；聚焦卡片后按 `Enter` 或 `Space` 显示答案。首次加载时页面会显示准备状态，资源加载失败时会给出可见提示。
+可以使用 `Tab` 在操作项之间移动；聚焦卡片后按 `Enter` 或 `Space` 显示答案。正常加载不会闪现状态提示；资源加载失败时会给出可见提示。
 
 ## 检查
 
@@ -26,7 +26,21 @@ nvm use
 npm run check
 ```
 
-`npm run check` 会依次运行 source/runtime/DOM validation、bundle baseline validation 和 app regression tests。它会检查 JS 语法、HTML 结构与本地资源、脚本依赖顺序、N5/N4 JS/JSON 数据一致性、词库和语法字段完整性、lazy card builders、stable/legacy IDs，以及 app 的 storage、TTS、sidebar 等关键 contracts。
+`npm run check` 会依次运行 source/runtime/DOM validation、bundle baseline validation 和 app contract tests。它会检查 JS 语法、HTML 结构与本地资源、脚本依赖顺序、N5/N4 JS/JSON 数据一致性、词库和语法字段完整性、romaji regression cases、lazy card builders、stable/legacy IDs，以及 app 的 storage、TTS、sidebar 等关键 contracts。
+
+完整测试还会运行真实 Chromium，在 desktop 与 320×640 mobile viewport 检查卡片布局、整面点击、focus、Undo、多标签页进度合并和刷新行为：
+
+```bash
+npm test
+```
+
+首次在本机运行前如尚未安装 Chromium，可执行：
+
+```bash
+npx playwright install chromium
+```
+
+GitHub Pages 只会在 contracts 和 browser regressions 全部通过后部署。部署 artifact 会为 CSS/JS 加入基于 commit 的版本参数，避免发布后的 CDN cache 混用新旧资源。
 
 `validation-report.json` 是 committed baseline manifest，只记录受检 source fingerprint、预期计数和必须执行的 contracts；它不是“检查已经通过”的结果报告。只有在有意修改受检 source 或计数后才更新它：
 

@@ -16,7 +16,7 @@
     "n5-codex-vocab.json",
     "styles.css"
   ],
-  "source_fingerprint": "sha256:b63d1ca96d63ed835f5d8bc1627af1c2c36542f95382838040316b825f15b40c",
+  "source_fingerprint": "sha256:364e324db33b81faa54ad30be0e36121ae6fe5d3ae6e496d18914c0ca56ef496",
   "expected_counts": {
     "n5_entries": 717,
     "n4_entries": 767,
@@ -44,6 +44,11 @@
     "dark-only-runtime",
     "validation-source-fingerprint",
     "preferred-homograph-readings",
-    "full-card-reveal-target"
+    "reviewed-romaji-fixtures",
+    "romaji-coverage-regression",
+    "kana-mark-classification",
+    "n5-content-regressions",
+    "grammar-formation-regressions",
+    "full-study-reveal-target"
   ]
 }

@@ -30,7 +30,7 @@ class FakeClassList {
 }
 
 class FakeElement {
-  constructor(document, id = "") {
+  constructor(document, id = "", tagName = "div") {
     this.attributes = new Map();
     this.children = [];
     this.classList = new FakeClassList();
@@ -47,6 +47,15 @@ class FakeElement {
     this.tabIndex = 0;
     this.textContent = "";
     this.title = "";
+    this.tagName = tagName.toUpperCase();
+  }
+
+  get className() {
+    return [...this.classList.values].join(" ");
+  }
+
+  set className(value) {
+    this.classList.values = new Set(String(value).split(/\s+/u).filter(Boolean));
   }
 
   addEventListener(type, listener, options = {}) {
@@ -56,22 +65,62 @@ class FakeElement {
 
   append(...children) {
     children.forEach((child) => {
+      if (child instanceof FakeElement && child.parentElement) {
+        child.parentElement.children = child.parentElement.children.filter((item) => item !== child);
+      }
       this.children.push(child);
       if (child instanceof FakeElement) child.parentElement = this;
     });
   }
 
-  closest() {
+  prepend(...children) {
+    [...children].reverse().forEach((child) => {
+      if (child instanceof FakeElement && child.parentElement) {
+        child.parentElement.children = child.parentElement.children.filter((item) => item !== child);
+      }
+      this.children.unshift(child);
+      if (child instanceof FakeElement) child.parentElement = this;
+    });
+  }
+
+  matches(selector) {
+    const candidate = selector.trim();
+    if (!candidate) return false;
+    if (candidate === "button:not(:disabled)") {
+      return this.tagName === "BUTTON" && !this.disabled;
+    }
+    if (candidate.endsWith(":not(:disabled)")) {
+      return !this.disabled && this.matches(candidate.slice(0, -":not(:disabled)".length));
+    }
+    if (candidate.startsWith("#")) return this.id === candidate.slice(1);
+    if (candidate.startsWith(".")) return this.classList.contains(candidate.slice(1));
+    const attribute = candidate.match(/^\[([^=\]]+)(?:=['"]?([^'"\]]+)['"]?)?\]$/);
+    if (attribute) {
+      const [, name, expected] = attribute;
+      if (name === "hidden") return this.hidden;
+      if (name === "tabindex") return this.tabIndex !== undefined;
+      const actual = this.getAttribute(name);
+      return expected === undefined ? actual !== null : actual === expected;
+    }
+    return this.tagName === candidate.toUpperCase();
+  }
+
+  closest(selectors) {
+    const candidates = selectors.split(",");
+    let current = this;
+    while (current) {
+      if (candidates.some((selector) => current.matches(selector))) return current;
+      current = current.parentElement;
+    }
     return null;
   }
 
   dispatch(type, properties = {}) {
     if (type === "click" && this.disabled) return false;
     const event = {
-      currentTarget: this,
       defaultPrevented: false,
       propagationStopped: false,
-      target: this,
+      target: properties.target || this,
       preventDefault() {
         this.defaultPrevented = true;
       },
@@ -80,18 +129,20 @@ class FakeElement {
       },
       ...properties,
     };
-    const registered = [...(this.listeners.get(type) || [])];
-    registered.forEach(({ listener, once }) => {
-      listener(event);
-      if (once) {
-        const remaining = (this.listeners.get(type) || []).filter(
-          (registration) => registration.listener !== listener,
-        );
-        this.listeners.set(type, remaining);
-      }
-    });
-    if (!event.propagationStopped && this.parentElement) {
-      this.parentElement.dispatch(type, event);
+    let current = this;
+    while (current && !event.propagationStopped) {
+      event.currentTarget = current;
+      const registered = [...(current.listeners.get(type) || [])];
+      registered.forEach(({ listener, once }) => {
+        listener(event);
+        if (once) {
+          const remaining = (current.listeners.get(type) || []).filter(
+            (registration) => registration.listener !== listener,
+          );
+          current.listeners.set(type, remaining);
+        }
+      });
+      current = current.parentElement;
     }
     return !event.defaultPrevented;
   }
@@ -104,12 +155,19 @@ class FakeElement {
     return this.attributes.has(name) ? this.attributes.get(name) : null;
   }
 
-  querySelector() {
-    return new FakeElement(this.document);
+  querySelector(selector) {
+    return this.querySelectorAll(selector)[0] || null;
   }
 
-  querySelectorAll() {
-    return [];
+  querySelectorAll(selector) {
+    const matches = [];
+    const visit = (child) => {
+      if (!(child instanceof FakeElement)) return;
+      if (child.matches(selector)) matches.push(child);
+      child.children.forEach(visit);
+    };
+    this.children.forEach(visit);
+    return matches;
   }
 
   removeAttribute(name) {
@@ -134,21 +192,52 @@ class FakeDocument {
     this.body = new FakeElement(this, "body");
     this.documentElement = new FakeElement(this, "html");
     this.tabs = tabDecks.map((deck) => {
-      const tab = new FakeElement(this);
+      const tab = new FakeElement(this, "", "button");
       tab.dataset.deck = deck;
       return tab;
     });
     this.feedback = ["clear", "unsure", "forgot"].map((rating) => {
-      const button = new FakeElement(this);
+      const button = new FakeElement(this, "", "button");
+      button.className = `feedback ${rating}`;
       button.dataset.rating = rating;
       return button;
     });
 
+    const studyArea = this.querySelector(".study-area");
     const studyCard = this.querySelector("#studyCard");
-    const cardReveal = this.querySelector("#cardReveal");
-    const speakWord = this.querySelector("#speakWord");
-    cardReveal.parentElement = studyCard;
-    speakWord.parentElement = studyCard;
+    const statsGrid = this.querySelector(".stats-grid");
+    const flashcard = this.querySelector("#flashcard");
+    const answerPanel = this.querySelector("#answerPanel");
+    const feedbackRow = this.querySelector(".feedback-row");
+    const emptyState = this.querySelector("#emptyState");
+    studyArea.append(studyCard, emptyState);
+    studyCard.append(statsGrid, flashcard, answerPanel, this.querySelector("#memoryChain"));
+    statsGrid.append(
+      this.querySelector("#deckMenuButton"),
+      this.querySelector("#dueCount"),
+      this.querySelector("#reviewedCount"),
+      this.querySelector("#undoRating"),
+    );
+    flashcard.append(this.querySelector("#cardReveal"), this.querySelector("#speakWord"));
+    answerPanel.append(
+      this.querySelector("#choiceBlock"),
+      this.querySelector("#answerMain"),
+      this.querySelector("#answerMeta"),
+      this.querySelector("#exampleBlock"),
+      feedbackRow,
+      this.querySelector("#choiceNext"),
+    );
+    this.querySelector("#choiceBlock").append(
+      this.querySelector("#choiceList"),
+      this.querySelector("#choiceFeedback"),
+    );
+    feedbackRow.append(...this.feedback);
+    emptyState.append(
+      this.querySelector("#roundStatusText"),
+      this.querySelector("#emptyDeckMenuButton"),
+      this.querySelector("#studyAnyWay"),
+    );
+    this.querySelector("#deckSidebar").append(this.querySelector("#closeDeckMenu"), ...this.tabs);
   }
 
   addEventListener(type, listener, options = {}) {
@@ -156,8 +245,8 @@ class FakeDocument {
     this.listeners.get(type).push({ listener, once: Boolean(options?.once) });
   }
 
-  createElement() {
-    return new FakeElement(this);
+  createElement(tagName = "div") {
+    return new FakeElement(this, "", tagName);
   }
 
   createTextNode(text) {
@@ -170,7 +259,21 @@ class FakeDocument {
 
   querySelector(selector) {
     if (!this.elements.has(selector)) {
-      this.elements.set(selector, new FakeElement(this, selector.startsWith("#") ? selector.slice(1) : ""));
+      const id = selector.startsWith("#") ? selector.slice(1) : "";
+      const buttonIds = new Set([
+        "cardReveal",
+        "choiceNext",
+        "closeDeckMenu",
+        "deckMenuButton",
+        "emptyDeckMenuButton",
+        "speakWord",
+        "studyAnyWay",
+        "undoRating",
+      ]);
+      this.elements.set(
+        selector,
+        new FakeElement(this, id, buttonIds.has(id) ? "button" : "div"),
+      );
     }
     return this.elements.get(selector);
   }
@@ -221,12 +324,13 @@ function createHarness({
   grammarCards = [],
   initialStore,
   kanaCards = [baseCard()],
+  sharedStorage = null,
   storageWriteError = null,
   tabDecks = ["hiragana"],
   vocabCards = [],
 } = {}) {
   const document = new FakeDocument(tabDecks);
-  const storage = new Map();
+  const storage = sharedStorage || new Map();
   if (initialStore !== undefined) storage.set("ayaya-jp-srs-v1", initialStore);
   const localStorage = {
     getItem(key) {
@@ -273,6 +377,9 @@ function createHarness({
       if (!windowListeners.has(type)) windowListeners.set(type, []);
       windowListeners.get(type).push(listener);
     },
+    dispatchEvent(type, event) {
+      (windowListeners.get(type) || []).forEach((listener) => listener(event));
+    },
     clearTimeout() {},
     requestAnimationFrame(callback) {
       callback();
@@ -301,6 +408,9 @@ function createHarness({
     document,
     element(id) {
       return document.querySelector(`#${id}`);
+    },
+    emitWindow(type, event) {
+      window.dispatchEvent(type, event);
     },
     localStorage,
     speechSynthesis,
@@ -560,6 +670,888 @@ function testFreshMistakeRatingImmediatelyEntersMistakeDeck() {
   assert(harness.element("cardPrompt").textContent === card.prompt, "fresh mistake card was not shown");
 }
 
+function testStudyCardSurfaceRevealsAnswer() {
+  const harness = createHarness();
+
+  harness.element("studyCard").dispatch("click");
+
+  assert(
+    harness.element("cardReveal").getAttribute("aria-expanded") === "true",
+    "blank study-card surface did not reveal the answer",
+  );
+  assert(
+    harness.element("answerPanel").getAttribute("aria-hidden") === "false",
+    "study-card surface reveal left the answer hidden",
+  );
+}
+
+function testStudySurfaceExcludesInteractiveDescendants() {
+  const harness = createHarness();
+  const studyCard = harness.element("studyCard");
+  const button = harness.document.createElement("button");
+  const buttonLabel = harness.document.createElement("span");
+  const blankSurface = harness.document.createElement("span");
+  button.append(buttonLabel);
+  studyCard.append(button, blankSurface);
+
+  buttonLabel.dispatch("click");
+  assert(
+    harness.element("cardReveal").getAttribute("aria-expanded") === "false",
+    "a nested interactive control incorrectly revealed the answer",
+  );
+
+  blankSurface.dispatch("click");
+  assert(
+    harness.element("cardReveal").getAttribute("aria-expanded") === "true",
+    "a non-interactive descendant did not reveal the answer",
+  );
+}
+
+function testRevealAndRatingMoveFocusToValidActions() {
+  const cards = [baseCard({ id: "focus-a" }), baseCard({ id: "focus-b" })];
+  const harness = createHarness({ kanaCards: cards });
+  const reveal = harness.element("cardReveal");
+  reveal.focus();
+  reveal.dispatch("click");
+
+  assert(
+    harness.document.activeElement === harness.element("answerPanel"),
+    "reveal left focus on the now-disabled reveal control",
+  );
+  assert(
+    harness.element("answerPanel").getAttribute("aria-live") === "polite",
+    "revealed answers are not exposed through a live region",
+  );
+  assert(
+    !reveal.getAttribute("aria-describedby").includes("cardRevealHint"),
+    "the revealed card still announces the instruction to reveal it",
+  );
+
+  harness.document.feedback[0].dispatch("click");
+  assert(
+    harness.document.activeElement === reveal && !reveal.disabled,
+    "rating did not move focus to the next card's reveal action",
+  );
+  assert(
+    !harness.element("answerPanel").classList.contains("is-revealed"),
+    "the next unrevealed card retained a stale revealed class",
+  );
+}
+
+function testLastCardUndoRemainsVisibleAndRestoresFocus() {
+  const harness = createHarness();
+  harness.element("cardReveal").dispatch("click");
+  harness.document.feedback[0].dispatch("click");
+
+  const undo = harness.element("undoRating");
+  assert(harness.element("studyCard").hidden === true, "last-card completion did not show empty state");
+  assert(
+    undo.parentElement === harness.element("emptyState") && !undo.disabled,
+    "last-card Undo remained inside the hidden study card",
+  );
+  assert(harness.document.activeElement === undo, "last-card completion did not focus visible Undo");
+
+  undo.dispatch("click");
+  const saved = JSON.parse(harness.storage.get("ayaya-jp-srs-v1"));
+  assert(harness.element("studyCard").hidden === false, "Undo did not restore the reviewed card");
+  assert(
+    undo.parentElement === harness.document.querySelector(".stats-grid"),
+    "Undo was not returned to its header after restoring a card",
+  );
+  assert(saved["card-a"].reviews === 0, "Undo did not restore the previous card state");
+  assert(
+    harness.document.activeElement === harness.element("answerPanel"),
+    "Undo did not focus the restored card's next valid action",
+  );
+}
+
+function testCompletedRoundCanRestartWithoutStaleMerge() {
+  const harness = createHarness();
+  harness.element("cardReveal").dispatch("click");
+  harness.document.feedback[0].dispatch("click");
+  harness.element("studyAnyWay").dispatch("click");
+
+  const saved = JSON.parse(harness.storage.get("ayaya-jp-srs-v1"));
+  const round = saved.__rounds.decks.hiragana;
+  assert(harness.element("studyCard").hidden === false, "restart left the completed deck empty");
+  assert(
+    round.queue.includes("card-a") && round.completed.length === 0,
+    "save-time merge restored stale completion state over an intentional restart",
+  );
+  assert(round.rounds === 1, "restarting a deck lost its completed-round count");
+}
+
+function testLegacyCompletedRoundCannotOverrideRestartedEpoch() {
+  const card = baseCard({ id: "legacy-restart-card" });
+  const legacyStore = {
+    [card.id]: {
+      lastChoiceCorrectIndex: null,
+      lastRatedAt: 10,
+      lastRating: "clear",
+      ratingHistory: [{ at: 10, eventId: "legacy-completion", rating: "clear" }],
+      ratingTombstones: [],
+      reviews: 1,
+    },
+    __rounds: {
+      activeDeck: "hiragana",
+      decks: {
+        hiragana: {
+          completed: [card.id],
+          completionEvents: { [card.id]: ["legacy-completion"] },
+          queue: [],
+          roundCompletionEvents: ["legacy-completion"],
+          rounds: 1,
+        },
+      },
+    },
+  };
+  const harness = createHarness({
+    initialStore: JSON.stringify(legacyStore),
+    kanaCards: [card],
+  });
+
+  harness.element("studyAnyWay").dispatch("click");
+  let saved = JSON.parse(harness.storage.get("ayaya-jp-srs-v1"));
+  let round = saved.__rounds.decks.hiragana;
+  assert(round.roundGeneration === 1, "legacy completed round restarted at the wrong generation");
+  assert(round.roundId === "round:hiragana:1", "restart did not persist its canonical epoch ID");
+  assert(round.queue.includes(card.id) && round.completed.length === 0, "restart did not open a new round");
+
+  const staleLegacyStore = JSON.parse(JSON.stringify(legacyStore));
+  staleLegacyStore.__meta = {
+    revision: (saved.__meta?.revision || 0) + 1,
+    schemaVersion: 2,
+    writerId: "stale-legacy-round-writer",
+    writeToken: "stale-legacy-round-write",
+  };
+  harness.storage.set("ayaya-jp-srs-v1", JSON.stringify(staleLegacyStore));
+  harness.emitWindow("storage", {
+    key: "ayaya-jp-srs-v1",
+    newValue: JSON.stringify(staleLegacyStore),
+  });
+
+  saved = JSON.parse(harness.storage.get("ayaya-jp-srs-v1"));
+  round = saved.__rounds.decks.hiragana;
+  assert(round.roundGeneration === 1, "stale legacy completion rolled back the restarted generation");
+  assert(round.roundId === "round:hiragana:1", "stale legacy payload replaced the new epoch ID");
+  assert(
+    round.queue.includes(card.id) && round.completed.length === 0,
+    "stale legacy completion overwrote the restarted queue",
+  );
+}
+
+function testStaleTabCannotCompleteCardInNewerRound() {
+  const card = baseCard({ id: "stale-round-card" });
+  const sharedStorage = new Map();
+  const first = createHarness({ kanaCards: [card], sharedStorage });
+  const stale = createHarness({ kanaCards: [card], sharedStorage });
+
+  first.element("cardReveal").dispatch("click");
+  first.document.feedback[0].dispatch("click");
+  first.element("studyAnyWay").dispatch("click");
+  stale.element("cardReveal").dispatch("click");
+  stale.document.feedback[2].dispatch("click");
+
+  const saved = JSON.parse(sharedStorage.get("ayaya-jp-srs-v1"));
+  const round = saved.__rounds.decks.hiragana;
+  assert(round.roundGeneration === 1, "stale tab rolled the round generation back");
+  assert(round.roundId === "round:hiragana:1", "stale tab replaced the new round epoch");
+  assert(
+    round.queue.includes(card.id) && round.completed.length === 0,
+    "a rating from the stale old round completed the same card in the new round",
+  );
+  assert(saved[card.id].reviews === 2, "cross-epoch merge lost one tab's rating history");
+  assert(stale.element("studyCard").hidden === false, "stale tab did not converge to the new round UI");
+}
+
+function testSimultaneousFirstOpenUsesOneSharedEpoch() {
+  const cards = [
+    baseCard({ id: "first-open-a", prompt: "A" }),
+    baseCard({ id: "first-open-b", prompt: "B" }),
+  ];
+  const first = createHarness({ kanaCards: cards });
+  const second = createHarness({ kanaCards: cards });
+  const firstPayload = JSON.parse(first.storage.get("ayaya-jp-srs-v1"));
+  const secondPayload = JSON.parse(second.storage.get("ayaya-jp-srs-v1"));
+  const firstRound = firstPayload.__rounds.decks.hiragana;
+  const secondRound = secondPayload.__rounds.decks.hiragana;
+
+  assert(firstRound.roundGeneration === 0, "first open did not start at generation zero");
+  assert(
+    firstRound.roundId === "round:hiragana:0" && firstRound.roundId === secondRound.roundId,
+    "simultaneous first opens created unrelated random epochs",
+  );
+
+  const makeCompletionBranch = (payload, card, otherCard, writerId, at) => {
+    const branch = JSON.parse(JSON.stringify(payload));
+    const eventId = `${writerId}-event`;
+    branch[card.id] = {
+      lastChoiceCorrectIndex: null,
+      lastRatedAt: at,
+      lastRating: "clear",
+      ratingHistory: [{ at, eventId, rating: "clear" }],
+      ratingTombstones: [],
+      reviews: 1,
+    };
+    branch.__rounds.decks.hiragana = {
+      ...branch.__rounds.decks.hiragana,
+      completed: [card.id],
+      completionEvents: { [card.id]: [eventId] },
+      queue: [otherCard.id],
+      roundCompletionEvents: [],
+      rounds: 0,
+    };
+    branch.__meta = {
+      ...branch.__meta,
+      revision: (branch.__meta?.revision || 0) + 1,
+      writerId,
+      writeToken: `${writerId}-write`,
+    };
+    return branch;
+  };
+  const branchA = makeCompletionBranch(firstPayload, cards[0], cards[1], "first-open-writer-a", 100);
+  const branchB = makeCompletionBranch(secondPayload, cards[1], cards[0], "first-open-writer-b", 101);
+  const sharedStorage = new Map([["ayaya-jp-srs-v1", JSON.stringify(branchA)]]);
+  const observer = createHarness({ kanaCards: cards, sharedStorage });
+
+  sharedStorage.set("ayaya-jp-srs-v1", JSON.stringify(branchB));
+  observer.emitWindow("storage", {
+    key: "ayaya-jp-srs-v1",
+    newValue: JSON.stringify(branchB),
+  });
+
+  const converged = JSON.parse(sharedStorage.get("ayaya-jp-srs-v1"));
+  const round = converged.__rounds.decks.hiragana;
+  assert(round.roundId === "round:hiragana:0", "first-open merge changed the shared epoch");
+  assert(round.queue.length === 0, "first-open branches left completed cards queued");
+  assert(
+    round.completed.includes(cards[0].id) && round.completed.includes(cards[1].id),
+    "first-open branches lost one tab's completion",
+  );
+  assert(round.rounds === 1, "first-open branches did not converge on one completed round");
+}
+
+function testConcurrentRestartsPreserveBothNewRoundRatings() {
+  const card = baseCard({ id: "concurrent-restart-card" });
+  const initialEvent = { at: 10, eventId: "initial-round-event", rating: "clear" };
+  const initialStore = JSON.stringify({
+    [card.id]: {
+      lastChoiceCorrectIndex: null,
+      lastRatedAt: initialEvent.at,
+      lastRating: initialEvent.rating,
+      ratingHistory: [initialEvent],
+      ratingTombstones: [],
+      reviews: 1,
+    },
+    __rounds: {
+      activeDeck: "hiragana",
+      decks: {
+        hiragana: {
+          completed: [card.id],
+          completionEvents: { [card.id]: [initialEvent.eventId] },
+          queue: [],
+          roundCompletionEvents: [initialEvent.eventId],
+          roundGeneration: 0,
+          roundId: "round:hiragana:0",
+          rounds: 1,
+        },
+      },
+    },
+  });
+  const first = createHarness({ initialStore, kanaCards: [card] });
+  const second = createHarness({ initialStore, kanaCards: [card] });
+  const completeRestartedRound = (harness, rating) => {
+    harness.element("studyAnyWay").dispatch("click");
+    harness.element("cardReveal").dispatch("click");
+    harness.document.feedback.find((button) => button.dataset.rating === rating).dispatch("click");
+    return JSON.parse(harness.storage.get("ayaya-jp-srs-v1"));
+  };
+  const branchA = completeRestartedRound(first, "clear");
+  const branchB = completeRestartedRound(second, "forgot");
+  const branchARound = branchA.__rounds.decks.hiragana;
+  const branchBRound = branchB.__rounds.decks.hiragana;
+
+  assert(
+    branchARound.roundId === "round:hiragana:1" && branchARound.roundId === branchBRound.roundId,
+    "concurrent restarts created unrelated epochs",
+  );
+
+  const sharedStorage = new Map([["ayaya-jp-srs-v1", JSON.stringify(branchA)]]);
+  const observer = createHarness({ kanaCards: [card], sharedStorage });
+  sharedStorage.set("ayaya-jp-srs-v1", JSON.stringify(branchB));
+  observer.emitWindow("storage", {
+    key: "ayaya-jp-srs-v1",
+    newValue: JSON.stringify(branchB),
+  });
+
+  const converged = JSON.parse(sharedStorage.get("ayaya-jp-srs-v1"));
+  const round = converged.__rounds.decks.hiragana;
+  const history = converged[card.id].ratingHistory;
+  const completionEvents = round.completionEvents[card.id];
+  assert(round.roundGeneration === 1 && round.roundId === "round:hiragana:1", "restart epochs diverged");
+  assert(round.queue.length === 0 && round.completed.includes(card.id), "restarted round did not converge");
+  assert(round.rounds === 2, "concurrent restart merge double-counted or lost the completed round");
+  assert(history.length === 3 && converged[card.id].reviews === 3, "one restarted-round rating was lost");
+  assert(
+    completionEvents.length === 2 && completionEvents.every((eventId) => history.some((item) => item.eventId === eventId)),
+    "one restarted-round completion event was silently discarded",
+  );
+}
+
+function testChoiceAndEmptyDeckFocusLifecycle() {
+  const choiceCard = baseCard({
+    choices: [
+      { id: "right", isCorrect: true, reason: "correct", text: "正确" },
+      { id: "wrong", isCorrect: false, reason: "wrong", text: "错误" },
+    ],
+    correctChoiceId: "right",
+    deck: "grammar-n5-choice",
+    grammarLevel: "N5",
+    id: "choice-a",
+    isChoice: true,
+    isGrammar: true,
+  });
+  const harness = createHarness({
+    grammarCards: [choiceCard],
+    tabDecks: ["hiragana", "grammar-n5-choice", "vocab-mistakes"],
+  });
+
+  harness.tabs[1].dispatch("click");
+  const firstChoice = harness.element("choiceList").children[0];
+  assert(firstChoice && harness.document.activeElement === firstChoice, "choice deck did not focus an option");
+  firstChoice.dispatch("click");
+  assert(
+    harness.document.activeElement === harness.element("choiceNext"),
+    "selected choice left focus on a replaced, disabled option",
+  );
+
+  harness.tabs[2].dispatch("click");
+  assert(harness.element("studyCard").hidden === true, "empty deck kept the study card visible");
+  assert(
+    harness.document.activeElement === harness.element("emptyDeckMenuButton"),
+    "empty deck sent focus to a hidden study-card control",
+  );
+}
+
+function testStaleTabsMergeIndependentProgressAndRounds() {
+  const hiragana = baseCard({ deck: "hiragana", id: "shared-hiragana" });
+  const katakana = baseCard({ deck: "katakana", id: "shared-katakana" });
+  const sharedStorage = new Map();
+  const options = {
+    kanaCards: [hiragana, katakana],
+    sharedStorage,
+    tabDecks: ["hiragana", "katakana"],
+  };
+  const firstTab = createHarness(options);
+  const staleTab = createHarness(options);
+
+  firstTab.element("cardReveal").dispatch("click");
+  firstTab.document.feedback[0].dispatch("click");
+  staleTab.tabs[1].dispatch("click");
+  staleTab.element("cardReveal").dispatch("click");
+  staleTab.document.feedback[2].dispatch("click");
+
+  const saved = JSON.parse(sharedStorage.get("ayaya-jp-srs-v1"));
+  assert(saved[hiragana.id]?.reviews === 1, "stale tab overwrote the other tab's card progress");
+  assert(saved[katakana.id]?.reviews === 1, "stale tab failed to save its own card progress");
+  assert(
+    saved.__rounds.decks.hiragana.completed.includes(hiragana.id) &&
+      saved.__rounds.decks.katakana.completed.includes(katakana.id),
+    "stale tab merge lost a completed round queue",
+  );
+}
+
+function testConcurrentRatingsOnSameCardAreDeduplicatedSafely() {
+  const sharedStorage = new Map();
+  const options = { sharedStorage };
+  const firstTab = createHarness(options);
+  const staleTab = createHarness(options);
+
+  firstTab.element("cardReveal").dispatch("click");
+  firstTab.document.feedback[0].dispatch("click");
+  staleTab.element("cardReveal").dispatch("click");
+  staleTab.document.feedback[2].dispatch("click");
+
+  const saved = JSON.parse(sharedStorage.get("ayaya-jp-srs-v1"))["card-a"];
+  assert(saved.reviews === 2, "concurrent ratings on one card lost a review count");
+  assert(saved.ratingHistory.length === 2, "concurrent ratings on one card lost a history event");
+  assert(
+    new Set(saved.ratingHistory.map((item) => item.eventId)).size === 2,
+    "concurrent rating events were not given stable unique identities",
+  );
+}
+
+function testStorageEventRefreshesStaleVisibleQueue() {
+  const sharedStorage = new Map();
+  const firstTab = createHarness({ sharedStorage });
+  const staleTab = createHarness({ sharedStorage });
+  firstTab.element("cardReveal").dispatch("click");
+  firstTab.document.feedback[0].dispatch("click");
+  staleTab.element("cardReveal").focus();
+
+  staleTab.emitWindow("storage", {
+    key: "ayaya-jp-srs-v1",
+    newValue: sharedStorage.get("ayaya-jp-srs-v1"),
+  });
+
+  assert(staleTab.element("studyCard").hidden === true, "storage event left a completed card visible");
+  assert(staleTab.element("dueCount").textContent === 0, "storage event did not refresh due count");
+  assert(staleTab.element("reviewedCount").textContent === 1, "storage event did not refresh review count");
+  assert(
+    staleTab.document.activeElement === staleTab.element("studyAnyWay"),
+    "storage refresh left focus inside the newly hidden study card",
+  );
+}
+
+function testStorageWritePreservesCompletedChoiceExplanation() {
+  const choiceCard = baseCard({
+    choices: [
+      { id: "right", isCorrect: true, reason: "correct", text: "正确" },
+      { id: "wrong", isCorrect: false, reason: "wrong", text: "错误" },
+    ],
+    correctChoiceId: "right",
+    deck: "grammar-n5-choice",
+    grammarLevel: "N5",
+    id: "choice-storage",
+    isChoice: true,
+    isGrammar: true,
+  });
+  const katakana = baseCard({ deck: "katakana", id: "choice-external-write" });
+  const sharedStorage = new Map();
+  const options = {
+    grammarCards: [choiceCard],
+    kanaCards: [baseCard(), katakana],
+    sharedStorage,
+    tabDecks: ["hiragana", "katakana", "grammar-n5-choice"],
+  };
+  const viewer = createHarness(options);
+  const writer = createHarness(options);
+
+  viewer.tabs[2].dispatch("click");
+  viewer.element("choiceList").children[0].dispatch("click");
+  const explanation = viewer.element("answerMain").textContent;
+  writer.tabs[1].dispatch("click");
+  writer.element("cardReveal").dispatch("click");
+  writer.document.feedback[0].dispatch("click");
+  viewer.emitWindow("storage", {
+    key: "ayaya-jp-srs-v1",
+    newValue: sharedStorage.get("ayaya-jp-srs-v1"),
+  });
+
+  assert(viewer.element("choiceNext").hidden === false, "storage write hid the completed choice result");
+  assert(
+    viewer.element("answerMain").textContent === explanation,
+    "storage write replaced the completed choice explanation",
+  );
+  assert(
+    viewer.document.activeElement === viewer.element("choiceNext"),
+    "storage write moved focus away from the completed choice action",
+  );
+}
+
+function testStorageWriteMovesFocusOffInvalidatedUndo() {
+  const sharedStorage = new Map();
+  const viewer = createHarness({ sharedStorage });
+  viewer.element("cardReveal").dispatch("click");
+  viewer.document.feedback[0].dispatch("click");
+  assert(viewer.document.activeElement === viewer.element("undoRating"), "Undo was not focused");
+
+  const invalidatingStore = JSON.parse(sharedStorage.get("ayaya-jp-srs-v1"));
+  const ownEvent = invalidatingStore["card-a"].ratingHistory[0];
+  const remoteEvent = {
+    at: (ownEvent.at || 0) + 1,
+    eventId: "remote-replacement-event",
+    rating: "forgot",
+  };
+  invalidatingStore["card-a"] = {
+    ...invalidatingStore["card-a"],
+    lastRatedAt: remoteEvent.at,
+    lastRating: remoteEvent.rating,
+    ratingHistory: [remoteEvent],
+    ratingTombstones: [ownEvent.eventId],
+    reviews: 1,
+  };
+  invalidatingStore.__rounds.decks.hiragana.completionEvents = {
+    "card-a": [remoteEvent.eventId],
+  };
+  invalidatingStore.__meta = {
+    ...invalidatingStore.__meta,
+    revision: invalidatingStore.__meta.revision + 1,
+    writerId: "undo-invalidating-writer",
+    writeToken: "undo-invalidating-token",
+  };
+  sharedStorage.set("ayaya-jp-srs-v1", JSON.stringify(invalidatingStore));
+  viewer.emitWindow("storage", {
+    key: "ayaya-jp-srs-v1",
+    newValue: JSON.stringify(invalidatingStore),
+  });
+
+  assert(
+    viewer.element("undoRating").parentElement === viewer.document.querySelector(".stats-grid"),
+    "invalidated Undo was not returned to its home",
+  );
+  assert(
+    viewer.document.activeElement === viewer.element("studyAnyWay"),
+    "focus remained on Undo after it moved into the hidden study card",
+  );
+}
+
+function testUnrelatedStorageWriteKeepsUndoAvailable() {
+  const hiragana = baseCard({ deck: "hiragana", id: "undo-keep-hiragana" });
+  const katakana = baseCard({ deck: "katakana", id: "undo-keep-katakana" });
+  const sharedStorage = new Map();
+  const options = {
+    kanaCards: [hiragana, katakana],
+    sharedStorage,
+    tabDecks: ["hiragana", "katakana"],
+  };
+  const viewer = createHarness(options);
+  const writer = createHarness(options);
+  viewer.element("cardReveal").dispatch("click");
+  viewer.document.feedback[0].dispatch("click");
+  writer.tabs[1].dispatch("click");
+
+  viewer.emitWindow("storage", {
+    key: "ayaya-jp-srs-v1",
+    newValue: sharedStorage.get("ayaya-jp-srs-v1"),
+  });
+
+  assert(!viewer.element("undoRating").disabled, "unrelated storage write disabled valid Undo");
+  assert(
+    viewer.element("undoRating").parentElement === viewer.element("emptyState"),
+    "unrelated storage write hid valid Undo",
+  );
+  assert(
+    viewer.document.activeElement === viewer.element("undoRating"),
+    "unrelated storage write moved focus away from valid Undo",
+  );
+}
+
+function testConcurrentRatingUndoKeepsRemoteReviewConsistent() {
+  const sharedStorage = new Map();
+  const firstTab = createHarness({ sharedStorage });
+  const staleTab = createHarness({ sharedStorage });
+  firstTab.element("cardReveal").dispatch("click");
+  firstTab.document.feedback[0].dispatch("click");
+  const firstEventId = JSON.parse(sharedStorage.get("ayaya-jp-srs-v1"))["card-a"]
+    .ratingHistory[0].eventId;
+  staleTab.element("cardReveal").dispatch("click");
+  staleTab.document.feedback[2].dispatch("click");
+
+  firstTab.element("undoRating").dispatch("click");
+  const saved = JSON.parse(sharedStorage.get("ayaya-jp-srs-v1"));
+  const state = saved["card-a"];
+  const round = saved.__rounds.decks.hiragana;
+  assert(state.reviews === 1, "Undo removed or retained the wrong concurrent review count");
+  assert(state.ratingHistory.length === 1, "Undo did not preserve exactly the remote review event");
+  assert(state.ratingHistory[0].eventId !== firstEventId, "Undo retained its own review event");
+  assert(state.ratingTombstones.includes(firstEventId), "Undo did not persist its event tombstone");
+  assert(
+    round.completed.includes("card-a") && !round.queue.includes("card-a"),
+    "Undo restored a queued card that still has a concurrent remote review",
+  );
+  assert(firstTab.element("studyCard").hidden === true, "concurrent Undo showed an inconsistent card");
+}
+
+function testOutOfOrderStorageEventCannotRollbackNewerWriterRevision() {
+  const hiragana = baseCard({ deck: "hiragana", id: "ordered-hiragana" });
+  const katakana = baseCard({ deck: "katakana", id: "ordered-katakana" });
+  const sharedStorage = new Map();
+  const options = {
+    kanaCards: [hiragana, katakana],
+    sharedStorage,
+    tabDecks: ["hiragana", "katakana"],
+  };
+  const writer = createHarness(options);
+  const observer = createHarness(options);
+  writer.element("cardReveal").dispatch("click");
+  writer.document.feedback[0].dispatch("click");
+  const olderPayload = sharedStorage.get("ayaya-jp-srs-v1");
+  writer.tabs[1].dispatch("click");
+  writer.element("cardReveal").dispatch("click");
+  writer.document.feedback[0].dispatch("click");
+  const newerPayload = sharedStorage.get("ayaya-jp-srs-v1");
+
+  observer.emitWindow("storage", { key: "ayaya-jp-srs-v1", newValue: newerPayload });
+  observer.emitWindow("storage", { key: "ayaya-jp-srs-v1", newValue: olderPayload });
+
+  const saved = JSON.parse(sharedStorage.get("ayaya-jp-srs-v1"));
+  assert(saved[hiragana.id]?.reviews === 1, "out-of-order event lost the older valid review");
+  assert(saved[katakana.id]?.reviews === 1, "out-of-order event rolled back the newer review");
+}
+
+function testOverwrittenBranchIsReconciledBackToStorage() {
+  const sharedStorage = new Map();
+  const observer = createHarness({ sharedStorage });
+  observer.element("cardReveal").dispatch("click");
+  observer.document.feedback[0].dispatch("click");
+  const localPayload = JSON.parse(sharedStorage.get("ayaya-jp-srs-v1"));
+  const localEvent = localPayload["card-a"].ratingHistory[0];
+  const remoteEvent = {
+    at: (localEvent.at || 0) + 1,
+    eventId: "remote-overwrite-event",
+    rating: "forgot",
+  };
+  const overwrittenBranch = JSON.parse(JSON.stringify(localPayload));
+  overwrittenBranch["card-a"] = {
+    ...overwrittenBranch["card-a"],
+    lastRatedAt: remoteEvent.at,
+    lastRating: remoteEvent.rating,
+    ratingHistory: [remoteEvent],
+    reviews: 1,
+  };
+  overwrittenBranch.__meta = {
+    ...overwrittenBranch.__meta,
+    revision: overwrittenBranch.__meta.revision + 1,
+    writerId: "remote-overwriter",
+    writeToken: "remote-overwriter-token",
+  };
+  sharedStorage.set("ayaya-jp-srs-v1", JSON.stringify(overwrittenBranch));
+
+  observer.emitWindow("storage", {
+    key: "ayaya-jp-srs-v1",
+    newValue: JSON.stringify(overwrittenBranch),
+  });
+
+  const reconciled = JSON.parse(sharedStorage.get("ayaya-jp-srs-v1"));
+  const eventIds = reconciled["card-a"].ratingHistory.map((item) => item.eventId);
+  assert(eventIds.includes(localEvent.eventId), "reconciliation lost the locally known event");
+  assert(eventIds.includes(remoteEvent.eventId), "reconciliation lost the overwriting remote event");
+  assert(reconciled["card-a"].reviews === 2, "reconciliation produced the wrong review count");
+  assert(
+    reconciled.__meta.revision > overwrittenBranch.__meta.revision,
+    "reconciliation did not publish a newer store revision",
+  );
+}
+
+function testUndoAgainstOtherCardCompletionReopensOnlyUndoneCard() {
+  const cardA = baseCard({ id: "same-deck-a", prompt: "A" });
+  const cardB = baseCard({ id: "same-deck-b", prompt: "B" });
+  const initialStore = JSON.stringify({
+    __rounds: {
+      activeDeck: "hiragana",
+      decks: {
+        hiragana: {
+          completed: [],
+          completionEvents: {},
+          queue: [cardA.id, cardB.id],
+          roundCompletionEvents: [],
+          rounds: 0,
+        },
+      },
+    },
+  });
+  const harness = createHarness({ initialStore, kanaCards: [cardA, cardB] });
+  harness.element("cardReveal").dispatch("click");
+  harness.document.feedback[0].dispatch("click");
+  const localPayload = JSON.parse(harness.storage.get("ayaya-jp-srs-v1"));
+  const eventA = localPayload[cardA.id].ratingHistory[0];
+  const eventB = {
+    at: (eventA.at || 0) + 1,
+    eventId: "remote-card-b-completion",
+    rating: "clear",
+  };
+  const remotePayload = JSON.parse(JSON.stringify(localPayload));
+  remotePayload[cardB.id] = {
+    lastChoiceCorrectIndex: null,
+    lastRatedAt: eventB.at,
+    lastRating: eventB.rating,
+    ratingHistory: [eventB],
+    ratingTombstones: [],
+    reviews: 1,
+  };
+  remotePayload.__rounds.decks.hiragana = {
+    completed: [cardA.id, cardB.id],
+    completionEvents: {
+      [cardA.id]: [eventA.eventId],
+      [cardB.id]: [eventB.eventId],
+    },
+    queue: [],
+    roundCompletionEvents: [eventA.eventId, eventB.eventId],
+    rounds: 1,
+  };
+  remotePayload.__meta = {
+    ...remotePayload.__meta,
+    revision: remotePayload.__meta.revision + 1,
+    writerId: "remote-card-b-writer",
+    writeToken: "remote-card-b-write",
+  };
+  harness.storage.set("ayaya-jp-srs-v1", JSON.stringify(remotePayload));
+
+  harness.element("undoRating").dispatch("click");
+  const saved = JSON.parse(harness.storage.get("ayaya-jp-srs-v1"));
+  const round = saved.__rounds.decks.hiragana;
+  assert(saved[cardA.id].reviews === 0, "Undo left card A rated");
+  assert(saved[cardB.id].reviews === 1, "Undo removed remote card B progress");
+  assert(
+    JSON.stringify(round.queue) === JSON.stringify([cardA.id]),
+    "Undo did not reopen exactly card A",
+  );
+  assert(
+    JSON.stringify(round.completed) === JSON.stringify([cardB.id]),
+    "Undo re-added card A to completed or lost card B",
+  );
+  assert(round.rounds === 0, "Undo left the reopened round counted as complete");
+  assert(harness.element("cardPrompt").textContent === "A", "Undo did not render reopened card A");
+
+  const reloaded = createHarness({
+    kanaCards: [cardA, cardB],
+    sharedStorage: harness.storage,
+  });
+  assert(reloaded.element("cardPrompt").textContent === "A", "reload hid reopened card A");
+  assert(reloaded.element("dueCount").textContent === 1, "reload changed reopened queue size");
+  assert(reloaded.element("reviewedCount").textContent === 1, "reload lost card B completion");
+}
+
+function testDistributedLastCardCompletionIncrementsRoundOnce() {
+  const cardA = baseCard({ id: "distributed-a" });
+  const cardB = baseCard({ id: "distributed-b" });
+  const initialStore = JSON.stringify({
+    __rounds: {
+      activeDeck: "hiragana",
+      decks: {
+        hiragana: {
+          completed: [],
+          completionEvents: {},
+          queue: [cardA.id, cardB.id],
+          roundCompletionEvents: [],
+          rounds: 0,
+        },
+      },
+    },
+  });
+  const sharedStorage = new Map();
+  const observer = createHarness({
+    initialStore,
+    kanaCards: [cardA, cardB],
+    sharedStorage,
+  });
+  const basePayload = JSON.parse(sharedStorage.get("ayaya-jp-srs-v1"));
+  const makeBranch = (card, queuedCard, writerId, at) => {
+    const event = { at, eventId: `${writerId}-event`, rating: "clear" };
+    const branch = JSON.parse(JSON.stringify(basePayload));
+    branch[card.id] = {
+      lastChoiceCorrectIndex: null,
+      lastRatedAt: at,
+      lastRating: "clear",
+      ratingHistory: [event],
+      ratingTombstones: [],
+      reviews: 1,
+    };
+    branch.__rounds.decks.hiragana = {
+      completed: [card.id],
+      completionEvents: { [card.id]: [event.eventId] },
+      queue: [queuedCard.id],
+      roundCompletionEvents: [],
+      rounds: 0,
+    };
+    branch.__meta = {
+      ...branch.__meta,
+      revision: (branch.__meta?.revision || 0) + 1,
+      writerId,
+      writeToken: `${writerId}-write`,
+    };
+    return branch;
+  };
+  const branchA = makeBranch(cardA, cardB, "distributed-writer-a", 100);
+  const branchB = makeBranch(cardB, cardA, "distributed-writer-b", 101);
+
+  sharedStorage.set("ayaya-jp-srs-v1", JSON.stringify(branchA));
+  observer.emitWindow("storage", { key: "ayaya-jp-srs-v1", newValue: JSON.stringify(branchA) });
+  sharedStorage.set("ayaya-jp-srs-v1", JSON.stringify(branchB));
+  observer.emitWindow("storage", { key: "ayaya-jp-srs-v1", newValue: JSON.stringify(branchB) });
+
+  let converged = JSON.parse(sharedStorage.get("ayaya-jp-srs-v1"));
+  let round = converged.__rounds.decks.hiragana;
+  assert(round.queue.length === 0, "distributed completions left a card queued");
+  assert(
+    new Set(round.completed).size === 2 && round.completed.includes(cardA.id) && round.completed.includes(cardB.id),
+    "distributed completions did not converge to the completed set",
+  );
+  assert(round.rounds === 1, "distributed last-card completion did not increment one round");
+
+  const unrelatedMerge = JSON.parse(JSON.stringify(converged));
+  unrelatedMerge.__meta = {
+    ...unrelatedMerge.__meta,
+    revision: unrelatedMerge.__meta.revision + 1,
+    writerId: "distributed-unrelated-writer",
+    writeToken: "distributed-unrelated-write",
+  };
+  sharedStorage.set("ayaya-jp-srs-v1", JSON.stringify(unrelatedMerge));
+  observer.emitWindow("storage", {
+    key: "ayaya-jp-srs-v1",
+    newValue: JSON.stringify(unrelatedMerge),
+  });
+  converged = JSON.parse(sharedStorage.get("ayaya-jp-srs-v1"));
+  round = converged.__rounds.decks.hiragana;
+  assert(round.rounds === 1, "an unrelated merge counted the completed round twice");
+
+  const reloaded = createHarness({
+    kanaCards: [cardA, cardB],
+    sharedStorage,
+  });
+  assert(reloaded.element("studyCard").hidden === true, "reload reopened a converged completed round");
+  assert(reloaded.element("reviewedCount").textContent === 2, "reload lost distributed completions");
+}
+
+function testMoreThanSixtyFourUndoTombstonesCannotResurrect() {
+  const tombstones = Array.from({ length: 65 }, (_, index) =>
+    `undo-event-${String(index).padStart(3, "0")}`,
+  );
+  const initialStore = JSON.stringify({
+    "card-a": {
+      lastChoiceCorrectIndex: null,
+      lastRatedAt: null,
+      lastRating: null,
+      ratingHistory: [],
+      ratingTombstones: tombstones,
+      reviews: 0,
+    },
+  });
+  const harness = createHarness({ initialStore });
+  const staleEvent = {
+    at: 1,
+    eventId: tombstones[0],
+    rating: "forgot",
+  };
+  const staleBranch = JSON.parse(harness.storage.get("ayaya-jp-srs-v1"));
+  staleBranch["card-a"] = {
+    ...staleBranch["card-a"],
+    lastRatedAt: staleEvent.at,
+    lastRating: staleEvent.rating,
+    ratingHistory: [staleEvent],
+    ratingTombstones: [],
+    reviews: 1,
+  };
+  staleBranch.__meta = {
+    ...staleBranch.__meta,
+    revision: staleBranch.__meta.revision + 1,
+    writerId: "stale-tombstone-writer",
+    writeToken: "stale-tombstone-write",
+  };
+  harness.storage.set("ayaya-jp-srs-v1", JSON.stringify(staleBranch));
+  harness.emitWindow("storage", {
+    key: "ayaya-jp-srs-v1",
+    newValue: JSON.stringify(staleBranch),
+  });
+
+  const saved = JSON.parse(harness.storage.get("ayaya-jp-srs-v1"))["card-a"];
+  assert(saved.ratingTombstones.length === 65, "the 65th tombstone evicted an earlier Undo");
+  assert(saved.ratingHistory.length === 0, "stale tab resurrected an event beyond tombstone boundary");
+  assert(saved.reviews === 0, "resurrected stale event changed review count");
+}
+
+function testReadyStatusDoesNotFlash() {
+  const harness = createHarness();
+  const appStatus = harness.element("appStatus");
+
+  assert(appStatus.hidden === true, "ready status remains visible after initialization");
+  assert(
+    !appStatus.textContent.includes("应用已就绪"),
+    "initialization writes an unwanted ready-status message",
+  );
+}
+
 function testChinesePromptDoesNotSpeakHiddenAnswer() {
   const hiddenAnswer = baseCard({
     answer: "会う",
@@ -633,6 +1625,29 @@ const tests = [
   ["sidebar focus and inert lifecycle", testSidebarFocusAndInertLifecycle],
   ["mistake decks queue reviewed cards on first visit", testMistakeDeckQueuesPreviouslyReviewedCardsOnFirstVisit],
   ["fresh mistake ratings enter the mistake deck", testFreshMistakeRatingImmediatelyEntersMistakeDeck],
+  ["blank study-card surface reveals the answer", testStudyCardSurfaceRevealsAnswer],
+  ["study surface excludes interactive descendants", testStudySurfaceExcludesInteractiveDescendants],
+  ["reveal and rating focus valid actions", testRevealAndRatingMoveFocusToValidActions],
+  ["last-card Undo remains visible", testLastCardUndoRemainsVisibleAndRestoresFocus],
+  ["completed rounds can restart safely", testCompletedRoundCanRestartWithoutStaleMerge],
+  ["legacy completed rounds cannot override restarts", testLegacyCompletedRoundCannotOverrideRestartedEpoch],
+  ["stale tabs cannot complete cards in newer rounds", testStaleTabCannotCompleteCardInNewerRound],
+  ["simultaneous first opens share one epoch", testSimultaneousFirstOpenUsesOneSharedEpoch],
+  ["concurrent restarts preserve both ratings", testConcurrentRestartsPreserveBothNewRoundRatings],
+  ["choice and empty decks keep valid focus", testChoiceAndEmptyDeckFocusLifecycle],
+  ["stale tabs merge independent progress", testStaleTabsMergeIndependentProgressAndRounds],
+  ["concurrent ratings retain unique history", testConcurrentRatingsOnSameCardAreDeduplicatedSafely],
+  ["storage events refresh stale queues", testStorageEventRefreshesStaleVisibleQueue],
+  ["storage writes preserve choice explanations", testStorageWritePreservesCompletedChoiceExplanation],
+  ["storage writes move focus off invalid Undo", testStorageWriteMovesFocusOffInvalidatedUndo],
+  ["unrelated storage writes keep Undo", testUnrelatedStorageWriteKeepsUndoAvailable],
+  ["concurrent Undo keeps the remote review", testConcurrentRatingUndoKeepsRemoteReviewConsistent],
+  ["out-of-order storage events cannot roll back", testOutOfOrderStorageEventCannotRollbackNewerWriterRevision],
+  ["overwritten branches reconcile to storage", testOverwrittenBranchIsReconciledBackToStorage],
+  ["Undo reopens only its card across same-deck writes", testUndoAgainstOtherCardCompletionReopensOnlyUndoneCard],
+  ["distributed last-card completion counts once", testDistributedLastCardCompletionIncrementsRoundOnce],
+  ["more than 64 Undo tombstones remain durable", testMoreThanSixtyFourUndoTombstonesCannotResurrect],
+  ["ready status does not flash", testReadyStatusDoesNotFlash],
   ["Chinese prompts do not speak hidden answers", testChinesePromptDoesNotSpeakHiddenAnswer],
   ["stale TTS callbacks are ignored", testStaleSpeechCallbackCannotUseNextCard],
   ["shuffle avoids random sort", testShuffleDoesNotUseRandomSort],

@@ -2,7 +2,7 @@ const STORAGE_KEY = "ayaya-jp-srs-v1";
 const ROUND_STATE_KEY = "__rounds";
 const SIDEBAR_STATE_KEY = "ayaya-jp-sidebar-v1";
 const STORE_META_KEY = "__meta";
-const STORE_SCHEMA_VERSION = 2;
+const STORE_SCHEMA_VERSION = 3;
 const MAX_RATING_HISTORY = 12;
 const VALID_RATINGS = new Set(["clear", "unsure", "forgot", "correct", "wrong"]);
 
@@ -88,10 +88,20 @@ const elements = {
   tabs: document.querySelectorAll(".tab-button"),
   undoRating: document.querySelector("#undoRating"),
   feedbackRow: document.querySelector(".feedback-row"),
+  feedbackButtons: document.querySelectorAll(".feedback"),
 };
 
+const undoButtonHome = elements.undoRating?.parentElement || null;
+const storeWriterId =
+  window.crypto?.randomUUID?.() ||
+  `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+let storeWriterSequence = 0;
+let storeWriteSequence = 0;
 let persistenceError = null;
 let store = loadStore();
+let lastSyncedStore = cloneStore(store);
+const seenWriterRevisions = new Map();
+recordStoreRevision(store);
 let activeDeck = "hiragana";
 let currentCard = null;
 let isRevealed = false;
@@ -100,9 +110,12 @@ let currentChoiceOptions = [];
 let selectedChoiceId = null;
 let speechGeneration = 0;
 let sidebarReturnFocus = null;
-let readyStatusTimer = null;
 const sessionQueues = {};
 const sessionCompleted = {};
+const sessionCompletionEvents = {};
+const sessionRoundCompletionEvents = {};
+const sessionRoundGenerations = {};
+const sessionRoundIds = {};
 const sessionRoundCounts = {};
 let lastReview = null;
 let collapsedDeckLevels = loadCollapsedDeckLevels();
@@ -124,17 +137,493 @@ function loadStore() {
   }
 }
 
-function saveStore() {
-  store[STORE_META_KEY] = {
-    ...(store[STORE_META_KEY] && typeof store[STORE_META_KEY] === "object"
-      ? store[STORE_META_KEY]
-      : {}),
-    schemaVersion: STORE_SCHEMA_VERSION,
-    savedAt: Date.now(),
+function cloneStore(value) {
+  if (value === undefined) return undefined;
+  try {
+    return JSON.parse(JSON.stringify(value || {}));
+  } catch {
+    return {};
+  }
+}
+
+function isStoreObject(value) {
+  return Boolean(value && typeof value === "object" && !Array.isArray(value));
+}
+
+function isCardState(value) {
+  return Boolean(
+    isStoreObject(value) &&
+      (Array.isArray(value.ratingHistory) ||
+        Number.isInteger(value.reviews) ||
+        VALID_RATINGS.has(value.lastRating)),
+  );
+}
+
+function valuesEqual(left, right) {
+  const normalize = (value) => {
+    if (Array.isArray(value)) return value.map(normalize);
+    if (!isStoreObject(value)) return value;
+    return Object.keys(value)
+      .sort()
+      .reduce((result, key) => {
+        result[key] = normalize(value[key]);
+        return result;
+      }, {});
   };
+  return JSON.stringify(normalize(left)) === JSON.stringify(normalize(right));
+}
+
+function storeRevision(value) {
+  return Number.isInteger(value?.[STORE_META_KEY]?.revision)
+    ? Math.max(0, value[STORE_META_KEY].revision)
+    : 0;
+}
+
+function recordStoreRevision(value) {
+  const meta = value?.[STORE_META_KEY];
+  if (!meta?.writerId || !Number.isInteger(meta.revision)) return;
+  seenWriterRevisions.set(
+    meta.writerId,
+    Math.max(seenWriterRevisions.get(meta.writerId) || 0, meta.revision),
+  );
+}
+
+function isClearlyStaleStore(value) {
+  const meta = value?.[STORE_META_KEY];
+  if (!meta?.writerId || !Number.isInteger(meta.revision)) return false;
+  const seenRevision = seenWriterRevisions.get(meta.writerId);
+  return Number.isInteger(seenRevision) && meta.revision <= seenRevision;
+}
+
+function storesSemanticallyEqual(left, right) {
+  const leftContent = cloneStore(left) || {};
+  const rightContent = cloneStore(right) || {};
+  delete leftContent[STORE_META_KEY];
+  delete rightContent[STORE_META_KEY];
+  return valuesEqual(leftContent, rightContent);
+}
+
+function readPersistedStoreForMerge() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    return isStoreObject(parsed) ? parsed : {};
+  } catch {
+    return cloneStore(lastSyncedStore);
+  }
+}
+
+function ratingEventKey(item) {
+  if (item?.eventId) return `event:${item.eventId}`;
+  return `${item?.at || ""}:${item?.rating || ""}:${item?.choiceId || ""}`;
+}
+
+function normalizedTombstones(state) {
+  return [
+    ...new Set(
+      (Array.isArray(state?.ratingTombstones) ? state.ratingTombstones : []).filter(
+        (eventId) => typeof eventId === "string" && eventId,
+      ),
+    ),
+  ].sort();
+}
+
+function mergeConcurrentCardState(baseState, localState, remoteState) {
+  if (!isStoreObject(localState)) return cloneStore(remoteState);
+  if (!isStoreObject(remoteState)) return cloneStore(localState);
+
+  const tombstones = [
+    ...new Set([
+      ...normalizedTombstones(baseState),
+      ...normalizedTombstones(localState),
+      ...normalizedTombstones(remoteState),
+    ]),
+  ].sort();
+  const tombstoneSet = new Set(tombstones);
+  const baseHistory = normalizedHistory(baseState);
+  const baseKeys = new Set(baseHistory.map(ratingEventKey));
+  const localHistory = normalizedHistory(localState);
+  const remoteHistory = normalizedHistory(remoteState);
+  const seenHistory = new Set();
+  const ratingHistory = [...remoteHistory, ...localHistory]
+    .filter((item) => !item.eventId || !tombstoneSet.has(item.eventId))
+    .filter((item) => {
+      const key = ratingEventKey(item);
+      if (seenHistory.has(key)) return false;
+      seenHistory.add(key);
+      return true;
+    })
+    .sort(
+      (left, right) =>
+        (left.at || 0) - (right.at || 0) ||
+        ratingEventKey(left).localeCompare(ratingEventKey(right)),
+    )
+    .slice(-MAX_RATING_HISTORY);
+  const latest =
+    (localState.lastRatedAt || 0) >= (remoteState.lastRatedAt || 0)
+      ? localState
+      : remoteState;
+  const addedReviewCount = [...seenHistory].filter((key) => !baseKeys.has(key)).length;
+  const removedBaseReviewCount = baseHistory.filter(
+    (item) => item.eventId && tombstoneSet.has(item.eventId),
+  ).length;
+  const baseReviews = Number.isInteger(baseState?.reviews) ? Math.max(0, baseState.reviews) : 0;
+  const adjustedReviews = (state, history) =>
+    Math.max(
+      0,
+      (Number.isInteger(state.reviews) ? state.reviews : 0) -
+        history.filter((item) => item.eventId && tombstoneSet.has(item.eventId)).length,
+    );
+
+  return {
+    ...defaultState(),
+    ...latest,
+    lastChoiceCorrectIndex: Number.isInteger(ratingHistory.at(-1)?.correctChoiceIndex)
+      ? ratingHistory.at(-1).correctChoiceIndex
+      : latest.lastChoiceCorrectIndex ?? null,
+    lastRating: ratingHistory.at(-1)?.rating || null,
+    lastRatedAt: ratingHistory.at(-1)?.at || null,
+    ratingHistory,
+    ratingTombstones: tombstones,
+    reviews: Math.max(
+      baseReviews - removedBaseReviewCount + addedReviewCount,
+      adjustedReviews(localState, localHistory),
+      adjustedReviews(remoteState, remoteHistory),
+      ratingHistory.length,
+    ),
+  };
+}
+
+function isRatingEventTombstoned(cardStates, cardId, eventId) {
+  return Boolean(eventId && normalizedTombstones(cardStates?.[cardId]).includes(eventId));
+}
+
+function normalizedCompletionEventIds(value) {
+  const eventIds = Array.isArray(value) ? value : value ? [value] : [];
+  return [...new Set(eventIds.filter((eventId) => typeof eventId === "string" && eventId))].sort();
+}
+
+function roundGenerationForState(round) {
+  if (Number.isInteger(round?.roundGeneration)) return Math.max(0, round.roundGeneration);
+  const completedRounds = Number.isInteger(round?.rounds) ? Math.max(0, round.rounds) : 0;
+  const isCompletedLegacyRound =
+    Array.isArray(round?.queue) &&
+    round.queue.length === 0 &&
+    Array.isArray(round?.completed) &&
+    round.completed.length > 0;
+  return isCompletedLegacyRound ? Math.max(0, completedRounds - 1) : completedRounds;
+}
+
+function roundIdForState(round, deck) {
+  return `round:${deck}:${roundGenerationForState(round)}`;
+}
+
+function compareRoundEpochs(left, right, deck) {
+  return roundGenerationForState(left) - roundGenerationForState(right);
+}
+
+function ensureSessionRoundEpoch(deck) {
+  if (!Number.isInteger(sessionRoundGenerations[deck])) {
+    sessionRoundGenerations[deck] = getRoundCount(deck);
+  }
+  sessionRoundIds[deck] = roundIdForState(
+    { roundGeneration: sessionRoundGenerations[deck] },
+    deck,
+  );
+}
+
+function advanceSessionRoundEpoch(deck) {
+  ensureSessionRoundEpoch(deck);
+  sessionRoundGenerations[deck] += 1;
+  sessionRoundIds[deck] = roundIdForState(
+    { roundGeneration: sessionRoundGenerations[deck] },
+    deck,
+  );
+}
+
+function normalizeDeckRound(round, cardStates, tombstonedEventIds = new Set(), deck = "") {
+  if (!isStoreObject(round)) return cloneStore(round);
+  const completed = new Set(Array.isArray(round.completed) ? round.completed : []);
+  const queue = Array.isArray(round.queue) ? [...new Set(round.queue)] : [];
+  const completionEvents = isStoreObject(round.completionEvents)
+    ? { ...round.completionEvents }
+    : {};
+
+  Object.entries(completionEvents).forEach(([cardId, value]) => {
+    if (!completed.has(cardId)) {
+      delete completionEvents[cardId];
+      return;
+    }
+    const eventIds = normalizedCompletionEventIds(value);
+    const survivingEventIds = eventIds.filter(
+      (eventId) => !isRatingEventTombstoned(cardStates, cardId, eventId),
+    );
+    if (eventIds.length && !survivingEventIds.length) {
+      completed.delete(cardId);
+      delete completionEvents[cardId];
+      if (!queue.includes(cardId)) queue.push(cardId);
+    } else if (survivingEventIds.length) {
+      completionEvents[cardId] = survivingEventIds;
+    }
+  });
+
+  const roundCompletionEvents = normalizedCompletionEventIds(round.roundCompletionEvents);
+  const survivingRoundCompletionEvents = roundCompletionEvents.filter(
+    (eventId) => !tombstonedEventIds.has(eventId),
+  );
+  const reopenedCompletedRound =
+    queue.length > 0 &&
+    roundCompletionEvents.length > 0 &&
+    survivingRoundCompletionEvents.length < roundCompletionEvents.length;
+
+  return {
+    ...cloneStore(round),
+    roundGeneration: roundGenerationForState(round),
+    roundId: roundIdForState(round, deck),
+    queue: queue.filter((cardId) => !completed.has(cardId)),
+    completed: [...completed],
+    completionEvents,
+    roundCompletionEvents: reopenedCompletedRound ? [] : survivingRoundCompletionEvents,
+    rounds: reopenedCompletedRound
+      ? Math.max(0, (Number.isInteger(round.rounds) ? round.rounds : 0) - 1)
+      : Number.isInteger(round.rounds)
+        ? Math.max(0, round.rounds)
+        : 0,
+  };
+}
+
+function mergeCompletionEvents(completed, localRound, remoteRound, cardStates) {
+  const localEvents = isStoreObject(localRound?.completionEvents)
+    ? localRound.completionEvents
+    : {};
+  const remoteEvents = isStoreObject(remoteRound?.completionEvents)
+    ? remoteRound.completionEvents
+    : {};
+  const completionEvents = {};
+
+  completed.forEach((cardId) => {
+    const candidates = [
+      ...new Set([
+        ...normalizedCompletionEventIds(remoteEvents[cardId]),
+        ...normalizedCompletionEventIds(localEvents[cardId]),
+      ]),
+    ].sort();
+    if (!candidates.length) return;
+    const validCandidates = candidates.filter(
+      (eventId) => !isRatingEventTombstoned(cardStates, cardId, eventId),
+    );
+    completionEvents[cardId] = validCandidates.length ? validCandidates : candidates;
+  });
+  return completionEvents;
+}
+
+function mergeConcurrentDeckRound(
+  deck,
+  baseRound,
+  localRound,
+  remoteRound,
+  cardStates,
+  tombstonedEventIds,
+) {
+  if (!isStoreObject(localRound)) return cloneStore(remoteRound);
+  if (!isStoreObject(remoteRound)) return cloneStore(localRound);
+
+  const completed = new Set([
+    ...(Array.isArray(localRound.completed) ? localRound.completed : []),
+    ...(Array.isArray(remoteRound.completed) ? remoteRound.completed : []),
+  ]);
+  const queue = [
+    ...(Array.isArray(localRound.queue) ? localRound.queue : []),
+    ...(Array.isArray(remoteRound.queue) ? remoteRound.queue : []),
+  ]
+    .filter((cardId, index, ids) => !completed.has(cardId) && ids.indexOf(cardId) === index)
+    .sort();
+
+  const completionEvents = mergeCompletionEvents(completed, localRound, remoteRound, cardStates);
+  const roundCompletionEvents = [
+    ...new Set([
+      ...normalizedCompletionEventIds(remoteRound.roundCompletionEvents),
+      ...normalizedCompletionEventIds(localRound.roundCompletionEvents),
+    ]),
+  ].sort();
+  const normalized = normalizeDeckRound(
+    {
+    ...cloneStore(baseRound),
+    ...cloneStore(remoteRound),
+    ...cloneStore(localRound),
+    queue,
+    completed: [...completed].sort(),
+    completionEvents,
+    roundCompletionEvents,
+    rounds: Math.max(
+      Number.isInteger(localRound.rounds) ? localRound.rounds : 0,
+      Number.isInteger(remoteRound.rounds) ? remoteRound.rounds : 0,
+    ),
+    },
+    cardStates,
+    tombstonedEventIds,
+    deck,
+  );
+  const baseRounds = Number.isInteger(baseRound?.rounds) ? Math.max(0, baseRound.rounds) : 0;
+  const baseHadQueue = Array.isArray(baseRound?.queue) && baseRound.queue.length > 0;
+  if (baseHadQueue && normalized.queue.length === 0 && normalized.rounds <= baseRounds) {
+    normalized.rounds = baseRounds + 1;
+    normalized.roundCompletionEvents = [
+      ...new Set(Object.values(normalized.completionEvents).flatMap(normalizedCompletionEventIds)),
+    ].sort();
+  }
+  return normalized;
+}
+
+function mergeRoundStates(baseRoundState, localRoundState, remoteRoundState, cardStates) {
+  const base = isStoreObject(baseRoundState) ? baseRoundState : {};
+  const local = isStoreObject(localRoundState) ? localRoundState : {};
+  const remote = isStoreObject(remoteRoundState) ? remoteRoundState : {};
+  const decks = {};
+  const tombstonedEventIds = new Set(
+    Object.values(cardStates || {}).flatMap(normalizedTombstones),
+  );
+  const deckNames = new Set([
+    ...Object.keys(base.decks || {}),
+    ...Object.keys(local.decks || {}),
+    ...Object.keys(remote.decks || {}),
+  ]);
+
+  deckNames.forEach((deck) => {
+    const baseDeck = base.decks?.[deck];
+    const localDeck = local.decks?.[deck];
+    const remoteDeck = remote.decks?.[deck];
+    const localChanged = !valuesEqual(localDeck, baseDeck);
+    const remoteChanged = !valuesEqual(remoteDeck, baseDeck);
+    const bothHaveCompletionOperations =
+      Object.keys(localDeck?.completionEvents || {}).length > 0 &&
+      Object.keys(remoteDeck?.completionEvents || {}).length > 0;
+    if (
+      isStoreObject(localDeck) &&
+      isStoreObject(remoteDeck) &&
+      compareRoundEpochs(localDeck, remoteDeck, deck) !== 0
+    ) {
+      const winner = compareRoundEpochs(localDeck, remoteDeck, deck) > 0 ? localDeck : remoteDeck;
+      decks[deck] = normalizeDeckRound(winner, cardStates, tombstonedEventIds, deck);
+      return;
+    }
+    if (
+      isStoreObject(localDeck) &&
+      isStoreObject(remoteDeck) &&
+      !valuesEqual(localDeck, remoteDeck) &&
+      ((localChanged && remoteChanged) || bothHaveCompletionOperations)
+    ) {
+      decks[deck] = mergeConcurrentDeckRound(
+        deck,
+        baseDeck,
+        localDeck,
+        remoteDeck,
+        cardStates,
+        tombstonedEventIds,
+      );
+    } else if (localChanged) {
+      decks[deck] = normalizeDeckRound(localDeck, cardStates, tombstonedEventIds, deck);
+    } else if (remoteChanged) {
+      decks[deck] = normalizeDeckRound(remoteDeck, cardStates, tombstonedEventIds, deck);
+    } else {
+      decks[deck] = normalizeDeckRound(localDeck, cardStates, tombstonedEventIds, deck);
+    }
+  });
+
+  return {
+    activeDeck:
+      local.activeDeck !== base.activeDeck
+        ? local.activeDeck
+        : remote.activeDeck || local.activeDeck || base.activeDeck,
+    decks,
+  };
+}
+
+function mergeStoreVersions(baseStore, localStore, remoteStore) {
+  const base = isStoreObject(baseStore) ? baseStore : {};
+  const local = isStoreObject(localStore) ? localStore : {};
+  const remote = isStoreObject(remoteStore) ? remoteStore : {};
+  const merged = {};
+  const keys = new Set([...Object.keys(base), ...Object.keys(local), ...Object.keys(remote)]);
+
+  keys.delete(STORE_META_KEY);
+  keys.delete(ROUND_STATE_KEY);
+  keys.forEach((key) => {
+    const localChanged = !valuesEqual(local[key], base[key]);
+    const remoteChanged = !valuesEqual(remote[key], base[key]);
+    let value;
+
+    if (isCardState(local[key]) && remote[key] === undefined && !localChanged) {
+      value = cloneStore(local[key]);
+    } else if (
+      isCardState(local[key]) &&
+      isCardState(remote[key]) &&
+      !valuesEqual(local[key], remote[key])
+    ) {
+      value = mergeConcurrentCardState(base[key], local[key], remote[key]);
+    } else if (localChanged && remoteChanged && !valuesEqual(local[key], remote[key])) {
+      value = mergeConcurrentCardState(base[key], local[key], remote[key]);
+    } else if (localChanged) {
+      value = cloneStore(local[key]);
+    } else if (remoteChanged) {
+      value = cloneStore(remote[key]);
+    } else {
+      value = cloneStore(local[key]);
+    }
+    if (value !== undefined) merged[key] = value;
+  });
+
+  merged[ROUND_STATE_KEY] = mergeRoundStates(
+    base[ROUND_STATE_KEY],
+    local[ROUND_STATE_KEY],
+    remote[ROUND_STATE_KEY],
+    merged,
+  );
+  return merged;
+}
+
+function saveStore() {
+  const mergeBase = cloneStore(lastSyncedStore);
+  let candidate = cloneStore(store);
 
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      const remoteStore = readPersistedStoreForMerge();
+      recordStoreRevision(remoteStore);
+      candidate = mergeStoreVersions(mergeBase, candidate, remoteStore);
+      storeWriteSequence += 1;
+      const revision =
+        Math.max(
+          storeRevision(mergeBase),
+          storeRevision(store),
+          storeRevision(remoteStore),
+          storeRevision(candidate),
+        ) + 1;
+      const writeToken = `${storeWriterId}:${revision}:${storeWriteSequence}`;
+      candidate[STORE_META_KEY] = {
+        schemaVersion: STORE_SCHEMA_VERSION,
+        savedAt: Date.now(),
+        writerId: storeWriterId,
+        revision,
+        writeToken,
+      };
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(candidate));
+      const readBack = readPersistedStoreForMerge();
+      recordStoreRevision(readBack);
+      if (readBack[STORE_META_KEY]?.writeToken === writeToken) {
+        store = candidate;
+        lastSyncedStore = cloneStore(candidate);
+        recordStoreRevision(candidate);
+        syncSessionRoundState({ preserveActiveDeck: true });
+        break;
+      }
+      candidate = mergeStoreVersions(mergeBase, candidate, readBack);
+      if (attempt === 2) {
+        store = candidate;
+      }
+    }
     if (
       persistenceError?.startsWith("浏览器无法") ||
       persistenceError?.startsWith("学习进度无法写入")
@@ -323,12 +812,24 @@ function renderLoadStatus() {
   });
 }
 
-function loadRoundState() {
+function clearRecord(record) {
+  Object.keys(record).forEach((key) => delete record[key]);
+}
+
+function syncSessionRoundState(options = {}) {
+  const preserveActiveDeck = options.preserveActiveDeck === true;
   const roundState = store[ROUND_STATE_KEY];
+  clearRecord(sessionQueues);
+  clearRecord(sessionCompleted);
+  clearRecord(sessionCompletionEvents);
+  clearRecord(sessionRoundCompletionEvents);
+  clearRecord(sessionRoundGenerations);
+  clearRecord(sessionRoundIds);
+  clearRecord(sessionRoundCounts);
   if (!roundState || typeof roundState !== "object") return;
 
   const deckNames = knownDecks();
-  if (deckNames.has(roundState.activeDeck)) {
+  if (!preserveActiveDeck && deckNames.has(roundState.activeDeck)) {
     activeDeck = roundState.activeDeck;
   }
 
@@ -336,8 +837,20 @@ function loadRoundState() {
     if (!deckNames.has(deck) || !state || typeof state !== "object") return;
     sessionQueues[deck] = Array.isArray(state.queue) ? [...state.queue] : [];
     sessionCompleted[deck] = new Set(Array.isArray(state.completed) ? state.completed : []);
+    sessionCompletionEvents[deck] = isStoreObject(state.completionEvents)
+      ? { ...state.completionEvents }
+      : {};
+    sessionRoundCompletionEvents[deck] = normalizedCompletionEventIds(
+      state.roundCompletionEvents,
+    );
+    sessionRoundGenerations[deck] = roundGenerationForState(state);
+    sessionRoundIds[deck] = roundIdForState(state, deck);
     sessionRoundCounts[deck] = Number.isInteger(state.rounds) ? Math.max(0, state.rounds) : 0;
   });
+}
+
+function loadRoundState() {
+  syncSessionRoundState();
 }
 
 function saveRoundState() {
@@ -345,13 +858,22 @@ function saveRoundState() {
   const deckNames = new Set([
     ...Object.keys(sessionQueues),
     ...Object.keys(sessionCompleted),
+    ...Object.keys(sessionCompletionEvents),
+    ...Object.keys(sessionRoundCompletionEvents),
+    ...Object.keys(sessionRoundGenerations),
+    ...Object.keys(sessionRoundIds),
     ...Object.keys(sessionRoundCounts),
   ]);
 
   deckNames.forEach((deck) => {
+    ensureSessionRoundEpoch(deck);
     decks[deck] = {
       queue: [...(sessionQueues[deck] || [])],
       completed: [...(sessionCompleted[deck] || new Set())],
+      completionEvents: { ...(sessionCompletionEvents[deck] || {}) },
+      roundCompletionEvents: [...(sessionRoundCompletionEvents[deck] || [])],
+      roundGeneration: sessionRoundGenerations[deck],
+      roundId: sessionRoundIds[deck],
       rounds: getRoundCount(deck),
     };
   });
@@ -361,10 +883,16 @@ function saveRoundState() {
 }
 
 function normalizedHistory(state) {
+  const tombstones = new Set(normalizedTombstones(state));
   const history = Array.isArray(state?.ratingHistory) ? [...state.ratingHistory] : [];
   const normalized = history
     .filter((item) => item && VALID_RATINGS.has(item.rating))
-    .sort((left, right) => (left.at || 0) - (right.at || 0));
+    .filter((item) => !item.eventId || !tombstones.has(item.eventId))
+    .sort(
+      (left, right) =>
+        (left.at || 0) - (right.at || 0) ||
+        ratingEventKey(left).localeCompare(ratingEventKey(right)),
+    );
   if (normalized.length) return normalized;
   return VALID_RATINGS.has(state?.lastRating)
     ? [{ rating: state.lastRating, at: state.lastRatedAt || null }]
@@ -378,16 +906,25 @@ function mergeCardStates(states) {
   const latest = validStates.reduce((currentLatest, state) =>
     (state.lastRatedAt || 0) >= (currentLatest.lastRatedAt || 0) ? state : currentLatest,
   );
+  const ratingTombstones = [
+    ...new Set(validStates.flatMap(normalizedTombstones)),
+  ].sort();
+  const tombstoneSet = new Set(ratingTombstones);
   const seenHistory = new Set();
   const ratingHistory = validStates
     .flatMap(normalizedHistory)
+    .filter((item) => !item.eventId || !tombstoneSet.has(item.eventId))
     .filter((item) => {
-      const key = `${item.at || ""}:${item.rating}:${item.choiceId || ""}`;
+      const key = ratingEventKey(item);
       if (seenHistory.has(key)) return false;
       seenHistory.add(key);
       return true;
     })
-    .sort((left, right) => (left.at || 0) - (right.at || 0))
+    .sort(
+      (left, right) =>
+        (left.at || 0) - (right.at || 0) ||
+        ratingEventKey(left).localeCompare(ratingEventKey(right)),
+    )
     .slice(-MAX_RATING_HISTORY);
 
   return {
@@ -396,6 +933,7 @@ function mergeCardStates(states) {
     lastRating: ratingHistory.at(-1)?.rating || latest.lastRating || null,
     lastRatedAt: ratingHistory.at(-1)?.at || latest.lastRatedAt || null,
     ratingHistory,
+    ratingTombstones,
     reviews: validStates.reduce(
       (total, state) => total + (Number.isInteger(state.reviews) ? Math.max(0, state.reviews) : 0),
       0,
@@ -449,6 +987,16 @@ function migrateLegacyCardState(familyCards) {
       changed = true;
     }
   });
+  Object.keys(sessionCompletionEvents).forEach((deck) => {
+    const previous = sessionCompletionEvents[deck] || {};
+    const next = Object.fromEntries(
+      Object.entries(previous).map(([cardId, eventId]) => [aliasMap.get(cardId) || cardId, eventId]),
+    );
+    if (!valuesEqual(previous, next)) {
+      sessionCompletionEvents[deck] = next;
+      changed = true;
+    }
+  });
 
   if (changed) saveRoundState();
 }
@@ -459,6 +1007,7 @@ function defaultState() {
     lastRating: null,
     lastRatedAt: null,
     ratingHistory: [],
+    ratingTombstones: [],
     reviews: 0,
   };
 }
@@ -476,6 +1025,7 @@ function getState(cardId) {
         ? [{ rating: store[cardId].lastRating, at: store[cardId].lastRatedAt || null }]
         : [];
     }
+    store[cardId].ratingTombstones = normalizedTombstones(store[cardId]);
     store[cardId].ratingHistory = normalizedHistory(store[cardId]).slice(-MAX_RATING_HISTORY);
     const latestRating = store[cardId].ratingHistory.at(-1);
     store[cardId].lastRating = latestRating?.rating || null;
@@ -576,6 +1126,7 @@ function buildChoiceOptions(card) {
 }
 
 function buildQueue() {
+  ensureSessionRoundEpoch(activeDeck);
   const deckCards = getDeckCards();
   const deckIds = new Set(deckCards.map((card) => card.id));
   const cardById = new Map(deckCards.map((card) => [card.id, card]));
@@ -618,6 +1169,46 @@ function nextCard() {
   render();
 }
 
+function restoreUndoButtonHome() {
+  if (undoButtonHome && elements.undoRating.parentElement !== undoButtonHome) {
+    undoButtonHome.append(elements.undoRating);
+  }
+}
+
+function focusSoon(element) {
+  if (!element || element.disabled || element.hidden) return;
+  window.requestAnimationFrame(() => {
+    if (element.isConnected && !element.disabled && !element.hidden) element.focus();
+  });
+}
+
+function focusPrimaryStudyAction(options = {}) {
+  if (!currentCard) {
+    if (options.preferUndo && lastReview && !elements.undoRating.disabled) {
+      focusSoon(elements.undoRating);
+    } else if (!elements.studyAnyWay.hidden) {
+      focusSoon(elements.studyAnyWay);
+    } else {
+      focusSoon(elements.emptyDeckMenuButton);
+    }
+    return;
+  }
+
+  if (currentCard.isChoice) {
+    const target = isRevealed
+      ? elements.choiceNext
+      : elements.choiceList.querySelector(".choice-option:not(:disabled)");
+    focusSoon(target);
+    return;
+  }
+
+  if (isRevealed) {
+    focusSoon(elements.answerPanel);
+  } else {
+    focusSoon(elements.cardReveal);
+  }
+}
+
 function render() {
   const deckCards = getDeckCards();
   const dueCount = reviewQueue.length;
@@ -641,6 +1232,7 @@ function render() {
     return;
   }
 
+  restoreUndoButtonHome();
   elements.studyCard.hidden = false;
   elements.flashcard.hidden = false;
   elements.emptyState.hidden = true;
@@ -668,12 +1260,21 @@ function render() {
     "aria-label",
     currentCard.isChoice ? "选择下方答案" : isRevealed ? "答案已显示" : "显示答案",
   );
+  elements.cardReveal.setAttribute(
+    "aria-describedby",
+    isRevealed || currentCard.isChoice
+      ? "cardPrompt cardSubtle"
+      : "cardPrompt cardSubtle cardRevealHint",
+  );
   const canSpeak = Boolean(isRevealed ? primarySpeech(currentCard) : currentCard.frontSpeech);
   elements.speakWord.hidden = !canSpeak;
   elements.speakWord.disabled = !canSpeak;
   elements.speakWord.setAttribute("aria-label", isRevealed ? "重播答案读音" : "播放题面读音");
   elements.speakWord.title = elements.speakWord.getAttribute("aria-label");
-  elements.answerPanel.classList.toggle("is-revealed", isRevealed || currentCard.isChoice);
+  elements.answerPanel.classList.toggle(
+    "is-revealed",
+    Boolean(isRevealed || currentCard.isChoice),
+  );
   elements.answerPanel.setAttribute("aria-hidden", String(!isRevealed && !currentCard.isChoice));
   renderMemoryChain(currentCard);
 
@@ -924,6 +1525,11 @@ function renderEmpty(deckCards) {
   elements.answerPanel.setAttribute("aria-hidden", "true");
   clearAnswer();
   elements.emptyState.hidden = false;
+  if (lastReview) {
+    elements.emptyState.append(elements.undoRating);
+  } else {
+    restoreUndoButtonHome();
+  }
   elements.studyAnyWay.hidden = deckCards.length === 0;
   if (activeDeck === "vocab-mistakes" && !deckCards.length) {
     elements.roundStatusText.textContent = "暂无错题，去 N5 模块里练几张吧。";
@@ -950,8 +1556,21 @@ function revealCard() {
     if (!currentCard || isRevealed || currentCard.isChoice) return;
     isRevealed = true;
     render();
+    focusPrimaryStudyAction();
     speakForReveal();
   });
+}
+
+function revealFromStudySurface(event) {
+  if (event.target === elements.cardReveal || event.target === elements.speakWord) return;
+  if (
+    event.target.closest?.(
+      "button, a, input, select, textarea, summary, [role='button'], [contenteditable='true']",
+    )
+  ) {
+    return;
+  }
+  revealCard();
 }
 
 function captureReviewSnapshot() {
@@ -961,9 +1580,17 @@ function captureReviewSnapshot() {
     deck: activeDeck,
     previousChoiceCorrectIndex: state.lastChoiceCorrectIndex,
     previousCompleted: new Set(sessionCompleted[activeDeck] || []),
+    previousCompletionEvents: { ...(sessionCompletionEvents[activeDeck] || {}) },
+    previousRoundCompletionEvents: [...(sessionRoundCompletionEvents[activeDeck] || [])],
+    previousRoundGeneration: sessionRoundGenerations[activeDeck],
+    previousRoundId: sessionRoundIds[activeDeck],
     previousQueue: [...(sessionQueues[activeDeck] || [])],
     previousRoundCount: getRoundCount(activeDeck),
-    previousState: { ...state, ratingHistory: [...state.ratingHistory] },
+    previousState: {
+      ...state,
+      ratingHistory: [...state.ratingHistory],
+      ratingTombstones: [...state.ratingTombstones],
+    },
   };
 }
 
@@ -974,7 +1601,15 @@ function applyRating(rating, details = {}) {
   state.reviews += 1;
   state.lastRating = rating;
   state.lastRatedAt = Date.now();
-  state.ratingHistory.push({ rating, at: state.lastRatedAt, ...details });
+  storeWriterSequence += 1;
+  const eventId = `${storeWriterId}-${storeWriterSequence}`;
+  lastReview.appliedEventId = eventId;
+  state.ratingHistory.push({
+    rating,
+    at: state.lastRatedAt,
+    eventId,
+    ...details,
+  });
   state.ratingHistory = state.ratingHistory.slice(-MAX_RATING_HISTORY);
 }
 
@@ -989,8 +1624,17 @@ function completeCurrentCard(options = {}) {
     sessionCompleted[activeDeck] = new Set();
   }
   sessionCompleted[activeDeck].add(currentCard.id);
+  if (!sessionCompletionEvents[activeDeck]) sessionCompletionEvents[activeDeck] = {};
+  if (lastReview?.appliedEventId) {
+    sessionCompletionEvents[activeDeck][currentCard.id] = [lastReview.appliedEventId];
+  }
   if (sessionQueues[activeDeck].length === 0 && sessionCompleted[activeDeck].size > 0) {
     sessionRoundCounts[activeDeck] = getRoundCount(activeDeck) + 1;
+    sessionRoundCompletionEvents[activeDeck] = [
+      ...new Set(
+        Object.values(sessionCompletionEvents[activeDeck]).flatMap(normalizedCompletionEventIds),
+      ),
+    ].sort();
   }
   saveRoundState();
   if (shouldAdvance) nextCard();
@@ -1001,6 +1645,7 @@ function rateCurrentCard(rating) {
 
   applyRating(rating);
   completeCurrentCard();
+  focusPrimaryStudyAction({ preferUndo: true });
 }
 
 function selectChoice(choiceId) {
@@ -1015,11 +1660,13 @@ function selectChoice(choiceId) {
   const rating = choice.isCorrect ? "correct" : "wrong";
   applyRating(rating, {
     choiceId: choice.id,
+    correctChoiceIndex: correctIndex,
     correctChoiceId: currentCard.correctChoiceId,
   });
   getState(currentCard.id).lastChoiceCorrectIndex = correctIndex;
   completeCurrentCard({ advance: false });
   render();
+  focusPrimaryStudyAction();
   speakForReveal();
 }
 
@@ -1027,27 +1674,65 @@ function updateUndoButton() {
   elements.undoRating.disabled = !lastReview;
 }
 
+function hasConcurrentReview(snapshot, persistedState) {
+  const previousEvents = new Set(normalizedHistory(snapshot.previousState).map(ratingEventKey));
+  return normalizedHistory(persistedState).some(
+    (item) =>
+      item.eventId !== snapshot.appliedEventId && !previousEvents.has(ratingEventKey(item)),
+  );
+}
+
+function removeAppliedReviewEvent(snapshot) {
+  const state = getState(snapshot.cardId);
+  const eventId = snapshot.appliedEventId;
+  if (!eventId) {
+    store[snapshot.cardId] = cloneStore(snapshot.previousState);
+    return;
+  }
+
+  const eventWasPresent = state.ratingHistory.some((item) => item.eventId === eventId);
+  state.ratingTombstones = [
+    ...new Set([...normalizedTombstones(state), eventId]),
+  ].sort();
+  state.ratingHistory = state.ratingHistory.filter((item) => item.eventId !== eventId);
+  const latestRating = state.ratingHistory.at(-1);
+  state.lastRating = latestRating?.rating || null;
+  state.lastRatedAt = latestRating?.at || null;
+  state.reviews = Math.max(0, state.reviews - (eventWasPresent ? 1 : 0));
+  state.lastChoiceCorrectIndex = snapshot.previousChoiceCorrectIndex;
+}
+
 function undoLastReview() {
   if (!lastReview) return;
 
+  const snapshot = lastReview;
   cancelSpeech();
-  const card = getFamilyCards(lastReview.deck).find((item) => item.id === lastReview.cardId);
+  const card = getFamilyCards(snapshot.deck).find((item) => item.id === snapshot.cardId);
   if (!card) return;
 
-  activeDeck = lastReview.deck;
-  sessionCompleted[activeDeck] = new Set(lastReview.previousCompleted);
-  sessionQueues[activeDeck] = [...lastReview.previousQueue];
-  sessionRoundCounts[activeDeck] = lastReview.previousRoundCount;
-  store[lastReview.cardId] = { ...lastReview.previousState };
+  const persistedStore = readPersistedStoreForMerge();
+  const concurrentReviewExists = hasConcurrentReview(snapshot, persistedStore[snapshot.cardId]);
+  activeDeck = snapshot.deck;
+  if (!concurrentReviewExists) {
+    sessionCompleted[activeDeck] = new Set(snapshot.previousCompleted);
+    sessionCompletionEvents[activeDeck] = { ...snapshot.previousCompletionEvents };
+    sessionRoundCompletionEvents[activeDeck] = [...snapshot.previousRoundCompletionEvents];
+    sessionRoundGenerations[activeDeck] = snapshot.previousRoundGeneration;
+    sessionRoundIds[activeDeck] = snapshot.previousRoundId;
+    sessionQueues[activeDeck] = [...snapshot.previousQueue];
+    sessionRoundCounts[activeDeck] = snapshot.previousRoundCount;
+  }
+  removeAppliedReviewEvent(snapshot);
   saveRoundState();
   buildQueue();
 
-  currentCard = card;
-  currentChoiceOptions = card.isChoice ? buildChoiceOptions(card) : [];
+  currentCard = concurrentReviewExists ? reviewQueue[0] || null : card;
+  currentChoiceOptions = currentCard?.isChoice ? buildChoiceOptions(currentCard) : [];
   selectedChoiceId = null;
-  isRevealed = !card.isChoice;
+  isRevealed = Boolean(currentCard && !currentCard.isChoice && !concurrentReviewExists);
   lastReview = null;
   render();
+  focusPrimaryStudyAction();
 }
 
 function sidebarFocusableElements() {
@@ -1174,9 +1859,13 @@ function restartDeckRound() {
   const previousOrder =
     completedOrder.length === deckCards.length ? completedOrder : sessionQueues[activeDeck];
   sessionCompleted[activeDeck] = new Set();
+  advanceSessionRoundEpoch(activeDeck);
+  sessionCompletionEvents[activeDeck] = {};
+  sessionRoundCompletionEvents[activeDeck] = [];
   sessionQueues[activeDeck] = shuffleCards(deckCards, previousOrder);
   saveRoundState();
   nextCard();
+  focusPrimaryStudyAction();
 }
 
 function assertRequiredElements() {
@@ -1190,16 +1879,11 @@ function assertRequiredElements() {
 
 function finishLoadingStatus() {
   elements.studyArea.setAttribute("aria-busy", "false");
-  elements.appStatus.textContent = "应用已就绪。";
-  window.clearTimeout(readyStatusTimer);
-  readyStatusTimer = window.setTimeout(() => {
-    elements.appStatus.hidden = true;
-  }, 800);
+  elements.appStatus.hidden = true;
 }
 
 function showFatalError(error) {
   console.error("Failed to initialize ayaya日语:", error);
-  window.clearTimeout(readyStatusTimer);
   elements.studyArea?.setAttribute("aria-busy", "false");
   if (elements.studyArea) elements.studyArea.inert = false;
   if (elements.deckSidebar) {
@@ -1236,10 +1920,104 @@ function runSafely(action) {
   }
 }
 
+function canPreserveUndoAfterStorage(snapshot, previousSyncedStore, remoteStore, mergedStore) {
+  if (!snapshot?.appliedEventId) return false;
+  const ownEventRemains = normalizedHistory(mergedStore[snapshot.cardId]).some(
+    (item) => item.eventId === snapshot.appliedEventId,
+  );
+  if (!ownEventRemains) return false;
+
+  const previousDeckRound = previousSyncedStore?.[ROUND_STATE_KEY]?.decks?.[snapshot.deck];
+  const remoteDeckRound = remoteStore?.[ROUND_STATE_KEY]?.decks?.[snapshot.deck];
+  return valuesEqual(previousDeckRound, remoteDeckRound);
+}
+
+function handleStoreStorageChange(event) {
+  if (event.key !== STORAGE_KEY) return;
+
+  let remoteStore;
+  try {
+    remoteStore = event.newValue === null ? {} : JSON.parse(event.newValue);
+  } catch {
+    return;
+  }
+  if (!isStoreObject(remoteStore)) return;
+  if (isClearlyStaleStore(remoteStore)) return;
+
+  const previousCard = currentCard;
+  const pendingUndo = lastReview;
+  const previousSyncedStore = cloneStore(lastSyncedStore);
+  const previousChoiceOptions = currentChoiceOptions;
+  const previousSelectedChoiceId = selectedChoiceId;
+  const previousRevealState = isRevealed;
+  const focusWasOnUndo = document.activeElement === elements.undoRating;
+  const focusWasInEmptyState =
+    document.activeElement?.closest?.("#emptyState") === elements.emptyState;
+  const focusWasInStudyCard =
+    document.activeElement?.closest?.("#studyCard") === elements.studyCard;
+  store = mergeStoreVersions(lastSyncedStore, store, remoteStore);
+  lastSyncedStore = cloneStore(remoteStore);
+  recordStoreRevision(remoteStore);
+  const needsReconciliation = !storesSemanticallyEqual(store, remoteStore);
+  if (needsReconciliation) {
+    saveStore();
+  } else {
+    store[STORE_META_KEY] = cloneStore(remoteStore[STORE_META_KEY]);
+  }
+  lastReview = canPreserveUndoAfterStorage(
+    pendingUndo,
+    previousSyncedStore,
+    remoteStore,
+    store,
+  )
+    ? pendingUndo
+    : null;
+  syncSessionRoundState({ preserveActiveDeck: true });
+  buildQueue();
+
+  const queuedCard = previousCard
+    ? reviewQueue.find((card) => card.id === previousCard.id)
+    : null;
+  const currentDataCard = previousCard
+    ? getFamilyCards(previousCard.deck).find((card) => card.id === previousCard.id)
+    : null;
+  const latestStoredReview = previousCard
+    ? normalizedHistory(store[previousCard.id]).at(-1)
+    : null;
+  const canRetainChoiceResult = Boolean(
+    currentDataCard?.isChoice &&
+      previousRevealState &&
+      previousSelectedChoiceId &&
+      previousChoiceOptions.some((choice) => choice.id === previousSelectedChoiceId) &&
+      latestStoredReview?.choiceId === previousSelectedChoiceId,
+  );
+  const retainedCard = queuedCard || (canRetainChoiceResult ? currentDataCard : null);
+  if (retainedCard) {
+    currentCard = retainedCard;
+    currentChoiceOptions = previousChoiceOptions;
+    selectedChoiceId = previousSelectedChoiceId;
+    isRevealed = previousRevealState;
+  } else {
+    cancelSpeech();
+    currentCard = reviewQueue[0] || null;
+    currentChoiceOptions = currentCard?.isChoice ? buildChoiceOptions(currentCard) : [];
+    selectedChoiceId = null;
+    isRevealed = false;
+  }
+  render();
+  if (focusWasOnUndo && lastReview) {
+    focusSoon(elements.undoRating);
+  } else if (focusWasInStudyCard || focusWasOnUndo || focusWasInEmptyState) {
+    focusPrimaryStudyAction();
+  }
+}
+
 function bindInteractions() {
   elements.cardReveal.addEventListener("click", revealCard);
+  elements.studyCard.addEventListener("click", revealFromStudySurface);
+  window.addEventListener("storage", (event) => runSafely(() => handleStoreStorageChange(event)));
 
-  document.querySelectorAll(".feedback").forEach((button) => {
+  elements.feedbackButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
       event.stopPropagation();
       runSafely(() => rateCurrentCard(button.dataset.rating));
@@ -1254,7 +2032,7 @@ function bindInteractions() {
         saveRoundState();
         setSidebarOpen(false, { restoreFocus: false });
         nextCard();
-        elements.deckMenuButton.focus();
+        focusPrimaryStudyAction();
       });
     });
   });
@@ -1291,7 +2069,10 @@ function bindInteractions() {
 
   elements.choiceNext.addEventListener("click", (event) => {
     event.stopPropagation();
-    runSafely(nextCard);
+    runSafely(() => {
+      nextCard();
+      focusPrimaryStudyAction({ preferUndo: true });
+    });
   });
 
   elements.studyAnyWay.addEventListener("click", () => {
@@ -1322,6 +2103,14 @@ function bindInteractions() {
 
 function initializeApp() {
   assertRequiredElements();
+  elements.answerPanel.setAttribute("role", "region");
+  elements.answerPanel.setAttribute("aria-label", "答案区域");
+  elements.answerPanel.setAttribute("aria-live", "polite");
+  elements.answerPanel.setAttribute("aria-atomic", "false");
+  elements.answerPanel.tabIndex = -1;
+  elements.roundStatusText.setAttribute("role", "status");
+  elements.roundStatusText.setAttribute("aria-live", "polite");
+  elements.roundStatusText.setAttribute("aria-atomic", "true");
   bindInteractions();
   loadRoundState();
   if (isDeckDataMissing(activeDeck)) {
