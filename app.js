@@ -1986,7 +1986,7 @@ function finishLoadingStatus() {
 }
 
 function showFatalError(error) {
-  console.error("Failed to initialize ayaya日语:", error);
+  console.error("Failed to initialize AyayaJp:", error);
   elements.studyArea?.setAttribute("aria-busy", "false");
   if (elements.studyArea) elements.studyArea.inert = false;
   if (elements.deckSidebar) {

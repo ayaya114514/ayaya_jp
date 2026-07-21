@@ -2,7 +2,7 @@
   "name": "ayaya-jp",
   "version": "0.1.0",
   "private": true,
-  "description": "Local Japanese flashcard app.",
+  "description": "日语练习",
   "engines": {
     "node": ">=20"
   },

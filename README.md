@@ -1,9 +1,9 @@
-# ayaya日语
+# AyayaJp
 
 一个本地运行的日语 flashcard 程序，包含假名互记、N5/N4 单词双向记忆、N5/N4 语法练习，以及对应错题集。点击卡片翻面时会自动播放读音，答案区也可以手动重播。
 界面目前固定使用深色模式，没有浅色 / 深色切换按钮。
 
-在线网址：[https://ayaya114514.github.io/ayaya_jp/](https://ayaya114514.github.io/ayaya_jp/)
+在线网址：[https://ayaya114514.github.io/AyayaJp/](https://ayaya114514.github.io/AyayaJp/)
 
 ## 使用
 
